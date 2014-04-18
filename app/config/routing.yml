@@ -1,0 +1,4 @@
+thiefaine_referentiel:
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing.yml"
+    prefix:   /
+

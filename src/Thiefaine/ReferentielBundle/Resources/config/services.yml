@@ -1,0 +1,7 @@
+parameters:
+#    thiefaine_referentiel.example.class: Thiefaine\ReferentielBundle\Example
+
+services:
+#    thiefaine_referentiel.example:
+#        class: %thiefaine_referentiel.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

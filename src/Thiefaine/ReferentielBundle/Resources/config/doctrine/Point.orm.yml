@@ -1,0 +1,45 @@
+Thiefaine\ReferentielBundle\Entity\Point:
+    type: entity
+    table: POINT
+    indexes:
+        POINT_LIEU_ID1:
+            columns:
+                - idlieu
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        latitude:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        longitude:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        radius:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+    manyToOne:
+        idlieu:
+            targetEntity: Lieu
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idlieu:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

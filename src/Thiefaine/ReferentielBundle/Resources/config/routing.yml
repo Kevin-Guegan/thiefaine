@@ -1,0 +1,3 @@
+thiefaine_referentiel_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ThiefaineReferentielBundle:Default:index }

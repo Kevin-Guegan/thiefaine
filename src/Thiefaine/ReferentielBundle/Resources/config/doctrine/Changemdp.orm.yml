@@ -1,0 +1,38 @@
+Thiefaine\ReferentielBundle\Entity\Changemdp:
+    type: entity
+    table: CHANGEMDP
+    indexes:
+        CHANGEMDP_UTILISATEURWEB_ID1:
+            columns:
+                - idutilisateurweb
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        hash:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        update:
+            type: boolean
+            nullable: false
+            comment: ''
+    manyToOne:
+        idutilisateurweb:
+            targetEntity: Utilisateurweb
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idutilisateurweb:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

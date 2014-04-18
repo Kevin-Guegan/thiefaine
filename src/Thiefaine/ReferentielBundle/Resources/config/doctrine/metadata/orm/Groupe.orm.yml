@@ -1,0 +1,54 @@
+Groupe:
+    type: entity
+    table: GROUPE
+    indexes:
+        GROUPE_GENDARMERIE_ID1:
+            columns:
+                - idgendarmerie
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        gerergroupes:
+            type: boolean
+            nullable: false
+            comment: ''
+        gererutilisateurs:
+            type: boolean
+            nullable: false
+            comment: ''
+        gereralertes:
+            type: boolean
+            nullable: false
+            comment: ''
+        gererinfos:
+            type: boolean
+            nullable: false
+            comment: ''
+        gererconseils:
+            type: boolean
+            nullable: false
+            comment: ''
+    manyToOne:
+        idgendarmerie:
+            targetEntity: Gendarmerie
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idgendarmerie:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

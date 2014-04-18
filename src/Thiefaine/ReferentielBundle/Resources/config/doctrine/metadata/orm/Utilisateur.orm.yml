@@ -1,0 +1,64 @@
+Utilisateur:
+    type: entity
+    table: UTILISATEUR
+    indexes:
+        UTILISATEUR_GROUPE_ID1:
+            columns:
+                - idgroupe
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        prenom:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        login:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        motdepasse:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+        email:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        infos:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+    manyToOne:
+        idgroupe:
+            targetEntity: Groupe
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idgroupe:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
