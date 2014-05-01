@@ -1,0 +1,49 @@
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+
+{% block content %}
+	<div class="content">
+		<h3>Gestion des conseils</h3>
+		<table class="table table-hover">
+		  <tr>
+		  	<th>Actions</th>
+		  	<th>Titre <span class="glyphicon cheveron-down" title="Trier par date"></span></th>
+		  	<th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
+		  	<th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+		  </tr>
+
+		  <tr>
+		  	<td data-element="Conseil n°0">
+		  		<span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
+		  		<span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+		  		<span class="glyphicon glyphicon-eye-open showElement" title="Visualiser"></span>
+		  	</td>
+		  	<td>Conseil n°0</td>
+		  	<td>jj/mm/aa</td>
+		  	<td>jj/mm/aa</td>
+		  </tr>
+
+		  <tr>
+		  	<td data-element="Conseil n°1">
+		  		<span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
+		  		<span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+		  		<span class="glyphicon glyphicon-eye-open showElement" title="Visualiser"></span>
+		  	</td>
+		  	<td>Conseil n°1</td>
+		  	<td>jj/mm/aa</td>
+		  	<td>jj/mm/aa</td>
+		  </tr>
+
+		  <tr>
+		  	<td data-element="Conseil n°2">
+		  		<span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
+		  		<span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+		  		<span class="glyphicon glyphicon-eye-open showElement" title="Visualiser"></span>
+		  	</td>
+		  	<td>Conseil n°2</td>
+		  	<td>jj/mm/aa</td>
+		  	<td>jj/mm/aa</td>
+		  </tr>
+
+		</table>
+	</div>
+{% endblock %}

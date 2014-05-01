@@ -1,0 +1,67 @@
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+
+{% block content %}
+	<div class="content">
+		<h3>Création d'un groupe</h3>
+		<form class="form-horizontal">
+			<div class="form-group">
+			  <p>
+			      <label for="groupeName" class="control-label">Nom</label>
+			      <input type="text" class="form-control" id="groupeName" placeholder="Nom" data-toggle="tooltip" data-placement="right" title="Renseigner le nom du groupe." required>
+			  </p><p class="list-form-control" data-toggle="tooltip" data-placement="right" title="Cocher les droits d'administration du groupe.">
+			  	  <label>Administration</label>
+				  <table class="table table-hover">
+				  	<tr>
+				  		<td>
+				  	  		Gestion des groupes
+				  		</td><td style="text-align: right;">
+				  	  		<input type="checkbox" id="groupeCheck1" value="groupeCheck1">
+				  		</td>
+				  	</tr>
+				  	<tr>
+				  		<td>
+				  			Gestion des utilisateurs
+				  		</td><td style="text-align: right;">
+				  			<input type="checkbox" id="groupeCheck2" value="groupeCheck2">
+				  		</td>
+				  	</tr>
+				  </table>
+		      </p><p class="list-form-control" data-toggle="tooltip" data-placement="right" title="Cocher les droits de créations du groupe.">
+		      	  <label>Messages et notifications</label>
+		      	  <table class="table table-hover">
+		      	  	<tr>
+				  		<td>
+				  			Gestion des alertes
+				  		</td><td style="text-align: right;">
+				  			<input type="checkbox" id="groupeCheck3" value="groupeCheck3">
+				  		</td>
+				  	</tr>
+				  	<tr>
+				  		<td>
+				  			Gestion des informations
+				  		</td><td style="text-align: right;">
+				  			<input type="checkbox" id="groupeCheck4" value="groupeCheck4">
+				  		</td>
+				  	</tr>
+				  	<tr>
+				  		<td>
+				  			Gestion des conseils
+				  		</td><td style="text-align: right;">
+				  			<input type="checkbox" id="groupeCheck5" value="groupeCheck5">
+				  		</td>
+				  	</tr>
+		      	  </table>
+		  	  </p><p>
+			      <label for="groupeInformation" class="control-label">Informations</label>
+			      <textarea name="textarea" id="groupeInformation" class="form-control" cols="50" placeholder="Saisisser les informations complémentaires liées au groupe." data-toggle="tooltip" data-placement="right" title="Saisisser les informations complémentaires liées au groupe."></textarea>
+		      	  <script>
+	                CKEDITOR.replace( 'groupeInformation' );
+	              </script>
+		      </p><p>
+		      	<a class="btn btn-primary" href="?url=groupe&action=manage">Valider</a>
+		      	<a class="btn btn-default" href="?url=accueil">Annuler</a>
+		  	  </p>
+		    </div>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+
+{% block content %}
+	<div class="content">
+		<h3>Création d'un utilisateurs</h3>
+		<form class="form-horizontal">
+			<div class="form-group">
+			  <p>
+			      <label for="userNom" class="control-label">Nom</label>
+			      <input type="text" class="form-control" id="userNom" placeholder="Nom" data-toggle="tooltip" data-placement="right" title="Renseigner le nom de l'utilisateur." required>
+			  </p><p>
+			      <label for="userPrenom" class="control-label">Prénom</label>
+			      <input type="text" class="form-control" id="userPrenom" placeholder="Prénom" data-toggle="tooltip" data-placement="right" title="Renseigner le prénom de l'utilisateur." required>
+			  </p><p>
+			      <label for="userLogin" class="control-label">Login</label>
+			      <input type="text" class="form-control" id="userLogin" placeholder="Prénom" data-toggle="tooltip" data-placement="right" title="Renseigner le login de l'utilisateur." required>
+			  </p><p>
+			      <label for="userGroupe" class="control-label">Groupe</label>
+			      <select class="form-control" id="userGroupe" data-toggle="tooltip" data-placement="right" title="Sélectionner un groupe pour l'utilisateur." required>
+					  <option>Sélectionner un groupe</option>
+					  <option>Groupe n°0</option>
+					  <option>Groupe n°1</option>
+					  <option>Groupe n°2</option>
+					  <option>Groupe n°3</option>
+				  </select>
+			  </p><p>
+			      <label for="userEmail" class="control-label">E-mail</label>
+			      <input type="email" class="form-control" id="userEmail" placeholder="E-mail" data-toggle="tooltip" data-placement="right" title="Renseigner l'e-mail de l'utilisateur." required>
+			  </p><p>
+			      <label for="userInformation" class="control-label">Informations</label>
+			      <textarea name="textarea" id="userInformation" class="form-control" cols="50" placeholder="Saisisser les informations complémentaires liées à l'utilisateur." data-toggle="tooltip" data-placement="right" title="Saisisser les informations complémentaires liées à l'utilisateur."></textarea>
+		      </p><p>
+		      	<a class="btn btn-primary" href="?url=user&action=manage">Valider</a>
+		      	<a class="btn btn-default" href="?url=accueil">Annuler</a>
+		  	  </p>
+		    </div>
+		</form>
+	</div>
+{% endblock %}

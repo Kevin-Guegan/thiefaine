@@ -1,0 +1,38 @@
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/map.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+	<div class="content">
+		<h3>Création d'une zone</h3>
+		<form class="form-horizontal">
+			<div class="form-group">
+			  <p>
+			      <label for="zoneTitle" class="control-label">Nom de la zone</label>
+			      <input type="text" class="form-control" id="zoneTitle" placeholder="Nom de la zone" data-toggle="tooltip" data-placement="right" title="Saisisser le nom de la zone à créer." required>
+			  </p><p>
+			      <label for="zoneRadius" class="control-label">Rayon de la zone</label>
+			      <div class="input-group list-form-control" data-toggle="tooltip" data-placement="right" title="Saisisser le rayon de la zone à créer. (nota : il est possible de modifier le rayon et déplacer la zone une fois celle-ci crée.)">
+			        <input type="text" class="form-control" id="zoneRadius" placeholder="Rayon de la zone">
+			        <span class="input-group-btn">
+			          <button id="zoneRadiusBtn" class="btn btn-primary" type="button">Générer la zone</button>
+			        </span>
+			      </div>
+			      <div id="MesCercleGoogle">
+			      	<table class="table table-hover" style="border-collapse: inherit; margin-bottom: 0px;">
+				      	
+			      	</table>
+			      </div>
+			      <div id="MaCarteGoogle"></div>
+		      </p><p>
+		      	<a class="btn btn-primary" href="?url=zone&action=manage">Valider</a>
+		      	<a class="btn btn-default" href="?url=accueil">Annuler</a>
+		  	  </p>
+		    </div>
+		</form>
+	</div>
+{% endblock %}

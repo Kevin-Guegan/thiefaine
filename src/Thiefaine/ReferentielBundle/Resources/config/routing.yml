@@ -1,3 +1,60 @@
 thiefaine_referentiel_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ThiefaineReferentielBundle:Default:index }
+
+thiefaine_referentiel_accueil:
+    pattern:  /accueil
+    defaults: { _controller: ThiefaineReferentielBundle:Default:accueil }
+
+thiefaine_referentiel_myaccount:
+    pattern:  /myaccount
+    defaults: { _controller: ThiefaineReferentielBundle:Default:myaccount }
+
+thiefaine_referentiel_alert:
+    pattern:  /alert
+    defaults: { _controller: ThiefaineReferentielBundle:Default:alert }
+
+thiefaine_referentiel_alert_create:
+    pattern:  /alert/create
+    defaults: { _controller: ThiefaineReferentielBundle:Default:alertCreate }
+
+thiefaine_referentiel_conseil:
+    pattern:  /conseil
+    defaults: { _controller: ThiefaineReferentielBundle:Default:conseil }
+
+thiefaine_referentiel_conseil_create:
+    pattern:  /conseil/create
+    defaults: { _controller: ThiefaineReferentielBundle:Default:conseilCreate }
+
+thiefaine_referentiel_groupe:
+    pattern:  /groupe
+    defaults: { _controller: ThiefaineReferentielBundle:Default:groupe }
+
+thiefaine_referentiel_groupe_create:
+    pattern:  /groupe/create
+    defaults: { _controller: ThiefaineReferentielBundle:Default:groupeCreate }
+
+thiefaine_referentiel_zone:
+    pattern:  /zone
+    defaults: { _controller: ThiefaineReferentielBundle:Default:zone }
+
+thiefaine_referentiel_zone_create:
+    pattern:  /zone/create
+    defaults: { _controller: ThiefaineReferentielBundle:Default:zoneCreate }
+
+thiefaine_referentiel_user:
+    pattern:  /user
+    defaults: { _controller: ThiefaineReferentielBundle:Default:user }
+
+thiefaine_referentiel_user_create:
+    pattern:  /user/create
+    defaults: { _controller: ThiefaineReferentielBundle:Default:userCreate }
+
+thiefaine_referentiel_info:
+    pattern:  /info
+    defaults: { _controller: ThiefaineReferentielBundle:Default:info }
+
+thiefaine_referentiel_info_create:
+    pattern:  /info/create
+    defaults: { _controller: ThiefaineReferentielBundle:Default:infoCreate }
+

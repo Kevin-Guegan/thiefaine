@@ -1,0 +1,28 @@
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+
+{% block content %}
+	<!-- BODY -->
+	<div class="content">
+		<h3>Gestion de mon compte</h3>
+		<form class="form-horizontal">
+			<div class="form-group">
+			  <p>
+			      <label for="userNom" class="control-label">Nom</label>
+			      <input type="text" class="form-control" id="userNom" value="Mon nom" required>
+			  </p><p>
+			      <label for="userPrenom" class="control-label">Prénom</label>
+			      <input type="text" class="form-control" id="userPrenom" value="Mon prénom" required>
+			  </p><p>
+			      <label for="userGroupe" class="control-label">Groupe</label>
+			      <input type="text" class="form-control" id="userGroupe" value="Mon groupe" required disabled>
+			  </p><p>
+			      <label for="userEmail" class="control-label">E-mail</label>
+			      <input type="email" class="form-control" id="userEmail" value="Mon e-mail" required>
+			  </p><p>
+		      	<button type="submit" class="btn btn-primary">Modifier</button>
+		      	<a class="btn btn-default" href="?url=accueil">Annuler</a>
+		  	  </p>
+		    </div>
+		</form>
+	</div>
+{% endblock %}

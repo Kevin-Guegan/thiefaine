@@ -1,0 +1,66 @@
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+
+{% block content %}
+	<div class="content">
+		<h3>Gestion des utilisateurs</h3>
+		<table class="table table-hover">
+		  <tr>
+		  	<th>Actions</th>
+		  	<th>Nom <span class="glyphicon cheveron-down" title="Trier par nom"></span></th>
+		  	<th>Prénom <span class="glyphicon cheveron-down" title="Trier par prénom"></span></th>
+		  	<th>Groupe <span class="glyphicon cheveron-down" title="Trier par groupe"></span></th>
+		  	<th>E-mail <span class="glyphicon cheveron-down" title="Trier par e-mail"></span></th>
+		  	<th>Informations</th>
+		  </tr>
+
+		  <tr>
+		  	<td data-element="Utilisateur n°0">
+		  		<span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
+		  		<span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+		  	</td>
+		  	<td>Nom utilisateur n°0</td>
+		  	<td>Prénom utilisateur n°0</td>
+		  	<td>Groupe n° {{random(3)}}</td>
+		  	<td>E-mail utilisateur n°0</td>
+		  	<td>Infos utilisateur n°0</td>
+		  </tr>
+		  
+		  <tr>
+		  	<td data-element="Utilisateur n°1">
+		  		<span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
+		  		<span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+		  	</td>
+		  	<td>Nom utilisateur n°1</td>
+		  	<td>Prénom utilisateur n°1</td>
+		  	<td>Groupe n° {{random(3)}}</td>
+		  	<td>E-mail utilisateur n°1</td>
+		  	<td>Infos utilisateur n°1</td>
+		  </tr>
+		  
+		  <tr>
+		  	<td data-element="Utilisateur n°2">
+		  		<span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
+		  		<span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+		  	</td>
+		  	<td>Nom utilisateur n°2</td>
+		  	<td>Prénom utilisateur n°2</td>
+		  	<td>Groupe n° {{random(3)}}</td>
+		  	<td>E-mail utilisateur n°2</td>
+		  	<td>Infos utilisateur n°2</td>
+		  </tr>
+		  
+		  <tr>
+		  	<td data-element="Utilisateur n°3">
+		  		<span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
+		  		<span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+		  	</td>
+		  	<td>Nom utilisateur n°3</td>
+		  	<td>Prénom utilisateur n°3</td>
+		  	<td>Groupe n° {{random(3)}}</td>
+		  	<td>E-mail utilisateur n°3</td>
+		  	<td>Infos utilisateur n°3</td>
+		  </tr>
+		  
+		</table>
+	</div>
+{% endblock %}

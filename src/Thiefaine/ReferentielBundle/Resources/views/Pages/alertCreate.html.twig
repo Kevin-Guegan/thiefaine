@@ -1,0 +1,50 @@
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+
+{% block content %}
+	<div class="content">
+		<h3>Création d'une alerte</h3>
+		<form class="form-horizontal" enctype="multipart/form-data">
+			<div class="form-group">
+			  <p>
+			      <label for="alertTitle" class="control-label">Titre *</label>
+			      <input type="text" class="form-control" id="alertTitle" placeholder="Titre" data-toggle="tooltip" data-placement="right" title="Renseigner le titre de l'alerte." required>
+			  </p><p>
+			  	  <label for="alertImg" class="control-label">Photo</label>
+			      <div class="input-group list-form-control" data-toggle="tooltip" data-placement="right" title="Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).">
+			        <input type="text" class="form-control imgLink" id="alertImg" placeholder="Photo">
+			        <span class="input-group-btn">
+			          <button id="alertImgBtn1" class="btn btn-default imgJoin" type="button"><span class="glyphicon glyphicon-paperclip"></span> Joindre</button>
+			          <button id="alertImgBtn2" class="btn btn-default imgView" type="button"><span class="glyphicon glyphicon-eye-open"></span> Visualiser</button>
+			        </span>
+			      </div>
+			      <input type="file" class="imgLink" onchange="sub(this)" style="display:none;">
+			  </p><p>
+			      <label for="alertLien" class="control-label">Lien</label>
+			      <input type="text" class="form-control" id="alertLien" placeholder="Lien" data-toggle="tooltip" data-placement="right" title="Renseigner un lien" required>
+			  </p><p>
+			      <label for="alertZone" class="control-label">Zone *</label>
+			      <select class="form-control" id="alertZone" data-toggle="tooltip" data-placement="right" title="Sélectionner la zone dans laquelle à eu lieux le cambriolage." required>
+					  <option>Sélectionner une zone</option>
+					  <option>Zone n°0</option>
+					  <option>Zone n°1</option>
+					  <option>Zone n°2</option>
+					  <option>Zone n°3</option>
+				  </select>
+				  <div class="MapSelected"></div>
+			  </p><p>
+			      <label for="alertDateValid" class="control-label">Date de validité</label>
+			      <input type="text" class="form-control elmDateValid" id="alertDateValid" placeholder="Date de validité" data-toggle="tooltip" data-placement="right" title="Renseigner / Sélectionner une date de validitée (infinie si non rempli)." required>
+			  </p><p>
+			      <label for="alertInformation" class="control-label">Message *</label>
+			      <textarea name="alertInformation" id="alertInformation" class="form-control" cols="50" placeholder="Saisisser les informations complémentaires liées à l'alerte." required></textarea>
+		      	  <script>
+	                CKEDITOR.replace( 'alertInformation' );
+	              </script>
+		      </p><p>
+		      	<a class="btn btn-primary" href="?url=alert&action=manage">Valider</a>
+		      	<a class="btn btn-default" href="?url=accueil">Annuler</a>
+		  	  </p>
+		    </div>
+		</form>
+	</div>
+{% endblock %}

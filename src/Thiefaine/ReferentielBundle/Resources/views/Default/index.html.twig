@@ -1,1 +1,99 @@
-Hello {{ name }}!
+<html>
+	<head>
+		<title>
+			{% block title %}
+				Thiefaine
+			{% endblock %}
+		</title>
+
+		<link rel="SHORTCUT ICON" href="{{ asset('bundles/thiefainereferentiel/images/logo.png') }}" />
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+		{% block stylesheets %}
+			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/thiefainereferentiel/lib/bootstrap/css/bootstrap.min.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/thiefainereferentiel/lib/jquery-ui/css/redmond/jquery-ui-1.10.4.custom.min.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/thiefainereferentiel/css/style.css') }}">
+		{% endblock %}
+
+		{% block javascripts %}
+			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/jquery-2.1.0.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/ckeditor/ckeditor.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/datepicker-fr.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/function.js') }}"></script>
+		{% endblock %}
+	</head>
+	<body>
+		
+			<nav class="navbar navbar-default navbar-top" role="navigation" style="margin-bottom: inherit;">
+				<div class="container" style="padding-top:5px;">
+					<a class="nav navbar-nav navbar-left" href="./">
+					  <img src="{{ asset('bundles/thiefainereferentiel/images/logo_header.png') }}" style="width: 40px;">
+					  <b>Thiefaine</b>
+					</a>
+					<div class="nav navbar-nav navbar-right">
+						{% block header %}
+							<form class="navbar-form navbar-left" method="post" action="{{ path('thiefaine_referentiel_accueil') }}">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Identifiant" required autofocus>
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Mot de passe" required>
+								</div>
+								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-log-in" name="connect"></span> Connexion</button>
+							</form>
+						{% endblock %}
+					</div>
+				</div>
+			</nav>
+		
+		<div class="container">
+			{% block leftbar %}
+			{% endblock %}
+
+			{% block content %}
+			{% endblock %}
+		</div>
+
+		{% block footer %}
+			<nav style="margin-bottom: inherit;" class="navbar navbar-default navbar-bottom" role="navigation">
+				<div class="container" style="padding-top:10px; font-size:10px;">
+					<div class="nav navbar-nav navbar-left">
+			          <img src="{{ asset('bundles/thiefainereferentiel/images/logo_header.png') }}" style="width: 10px;">
+	          		  Application Thiefaine - 2014
+			        </div>
+			        <div class="nav navbar-nav navbar-right" style="text-align: right;">
+					  Powered by L3 - 
+					  <a href="http://www.imie-ecole-informatique.fr/">IMIE Rennes</a> - 
+					  <a href="mailto:theraud.mickael@hotmail.fr">M.THERAUD</a>, 
+					  <a href="mailto:christopher.louet@gmail.com">C.LOUET</a>, 
+					  <a href="mailto:y.bescher.leblanc@gmail.com">Y.BESCHER-LEBLANC</a>.
+			        </div>
+				</div>
+			</nav>
+		{% endblock %}
+
+		{% block modal %}
+			<!-- Modal de visualisation informations / conseil-->
+			<div class="modal fade" id="viewInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel"></h4>
+			      </div>
+			      <div class="modal-body" id="myModalBody">
+			      	
+			      </div>
+			      <div class="modal-footer">
+			      	<button type="button" class="btn btn-primary" data-dismiss="modal">Valider</button>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		{% endblock %}
+	</body>
+</html>
