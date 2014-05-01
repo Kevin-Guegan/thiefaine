@@ -1,6 +1,7 @@
 	var maCarte;
 	var monCercle;
 	var cptCercle=0;
+	var mapColor='#428BCA';
 	var mesCercle=[];
 
 	/**
@@ -26,10 +27,10 @@
 			map: maCarte,
 			center: maCarte.getCenter(),
 			radius: radius,
-			strokeColor: '#428BCA',
+			strokeColor: mapColor,
 		    strokeOpacity: 1,
 		    strokeWeight: 1,
-		    fillColor: '#428BCA',
+		    fillColor: mapColor,
 		    fillOpacity: 0.3,
 			draggable: true
 		}
@@ -60,12 +61,28 @@
 			    mesCercle[$(this).data("cercle")].setRadius(parseInt($(this).val()));
 			});
 
+			$(".cercleRadius[data-cercle="+cptCercle+"]")
+				.focus(function() {
+					mesCercle[$(this).data("cercle")].setOptions({
+						fillColor: "#FF0000",
+						strokeColor: "#FF0000"
+					})
+				})
+				.focusout(function(){
+					mesCercle[$(this).data("cercle")].setOptions({
+						fillColor: mapColor,
+						strokeColor: mapColor
+					})
+				})
+
 			//Inatialisation de la suppression d'un point
 			$(".supprCercle[data-cercle="+cptCercle+"]").click(function(){
 			    mesCercle[$(this).data("cercle")].setRadius(0);			    
 			    $("#MesCercleGoogle table .cercleGMap[data-cercle="+$(this).data("cercle")+"]").remove();
 			    delete mesCercle[$(this).data("cercle")];
 			});
+
+
 
 			cptCercle ++;
 		});
