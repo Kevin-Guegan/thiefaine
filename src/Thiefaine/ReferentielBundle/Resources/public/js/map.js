@@ -11,15 +11,43 @@
 
 		var lat = 48.113391315998626;
 		var lng = -1.6743850708007812;
+		var zoom = 12;
+
+		var latSub = $('#thiefaine_referentielbundle_zone_latitude');
+		var lngSub = $('#thiefaine_referentielbundle_zone_longitude');
+		var zoomSub = $('#thiefaine_referentielbundle_zone_zoom');
+		var typeSub = $('#thiefaine_referentielbundle_zone_type');
+
+		if(latSub.val())
+			lat = latSub.val();
+		if(lngSub.val())
+			lng = lngSub.val();
+		if(zoomSub.val())
+			zoom = parseInt(zoomSub.val());
+
+		console.log(lat+" | "+lng);
 
 		var centreCarte = new google.maps.LatLng(lat, lng);
 		var optionsCarte = {
-			zoom: 12,
+			zoom: zoom,
 			center: centreCarte,
 			disableDefaultUI: true
 		}
 
 		maCarte = new google.maps.Map(document.getElementById("MaCarteGoogle"), optionsCarte);
+
+		google.maps.event.addListener(maCarte, 'dragend', function() {
+			latSub.val(maCarte.getCenter().lat());
+			lngSub.val(maCarte.getCenter().lng());
+		});
+
+		google.maps.event.addListener(maCarte, 'zoom_changed', function() {
+			zoomSub.val(maCarte.getZoom());
+		});
+
+		latSub.val(maCarte.getCenter().lat())
+		lngSub.val(maCarte.getCenter().lng())
+		typeSub.val(maCarte.getMapTypeId())
 	}
 
 	function circle(radius){
@@ -86,6 +114,8 @@
 
 			cptCercle ++;
 		});
+
+		
 	});
 		
-	google.maps.event.addDomListener(window, 'load', initialisation)
+	google.maps.event.addDomListener(window, 'load', initialisation);
