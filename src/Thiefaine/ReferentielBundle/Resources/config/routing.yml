@@ -27,28 +27,16 @@ thiefaine_referentiel_conseil_create:
     defaults: { _controller: ThiefaineReferentielBundle:Default:conseilCreate }
 
 thiefaine_referentiel_groupe:
-    pattern:  /groupe
-    defaults: { _controller: ThiefaineReferentielBundle:Default:groupe }
-
-thiefaine_referentiel_groupe_create:
-    pattern:  /groupe/create
-    defaults: { _controller: ThiefaineReferentielBundle:Default:groupeCreate }
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/groupe.yml"
+    prefix: /groupe
 
 thiefaine_referentiel_zone:
-    pattern:  /zone
-    defaults: { _controller: ThiefaineReferentielBundle:Default:zone }
-
-thiefaine_referentiel_zone_create:
-    pattern:  /zone/create
-    defaults: { _controller: ThiefaineReferentielBundle:Default:zoneCreate }
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/zone.yml"
+    prefix: /zone
 
 thiefaine_referentiel_user:
-    pattern:  /user
-    defaults: { _controller: ThiefaineReferentielBundle:Default:user }
-
-thiefaine_referentiel_user_create:
-    pattern:  /user/create
-    defaults: { _controller: ThiefaineReferentielBundle:Default:userCreate }
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/utilisateurweb.yml"
+    prefix: /utilisateurweb
 
 thiefaine_referentiel_info:
     pattern:  /info

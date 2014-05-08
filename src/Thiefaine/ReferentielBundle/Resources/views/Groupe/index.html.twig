@@ -1,51 +1,82 @@
-{% extends '::base.html.twig' %}
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
 
-{% block body -%}
-    <h1>Groupe list</h1>
+{% block content %}
+    <div class="content">
+        <h3>Gestion des groupes</h3>
+        <table class="records_list table table-hover">
+            <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>Nom <span class="glyphicon cheveron-down" title="Trier par nom"></span></th>
+                    <th>Groupe <span class="glyphicon cheveron-down" title="Trier par groupe"></span></th>
+                    <th>Utilisateurs <span class="glyphicon cheveron-down" title="Trier par utilisateurs"></span></th>
+                    <th>Alertes <span class="glyphicon cheveron-down" title="Trier par alertes"></span></th>
+                    <th>Informations <span class="glyphicon cheveron-down" title="Trier par informations"></span></th>
+                    <th>Conseils <span class="glyphicon cheveron-down" title="Trier par conseils"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td data-element="{{ entity.nom }}">
+                            <a href="{{ path('groupe_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
+                            {#<a href="{{ path('groupe_delete', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-remove" title="Supprimer"></span></a>#}
+                        </td>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Gerergroupes</th>
-                <th>Gererutilisateurs</th>
-                <th>Gereralertes</th>
-                <th>Gererinfos</th>
-                <th>Gererconseils</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('groupe_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nom }}</td>
-                <td>{{ entity.gerergroupes }}</td>
-                <td>{{ entity.gererutilisateurs }}</td>
-                <td>{{ entity.gereralertes }}</td>
-                <td>{{ entity.gererinfos }}</td>
-                <td>{{ entity.gererconseils }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('groupe_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('groupe_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                        {#<td><a href="{{ path('groupe_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                        <td>{{ entity.nom }}</td>
+                        <td>
+                            {% if entity.gerergroupes == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        
+                        <td>
+                            {% if entity.gererutilisateurs == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
 
-        <ul>
-        <li>
-            <a href="{{ path('groupe_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+                        <td>
+                            {% if entity.gereralertes == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if entity.gererinfos == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if entity.gererconseils == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        {#<td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('groupe_show', { 'id': entity.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('groupe_edit', { 'id': entity.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                        </td>#}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
