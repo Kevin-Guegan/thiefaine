@@ -1,15 +1,46 @@
 {% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
 
 {% block content %}
+
 	<div class="content">
+		
 		<h3>Création d'une information</h1>
-		<form class="form-horizontal">
+
+		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
+
+			{{ form_errors(form) }}
+
 			<div class="form-group">
 
-			{{ form(form) }}
+				<p>
+					{{ form_label(form.titre) }}
+					{{ form_widget(form.titre) }}
+				</p>
+				<p>
+					{{ form_label(form.urlphoto) }}
+					{{ form_widget(form.urlphoto) }}
+				</p>
+				<p>
+					{{ form_label(form.urllien) }}
+					{{ form_widget(form.urllien) }}
+				</p>
+				<p>
+					{{ form_label(form.datevalidite) }}
+					{{ form_widget(form.datevalidite) }}
+				</p>
+				<p>
+					{{ form_label(form.message) }}
+					{{ form_widget(form.message) }}
+				</p>
+				{{ form_widget(form.valider) }}
+				{{ form_widget(form.annuler) }}
 
 			</div>
-		</form>
+
+		{{ form_end(form) }}
+
 	</div>
+
+
 
 {% endblock %}

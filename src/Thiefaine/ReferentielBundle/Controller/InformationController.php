@@ -59,11 +59,6 @@ class InformationController extends Controller
 			'method' => 'POST',
 		));
 
-		$form->add('submit', 'submit', array 	( 'label'  => 'Valider',
-												 'attr' =>  array ( 'class' => 'btn btn-primary' )
-												)
-		);
-
 		return $form;
 	}
 
