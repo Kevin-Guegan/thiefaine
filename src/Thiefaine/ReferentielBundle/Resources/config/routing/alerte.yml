@@ -1,0 +1,30 @@
+alerte:
+    pattern:  /
+    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:index" }
+
+alerte_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:show" }
+
+alerte_new:
+    pattern:  /new
+    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:new" }
+
+alerte_create:
+    pattern:  /create
+    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:create" }
+    requirements: { _method: post }
+
+alerte_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:edit" }
+
+alerte_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:update" }
+    requirements: { _method: post|put }
+
+alerte_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:delete" }
+    requirements: { _method: post|delete }

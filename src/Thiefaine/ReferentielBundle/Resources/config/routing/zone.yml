@@ -1,0 +1,30 @@
+zone:
+    pattern:  /
+    defaults: { _controller: "ThiefaineReferentielBundle:Zone:index" }
+
+zone_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ThiefaineReferentielBundle:Zone:show" }
+
+zone_new:
+    pattern:  /new
+    defaults: { _controller: "ThiefaineReferentielBundle:Zone:new" }
+
+zone_create:
+    pattern:  /create
+    defaults: { _controller: "ThiefaineReferentielBundle:Zone:create" }
+    requirements: { _method: post }
+
+zone_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ThiefaineReferentielBundle:Zone:edit" }
+
+zone_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ThiefaineReferentielBundle:Zone:update" }
+    requirements: { _method: post|put }
+
+zone_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ThiefaineReferentielBundle:Zone:delete" }
+    requirements: { _method: post|delete }
