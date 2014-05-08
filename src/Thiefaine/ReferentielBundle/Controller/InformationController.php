@@ -15,210 +15,213 @@ use Thiefaine\ReferentielBundle\Form\InformationType;
 class InformationController extends Controller
 {
 
-    /**
-     * Lists all Message entities.
-     *
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
+	/**
+	 * Lists all Message entities.
+	 *
+	 */
+	public function indexAction()
+	{
+		$em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByIdtypemessage('information');
+		$entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByIdtypemessage('information');
 
-        return $this->render('ThiefaineReferentielBundle:Information:index.html.twig', array(
-            'entities' => $entities,
-        ));
-    }
+		return $this->render('ThiefaineReferentielBundle:Information:index.html.twig', array(
+			'entities' => $entities,
+		));
+	}
 
-    /**
-     * Displays a form to create a new Message entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Message();
-        $form   = $this->createCreateForm($entity);
+	/**
+	 * Displays a form to create a new Message entity.
+	 *
+	 */
+	public function newAction()
+	{
+		$entity = new Message();
+		$form   = $this->createCreateForm($entity);
 
-        return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
+		return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
+			'entity' => $entity,
+			'form'   => $form->createView(),
+		));
+	}
 
-    /**
-    * Creates a form to create a Message entity.
-    *
-    * @param Message $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Message $entity)
-    {
-        $form = $this->createForm(new InformationType(), $entity, array(
-            'action' => $this->generateUrl('information_create'),
-            'method' => 'POST',
-        ));
+	/**
+	* Creates a form to create a Message entity.
+	*
+	* @param Message $entity The entity
+	*
+	* @return \Symfony\Component\Form\Form The form
+	*/
+	private function createCreateForm(Message $entity)
+	{
+		$form = $this->createForm(new InformationType(), $entity, array(
+			'action' => $this->generateUrl('information_create'),
+			'method' => 'POST',
+		));
 
-        $form->add('submit', 'submit', array('label' => 'Valider'));
+		$form->add('submit', 'submit', array 	( 'label'  => 'Valider',
+												 'attr' =>  array ( 'class' => 'btn btn-primary' )
+												)
+		);
 
-        return $form;
-    }
+		return $form;
+	}
 
-    /**
-     * Creates a new Message entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new Message();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
+	/**
+	 * Creates a new Message entity.
+	 *
+	 */
+	public function createAction(Request $request)
+	{
+		$entity = new Message();
+		$form = $this->createCreateForm($entity);
+		$form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($entity);
+			$em->flush();
 
-            return $this->redirect($this->generateUrl('information'));
-        }
+			return $this->redirect($this->generateUrl('information'));
+		}
 
-        return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
+		return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
+			'entity' => $entity,
+			'form'   => $form->createView(),
+		));
+	}
 
-    /**
-     * Finds and displays a Message entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+	/**
+	 * Finds and displays a Message entity.
+	 *
+	 */
+	public function showAction($id)
+	{
+		$em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Message entity.');
-        }
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Message entity.');
+		}
 
-        $deleteForm = $this->createDeleteForm($id);
+		$deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Message:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
-    }
+		return $this->render('ThiefaineReferentielBundle:Message:show.html.twig', array(
+			'entity'      => $entity,
+			'delete_form' => $deleteForm->createView(),        ));
+	}
 
-    /**
-     * Displays a form to edit an existing Message entity.
-     *
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+	/**
+	 * Displays a form to edit an existing Message entity.
+	 *
+	 */
+	public function editAction($id)
+	{
+		$em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Message entity.');
-        }
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Message entity.');
+		}
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+		$editForm = $this->createEditForm($entity);
+		$deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+		return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
+			'entity'      => $entity,
+			'edit_form'   => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
 
-    /**
-    * Creates a form to edit a Message entity.
-    *
-    * @param Message $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Message $entity)
-    {
-        $form = $this->createForm(new MessageType(), $entity, array(
-            'action' => $this->generateUrl('message_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+	/**
+	* Creates a form to edit a Message entity.
+	*
+	* @param Message $entity The entity
+	*
+	* @return \Symfony\Component\Form\Form The form
+	*/
+	private function createEditForm(Message $entity)
+	{
+		$form = $this->createForm(new MessageType(), $entity, array(
+			'action' => $this->generateUrl('message_update', array('id' => $entity->getId())),
+			'method' => 'PUT',
+		));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+		$form->add('submit', 'submit', array('label' => 'Update'));
 
-        return $form;
-    }
-    /**
-     * Edits an existing Message entity.
-     *
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
+		return $form;
+	}
+	/**
+	 * Edits an existing Message entity.
+	 *
+	 */
+	public function updateAction(Request $request, $id)
+	{
+		$em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Message entity.');
-        }
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Message entity.');
+		}
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+		$deleteForm = $this->createDeleteForm($id);
+		$editForm = $this->createEditForm($entity);
+		$editForm->handleRequest($request);
 
-        if ($editForm->isValid()) {
-            $em->flush();
+		if ($editForm->isValid()) {
+			$em->flush();
 
-            return $this->redirect($this->generateUrl('message_edit', array('id' => $id)));
-        }
+			return $this->redirect($this->generateUrl('message_edit', array('id' => $id)));
+		}
 
-        return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-    /**
-     * Deletes a Message entity.
-     *
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+		return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
+			'entity'      => $entity,
+			'edit_form'   => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
+	/**
+	 * Deletes a Message entity.
+	 *
+	 */
+	public function deleteAction(Request $request, $id)
+	{
+		$form = $this->createDeleteForm($id);
+		$form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Message entity.');
-            }
+			if (!$entity) {
+				throw $this->createNotFoundException('Unable to find Message entity.');
+			}
 
-            $em->remove($entity);
-            $em->flush();
-        }
+			$em->remove($entity);
+			$em->flush();
+		}
 
-        return $this->redirect($this->generateUrl('message'));
-    }
+		return $this->redirect($this->generateUrl('message'));
+	}
 
-    /**
-     * Creates a form to delete a Message entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('message_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
+	/**
+	 * Creates a form to delete a Message entity by id.
+	 *
+	 * @param mixed $id The entity id
+	 *
+	 * @return \Symfony\Component\Form\Form The form
+	 */
+	private function createDeleteForm($id)
+	{
+		return $this->createFormBuilder()
+			->setAction($this->generateUrl('message_delete', array('id' => $id)))
+			->setMethod('DELETE')
+			->add('submit', 'submit', array('label' => 'Delete'))
+			->getForm()
+		;
+	}
 }
