@@ -1,0 +1,30 @@
+conseil:
+    pattern:  /
+    defaults: { _controller: "ThiefaineReferentielBundle:Conseil:index" }
+
+conseil_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ThiefaineReferentielBundle:Conseil:show" }
+
+conseil_new:
+    pattern:  /new
+    defaults: { _controller: "ThiefaineReferentielBundle:Conseil:new" }
+
+conseil_create:
+    pattern:  /create
+    defaults: { _controller: "ThiefaineReferentielBundle:Conseil:create" }
+    requirements: { _method: post }
+
+conseil_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ThiefaineReferentielBundle:Conseil:edit" }
+
+conseil_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ThiefaineReferentielBundle:Conseil:update" }
+    requirements: { _method: post|put }
+
+conseil_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ThiefaineReferentielBundle:Conseil:delete" }
+    requirements: { _method: post|delete }

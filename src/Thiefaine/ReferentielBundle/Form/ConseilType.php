@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AlerteType extends AbstractType
+class MessageType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,8 +15,16 @@ class AlerteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idmessage')
-            ->add('idlieu')
+            ->add('titre')
+            ->add('message')
+            ->add('datecreation')
+            ->add('datemiseajour')
+            ->add('datevalidite')
+            ->add('compteurlecture')
+            ->add('urlphoto')
+            ->add('urllien')
+            ->add('idtypemessage')
+            ->add('idutilisateurweb')
         ;
     }
     
@@ -26,7 +34,7 @@ class AlerteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Alerte'
+            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Message'
         ));
     }
 
@@ -35,6 +43,6 @@ class AlerteType extends AbstractType
      */
     public function getName()
     {
-        return 'thiefaine_referentielbundle_alerte';
+        return 'thiefaine_referentielbundle_message';
     }
 }

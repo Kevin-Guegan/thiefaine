@@ -58,3 +58,10 @@ thiefaine_referentiel_info_create:
     pattern:  /info/create
     defaults: { _controller: ThiefaineReferentielBundle:Default:infoCreate }
 
+thiefaine_conseil:
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/conseil.yml"
+    prefix:   /conseil
+
+thiefaine_information:
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/information.yml"
+    prefix:   /information

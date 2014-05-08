@@ -5,37 +5,37 @@ namespace Thiefaine\ReferentielBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Thiefaine\ReferentielBundle\Entity\Groupe;
-use Thiefaine\ReferentielBundle\Form\GroupeType;
+use Thiefaine\ReferentielBundle\Entity\Message;
+use Thiefaine\ReferentielBundle\Form\MessageType;
 
 /**
- * Groupe controller.
+ * Message controller.
  *
  */
-class GroupeController extends Controller
+class ConseilController extends Controller
 {
 
     /**
-     * Lists all Groupe entities.
+     * Lists all Message entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Groupe')->findAll();
+        $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findAll();
 
-        return $this->render('ThiefaineReferentielBundle:Groupe:index.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Message:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Groupe entity.
+     * Creates a new Message entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Groupe();
+        $entity = new Message();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class GroupeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('groupe_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('message_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Groupe:new.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Message:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Groupe entity.
+    * Creates a form to create a Message entity.
     *
-    * @param Groupe $entity The entity
+    * @param Message $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Groupe $entity)
+    private function createCreateForm(Message $entity)
     {
-        $form = $this->createForm(new GroupeType(), $entity, array(
-            'action' => $this->generateUrl('groupe_create'),
+        $form = $this->createForm(new MessageType(), $entity, array(
+            'action' => $this->generateUrl('message_create'),
             'method' => 'POST',
         ));
 
@@ -73,59 +73,59 @@ class GroupeController extends Controller
     }
 
     /**
-     * Displays a form to create a new Groupe entity.
+     * Displays a form to create a new Message entity.
      *
      */
     public function newAction()
     {
-        $entity = new Groupe();
+        $entity = new Message();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ThiefaineReferentielBundle:Groupe:new.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Message:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Groupe entity.
+     * Finds and displays a Message entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Groupe')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Groupe entity.');
+            throw $this->createNotFoundException('Unable to find Message entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Groupe:show.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Message:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to edit an existing Groupe entity.
+     * Displays a form to edit an existing Message entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Groupe')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Groupe entity.');
+            throw $this->createNotFoundException('Unable to find Message entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Groupe:edit.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -133,16 +133,16 @@ class GroupeController extends Controller
     }
 
     /**
-    * Creates a form to edit a Groupe entity.
+    * Creates a form to edit a Message entity.
     *
-    * @param Groupe $entity The entity
+    * @param Message $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Groupe $entity)
+    private function createEditForm(Message $entity)
     {
-        $form = $this->createForm(new GroupeType(), $entity, array(
-            'action' => $this->generateUrl('groupe_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new MessageType(), $entity, array(
+            'action' => $this->generateUrl('message_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -151,17 +151,17 @@ class GroupeController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Groupe entity.
+     * Edits an existing Message entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Groupe')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Groupe entity.');
+            throw $this->createNotFoundException('Unable to find Message entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -171,17 +171,17 @@ class GroupeController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('groupe_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('message_edit', array('id' => $id)));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Groupe:edit.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Groupe entity.
+     * Deletes a Message entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -191,21 +191,21 @@ class GroupeController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Groupe')->find($id);
+            $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Groupe entity.');
+                throw $this->createNotFoundException('Unable to find Message entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('groupe'));
+        return $this->redirect($this->generateUrl('message'));
     }
 
     /**
-     * Creates a form to delete a Groupe entity by id.
+     * Creates a form to delete a Message entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -214,7 +214,7 @@ class GroupeController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('groupe_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('message_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
