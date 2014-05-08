@@ -1,5 +1,10 @@
 {% extends '::base.html.twig' %}
 
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+{% endblock %}
+
 {% block body -%}
     <h1>Message creation</h1>
 

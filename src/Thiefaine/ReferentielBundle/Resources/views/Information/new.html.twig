@@ -1,5 +1,10 @@
 {% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
 
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
 	<div class="content">
