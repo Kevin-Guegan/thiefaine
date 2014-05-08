@@ -1,51 +1,33 @@
-{% extends '::base.html.twig' %}
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
 
-{% block body -%}
-    <h1>Utilisateurweb list</h1>
-
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Login</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Infos</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('utilisateurweb_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nom }}</td>
-                <td>{{ entity.prenom }}</td>
-                <td>{{ entity.login }}</td>
-                <td>{{ entity.password }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{{ entity.infos }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('utilisateurweb_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('utilisateurweb_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% block content %}
+    <div class="content">
+        <h3>Gestion des utilisateurs</h3>
+        <table class="records_list table table-hover">
+            <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Groupe</th>
+                    <th>Email</th>
+                    <th>Infos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td data-element="Utilisateur n°0">
+                            <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
+                        </td>
+                        <td>{{ entity.nom }}</td>
+                        <td>{{ entity.prenom }}</td>
+                        <td>groupe</td>
+                        <td>{{ entity.email }}</td>
+                        <td>{{ entity.infos }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

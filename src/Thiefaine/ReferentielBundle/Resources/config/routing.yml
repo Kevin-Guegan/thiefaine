@@ -39,12 +39,8 @@ thiefaine_referentiel_zone_create:
     defaults: { _controller: ThiefaineReferentielBundle:Default:zoneCreate }
 
 thiefaine_referentiel_user:
-    pattern:  /user
-    defaults: { _controller: ThiefaineReferentielBundle:Default:user }
-
-thiefaine_referentiel_user_create:
-    pattern:  /user/create
-    defaults: { _controller: ThiefaineReferentielBundle:Default:userCreate }
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/utilisateurweb.yml"
+    prefix: /utilisateurweb
 
 thiefaine_referentiel_info:
     pattern:  /info

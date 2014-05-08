@@ -44,7 +44,7 @@ class GroupeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('groupe_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('groupe'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Groupe:new.html.twig', array(
