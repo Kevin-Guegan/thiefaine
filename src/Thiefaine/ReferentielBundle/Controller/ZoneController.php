@@ -44,7 +44,7 @@ class ZoneController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('zone_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('zone'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Zone:new.html.twig', array(
@@ -171,7 +171,7 @@ class ZoneController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('zone_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('zone'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Zone:edit.html.twig', array(

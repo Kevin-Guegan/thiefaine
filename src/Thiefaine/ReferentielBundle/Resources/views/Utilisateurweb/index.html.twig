@@ -17,7 +17,7 @@
             <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td data-element="Utilisateur n°0">
+                        <td>
                             <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
                         </td>
                         <td>{{ entity.nom }}</td>
