@@ -15,14 +15,64 @@ class GroupeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('gerergroupes')
-            ->add('gererutilisateurs')
-            ->add('gereralertes')
-            ->add('gererinfos')
-            ->add('gererconseils')
-            ->add('idgendarmerie')
-        ;
+            ->add('nom', 'text', array(
+                'label' => 'Nom',
+                'label_attr' => array(
+                    'class' => 'control-label'
+                ),
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Nom',
+                    'title' => 'Renseigner le nom du groupe.',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right'
+                )
+            ))
+            ->add('gerergroupes', 'checkbox', array(
+                'label' => 'Gestion des groupes',
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+                ),
+                'attr' => array(
+                    'class' => 'form-control pull-right',
+                )
+            ))
+            ->add('gererutilisateurs', 'checkbox', array(
+                'label' => 'Gestion des utilisateurs',
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+                ),
+                'attr' => array(
+                    'class' => 'form-control pull-right',
+                )
+            ))
+            ->add('gereralertes', 'checkbox', array(
+                'label' => 'Gestion des alertes',
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+                ),
+                'attr' => array(
+                    'class' => 'form-control pull-right',
+                )
+            ))
+            ->add('gererinfos', 'checkbox', array(
+                'label' => 'Gestion des informations',
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+                ),
+                'attr' => array(
+                    'class' => 'form-control pull-right',
+                )
+            ))
+            ->add('gererconseils', 'checkbox', array(
+                'label' => 'Gestion des conseils',
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+                ),
+                'attr' => array(
+                    'class' => 'form-control pull-right',
+                )
+            ));
     }
     
     /**

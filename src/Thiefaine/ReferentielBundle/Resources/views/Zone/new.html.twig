@@ -16,6 +16,11 @@
 		<h1>Zone creation</h1>
 
     	{{ form(form) }}
+
+    	<p>
+			<a class="btn btn-default" href={{ path('zone') }}>Annuler</a>
+		</p>
+
     	<p>
 			<label for="zoneRadius" class="control-label">Rayon de la zone</label>
 			<div class="input-group list-form-control" data-toggle="tooltip" data-placement="right" title="Saisisser le rayon de la zone à créer. (nota : il est 	possible de modifier le rayon et déplacer la zone une fois celle-ci crée.)">
