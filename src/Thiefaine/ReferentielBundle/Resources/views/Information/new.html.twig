@@ -3,6 +3,7 @@
 {% block javascripts %}
 	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -29,7 +30,7 @@
 					{{ form_label(form.urllien) }}
 					{{ form_widget(form.urllien) }}
 				</p>
-				<p>
+				<p class="dateElement">
 					{{ form_label(form.datevalidite) }}
 					{{ form_widget(form.datevalidite) }}
 				</p>
