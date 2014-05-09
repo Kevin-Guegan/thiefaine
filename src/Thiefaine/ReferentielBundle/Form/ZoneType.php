@@ -15,13 +15,24 @@ class ZoneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
+            ->add('nom', 'text', array(
+                'label' => 'Nom',
+                'label_attr' => array(
+                    'class' => 'control-label'
+                ),
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Nom',
+                    'title' => 'Renseigner le nom de la zone.',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right'
+                )
+            ))
             ->add('latitude')
             ->add('longitude')
             ->add('zoom')
             ->add('type')
-            ->add('idutilisateur')
-        ;
+            ->add('idutilisateur');
     }
     
     /**
