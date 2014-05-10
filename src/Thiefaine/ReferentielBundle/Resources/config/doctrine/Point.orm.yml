@@ -2,9 +2,9 @@ Thiefaine\ReferentielBundle\Entity\Point:
     type: entity
     table: POINT
     indexes:
-        POINT_LIEU_ID1:
+        POINT_ZONE1_ID1:
             columns:
-                - idlieu
+                - idzone
     id:
         id:
             type: integer
@@ -18,13 +18,13 @@ Thiefaine\ReferentielBundle\Entity\Point:
         latitude:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         longitude:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         radius:
@@ -33,13 +33,13 @@ Thiefaine\ReferentielBundle\Entity\Point:
             unsigned: false
             comment: ''
     manyToOne:
-        idlieu:
-            targetEntity: Lieu
+        idzone:
+            targetEntity: Zone
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                idlieu:
+                idzone:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

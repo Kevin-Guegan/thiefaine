@@ -30,17 +30,17 @@ class Zone
     private $longitude;
 
     /**
-     * @var string
+     * @var integer
      */
     private $zoom;
 
     /**
-     * @var string
+     * @var boolean
      */
-    private $type;
+    private $actif;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateur
+     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
      */
     private $idutilisateur;
 
@@ -127,7 +127,7 @@ class Zone
     /**
      * Set zoom
      *
-     * @param string $zoom
+     * @param integer $zoom
      * @return Zone
      */
     public function setZoom($zoom)
@@ -140,7 +140,7 @@ class Zone
     /**
      * Get zoom
      *
-     * @return string 
+     * @return integer 
      */
     public function getZoom()
     {
@@ -148,35 +148,35 @@ class Zone
     }
 
     /**
-     * Set type
+     * Set actif
      *
-     * @param string $type
+     * @param boolean $actif
      * @return Zone
      */
-    public function setType($type)
+    public function setActif($actif)
     {
-        $this->type = $type;
+        $this->actif = $actif;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get actif
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getType()
+    public function getActif()
     {
-        return $this->type;
+        return $this->actif;
     }
 
     /**
      * Set idutilisateur
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateur $idutilisateur
+     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur
      * @return Zone
      */
-    public function setIdutilisateur(\Thiefaine\ReferentielBundle\Entity\Utilisateur $idutilisateur = null)
+    public function setIdutilisateur(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur = null)
     {
         $this->idutilisateur = $idutilisateur;
 
@@ -186,7 +186,7 @@ class Zone
     /**
      * Get idutilisateur
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Utilisateur 
+     * @return \Thiefaine\ReferentielBundle\Entity\Utilisateurweb 
      */
     public function getIdutilisateur()
     {

@@ -30,9 +30,9 @@ class Point
     private $radius;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Lieu
+     * @var \Thiefaine\ReferentielBundle\Entity\Zone
      */
-    private $idlieu;
+    private $idzone;
 
 
     /**
@@ -115,25 +115,25 @@ class Point
     }
 
     /**
-     * Set idlieu
+     * Set idzone
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Lieu $idlieu
+     * @param \Thiefaine\ReferentielBundle\Entity\Zone $idzone
      * @return Point
      */
-    public function setIdlieu(\Thiefaine\ReferentielBundle\Entity\Lieu $idlieu = null)
+    public function setIdzone(\Thiefaine\ReferentielBundle\Entity\Zone $idzone = null)
     {
-        $this->idlieu = $idlieu;
+        $this->idzone = $idzone;
 
         return $this;
     }
 
     /**
-     * Get idlieu
+     * Get idzone
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Lieu 
+     * @return \Thiefaine\ReferentielBundle\Entity\Zone 
      */
-    public function getIdlieu()
+    public function getIdzone()
     {
-        return $this->idlieu;
+        return $this->idzone;
     }
 }

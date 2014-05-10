@@ -14,7 +14,7 @@ Thiefaine\ReferentielBundle\Entity\Gendarmerie:
         libelle:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
     lifecycleCallbacks: {  }
