@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Thiefaine\ReferentielBundle\Entity\Message;
-use Thiefaine\ReferentielBundle\Form\MessageType;
+use Thiefaine\ReferentielBundle\Form\ConseilType;
 
 /**
  * Message controller.
@@ -23,9 +23,9 @@ class ConseilController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findAll();
+        $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByIdtypemessage('conseil');
 
-        return $this->render('ThiefaineReferentielBundle:Message:index.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Conseil:index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -44,10 +44,10 @@ class ConseilController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('message_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('conseil_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Message:new.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -62,8 +62,8 @@ class ConseilController extends Controller
     */
     private function createCreateForm(Message $entity)
     {
-        $form = $this->createForm(new MessageType(), $entity, array(
-            'action' => $this->generateUrl('message_create'),
+        $form = $this->createForm(new ConseilType(), $entity, array(
+            'action' => $this->generateUrl('conseil_create'),
             'method' => 'POST',
         ));
 
@@ -81,7 +81,7 @@ class ConseilController extends Controller
         $entity = new Message();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('ThiefaineReferentielBundle:Message:new.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -98,12 +98,12 @@ class ConseilController extends Controller
         $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Message entity.');
+            throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Message:show.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Conseil:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -119,13 +119,13 @@ class ConseilController extends Controller
         $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Message entity.');
+            throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -141,8 +141,8 @@ class ConseilController extends Controller
     */
     private function createEditForm(Message $entity)
     {
-        $form = $this->createForm(new MessageType(), $entity, array(
-            'action' => $this->generateUrl('message_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new ConseilType(), $entity, array(
+            'action' => $this->generateUrl('conseil_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -161,7 +161,7 @@ class ConseilController extends Controller
         $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Message entity.');
+            throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -171,10 +171,10 @@ class ConseilController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('message_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('conseil_edit', array('id' => $id)));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
+        return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -194,14 +194,14 @@ class ConseilController extends Controller
             $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Message entity.');
+                throw $this->createNotFoundException('Impossible de trouver le conseil.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('message'));
+        return $this->redirect($this->generateUrl('conseil'));
     }
 
     /**
@@ -214,7 +214,7 @@ class ConseilController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('message_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('conseil_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

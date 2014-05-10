@@ -97,12 +97,12 @@ class InformationController extends Controller
 		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
 		if (!$entity) {
-			throw $this->createNotFoundException('Unable to find Message entity.');
+			throw $this->createNotFoundException("Impossible de trouver l'information.");
 		}
 
 		$deleteForm = $this->createDeleteForm($id);
 
-		return $this->render('ThiefaineReferentielBundle:Message:show.html.twig', array(
+		return $this->render('ThiefaineReferentielBundle:Information:show.html.twig', array(
 			'entity'      => $entity,
 			'delete_form' => $deleteForm->createView(),        ));
 	}
@@ -118,13 +118,13 @@ class InformationController extends Controller
 		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
 		if (!$entity) {
-			throw $this->createNotFoundException('Unable to find Message entity.');
+			throw $this->createNotFoundException("Impossible de trouver l'information.");
 		}
 
 		$editForm = $this->createEditForm($entity);
 		$deleteForm = $this->createDeleteForm($id);
 
-		return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
+		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
 			'entity'      => $entity,
 			'edit_form'   => $editForm->createView(),
 			'delete_form' => $deleteForm->createView(),
@@ -140,8 +140,8 @@ class InformationController extends Controller
 	*/
 	private function createEditForm(Message $entity)
 	{
-		$form = $this->createForm(new MessageType(), $entity, array(
-			'action' => $this->generateUrl('message_update', array('id' => $entity->getId())),
+		$form = $this->createForm(new InformationType(), $entity, array(
+			'action' => $this->generateUrl('information_update', array('id' => $entity->getId())),
 			'method' => 'PUT',
 		));
 
@@ -160,7 +160,7 @@ class InformationController extends Controller
 		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
 		if (!$entity) {
-			throw $this->createNotFoundException('Unable to find Message entity.');
+			throw $this->createNotFoundException("Impossible de trouver l'information.");
 		}
 
 		$deleteForm = $this->createDeleteForm($id);
@@ -170,10 +170,10 @@ class InformationController extends Controller
 		if ($editForm->isValid()) {
 			$em->flush();
 
-			return $this->redirect($this->generateUrl('message_edit', array('id' => $id)));
+			return $this->redirect($this->generateUrl('information_edit', array('id' => $id)));
 		}
 
-		return $this->render('ThiefaineReferentielBundle:Message:edit.html.twig', array(
+		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
 			'entity'      => $entity,
 			'edit_form'   => $editForm->createView(),
 			'delete_form' => $deleteForm->createView(),
@@ -193,14 +193,14 @@ class InformationController extends Controller
 			$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
 			if (!$entity) {
-				throw $this->createNotFoundException('Unable to find Message entity.');
+				throw $this->createNotFoundException("Impossible de trouver l'information.");
 			}
 
 			$em->remove($entity);
 			$em->flush();
 		}
 
-		return $this->redirect($this->generateUrl('message'));
+		return $this->redirect($this->generateUrl('information'));
 	}
 
 	/**
@@ -213,7 +213,7 @@ class InformationController extends Controller
 	private function createDeleteForm($id)
 	{
 		return $this->createFormBuilder()
-			->setAction($this->generateUrl('message_delete', array('id' => $id)))
+			->setAction($this->generateUrl('information_delete', array('id' => $id)))
 			->setMethod('DELETE')
 			->add('submit', 'submit', array('label' => 'Delete'))
 			->getForm()

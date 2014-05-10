@@ -74,7 +74,6 @@ class InformationType extends AbstractType
 												 'attr' =>  array ( 'class' => 'btn btn-default' )
 												)
 				);
-			//test
 
 	}
 	
