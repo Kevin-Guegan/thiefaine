@@ -1,0 +1,64 @@
+Thiefaine\ReferentielBundle\Entity\Utilisateurweb:
+    type: entity
+    table: UTILISATEURWEB
+    indexes:
+        UTILISATEURWEB_GROUPE_ID1:
+            columns:
+                - idgroupe
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        prenom:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        login:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        password:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        email:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        infos:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+    manyToOne:
+        idgroupe:
+            targetEntity: Groupe
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idgroupe:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
