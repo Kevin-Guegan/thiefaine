@@ -1,0 +1,30 @@
+point:
+    pattern:  /
+    defaults: { _controller: "ThiefaineReferentielBundle:Point:index" }
+
+point_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ThiefaineReferentielBundle:Point:show" }
+
+point_new:
+    pattern:  /new
+    defaults: { _controller: "ThiefaineReferentielBundle:Point:new" }
+
+point_create:
+    pattern:  /create
+    defaults: { _controller: "ThiefaineReferentielBundle:Point:create" }
+    requirements: { _method: post }
+
+point_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ThiefaineReferentielBundle:Point:edit" }
+
+point_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ThiefaineReferentielBundle:Point:update" }
+    requirements: { _method: post|put }
+
+point_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ThiefaineReferentielBundle:Point:delete" }
+    requirements: { _method: post|delete }
