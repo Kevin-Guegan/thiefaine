@@ -34,6 +34,10 @@ thiefaine_referentiel_zone:
     resource: "@ThiefaineReferentielBundle/Resources/config/routing/zone.yml"
     prefix: /zone
 
+thiefaine_referentiel_point:
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/point.yml"
+    prefix:   /point
+
 thiefaine_referentiel_user:
     resource: "@ThiefaineReferentielBundle/Resources/config/routing/utilisateurweb.yml"
     prefix: /utilisateurweb
