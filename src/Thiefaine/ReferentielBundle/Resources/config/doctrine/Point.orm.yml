@@ -34,7 +34,7 @@ Thiefaine\ReferentielBundle\Entity\Point:
             comment: ''
     manyToOne:
         idlieu:
-            targetEntity: Lieu
+            targetEntity: Zone
             cascade: {  }
             mappedBy: null
             inversedBy: null
