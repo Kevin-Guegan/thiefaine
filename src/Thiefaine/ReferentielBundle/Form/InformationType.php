@@ -47,7 +47,7 @@ class InformationType extends AbstractType
 																	)
 											)
 				)
-			->add('datevalidite', 'text', array 	( 	'widget' => 'single_text',
+			->add('datevalidite', 'date', array 	( 	'widget' => 'single_text',
                                                         'input' => 'datetime',
                                                         'format' => 'dd/MM/yyyy',
 												'label'  => 'Date de validité',
@@ -76,7 +76,7 @@ class InformationType extends AbstractType
 												 'attr' =>  array ( 'class' => 'btn btn-primary' )
 												)
 				)
-			->add('annuler', 'submit', array 	( 'label'  => 'Annuler',
+			->add('annuler', 'reset', array 	( 'label'  => 'Annuler',
 												 'attr' =>  array ( 'class' => 'btn btn-default' )
 												)
 				);
