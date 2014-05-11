@@ -1,11 +1,11 @@
-Message:
+Thiefaine\ReferentielBundle\Entity\Information:
     type: entity
     table: MESSAGE
     indexes:
         MESSAGE_TYPEMESSAGE_ID1:
             columns:
                 - idtypemessage
-        MESSAGE_UTILISATEUR_ID1:
+        MESSAGE_UTILISATEURWEB_ID1:
             columns:
                 - idutilisateur
     id:
@@ -21,7 +21,7 @@ Message:
         titre:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         message:
@@ -70,7 +70,7 @@ Message:
                     referencedColumnName: id
             orphanRemoval: false
         idutilisateur:
-            targetEntity: Utilisateur
+            targetEntity: Utilisateurweb
             cascade: {  }
             mappedBy: null
             inversedBy: null

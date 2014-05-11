@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Message:
+Thiefaine\ReferentielBundle\Entity\Conseil:
     type: entity
     table: MESSAGE
     indexes:
@@ -7,7 +7,7 @@ Thiefaine\ReferentielBundle\Entity\Message:
                 - idtypemessage
         MESSAGE_UTILISATEURWEB_ID1:
             columns:
-                - idutilisateurweb
+                - idutilisateur
     id:
         id:
             type: integer
@@ -21,7 +21,7 @@ Thiefaine\ReferentielBundle\Entity\Message:
         titre:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         message:
@@ -69,13 +69,13 @@ Thiefaine\ReferentielBundle\Entity\Message:
                 idtypemessage:
                     referencedColumnName: id
             orphanRemoval: false
-        idutilisateurweb:
+        idutilisateur:
             targetEntity: Utilisateurweb
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                idutilisateurweb:
+                idutilisateur:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

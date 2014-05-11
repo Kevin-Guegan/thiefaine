@@ -18,7 +18,7 @@ Thiefaine\ReferentielBundle\Entity\Groupe:
         nom:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         gerergroupes:

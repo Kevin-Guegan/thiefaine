@@ -2,7 +2,7 @@ Thiefaine\ReferentielBundle\Entity\Zone:
     type: entity
     table: ZONE
     indexes:
-        ZONE_UTILISATEUR_ID1:
+        ZONE_UTILISATEURWEB_ID1:
             columns:
                 - idutilisateur
     id:
@@ -18,36 +18,34 @@ Thiefaine\ReferentielBundle\Entity\Zone:
         nom:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         latitude:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         longitude:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         zoom:
-            type: string
+            type: integer
             nullable: false
-            length: 45
-            fixed: false
+            unsigned: false
             comment: ''
-        type:
-            type: string
+        actif:
+            type: boolean
             nullable: false
-            length: 45
-            fixed: false
             comment: ''
+            default: '1'
     manyToOne:
         idutilisateur:
-            targetEntity: Utilisateur
+            targetEntity: Utilisateurweb
             cascade: {  }
             mappedBy: null
             inversedBy: null

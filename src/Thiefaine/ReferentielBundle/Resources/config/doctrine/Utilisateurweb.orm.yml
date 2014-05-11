@@ -18,31 +18,31 @@ Thiefaine\ReferentielBundle\Entity\Utilisateurweb:
         nom:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         prenom:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         login:
-            type: string
+            type: text
             nullable: false
-            length: 45
+            length: null
             fixed: false
             comment: ''
         password:
-            type: string
+            type: text
             nullable: false
-            length: 45
+            length: null
             fixed: false
             comment: ''
         email:
             type: string
             nullable: false
-            length: 45
+            length: 255
             fixed: false
             comment: ''
         infos:

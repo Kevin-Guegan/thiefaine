@@ -80,32 +80,4 @@ class Alerte
     {
         return $this->idzone;
     }
-    /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Lieu
-     */
-    private $idlieu;
-
-
-    /**
-     * Set idlieu
-     *
-     * @param \Thiefaine\ReferentielBundle\Entity\Lieu $idlieu
-     * @return Alerte
-     */
-    public function setIdlieu(\Thiefaine\ReferentielBundle\Entity\Lieu $idlieu = null)
-    {
-        $this->idlieu = $idlieu;
-
-        return $this;
-    }
-
-    /**
-     * Get idlieu
-     *
-     * @return \Thiefaine\ReferentielBundle\Entity\Lieu 
-     */
-    public function getIdlieu()
-    {
-        return $this->idlieu;
-    }
 }

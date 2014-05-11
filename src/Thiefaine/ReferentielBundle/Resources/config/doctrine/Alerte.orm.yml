@@ -7,7 +7,7 @@ Thiefaine\ReferentielBundle\Entity\Alerte:
                 - idmessage
         ALERTE_ZONE_ID1:
             columns:
-                - idlieu
+                - idzone
     id:
         id:
             type: integer
@@ -27,13 +27,13 @@ Thiefaine\ReferentielBundle\Entity\Alerte:
                 idmessage:
                     referencedColumnName: id
             orphanRemoval: false
-        idlieu:
-            targetEntity: Lieu
+        idzone:
+            targetEntity: Zone
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                idlieu:
+                idzone:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

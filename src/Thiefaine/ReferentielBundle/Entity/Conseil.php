@@ -5,9 +5,9 @@ namespace Thiefaine\ReferentielBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Message
+ * Conseil
  */
-class Message
+class Conseil
 {
     /**
      * @var integer
@@ -60,7 +60,7 @@ class Message
     private $idtypemessage;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateur
+     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
      */
     private $idutilisateur;
 
@@ -79,7 +79,7 @@ class Message
      * Set titre
      *
      * @param string $titre
-     * @return Message
+     * @return Conseil
      */
     public function setTitre($titre)
     {
@@ -102,7 +102,7 @@ class Message
      * Set message
      *
      * @param string $message
-     * @return Message
+     * @return Conseil
      */
     public function setMessage($message)
     {
@@ -125,7 +125,7 @@ class Message
      * Set datecreation
      *
      * @param \DateTime $datecreation
-     * @return Message
+     * @return Conseil
      */
     public function setDatecreation($datecreation)
     {
@@ -148,7 +148,7 @@ class Message
      * Set datemiseajour
      *
      * @param \DateTime $datemiseajour
-     * @return Message
+     * @return Conseil
      */
     public function setDatemiseajour($datemiseajour)
     {
@@ -171,7 +171,7 @@ class Message
      * Set datevalidite
      *
      * @param \DateTime $datevalidite
-     * @return Message
+     * @return Conseil
      */
     public function setDatevalidite($datevalidite)
     {
@@ -194,7 +194,7 @@ class Message
      * Set compteurlecture
      *
      * @param integer $compteurlecture
-     * @return Message
+     * @return Conseil
      */
     public function setCompteurlecture($compteurlecture)
     {
@@ -217,7 +217,7 @@ class Message
      * Set urlphoto
      *
      * @param string $urlphoto
-     * @return Message
+     * @return Conseil
      */
     public function setUrlphoto($urlphoto)
     {
@@ -240,7 +240,7 @@ class Message
      * Set urllien
      *
      * @param string $urllien
-     * @return Message
+     * @return Conseil
      */
     public function setUrllien($urllien)
     {
@@ -263,7 +263,7 @@ class Message
      * Set idtypemessage
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Typemessage $idtypemessage
-     * @return Message
+     * @return Conseil
      */
     public function setIdtypemessage(\Thiefaine\ReferentielBundle\Entity\Typemessage $idtypemessage = null)
     {
@@ -285,10 +285,10 @@ class Message
     /**
      * Set idutilisateur
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateur $idutilisateur
-     * @return Message
+     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur
+     * @return Conseil
      */
-    public function setIdutilisateur(\Thiefaine\ReferentielBundle\Entity\Utilisateur $idutilisateur = null)
+    public function setIdutilisateur(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur = null)
     {
         $this->idutilisateur = $idutilisateur;
 
@@ -298,38 +298,10 @@ class Message
     /**
      * Get idutilisateur
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Utilisateur 
+     * @return \Thiefaine\ReferentielBundle\Entity\Utilisateurweb 
      */
     public function getIdutilisateur()
     {
         return $this->idutilisateur;
-    }
-    /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
-     */
-    private $idutilisateurweb;
-
-
-    /**
-     * Set idutilisateurweb
-     *
-     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateurweb
-     * @return Message
-     */
-    public function setIdutilisateurweb(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateurweb = null)
-    {
-        $this->idutilisateurweb = $idutilisateurweb;
-
-        return $this;
-    }
-
-    /**
-     * Get idutilisateurweb
-     *
-     * @return \Thiefaine\ReferentielBundle\Entity\Utilisateurweb 
-     */
-    public function getIdutilisateurweb()
-    {
-        return $this->idutilisateurweb;
     }
 }
