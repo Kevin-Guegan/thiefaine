@@ -98,23 +98,6 @@ class ConseilController extends Controller
     }
 
     /**
-    * Creates a form to create a Message entity.
-    *
-    * @param Message $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Message $entity)
-    {
-        $form = $this->createForm(new ConseilType(), $entity, array(
-            'action' => $this->generateUrl('conseil_create'),
-            'method' => 'POST',
-        ));
-        return $form;
-    }
-
-
-    /**
      * Finds and displays a Message entity.
      *
      */
@@ -128,11 +111,8 @@ class ConseilController extends Controller
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('ThiefaineReferentielBundle:Conseil:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'entity'      => $entity,        ));
     }
 
     /**
@@ -160,24 +140,6 @@ class ConseilController extends Controller
     }
 
     /**
-    * Creates a form to edit a Message entity.
-    *
-    * @param Message $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Message $entity)
-    {
-        $form = $this->createForm(new ConseilType(), $entity, array(
-            'action' => $this->generateUrl('conseil_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
-    /**
      * Edits an existing Message entity.
      *
      */
@@ -196,9 +158,13 @@ class ConseilController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+            // On met à jour le conseil
+            $entity->setDatemiseajour(new \DateTime('now'));
+
             $em->flush();
 
-            return $this->redirect($this->generateUrl('conseil_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('conseil', array('id' => $id)));
         }
 
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
@@ -206,6 +172,7 @@ class ConseilController extends Controller
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+
     }
     /**
      * Deletes a Message entity.
@@ -213,22 +180,51 @@ class ConseilController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Impossible de trouver le conseil.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
+        $em->remove($entity);
+        $em->flush();
+
         return $this->redirect($this->generateUrl('conseil'));
+    }
+
+     /**
+    * Creates a form to create a Message entity.
+    *
+    * @param Message $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm(Message $entity)
+    {
+        $form = $this->createForm(new ConseilType(), $entity, array(
+            'action' => $this->generateUrl('conseil_create'),
+            'method' => 'POST',
+        ));
+        return $form;
+    }
+
+    /**
+    * Creates a form to edit a Message entity.
+    *
+    * @param Message $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Message $entity)
+    {
+        $form = $this->createForm(new ConseilType(), $entity, array(
+            'action' => $this->generateUrl('conseil_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        return $form;
     }
 
     /**

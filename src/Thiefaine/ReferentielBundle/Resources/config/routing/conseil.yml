@@ -27,4 +27,4 @@ conseil_update:
 conseil_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ThiefaineReferentielBundle:Conseil:delete" }
-    requirements: { _method: post|delete }
+

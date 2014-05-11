@@ -17,8 +17,8 @@
                     {% for entity in entities %}
                         <tr>
                             <td>
-                                    <span class="glyphicon glyphicon-pencil modifyElement" title="Modifier"></span>
-                                    <span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+                                    <a href="{{ path('conseil_edit', { 'id': entity.id }) }}" >edit</a>
+                                    <a href="{{ path('conseil_delete', {'id': entity.id}) }}" onclick="return confirm('Eves vous sûr de vouloir supprimer ce conseil ?')" >delete</a>
                             </td>
                             <td>{{ entity.titre }}</td>
                             <td>{{ entity.datecreation|date('d-m-Y') }}</td>

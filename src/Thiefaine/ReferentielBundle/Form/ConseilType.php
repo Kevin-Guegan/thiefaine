@@ -73,7 +73,7 @@ class ConseilType extends AbstractType
                                                  'attr' =>  array ( 'class' => 'btn btn-primary' )
                                                 )
                 )
-            ->add('annuler', 'submit', array    ( 'label'  => 'Annuler',
+            ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
                                                  'attr' =>  array ( 'class' => 'btn btn-default' )
                                                 )
                 );
