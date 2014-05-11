@@ -8,6 +8,7 @@
                 <tr>
                     <th>Actions</th>
                     <th>Nom</th>
+                    <th>Créateur</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,7 @@
                         <a href="{{ path('zone_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
                     </td>
                     <td>{{ entity.nom }}</td>
+                    <td>{{ entity.idutilisateur }}</td>
                 </tr>
             {% endfor %}
             </tbody>

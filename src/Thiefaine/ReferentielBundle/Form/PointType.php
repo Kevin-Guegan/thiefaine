@@ -18,7 +18,7 @@ class PointType extends AbstractType
             ->add('latitude')
             ->add('longitude')
             ->add('radius')
-            ->add('idlieu')
+            ->add('idzone')
         ;
     }
     

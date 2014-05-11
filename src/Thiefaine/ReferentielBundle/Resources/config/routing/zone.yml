@@ -11,7 +11,7 @@ zone_new:
     defaults: { _controller: "ThiefaineReferentielBundle:Zone:new" }
 
 zone_create:
-    pattern:  /create
+    pattern:  /create/
     defaults: { _controller: "ThiefaineReferentielBundle:Zone:create" }
     requirements: { _method: post }
 

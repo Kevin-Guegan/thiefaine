@@ -11,7 +11,7 @@ point_new:
     defaults: { _controller: "ThiefaineReferentielBundle:Point:new" }
 
 point_create:
-    pattern:  /create
+    pattern:  /create/{idZone}/{ListPoint}
     defaults: { _controller: "ThiefaineReferentielBundle:Point:create" }
     requirements: { _method: post }
 

@@ -192,4 +192,9 @@ class Zone
     {
         return $this->idutilisateur;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }
