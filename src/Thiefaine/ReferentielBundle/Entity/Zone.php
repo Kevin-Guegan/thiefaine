@@ -6,43 +6,66 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Zone
+ *
+ * @ORM\Table(name="ZONE", indexes={@ORM\Index(name="ZONE_UTILISATEURWEB_ID1", columns={"idutilisateur"})})
+ * @ORM\Entity
  */
 class Zone
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=255, nullable=false)
      */
     private $latitude;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=255, nullable=false)
      */
     private $longitude;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="zoom", type="integer", nullable=false)
      */
     private $zoom;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="actif", type="boolean", nullable=false)
      */
     private $actif;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
+     * @var \Utilisateurweb
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateurweb")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idutilisateur", referencedColumnName="id")
+     * })
      */
     private $idutilisateur;
+
 
 
     /**

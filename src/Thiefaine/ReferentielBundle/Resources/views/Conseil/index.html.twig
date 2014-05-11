@@ -21,8 +21,8 @@
                                     <span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
                             </td>
                             <td>{{ entity.titre }}</td>
-                            <td>{{ entity.datecreation }}</td>
-                            <td>{{ entity.datemiseajour }}</td>
+                            <td>{{ entity.datecreation|date('d-m-Y') }}</td>
+                            <td>{{ entity.datevalidite|date('d-m-Y') }}</td>
                         </tr>
                     {% endfor %}
 

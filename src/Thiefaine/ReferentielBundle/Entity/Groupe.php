@@ -6,48 +6,73 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Groupe
+ *
+ * @ORM\Table(name="GROUPE", indexes={@ORM\Index(name="GROUPE_GENDARMERIE_ID1", columns={"idgendarmerie"})})
+ * @ORM\Entity
  */
 class Groupe
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="gerergroupes", type="boolean", nullable=false)
      */
     private $gerergroupes;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="gererutilisateurs", type="boolean", nullable=false)
      */
     private $gererutilisateurs;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="gereralertes", type="boolean", nullable=false)
      */
     private $gereralertes;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="gererinfos", type="boolean", nullable=false)
      */
     private $gererinfos;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="gererconseils", type="boolean", nullable=false)
      */
     private $gererconseils;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Gendarmerie
+     * @var \Gendarmerie
+     *
+     * @ORM\ManyToOne(targetEntity="Gendarmerie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idgendarmerie", referencedColumnName="id")
+     * })
      */
     private $idgendarmerie;
+
 
 
     /**

@@ -42,7 +42,6 @@ Thiefaine\ReferentielBundle\Entity\Zone:
             type: boolean
             nullable: false
             comment: ''
-            default: '1'
     manyToOne:
         idutilisateur:
             targetEntity: Utilisateurweb

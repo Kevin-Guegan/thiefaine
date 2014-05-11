@@ -6,33 +6,52 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Point
+ *
+ * @ORM\Table(name="POINT", indexes={@ORM\Index(name="POINT_ZONE1_ID1", columns={"idzone"})})
+ * @ORM\Entity
  */
 class Point
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=255, nullable=false)
      */
     private $latitude;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=255, nullable=false)
      */
     private $longitude;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="radius", type="integer", nullable=false)
      */
     private $radius;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Zone
+     * @var \Zone
+     *
+     * @ORM\ManyToOne(targetEntity="Zone")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idzone", referencedColumnName="id")
+     * })
      */
     private $idzone;
+
 
 
     /**

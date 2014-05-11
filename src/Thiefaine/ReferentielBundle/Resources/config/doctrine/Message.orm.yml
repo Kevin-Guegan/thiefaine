@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Information:
+Thiefaine\ReferentielBundle\Entity\Message:
     type: entity
     table: MESSAGE
     indexes:

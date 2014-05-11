@@ -26,6 +26,7 @@ class ConseilType extends AbstractType
                                             )
                 )
             ->add('urlphoto', 'text', array     (   'label'  => 'Photo',
+                                                    'required' => false,
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                                                 'attr'   =>  array (    'class' => 'form-control',
                                                                         'placeholder' => 'Photo',
@@ -36,6 +37,7 @@ class ConseilType extends AbstractType
                                             )
                 )
             ->add('urllien', 'text', array  (   'label'  => 'Lien',
+                                                'required' => false,
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                                                 'attr'   =>  array  (   'class' => 'form-control',
                                                                         'placeholder' => 'Lien',
@@ -47,6 +49,7 @@ class ConseilType extends AbstractType
                 )
             ->add('datevalidite', 'text', array     (   'label'  => 'Date de validité',
                                                 'label_attr'   =>  array    ( 'class' => 'control-label' ),
+                                                'required' => false,
                                                 'attr'   =>  array  (   'class' => 'form-control',
                                                                         'placeholder' => 'Date de validité',
                                                                         'title' => "Renseigner / Sélectionner une date de validitée (infinie si non rempli).",

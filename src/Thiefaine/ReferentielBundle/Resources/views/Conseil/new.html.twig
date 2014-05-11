@@ -10,40 +10,40 @@
 
     <div class="content">
         
-        <h3>Création d'une information</h1>
+        <h3>Création d'un conseil</h1>
 
-        {{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
+		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
-            {{ form_errors(form) }}
+			{{ form_errors(form) }}
 
-            <div class="form-group">
+			<div class="form-group">
 
-                <p>
-                    {{ form_label(form.titre) }}
-                    {{ form_widget(form.titre) }}
-                </p>
-                <p>
-                    {{ form_label(form.urlphoto) }}
-                    {{ form_widget(form.urlphoto) }}
-                </p>
-                <p>
-                    {{ form_label(form.urllien) }}
-                    {{ form_widget(form.urllien) }}
-                </p>
-                <p class="dateElement">
-                    {{ form_label(form.datevalidite) }}
-                    {{ form_widget(form.datevalidite) }}
-                </p>
-                <p>
-                    {{ form_label(form.message) }}
-                    {{ form_widget(form.message) }}
-                </p>
-                {{ form_widget(form.valider) }}
-                {{ form_widget(form.annuler) }}
+				<p>
+					{{ form_label(form.titre) }}
+					{{ form_widget(form.titre) }}
+				</p>
+				<p>
+					{{ form_label(form.urlphoto) }}
+					{{ form_widget(form.urlphoto) }}
+				</p>
+				<p>
+					{{ form_label(form.urllien) }}
+					{{ form_widget(form.urllien) }}
+				</p>
+				<p class="dateElement">
+					{{ form_label(form.datevalidite) }}
+					{{ form_widget(form.datevalidite) }}
+				</p>
+				<p>
+					{{ form_label(form.message) }}
+					{{ form_widget(form.message) }}
+				</p>
+				{{ form_widget(form.valider) }}
+				{{ form_widget(form.annuler) }}
 
-            </div>
+			</div>
 
-        {{ form_end(form) }}
+		{{ form_end(form) }}
 
     </div>
 

@@ -5,64 +5,98 @@ namespace Thiefaine\ReferentielBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Information
+ * Message
+ *
+ * @ORM\Table(name="MESSAGE", indexes={@ORM\Index(name="MESSAGE_TYPEMESSAGE_ID1", columns={"idtypemessage"}), @ORM\Index(name="MESSAGE_UTILISATEURWEB_ID1", columns={"idutilisateur"})})
+ * @ORM\Entity
  */
-class Information
+class Message
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
      */
     private $titre;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=false)
      */
     private $message;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="datecreation", type="datetime", nullable=false)
      */
     private $datecreation;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="datemiseajour", type="datetime", nullable=true)
      */
     private $datemiseajour;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="datevalidite", type="date", nullable=true)
      */
     private $datevalidite;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="compteurlecture", type="integer", nullable=true)
      */
     private $compteurlecture;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="urlphoto", type="text", nullable=true)
      */
     private $urlphoto;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="urllien", type="text", nullable=true)
      */
     private $urllien;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Typemessage
+     * @var \Typemessage
+     *
+     * @ORM\ManyToOne(targetEntity="Typemessage")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idtypemessage", referencedColumnName="id")
+     * })
      */
     private $idtypemessage;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
+     * @var \Utilisateurweb
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateurweb")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idutilisateur", referencedColumnName="id")
+     * })
      */
     private $idutilisateur;
+
 
 
     /**
@@ -79,7 +113,7 @@ class Information
      * Set titre
      *
      * @param string $titre
-     * @return Information
+     * @return Message
      */
     public function setTitre($titre)
     {
@@ -102,7 +136,7 @@ class Information
      * Set message
      *
      * @param string $message
-     * @return Information
+     * @return Message
      */
     public function setMessage($message)
     {
@@ -125,7 +159,7 @@ class Information
      * Set datecreation
      *
      * @param \DateTime $datecreation
-     * @return Information
+     * @return Message
      */
     public function setDatecreation($datecreation)
     {
@@ -148,7 +182,7 @@ class Information
      * Set datemiseajour
      *
      * @param \DateTime $datemiseajour
-     * @return Information
+     * @return Message
      */
     public function setDatemiseajour($datemiseajour)
     {
@@ -171,7 +205,7 @@ class Information
      * Set datevalidite
      *
      * @param \DateTime $datevalidite
-     * @return Information
+     * @return Message
      */
     public function setDatevalidite($datevalidite)
     {
@@ -194,7 +228,7 @@ class Information
      * Set compteurlecture
      *
      * @param integer $compteurlecture
-     * @return Information
+     * @return Message
      */
     public function setCompteurlecture($compteurlecture)
     {
@@ -217,7 +251,7 @@ class Information
      * Set urlphoto
      *
      * @param string $urlphoto
-     * @return Information
+     * @return Message
      */
     public function setUrlphoto($urlphoto)
     {
@@ -240,7 +274,7 @@ class Information
      * Set urllien
      *
      * @param string $urllien
-     * @return Information
+     * @return Message
      */
     public function setUrllien($urllien)
     {
@@ -263,7 +297,7 @@ class Information
      * Set idtypemessage
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Typemessage $idtypemessage
-     * @return Information
+     * @return Message
      */
     public function setIdtypemessage(\Thiefaine\ReferentielBundle\Entity\Typemessage $idtypemessage = null)
     {
@@ -286,7 +320,7 @@ class Information
      * Set idutilisateur
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur
-     * @return Information
+     * @return Message
      */
     public function setIdutilisateur(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur = null)
     {
