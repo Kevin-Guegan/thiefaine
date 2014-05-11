@@ -220,4 +220,9 @@ class Utilisateurweb
     {
         return $this->idgroupe;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }
