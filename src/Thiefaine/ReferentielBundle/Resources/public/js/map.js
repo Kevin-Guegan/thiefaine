@@ -5,6 +5,9 @@
 	var mesCercle=[];
 	var mesPoints=[];
 
+	var url = document.URL;
+   	url = url.substring(0,url.indexOf("/zone",0));
+
 	/**
 	 *	Initialisation de la map google
 	 */
@@ -87,6 +90,8 @@
 			mesPoints[cptCercle] += monCercle.getCenter().lng() + ";";
 			mesPoints[cptCercle] += monCercle.getRadius();
 
+			//CreatPoint(18, monCercle.getCenter().lat(), monCercle.getCenter().lng(), monCercle.getRadius())
+
 			//Si on déplace le cercle
 			google.maps.event.addListener(mesCercle[cptCercle], 'dragend', function() {
 				for(var i=0; i<mesCercle.length; i++){
@@ -140,3 +145,25 @@
 	});
 
 	google.maps.event.addDomListener(window, 'load', initialisation);
+
+	function CreatPoint(idzone, lat, lng, rad){
+
+		var addr = url + "/point/new/"+ idzone +"/"+lat+"/"+lng+"/"+rad;
+
+		$.ajax({
+			url: addr,
+			type: "POST",
+			cache: false,
+			timeout: 5000,
+			xhrFields: {
+			 withCredentials : true
+			},
+			success: function(data) {
+				console.log("ok")
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	}

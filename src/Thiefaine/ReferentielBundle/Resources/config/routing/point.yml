@@ -6,12 +6,13 @@ point_show:
     pattern:  /{id}/show
     defaults: { _controller: "ThiefaineReferentielBundle:Point:show" }
 
+#/{idzone}/{lat}/{lng}/{rad}
 point_new:
     pattern:  /new
     defaults: { _controller: "ThiefaineReferentielBundle:Point:new" }
 
 point_create:
-    pattern:  /create/{idZone}/{ListPoint}
+    pattern:  /create
     defaults: { _controller: "ThiefaineReferentielBundle:Point:create" }
     requirements: { _method: post }
 

@@ -76,7 +76,7 @@ class PointController extends Controller
      * Displays a form to create a new Point entity.
      *
      */
-    public function newAction()
+    public function newAction(/* idzone, lat, lng, rad */)
     {
         $entity = new Point();
         $form   = $this->createCreateForm($entity);
@@ -85,6 +85,21 @@ class PointController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
+
+        /*$em = $this->getDoctrine()->getEntityManager();
+       
+        // $zone = $em->getZone($idzone);
+
+        $point = new Point();
+        $point->setIdzone($em->getZone($idzone));
+        $point->setLatitude($lat);
+        $point->setLongitude($lng);
+        $point->setRadius($rad);
+
+        $em->persist($point);
+
+        // $em->persist($point);
+        $em->flush();*/
     }
 
     /**

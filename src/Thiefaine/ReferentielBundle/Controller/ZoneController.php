@@ -44,12 +44,7 @@ class ZoneController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('zone'));
-            
-            // return $this->redirect($this->generateUrl('point_create'), array(
-            //     'idZone' => $entity->getId(),
-            //     'ListPoint' => '<script>mesPoints;</scirpt>',
-            // ));
+            return $this->redirect($this->generateUrl('zone_edit', array('id' => $entity->getId())));
         }
 
         return $this->render('ThiefaineReferentielBundle:Zone:new.html.twig', array(
