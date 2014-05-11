@@ -98,24 +98,6 @@ class ConseilController extends Controller
     }
 
     /**
-     * Finds and displays a Message entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Impossible de trouver le conseil.');
-        }
-
-        return $this->render('ThiefaineReferentielBundle:Conseil:show.html.twig', array(
-            'entity'      => $entity,        ));
-    }
-
-    /**
      * Displays a form to edit an existing Message entity.
      *
      */
@@ -130,12 +112,10 @@ class ConseilController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -153,13 +133,12 @@ class ConseilController extends Controller
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
 
-            // On met à jour le conseil
+            // On met à jour la date de mise à jour
             $entity->setDatemiseajour(new \DateTime('now'));
 
             $em->flush();
@@ -170,7 +149,6 @@ class ConseilController extends Controller
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
 
     }

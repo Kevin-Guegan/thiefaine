@@ -21,8 +21,8 @@
                                     <a href="{{ path('conseil_delete', {'id': entity.id}) }}" onclick="return confirm('Eves vous sûr de vouloir supprimer ce conseil ?')" >delete</a>
                             </td>
                             <td>{{ entity.titre }}</td>
-                            <td>{{ entity.datecreation|date('d-m-Y') }}</td>
-                            <td>{{ entity.datevalidite|date('d-m-Y') }}</td>
+                            <td>{{ entity.datecreation|date("d/m/Y") }}</td>
+                            <td>{{ entity.datevalidite is empty ? "" :entity.datevalidite|date("d/m/Y") }}</td>
                         </tr>
                     {% endfor %}
 

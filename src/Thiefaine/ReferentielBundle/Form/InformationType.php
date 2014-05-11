@@ -26,6 +26,7 @@ class InformationType extends AbstractType
 											)
 				)
 			->add('urlphoto', 'text', array 	( 	'label'  => 'Photo',
+												'required' => false,
 												'label_attr'   =>  array ( 'class' => 'control-label' ),
 												'attr'   =>  array ( 	'class' => 'form-control',
 																		'placeholder' => 'Photo',
@@ -36,6 +37,7 @@ class InformationType extends AbstractType
 											)
 				)
 			->add('urllien', 'text', array 	( 	'label'  => 'Lien',
+												'required' => false,
 												'label_attr'   =>  array ( 'class' => 'control-label' ),
 												'attr'   =>  array 	( 	'class' => 'form-control',
 																		'placeholder' => 'Lien',
@@ -45,7 +47,11 @@ class InformationType extends AbstractType
 																	)
 											)
 				)
-			->add('datevalidite', 'text', array 	( 	'label'  => 'Date de validité',
+			->add('datevalidite', 'text', array 	( 	'widget' => 'single_text',
+                                                        'input' => 'datetime',
+                                                        'format' => 'dd/MM/yyyy',
+												'label'  => 'Date de validité',
+												'required' => false,
 												'label_attr'   =>  array 	( 'class' => 'control-label' ),
 												'attr'   =>  array 	( 	'class' => 'form-control',
 																		'placeholder' => 'Date de validité',

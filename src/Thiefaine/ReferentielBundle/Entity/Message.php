@@ -52,7 +52,7 @@ class Message
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datevalidite", type="date", nullable=true)
+     * @ORM\Column(name="datevalidite", type="datetime", nullable=true)
      */
     private $datevalidite;
 

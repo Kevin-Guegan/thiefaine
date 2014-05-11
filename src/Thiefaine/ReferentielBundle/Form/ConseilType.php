@@ -47,7 +47,10 @@ class ConseilType extends AbstractType
                                                                     )
                                             )
                 )
-            ->add('datevalidite', 'text', array     (   'label'  => 'Date de validité',
+            ->add('datevalidite', 'date', array     (   'widget' => 'single_text',
+                                                        'input' => 'datetime',
+                                                        'format' => 'dd/MM/yyyy',
+                                                'label'  => 'Date de validité',
                                                 'label_attr'   =>  array    ( 'class' => 'control-label' ),
                                                 'required' => false,
                                                 'attr'   =>  array  (   'class' => 'form-control',
