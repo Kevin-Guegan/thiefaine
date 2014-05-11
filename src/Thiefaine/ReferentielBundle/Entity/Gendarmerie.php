@@ -52,4 +52,9 @@ class Gendarmerie
     {
         return $this->libelle;
     }
+
+    public function __toString()
+    {
+        return $this->getLibelle();
+    }
 }

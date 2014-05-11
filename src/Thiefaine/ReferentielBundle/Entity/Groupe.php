@@ -220,4 +220,9 @@ class Groupe
     {
         return $this->idgendarmerie;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }

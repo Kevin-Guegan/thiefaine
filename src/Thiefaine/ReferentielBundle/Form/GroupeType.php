@@ -72,7 +72,8 @@ class GroupeType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control pull-right',
                 )
-            ));
+            ))
+            ->add('idgendarmerie');
     }
     
     /**

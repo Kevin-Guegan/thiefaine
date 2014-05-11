@@ -31,7 +31,7 @@ class ZoneType extends AbstractType
             ->add('latitude')
             ->add('longitude')
             ->add('zoom')
-            ->add('type')
+            ->add('actif')
             ->add('idutilisateur');
     }
     
