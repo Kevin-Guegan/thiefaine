@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Groupe:
+Groupe:
     type: entity
     table: GROUPE
     id:

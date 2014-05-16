@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Zone
  *
- * @ORM\Table(name="ZONE", indexes={@ORM\Index(name="ZONE_UTILISATEURWEB_ID1", columns={"idutilisateur"})})
+ * @ORM\Table(name="ZONE", indexes={@ORM\Index(name="IDX_967E2DB3DBDD131C", columns={"idutilisateur"})})
  * @ORM\Entity
  */
 class Zone
@@ -67,6 +67,28 @@ class Zone
     private $idutilisateur;
 
 
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Alerte
+     */
+    private $alerte;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $points;
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
+     */
+    private $utilisateurweb;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->points = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -194,25 +216,81 @@ class Zone
     }
 
     /**
-     * Set idutilisateur
+     * Set alerte
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur
+     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alerte
      * @return Zone
      */
-    public function setIdutilisateur(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur = null)
+    public function setAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alerte = null)
     {
-        $this->idutilisateur = $idutilisateur;
+        $this->alerte = $alerte;
 
         return $this;
     }
 
     /**
-     * Get idutilisateur
+     * Get alerte
+     *
+     * @return \Thiefaine\ReferentielBundle\Entity\Alerte 
+     */
+    public function getAlerte()
+    {
+        return $this->alerte;
+    }
+
+    /**
+     * Add points
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Point $points
+     * @return Zone
+     */
+    public function addPoint(\Thiefaine\ReferentielBundle\Entity\Point $points)
+    {
+        $this->points[] = $points;
+
+        return $this;
+    }
+
+    /**
+     * Remove points
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Point $points
+     */
+    public function removePoint(\Thiefaine\ReferentielBundle\Entity\Point $points)
+    {
+        $this->points->removeElement($points);
+    }
+
+    /**
+     * Get points
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * Set utilisateurweb
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb
+     * @return Zone
+     */
+    public function setUtilisateurweb(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb = null)
+    {
+        $this->utilisateurweb = $utilisateurweb;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateurweb
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Utilisateurweb 
      */
-    public function getIdutilisateur()
+    public function getUtilisateurweb()
     {
-        return $this->idutilisateur;
+        return $this->utilisateurweb;
     }
 }

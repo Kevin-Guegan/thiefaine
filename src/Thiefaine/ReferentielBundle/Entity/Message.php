@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Message
  *
- * @ORM\Table(name="MESSAGE", indexes={@ORM\Index(name="MESSAGE_TYPEMESSAGE_ID1", columns={"idtypemessage"}), @ORM\Index(name="MESSAGE_UTILISATEURWEB_ID1", columns={"idutilisateur"})})
+ * @ORM\Table(name="MESSAGE", indexes={@ORM\Index(name="IDX_89F8CE65AA98CC6B", columns={"idtypemessage"}), @ORM\Index(name="IDX_89F8CE6599788D65", columns={"idutilisateurweb"})})
  * @ORM\Entity
  */
 class Message
@@ -52,7 +52,7 @@ class Message
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datevalidite", type="datetime", nullable=true)
+     * @ORM\Column(name="datevalidite", type="date", nullable=true)
      */
     private $datevalidite;
 
@@ -78,6 +78,16 @@ class Message
     private $urllien;
 
     /**
+     * @var \Utilisateurweb
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateurweb")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idutilisateurweb", referencedColumnName="id")
+     * })
+     */
+    private $idutilisateurweb;
+
+    /**
      * @var \Typemessage
      *
      * @ORM\ManyToOne(targetEntity="Typemessage")
@@ -87,16 +97,21 @@ class Message
      */
     private $idtypemessage;
 
-    /**
-     * @var \Utilisateurweb
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateurweb")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idutilisateur", referencedColumnName="id")
-     * })
-     */
-    private $idutilisateur;
 
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Alerte
+     */
+    private $alerte;
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Typemessage
+     */
+    private $typemessage;
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
+     */
+    private $utilisateurweb;
 
 
     /**
@@ -294,48 +309,71 @@ class Message
     }
 
     /**
-     * Set idtypemessage
+     * Set alerte
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Typemessage $idtypemessage
+     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alerte
      * @return Message
      */
-    public function setIdtypemessage(\Thiefaine\ReferentielBundle\Entity\Typemessage $idtypemessage = null)
+    public function setAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alerte = null)
     {
-        $this->idtypemessage = $idtypemessage;
+        $this->alerte = $alerte;
 
         return $this;
     }
 
     /**
-     * Get idtypemessage
+     * Get alerte
+     *
+     * @return \Thiefaine\ReferentielBundle\Entity\Alerte 
+     */
+    public function getAlerte()
+    {
+        return $this->alerte;
+    }
+
+    /**
+     * Set typemessage
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Typemessage $typemessage
+     * @return Message
+     */
+    public function setTypemessage(\Thiefaine\ReferentielBundle\Entity\Typemessage $typemessage = null)
+    {
+        $this->typemessage = $typemessage;
+
+        return $this;
+    }
+
+    /**
+     * Get typemessage
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Typemessage 
      */
-    public function getIdtypemessage()
+    public function getTypemessage()
     {
-        return $this->idtypemessage;
+        return $this->typemessage;
     }
 
     /**
-     * Set idutilisateur
+     * Set utilisateurweb
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur
+     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb
      * @return Message
      */
-    public function setIdutilisateur(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $idutilisateur = null)
+    public function setUtilisateurweb(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb = null)
     {
-        $this->idutilisateur = $idutilisateur;
+        $this->utilisateurweb = $utilisateurweb;
 
         return $this;
     }
 
     /**
-     * Get idutilisateur
+     * Get utilisateurweb
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Utilisateurweb 
      */
-    public function getIdutilisateur()
+    public function getUtilisateurweb()
     {
-        return $this->idutilisateur;
+        return $this->utilisateurweb;
     }
 }

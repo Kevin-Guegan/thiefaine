@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Thiefaine\ReferentielBundle\Entity\Alerte;
+use Thiefaine\ReferentielBundle\Entity\Message;
+use Thiefaine\ReferentielBundle\Entity\Zone;
 use Thiefaine\ReferentielBundle\Form\AlerteType;
 
 /**
@@ -29,13 +31,54 @@ class AlerteController extends Controller
             'entities' => $entities,
         ));
     }
+
+    /**
+     * Displays a form to create a new Alerte entity.
+     *
+     */
+    public function newAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        // Message de type conseil
+        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('alerte');
+        if (!$typeMessage) {
+            throw $this->createNotFoundException('Impossible de trouver les messages de type alerte.');
+        }
+
+        // utilisateur
+        $utilisateur = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findOneById(1);
+        if (!$utilisateur) {
+            throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
+        }
+
+        // On met à jour le conseil
+        $message = new Message();
+        $message->setDateCreation(new \DateTime('now'));
+        $message->setTypemessage($typeMessage);
+        $message->setUtilisateurweb($utilisateur);
+        $message->setTitre('test1');
+
+        $alerte = new Alerte();
+        $alerte->setMessage($message);
+
+        $em->persist($alerte->getMessage());
+
+        $form   = $this->createCreateForm($alerte);
+
+        return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
+            'entity' => $alerte,
+            'form'   => $form->createView(),
+        ));
+    }
+
     /**
      * Creates a new Alerte entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Alerte();
+        $entity = new ALerte();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -54,40 +97,6 @@ class AlerteController extends Controller
     }
 
     /**
-    * Creates a form to create a Alerte entity.
-    *
-    * @param Alerte $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Alerte $entity)
-    {
-        $form = $this->createForm(new AlerteType(), $entity, array(
-            'action' => $this->generateUrl('alerte_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Alerte entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Alerte();
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a Alerte entity.
      *
      */
@@ -95,7 +104,7 @@ class AlerteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Alerte entity.');
@@ -116,7 +125,7 @@ class AlerteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Alerte entity.');
@@ -133,24 +142,6 @@ class AlerteController extends Controller
     }
 
     /**
-    * Creates a form to edit a Alerte entity.
-    *
-    * @param Alerte $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Alerte $entity)
-    {
-        $form = $this->createForm(new AlerteType(), $entity, array(
-            'action' => $this->generateUrl('alerte_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
-    /**
      * Edits an existing Alerte entity.
      *
      */
@@ -158,7 +149,7 @@ class AlerteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Alerte entity.');
@@ -191,7 +182,7 @@ class AlerteController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
+            $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Alerte entity.');
@@ -202,6 +193,40 @@ class AlerteController extends Controller
         }
 
         return $this->redirect($this->generateUrl('alerte'));
+    }
+
+    /**
+    * Creates a form to create a Alerte entity.
+    *
+    * @param Alerte $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm(Alerte $entity)
+    {
+        $form = $this->createForm(new AlerteType(), $entity, array(
+            'action' => $this->generateUrl('alerte_create'),
+            'method' => 'POST',
+        ));
+
+        return $form;
+    }
+
+    /**
+    * Creates a form to edit a Alerte entity.
+    *
+    * @param Alerte $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Message $entity)
+    {
+        $form = $this->createForm(new AlerteType(), $entity, array(
+            'action' => $this->generateUrl('alerte_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        return $form;
     }
 
     /**

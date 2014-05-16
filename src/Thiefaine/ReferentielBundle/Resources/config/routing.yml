@@ -10,14 +10,6 @@ thiefaine_referentiel_myaccount:
     pattern:  /myaccount
     defaults: { _controller: ThiefaineReferentielBundle:Default:myaccount }
 
-thiefaine_referentiel_alert:
-    pattern:  /alert
-    defaults: { _controller: ThiefaineReferentielBundle:Default:alert }
-
-thiefaine_referentiel_alert_create:
-    pattern:  /alert/create
-    defaults: { _controller: ThiefaineReferentielBundle:Default:alertCreate }
-
 thiefaine_referentiel_groupe:
     resource: "@ThiefaineReferentielBundle/Resources/config/routing/groupe.yml"
     prefix: /groupe
@@ -37,3 +29,7 @@ thiefaine_conseil:
 thiefaine_information:
     resource: "@ThiefaineReferentielBundle/Resources/config/routing/information.yml"
     prefix:   /information
+
+thiefaine_alerte:
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/alerte.yml"
+    prefix:   /alerte

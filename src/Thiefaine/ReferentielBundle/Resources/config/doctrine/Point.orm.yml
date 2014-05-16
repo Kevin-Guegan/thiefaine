@@ -1,16 +1,11 @@
 Thiefaine\ReferentielBundle\Entity\Point:
     type: entity
     table: POINT
-    indexes:
-        POINT_ZONE1_ID1:
-            columns:
-                - idzone
     id:
         id:
             type: integer
             nullable: false
             unsigned: false
-            comment: ''
             id: true
             generator:
                 strategy: IDENTITY
@@ -20,26 +15,21 @@ Thiefaine\ReferentielBundle\Entity\Point:
             nullable: false
             length: 255
             fixed: false
-            comment: ''
         longitude:
             type: string
             nullable: false
             length: 255
             fixed: false
-            comment: ''
         radius:
             type: integer
             nullable: false
             unsigned: false
-            comment: ''
     manyToOne:
-        idzone:
+        zone:
             targetEntity: Zone
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
+            inversedBy: points
             joinColumns:
                 idzone:
                     referencedColumnName: id
-            orphanRemoval: false
+
     lifecycleCallbacks: {  }

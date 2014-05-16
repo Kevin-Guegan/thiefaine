@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Utilisateurweb
  *
- * @ORM\Table(name="UTILISATEURWEB", indexes={@ORM\Index(name="UTILISATEURWEB_GROUPE_ID1", columns={"idgroupe"})})
+ * @ORM\Table(name="UTILISATEURWEB", indexes={@ORM\Index(name="IDX_632866136004218D", columns={"idgroupe"})})
  * @ORM\Entity
  */
 class Utilisateurweb
@@ -74,6 +74,29 @@ class Utilisateurweb
     private $idgroupe;
 
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $messages;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $zones;
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Groupe
+     */
+    private $groupe;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->zones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -224,26 +247,91 @@ class Utilisateurweb
     }
 
     /**
-     * Set idgroupe
+     * Add messages
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Groupe $idgroupe
+     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
      * @return Utilisateurweb
      */
-    public function setIdgroupe(\Thiefaine\ReferentielBundle\Entity\Groupe $idgroupe = null)
+    public function addMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
     {
-        $this->idgroupe = $idgroupe;
+        $this->messages[] = $messages;
 
         return $this;
     }
 
     /**
-     * Get idgroupe
+     * Remove messages
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
+     */
+    public function removeMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Add zones
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Zone $zones
+     * @return Utilisateurweb
+     */
+    public function addZone(\Thiefaine\ReferentielBundle\Entity\Zone $zones)
+    {
+        $this->zones[] = $zones;
+
+        return $this;
+    }
+
+    /**
+     * Remove zones
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Zone $zones
+     */
+    public function removeZone(\Thiefaine\ReferentielBundle\Entity\Zone $zones)
+    {
+        $this->zones->removeElement($zones);
+    }
+
+    /**
+     * Get zones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getZones()
+    {
+        return $this->zones;
+    }
+
+    /**
+     * Set groupe
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Groupe $groupe
+     * @return Utilisateurweb
+     */
+    public function setGroupe(\Thiefaine\ReferentielBundle\Entity\Groupe $groupe = null)
+    {
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Get groupe
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Groupe 
      */
-    public function getIdgroupe()
+    public function getGroupe()
     {
-        return $this->idgroupe;
+        return $this->groupe;
     }
-
 }

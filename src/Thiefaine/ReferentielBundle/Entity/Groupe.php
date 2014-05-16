@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Groupe
  *
- * @ORM\Table(name="GROUPE", indexes={@ORM\Index(name="GROUPE_GENDARMERIE_ID1", columns={"idgendarmerie"})})
+ * @ORM\Table(name="GROUPE", indexes={@ORM\Index(name="IDX_F4414BA7FB84DFEA", columns={"idgendarmerie"})})
  * @ORM\Entity
  */
 class Groupe
@@ -74,6 +74,23 @@ class Groupe
     private $idgendarmerie;
 
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $utilisateursweb;
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Gendarmerie
+     */
+    private $gendarmerie;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->utilisateursweb = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -224,25 +241,58 @@ class Groupe
     }
 
     /**
-     * Set idgendarmerie
+     * Add utilisateursweb
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Gendarmerie $idgendarmerie
+     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateursweb
      * @return Groupe
      */
-    public function setIdgendarmerie(\Thiefaine\ReferentielBundle\Entity\Gendarmerie $idgendarmerie = null)
+    public function addUtilisateursweb(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateursweb)
     {
-        $this->idgendarmerie = $idgendarmerie;
+        $this->utilisateursweb[] = $utilisateursweb;
 
         return $this;
     }
 
     /**
-     * Get idgendarmerie
+     * Remove utilisateursweb
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateursweb
+     */
+    public function removeUtilisateursweb(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateursweb)
+    {
+        $this->utilisateursweb->removeElement($utilisateursweb);
+    }
+
+    /**
+     * Get utilisateursweb
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUtilisateursweb()
+    {
+        return $this->utilisateursweb;
+    }
+
+    /**
+     * Set gendarmerie
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Gendarmerie $gendarmerie
+     * @return Groupe
+     */
+    public function setGendarmerie(\Thiefaine\ReferentielBundle\Entity\Gendarmerie $gendarmerie = null)
+    {
+        $this->gendarmerie = $gendarmerie;
+
+        return $this;
+    }
+
+    /**
+     * Get gendarmerie
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Gendarmerie 
      */
-    public function getIdgendarmerie()
+    public function getGendarmerie()
     {
-        return $this->idgendarmerie;
+        return $this->gendarmerie;
     }
 }

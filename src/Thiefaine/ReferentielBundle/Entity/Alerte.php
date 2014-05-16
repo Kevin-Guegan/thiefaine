@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Alerte
  *
- * @ORM\Table(name="ALERTE", indexes={@ORM\Index(name="ALERTE_MESSAGE_ID1", columns={"idmessage"}), @ORM\Index(name="ALERTE_ZONE_ID1", columns={"idzone"})})
+ * @ORM\Table(name="ALERTE", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_F356B2BC69B96211", columns={"idmessage"}), @ORM\UniqueConstraint(name="UNIQ_F356B2BC732431A7", columns={"idzone"})})
  * @ORM\Entity
  */
 class Alerte
@@ -22,16 +22,6 @@ class Alerte
     private $id;
 
     /**
-     * @var \Message
-     *
-     * @ORM\ManyToOne(targetEntity="Message")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idmessage", referencedColumnName="id")
-     * })
-     */
-    private $idmessage;
-
-    /**
      * @var \Zone
      *
      * @ORM\ManyToOne(targetEntity="Zone")
@@ -41,6 +31,26 @@ class Alerte
      */
     private $idzone;
 
+    /**
+     * @var \Message
+     *
+     * @ORM\ToOne(targetEntity="Message")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idmessage", referencedColumnName="id")
+     * })
+     */
+    private $idmessage;
+
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Message
+     */
+    private $message;
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Zone
+     */
+    private $zone;
 
 
     /**
@@ -54,48 +64,48 @@ class Alerte
     }
 
     /**
-     * Set idmessage
+     * Set message
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Message $idmessage
+     * @param \Thiefaine\ReferentielBundle\Entity\Message $message
      * @return Alerte
      */
-    public function setIdmessage(\Thiefaine\ReferentielBundle\Entity\Message $idmessage = null)
+    public function setMessage(\Thiefaine\ReferentielBundle\Entity\Message $message = null)
     {
-        $this->idmessage = $idmessage;
+        $this->message = $message;
 
         return $this;
     }
 
     /**
-     * Get idmessage
+     * Get message
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Message 
      */
-    public function getIdmessage()
+    public function getMessage()
     {
-        return $this->idmessage;
+        return $this->message;
     }
 
     /**
-     * Set idzone
+     * Set zone
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Zone $idzone
+     * @param \Thiefaine\ReferentielBundle\Entity\Zone $zone
      * @return Alerte
      */
-    public function setIdzone(\Thiefaine\ReferentielBundle\Entity\Zone $idzone = null)
+    public function setZone(\Thiefaine\ReferentielBundle\Entity\Zone $zone = null)
     {
-        $this->idzone = $idzone;
+        $this->zone = $zone;
 
         return $this;
     }
 
     /**
-     * Get idzone
+     * Get zone
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Zone 
      */
-    public function getIdzone()
+    public function getZone()
     {
-        return $this->idzone;
+        return $this->zone;
     }
 }

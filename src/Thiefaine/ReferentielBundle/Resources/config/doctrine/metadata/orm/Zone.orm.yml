@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Zone:
+Zone:
     type: entity
     table: ZONE
     id:

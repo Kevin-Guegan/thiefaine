@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Alerte:
+Alerte:
     type: entity
     table: ALERTE
     id:

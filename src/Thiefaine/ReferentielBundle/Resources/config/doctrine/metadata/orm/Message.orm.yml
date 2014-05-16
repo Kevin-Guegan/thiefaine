@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Message:
+Message:
     type: entity
     table: MESSAGE
     id:

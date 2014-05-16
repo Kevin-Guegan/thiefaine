@@ -6,7 +6,6 @@ Thiefaine\ReferentielBundle\Entity\Typemessage:
             type: integer
             nullable: false
             unsigned: false
-            comment: ''
             id: true
             generator:
                 strategy: IDENTITY
@@ -16,5 +15,9 @@ Thiefaine\ReferentielBundle\Entity\Typemessage:
             nullable: true
             length: 45
             fixed: false
-            comment: ''
+    oneToMany:
+        messages:
+            targetEntity: Message
+            mappedBy: typemessage
+
     lifecycleCallbacks: {  }

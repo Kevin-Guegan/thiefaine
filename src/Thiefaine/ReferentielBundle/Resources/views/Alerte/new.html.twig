@@ -1,15 +1,24 @@
-{% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Alerte creation</h1>
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('alerte') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
 {% endblock %}
+
+
+{% block content %}
+
+
+	{% block body %}
+    <div class="content">
+
+        <h3>Création d'une alerte</h1>
+
+		{{ form (form) }}
+
+    </div>
+    {% endblock %}
+
+{% endblock %}	

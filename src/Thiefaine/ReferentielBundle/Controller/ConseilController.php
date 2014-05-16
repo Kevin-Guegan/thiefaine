@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Thiefaine\ReferentielBundle\Entity\Message;
 use Thiefaine\ReferentielBundle\Form\ConseilType;
-use Thiefaine\ReferentielBundle\Form\MessageType;
 
 /**
  * Message controller.

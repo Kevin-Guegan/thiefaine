@@ -29,6 +29,18 @@ class Gendarmerie
     private $libelle;
 
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $groupes;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groupes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,5 +73,38 @@ class Gendarmerie
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    /**
+     * Add groupes
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Groupe $groupes
+     * @return Gendarmerie
+     */
+    public function addGroupe(\Thiefaine\ReferentielBundle\Entity\Groupe $groupes)
+    {
+        $this->groupes[] = $groupes;
+
+        return $this;
+    }
+
+    /**
+     * Remove groupes
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Groupe $groupes
+     */
+    public function removeGroupe(\Thiefaine\ReferentielBundle\Entity\Groupe $groupes)
+    {
+        $this->groupes->removeElement($groupes);
+    }
+
+    /**
+     * Get groupes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroupes()
+    {
+        return $this->groupes;
     }
 }

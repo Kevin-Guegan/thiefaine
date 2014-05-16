@@ -1,6 +1,6 @@
-Thiefaine\ReferentielBundle\Entity\Zone:
+Point:
     type: entity
-    table: ZONE
+    table: POINT
     id:
         id:
             type: integer
@@ -10,11 +10,6 @@ Thiefaine\ReferentielBundle\Entity\Zone:
             generator:
                 strategy: IDENTITY
     fields:
-        nom:
-            type: string
-            nullable: false
-            length: 255
-            fixed: false
         latitude:
             type: string
             nullable: false
@@ -25,27 +20,16 @@ Thiefaine\ReferentielBundle\Entity\Zone:
             nullable: false
             length: 255
             fixed: false
-        zoom:
+        radius:
             type: integer
             nullable: false
             unsigned: false
-        actif:
-            type: boolean
-            nullable: false
     manyToOne:
-        utilisateurweb:
-            targetEntity: Utilisateurweb
-            inversedBy: zones
+        zone:
+            targetEntity: Zone
+            inversedBy: points
             joinColumns:
-                idutilisateur:
+                idzone:
                     referencedColumnName: id
-    oneToMany:
-        points:
-            targetEntity: Point
-            mappedBy: zone
-    oneToOne:
-        alerte:
-            targetEntity: Alerte
-            mappedBy: zone
 
     lifecycleCallbacks: {  }

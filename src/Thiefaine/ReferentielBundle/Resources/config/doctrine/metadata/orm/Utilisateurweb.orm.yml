@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Utilisateurweb:
+Utilisateurweb:
     type: entity
     table: UTILISATEURWEB
     id:

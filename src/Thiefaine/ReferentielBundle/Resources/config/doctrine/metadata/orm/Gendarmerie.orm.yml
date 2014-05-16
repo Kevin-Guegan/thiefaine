@@ -1,4 +1,4 @@
-Thiefaine\ReferentielBundle\Entity\Gendarmerie:
+Gendarmerie:
     type: entity
     table: GENDARMERIE
     id:

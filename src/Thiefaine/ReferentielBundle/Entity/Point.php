@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Point
  *
- * @ORM\Table(name="POINT", indexes={@ORM\Index(name="POINT_ZONE1_ID1", columns={"idzone"})})
+ * @ORM\Table(name="POINT", indexes={@ORM\Index(name="IDX_40F13194732431A7", columns={"idzone"})})
  * @ORM\Entity
  */
 class Point
@@ -52,6 +52,11 @@ class Point
      */
     private $idzone;
 
+
+    /**
+     * @var \Thiefaine\ReferentielBundle\Entity\Zone
+     */
+    private $zone;
 
 
     /**
@@ -134,25 +139,25 @@ class Point
     }
 
     /**
-     * Set idzone
+     * Set zone
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Zone $idzone
+     * @param \Thiefaine\ReferentielBundle\Entity\Zone $zone
      * @return Point
      */
-    public function setIdzone(\Thiefaine\ReferentielBundle\Entity\Zone $idzone = null)
+    public function setZone(\Thiefaine\ReferentielBundle\Entity\Zone $zone = null)
     {
-        $this->idzone = $idzone;
+        $this->zone = $zone;
 
         return $this;
     }
 
     /**
-     * Get idzone
+     * Get zone
      *
      * @return \Thiefaine\ReferentielBundle\Entity\Zone 
      */
-    public function getIdzone()
+    public function getZone()
     {
-        return $this->idzone;
+        return $this->zone;
     }
 }

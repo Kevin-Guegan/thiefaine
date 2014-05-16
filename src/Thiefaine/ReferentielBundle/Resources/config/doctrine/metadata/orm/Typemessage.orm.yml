@@ -1,6 +1,6 @@
-Thiefaine\ReferentielBundle\Entity\Gendarmerie:
+Typemessage:
     type: entity
-    table: GENDARMERIE
+    table: TYPEMESSAGE
     id:
         id:
             type: integer
@@ -12,12 +12,12 @@ Thiefaine\ReferentielBundle\Entity\Gendarmerie:
     fields:
         libelle:
             type: string
-            nullable: false
-            length: 255
+            nullable: true
+            length: 45
             fixed: false
     oneToMany:
-        groupes:
-            targetEntity: Groupe
-            mappedBy: gendarmerie
+        messages:
+            targetEntity: Message
+            mappedBy: typemessage
 
     lifecycleCallbacks: {  }
