@@ -376,4 +376,9 @@ class Message
     {
         return $this->utilisateurweb;
     }
+
+    public function __toString()
+    {
+        return $this->titre;
+    }
 }

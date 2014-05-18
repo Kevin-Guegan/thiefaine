@@ -57,13 +57,18 @@ class AlerteController extends Controller
         $message->setDateCreation(new \DateTime('now'));
         $message->setTypemessage($typeMessage);
         $message->setUtilisateurweb($utilisateur);
-        $message->setTitre('test1');
 
         $alerte = new Alerte();
         $alerte->setMessage($message);
 
-        $em->persist($alerte->getMessage());
+        // on récupère les zones sélectionables
+        $zonesUtilisateur = $em->getRepository('ThiefaineReferentielBundle:Zone')->findByUtilisateurweb(1);
+        if (!$zonesUtilisateur) {
+            //throw $this->createNotFoundException("Impossible de trouver des zones");
+            //return $this->redirect($this->generateUrl('alerte'));
+        }
 
+        // $em->persist($alerte->getMessage());
         $form   = $this->createCreateForm($alerte);
 
         return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(

@@ -19,24 +19,24 @@
 			<div class="form-group">
 
 				<p>
-					{{ form_label(form.titre) }}
-					{{ form_widget(form.titre) }}
+					{{ form_label(form.message.titre) }}
+					{{ form_widget(form.message.titre) }}
 				</p>
 				<p>
-					{{ form_label(form.urlphoto) }}
-					{{ form_widget(form.urlphoto) }}
+					{{ form_label(form.message.urlphoto) }}
+					{{ form_widget(form.message.urlphoto) }}
 				</p>
 				<p>
-					{{ form_label(form.urllien) }}
-					{{ form_widget(form.urllien) }}
+					{{ form_label(form.message.urllien) }}
+					{{ form_widget(form.message.urllien) }}
 				</p>
 				<p class="dateElement">
-					{{ form_label(form.datevalidite) }}
-					{{ form_widget(form.datevalidite) }}
+					{{ form_label(form.message.datevalidite) }}
+					{{ form_widget(form.message.datevalidite) }}
 				</p>
 				<p>
-					{{ form_label(form.message) }}
-					{{ form_widget(form.message) }}
+					{{ form_label(form.message.message) }}
+					{{ form_widget(form.message.message) }}
 				</p>
 				{{ form_widget(form.valider) }}
 				{{ form_widget(form.annuler) }}
