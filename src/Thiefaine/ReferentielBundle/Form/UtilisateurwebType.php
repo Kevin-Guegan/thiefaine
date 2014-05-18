@@ -93,7 +93,7 @@ class UtilisateurwebType extends AbstractType
                     'data-placement' => 'right'
                 )
             ))
-            ->add('idgroupe');
+            ->add('groupe');
     }
     
     /**
