@@ -88,7 +88,7 @@ class ConseilType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Conseil'
+            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Message'
         ));
     }
 
