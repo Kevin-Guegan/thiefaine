@@ -96,7 +96,7 @@ class ZoneController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ThiefaineReferentielBundle:Zone')->find($id);
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Point')->findByZone($id);
+        $entity->getPoints();
 
 
         if (!$entity) {

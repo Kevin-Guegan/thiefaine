@@ -23,6 +23,19 @@
 		</p>
 
     	<p>
+    		<table id="mesPoints">
+		        <tbody>
+		            <tr>
+		                {% for point in entity.points %}
+		                    <td> {{ point.id }} </td>
+		                    <td> {{ point.latitude }} </td>
+		                    <td> {{ point.longitude }} </td>
+		                    <td> {{ point.radius }} </td>
+		                {% endfor %}
+		            </tr>
+		        </tbody>
+		    </table>
+
 			<label for="zoneRadius" class="control-label">Rayon de la zone</label>
 			<div class="input-group list-form-control" data-toggle="tooltip" data-placement="right" title="Saisisser le rayon de la zone à créer. (nota : il est 	possible de modifier le rayon et déplacer la zone une fois celle-ci crée.)">
 				<input type="text" class="form-control" id="zoneRadius" placeholder="Rayon de la zone">

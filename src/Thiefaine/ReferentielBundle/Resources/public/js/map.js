@@ -4,8 +4,6 @@
 	var mapColor='#428BCA';
 	var mesCercle=[];
 
-	var re = new RegExp("/zone/*/");
-
 	var url = document.URL;
    	url = url.substring(0,url.indexOf("/zone",0));
 
@@ -52,6 +50,10 @@
 		lngSub.val(maCarte.getCenter().lng());
 		zoomSub.val(maCarte.getZoom());
 		typeSub.val(maCarte.getMapTypeId());
+
+		for(i = 0; i < $('#mesPoints tr').length; i++){
+			console.log($('#mesPoints tr').eq(i));
+		}
 	}
 
 	function circle(radius){
@@ -72,6 +74,8 @@
 
 	$(document).ready(function(){
 
+		google.maps.event.addDomListener(window, 'load', initialisation);
+
 		//Initialisation de l'ajout un point
 		$('#zoneRadiusBtn').click(function(){
 			if(!$('#zoneRadius').val()){
@@ -82,10 +86,10 @@
 			circle(parseInt($('#zoneRadius').val()));
 			CreatPoint($(".content.zone").data('zone'), monCercle.getCenter().lat(), monCercle.getCenter().lng(), monCercle.getRadius());
 		});
-		
+
 	});
 
-	google.maps.event.addDomListener(window, 'load', initialisation);
+	
 
 	function CreatPoint(idzone, lat, lng, rad){
 		var addr = url + "/point/new/"+ idzone +"/"+lat+"/"+lng+"/"+rad;

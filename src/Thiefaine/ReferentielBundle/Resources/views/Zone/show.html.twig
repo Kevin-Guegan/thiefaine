@@ -25,9 +25,18 @@
                 <th>Zoom</th>
                 <td>{{ entity.zoom }}</td>
             </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tbody>
             <tr>
-                <th>Type</th>
-                <td>{{ entity.type }}</td>
+                {% for point in entity.points %}
+                    <td> {{ point.id }} </td>
+                    <td> {{ point.latitude }} </td>
+                    <td> {{ point.longitude }} </td>
+                    <td> {{ point.radius }} </td>
+                {% endfor %}
             </tr>
         </tbody>
     </table>

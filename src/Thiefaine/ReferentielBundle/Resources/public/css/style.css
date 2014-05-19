@@ -165,3 +165,7 @@ li.active > #cssmenu > ul > li > a:focus {
 #ui-datepicker-div:hover {
   opacity: 1;
 }
+
+#mesPoints{
+  display: none;
+}
