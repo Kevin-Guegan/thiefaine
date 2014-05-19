@@ -3,6 +3,10 @@
 	var cptCercle=0;
 	var mapColor='#428BCA';
 	var mesCercle=[];
+	var mesPoints=[];
+
+	var url = document.URL;
+   	url = url.substring(0,url.indexOf("/zone",0));
 
 	/**
 	 *	Initialisation de la map google
@@ -25,8 +29,6 @@
 		if(zoomSub.val())
 			zoom = parseInt(zoomSub.val());
 
-		console.log(lat+" | "+lng);
-
 		var centreCarte = new google.maps.LatLng(lat, lng);
 		var optionsCarte = {
 			zoom: zoom,
@@ -45,9 +47,10 @@
 			zoomSub.val(maCarte.getZoom());
 		});
 
-		latSub.val(maCarte.getCenter().lat())
-		lngSub.val(maCarte.getCenter().lng())
-		typeSub.val(maCarte.getMapTypeId())
+		latSub.val(maCarte.getCenter().lat());
+		lngSub.val(maCarte.getCenter().lng());
+		zoomSub.val(maCarte.getZoom());
+		typeSub.val(maCarte.getMapTypeId());
 	}
 
 	function circle(radius){
@@ -83,10 +86,34 @@
 
 			circle(parseInt($('#zoneRadius').val()));
 			mesCercle[cptCercle] = monCercle;
+			mesPoints[cptCercle] = monCercle.getCenter().lat() + ";";
+			mesPoints[cptCercle] += monCercle.getCenter().lng() + ";";
+			mesPoints[cptCercle] += monCercle.getRadius();
+
+			//CreatPoint(18, monCercle.getCenter().lat(), monCercle.getCenter().lng(), monCercle.getRadius())
+
+			//Si on déplace le cercle
+			google.maps.event.addListener(mesCercle[cptCercle], 'dragend', function() {
+				for(var i=0; i<mesCercle.length; i++){
+					if(mesCercle[i])
+					{
+						if (this.__gm_id == mesCercle[i].__gm_id)
+						{
+							mesPoints[i] = mesCercle[i].getCenter().lat() + ";";
+							mesPoints[i] += mesCercle[i].getCenter().lng() + ";";
+							mesPoints[i] += mesCercle[i].getRadius();
+						}
+					}
+				}
+			});
 
 			//Initialisation de la modifiction du rayon d'un point
 			$(".cercleRadius[data-cercle="+cptCercle+"]").on("change keydown keyup", function(){
 			    mesCercle[$(this).data("cercle")].setRadius(parseInt($(this).val()));
+
+			    mesPoints[$(this).data("cercle")] = mesCercle[$(this).data("cercle")].getCenter().lat() + ";";
+				mesPoints[$(this).data("cercle")] += mesCercle[$(this).data("cercle")].getCenter().lng() + ";";
+				mesPoints[$(this).data("cercle")] += mesCercle[$(this).data("cercle")].getRadius();
 			});
 
 			$(".cercleRadius[data-cercle="+cptCercle+"]")
@@ -107,15 +134,36 @@
 			$(".supprCercle[data-cercle="+cptCercle+"]").click(function(){
 			    mesCercle[$(this).data("cercle")].setRadius(0);			    
 			    $("#MesCercleGoogle table .cercleGMap[data-cercle="+$(this).data("cercle")+"]").remove();
+			    
+			    delete mesPoints[$(this).data("cercle")];
 			    delete mesCercle[$(this).data("cercle")];
 			});
 
-
-
 			cptCercle ++;
 		});
-
 		
 	});
-		
+
 	google.maps.event.addDomListener(window, 'load', initialisation);
+
+	function CreatPoint(idzone, lat, lng, rad){
+
+		var addr = url + "/point/new/"+ idzone +"/"+lat+"/"+lng+"/"+rad;
+
+		$.ajax({
+			url: addr,
+			type: "POST",
+			cache: false,
+			timeout: 5000,
+			xhrFields: {
+			 withCredentials : true
+			},
+			success: function(data) {
+				console.log("ok")
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	}

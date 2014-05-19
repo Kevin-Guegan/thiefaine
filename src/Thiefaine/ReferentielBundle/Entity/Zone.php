@@ -293,4 +293,9 @@ class Zone
     {
         return $this->utilisateurweb;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }
