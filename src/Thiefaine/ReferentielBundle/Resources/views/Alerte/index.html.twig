@@ -1,39 +1,31 @@
-{% extends '::base.html.twig' %}
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
 
-{% block body -%}
-    <h1>Alerte list</h1>
+{% block content %}
+        <div class="content">
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('alerte_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('alerte_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('alerte_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <h3>Gestion des alertes</h3>
 
-        <ul>
-        <li>
-            <a href="{{ path('alerte_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+                <table class="table table-hover">
+
+                    <tr>
+                        <th>Actions</th>
+                        <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
+                        <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
+                        <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                    </tr>
+
+                    {% for entity in entities %}
+                        <tr>
+                            <td>
+                                    <a href="{{ path('conseil_edit', { 'id': entity.id }) }}" >edit</a>
+                                    <a href="{{ path('conseil_delete', {'id': entity.id}) }}" onclick="return confirm('Eves vous sûr de vouloir supprimer ce conseil ?')" >delete</a>
+                            </td>
+                            <td>{{ entity.titre }}</td>
+                            <td>{{ entity.datecreation|date("d/m/Y") }}</td>
+                            <td>{{ entity.datevalidite is empty ? "" :entity.datevalidite|date("d/m/Y") }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+        </div>
+{% endblock %}

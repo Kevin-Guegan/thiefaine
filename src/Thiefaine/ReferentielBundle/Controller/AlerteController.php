@@ -62,11 +62,14 @@ class AlerteController extends Controller
         $alerte->setMessage($message);
 
         // on récupère les zones sélectionables
-        $zonesUtilisateur = $em->getRepository('ThiefaineReferentielBundle:Zone')->findByUtilisateurweb(1);
-        if (!$zonesUtilisateur) {
+        $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findByUtilisateurweb(1);
+        if (!$zones) {
             //throw $this->createNotFoundException("Impossible de trouver des zones");
             //return $this->redirect($this->generateUrl('alerte'));
         }
+
+        $em->persist($alerte);
+
 
         // $em->persist($alerte->getMessage());
         $form   = $this->createCreateForm($alerte);

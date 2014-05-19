@@ -19,7 +19,18 @@ class AlerteType extends AbstractType
         
         $builder
             ->add('message',new messageType() )
-            ->add('zone')
+            ->add('zone', 'entity', array    (  'class' => 'ThiefaineReferentielBundle:Zone',
+                                                'property' => 'nom',
+                                                'label'  => 'Zone *',
+                                                'label_attr'   =>  array ( 'class' => 'control-label' ),
+                                                'attr'   =>  array  (   'class' => 'form-control',
+                                                                        'placeholder' => 'Titre',
+                                                                        'title' => "Renseigner le titre de l'information.",
+                                                                        'data-toggle' => 'tooltip',
+                                                                        'data-placement' => 'right'
+                                                                    )
+                                            )
+                )
             ->add('valider', 'submit', array    ( 'label'  => 'Valider',
                                                  'attr' =>  array ( 'class' => 'btn btn-primary' )
                                                 )
