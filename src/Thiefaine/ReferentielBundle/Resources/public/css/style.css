@@ -169,3 +169,8 @@ li.active > #cssmenu > ul > li > a:focus {
 #mesPoints{
   display: none;
 }
+
+#mesCercleGoogle{
+  overflow-y: scroll;
+  max-height: 300px;
+}

@@ -19,20 +19,16 @@
     	{{ form(delete_form) }}
 
     	<p>
-			<a class="btn btn-default" href={{ path('zone') }}>Annuler</a>
-		</p>
-
-    	<p>
     		<table id="mesPoints">
 		        <tbody>
-		            <tr>
-		                {% for point in entity.points %}
-		                    <td> {{ point.id }} </td>
-		                    <td> {{ point.latitude }} </td>
-		                    <td> {{ point.longitude }} </td>
-		                    <td> {{ point.radius }} </td>
-		                {% endfor %}
-		            </tr>
+	                {% for point in entity.points %}
+	                <tr>
+	                    <td class="idpoint"> {{ point.id }} </td>
+	                    <td class="latitudepoint"> {{ point.latitude }} </td>
+	                    <td class="longitudepoint"> {{ point.longitude }} </td>
+	                    <td class="radiuspoint"> {{ point.radius }} </td>
+	                </tr>
+	                {% endfor %}		            
 		        </tbody>
 		    </table>
 
@@ -49,6 +45,9 @@
 				</table>
 			</div>
 			<div id="MaCarteGoogle"></div>
+		</p>
+		<p>
+			<a class="btn btn-default" href={{ path('zone') }}>Annuler</a>
 		</p>
 	</div>
 {% endblock %}
