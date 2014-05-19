@@ -32,7 +32,7 @@ class ZoneType extends AbstractType
             ->add('longitude')
             ->add('zoom')
             ->add('actif')
-            ->add('idutilisateur');
+            ->add('utilisateurweb');
     }
     
     /**

@@ -22,9 +22,9 @@
                         </td>
                         <td>{{ entity.nom }}</td>
                         <td>{{ entity.prenom }}</td>
-                        <td>groupe</td>
+                        <td>{{ entity.groupe }}</td>
                         <td>{{ entity.email }}</td>
-                        <td>{{ entity.infos }}</td>
+                        <td>{{ entity.infos|striptags('html') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

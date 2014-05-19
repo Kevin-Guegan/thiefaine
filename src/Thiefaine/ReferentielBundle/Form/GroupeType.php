@@ -73,7 +73,7 @@ class GroupeType extends AbstractType
                     'class' => 'form-control pull-right',
                 )
             ))
-            ->add('idgendarmerie');
+            ->add('gendarmerie');
     }
     
     /**
