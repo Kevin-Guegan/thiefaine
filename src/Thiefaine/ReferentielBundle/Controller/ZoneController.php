@@ -96,6 +96,8 @@ class ZoneController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ThiefaineReferentielBundle:Zone')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Point')->findByZone($id);
+
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Zone entity.');
@@ -105,7 +107,8 @@ class ZoneController extends Controller
 
         return $this->render('ThiefaineReferentielBundle:Zone:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView(),        
+        ));
     }
 
     /**

@@ -3,7 +3,8 @@
 	var cptCercle=0;
 	var mapColor='#428BCA';
 	var mesCercle=[];
-	var mesPoints=[];
+
+	var re = new RegExp("/zone/*/");
 
 	var url = document.URL;
    	url = url.substring(0,url.indexOf("/zone",0));
@@ -78,68 +79,8 @@
 				return false;
 			}
 
-			$("#MesCercleGoogle table").append('<tr class="cercleGMap" data-cercle="'+cptCercle+'"></tr>');
-			$('.cercleGMap[data-cercle='+cptCercle+']').append("<td>Cercle n°"+cptCercle+"</td>");
-			$('.cercleGMap[data-cercle='+cptCercle+']').append("<td class='input-group'></td>");
-			$('.cercleGMap[data-cercle='+cptCercle+'] .input-group').append("<input style='width: 100px;' type='text' data-cercle='"+cptCercle+"' class='cercleRadius pull-right form-control' value="+$('#zoneRadius').val()+" />");
-			$('.cercleGMap[data-cercle='+cptCercle+'] .input-group').append('<span class="input-group-btn"><button data-cercle="'+cptCercle+'" class="btn btn-default supprCercle" type="button">x</button></span>');
-
 			circle(parseInt($('#zoneRadius').val()));
-			mesCercle[cptCercle] = monCercle;
-			mesPoints[cptCercle] = monCercle.getCenter().lat() + ";";
-			mesPoints[cptCercle] += monCercle.getCenter().lng() + ";";
-			mesPoints[cptCercle] += monCercle.getRadius();
-
-			//CreatPoint(18, monCercle.getCenter().lat(), monCercle.getCenter().lng(), monCercle.getRadius())
-
-			//Si on déplace le cercle
-			google.maps.event.addListener(mesCercle[cptCercle], 'dragend', function() {
-				for(var i=0; i<mesCercle.length; i++){
-					if(mesCercle[i])
-					{
-						if (this.__gm_id == mesCercle[i].__gm_id)
-						{
-							mesPoints[i] = mesCercle[i].getCenter().lat() + ";";
-							mesPoints[i] += mesCercle[i].getCenter().lng() + ";";
-							mesPoints[i] += mesCercle[i].getRadius();
-						}
-					}
-				}
-			});
-
-			//Initialisation de la modifiction du rayon d'un point
-			$(".cercleRadius[data-cercle="+cptCercle+"]").on("change keydown keyup", function(){
-			    mesCercle[$(this).data("cercle")].setRadius(parseInt($(this).val()));
-
-			    mesPoints[$(this).data("cercle")] = mesCercle[$(this).data("cercle")].getCenter().lat() + ";";
-				mesPoints[$(this).data("cercle")] += mesCercle[$(this).data("cercle")].getCenter().lng() + ";";
-				mesPoints[$(this).data("cercle")] += mesCercle[$(this).data("cercle")].getRadius();
-			});
-
-			$(".cercleRadius[data-cercle="+cptCercle+"]")
-				.focus(function() {
-					mesCercle[$(this).data("cercle")].setOptions({
-						fillColor: "#FF0000",
-						strokeColor: "#FF0000"
-					})
-				})
-				.focusout(function(){
-					mesCercle[$(this).data("cercle")].setOptions({
-						fillColor: mapColor,
-						strokeColor: mapColor
-					})
-				})
-
-			//Inatialisation de la suppression d'un point
-			$(".supprCercle[data-cercle="+cptCercle+"]").click(function(){
-			    mesCercle[$(this).data("cercle")].setRadius(0);			    
-			    $("#MesCercleGoogle table .cercleGMap[data-cercle="+$(this).data("cercle")+"]").remove();
-			    
-			    delete mesPoints[$(this).data("cercle")];
-			    delete mesCercle[$(this).data("cercle")];
-			});
-
-			cptCercle ++;
+			CreatPoint($(".content.zone").data('zone'), monCercle.getCenter().lat(), monCercle.getCenter().lng(), monCercle.getRadius());
 		});
 		
 	});
@@ -147,7 +88,6 @@
 	google.maps.event.addDomListener(window, 'load', initialisation);
 
 	function CreatPoint(idzone, lat, lng, rad){
-
 		var addr = url + "/point/new/"+ idzone +"/"+lat+"/"+lng+"/"+rad;
 
 		$.ajax({
@@ -157,13 +97,115 @@
 			timeout: 5000,
 			xhrFields: {
 			 withCredentials : true
-			},
-			success: function(data) {
-				console.log("ok")
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				console.log(textStatus);
-				console.log(errorThrown);
-			}
+			},success: function(response){
+
+				$("#MesCercleGoogle table").append('<tr class="cercleGMap" data-cercle="'+response+'"></tr>');
+				$('.cercleGMap[data-cercle='+response+']').append("<td>Cercle n°"+cptCercle+"</td>");
+				$('.cercleGMap[data-cercle='+response+']').append("<td class='input-group'></td>");
+				$('.cercleGMap[data-cercle='+response+'] .input-group').append("<input style='width: 100px;' type='text' data-cercle='"+response+"' class='cercleRadius pull-right form-control' value="+$('#zoneRadius').val()+" />");
+				$('.cercleGMap[data-cercle='+response+'] .input-group').append('<span class="input-group-btn"><button data-cercle="'+response+'" class="btn btn-default supprCercle" type="button">x</button></span>');
+
+				mesCercle[response] = monCercle;
+				mesCercle[response].idpoint = response;
+
+				//Si on déplace le cercle
+				google.maps.event.addListener(mesCercle[response], 'dragend', function() {
+					for(var i=0; i<mesCercle.length; i++){
+						if(mesCercle[i])
+						{
+							if (this.__gm_id == mesCercle[i].__gm_id)
+							{
+								var idpoint = i;
+							    var lat = mesCercle[i].getCenter().lat();
+							    var lng = mesCercle[i].getCenter().lng();
+							    var rad = mesCercle[i].getRadius();
+							    ModifyPoint(idpoint, lat, lng, rad);
+							}
+						}
+					}
+				});
+
+				//Initialisation de la modification du rayon d'un point
+				$(".cercleRadius[data-cercle="+response+"]").on("change keydown keyup", function(){
+				    mesCercle[$(this).data("cercle")].setRadius(parseInt($(this).val()));
+				});
+
+				//Si on focus le cercle (champ submit)
+				$(".cercleRadius[data-cercle="+response+"]")
+					.focus(function() {
+						mesCercle[$(this).data("cercle")].setOptions({
+							fillColor: "#FF0000",
+							strokeColor: "#FF0000"
+						})
+					})
+					.focusout(function(){
+						mesCercle[$(this).data("cercle")].setOptions({
+							fillColor: mapColor,
+							strokeColor: mapColor
+						});
+
+						var idpoint = $(this).data("cercle");
+					    var lat = mesCercle[$(this).data("cercle")].getCenter().lat();
+					    var lng = mesCercle[$(this).data("cercle")].getCenter().lng();
+					    var rad = mesCercle[$(this).data("cercle")].getRadius();
+					    ModifyPoint(idpoint, lat, lng, rad);
+					})
+
+				//Inatialisation de la suppression d'un point
+				$(".supprCercle[data-cercle="+response+"]").click(function(){
+				    mesCercle[$(this).data("cercle")].setRadius(0);			    
+				    $("#MesCercleGoogle table .cercleGMap[data-cercle="+$(this).data("cercle")+"]").remove();
+				    
+				    delete mesCercle[$(this).data("cercle")];
+				    DeletPoint($(this).data("cercle"));
+				});
+
+				cptCercle ++;
+
+			},error: function(response) {
+               	console.log('CreatPoint : GET process error ');
+               	console.log(response);
+            }
+		});
+
+	}//end of CreatPoint
+
+	function DeletPoint(idpoint){
+
+		var addr = url + "/point/"+idpoint+"/delete";
+
+		$.ajax({
+			url: addr,
+			type: "POST",
+			cache: false,
+			timeout: 5000,
+			xhrFields: {
+			 withCredentials : true
+			},success: function(response){
+				console.log('DeletPoint : ok ');
+			},error: function(response) {
+               	console.log('DeletPoint : GET process error ');
+               	console.log(response);
+            }
+		});
+
+	}// end of DeletPoint
+
+	function ModifyPoint(idpoint, lat, lng, rad){
+		var addr = url + "/point/"+idpoint+"/"+lat+"/"+lng+"/"+rad+"/update";
+
+		$.ajax({
+			url: addr,
+			type: "POST",
+			cache: false,
+			timeout: 5000,
+			xhrFields: {
+			 withCredentials : true
+			},success: function(response){
+				console.log('ModifyPoint : ok ');
+			},error: function(response) {
+               	console.log('ModifyPoint : GET process error ');
+               	console.log(response);
+            }
 		});
 	}

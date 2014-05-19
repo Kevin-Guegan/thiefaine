@@ -3,6 +3,7 @@
 namespace Thiefaine\ReferentielBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Thiefaine\ReferentielBundle\Entity\Point;
@@ -76,30 +77,22 @@ class PointController extends Controller
      * Displays a form to create a new Point entity.
      *
      */
-    public function newAction(/* idzone, lat, lng, rad */)
+    public function newAction($idzone, $lat, $lng, $rad)
     {
-        $entity = new Point();
-        $form   = $this->createCreateForm($entity);
+        $em = $this->getDoctrine()->getEntityManager();
 
-        return $this->render('ThiefaineReferentielBundle:Point:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-
-        /*$em = $this->getDoctrine()->getEntityManager();
-       
-        // $zone = $em->getZone($idzone);
+        $zone = $em->getRepository('ThiefaineReferentielBundle:Zone')->find($idzone);
 
         $point = new Point();
-        $point->setIdzone($em->getZone($idzone));
+        $point->setZone($zone);
         $point->setLatitude($lat);
         $point->setLongitude($lng);
         $point->setRadius($rad);
 
         $em->persist($point);
+        $em->flush();
 
-        // $em->persist($point);
-        $em->flush();*/
+        return new Response($point->getId());
     }
 
     /**
@@ -169,54 +162,33 @@ class PointController extends Controller
      * Edits an existing Point entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction($idpoint, $lat, $lng, $rad)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Point')->find($id);
+        $point = $em->getRepository('ThiefaineReferentielBundle:Point')->find($idpoint);
+        $point->setLatitude($lat);
+        $point->setLongitude($lng);
+        $point->setRadius($rad);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Point entity.');
-        }
+        $em->flush();
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('point_edit', array('id' => $id)));
-        }
-
-        return $this->render('ThiefaineReferentielBundle:Point:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return new Response("ok");
     }
     /**
      * Deletes a Point entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Point')->find($id);
+        $point = $em->getRepository('ThiefaineReferentielBundle:Point')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Point entity.');
-            }
+        $em->remove($point);
+        $em->flush();
 
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('point'));
+        return new Response("ok");
     }
 
     /**
