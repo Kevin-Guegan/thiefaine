@@ -334,4 +334,9 @@ class Utilisateurweb
     {
         return $this->groupe;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }

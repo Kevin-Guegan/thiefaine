@@ -107,4 +107,11 @@ class Gendarmerie
     {
         return $this->groupes;
     }
+    
+    /*
+    public function __toString()
+    {
+        return $this->getLibelle();
+    }
+    */
 }

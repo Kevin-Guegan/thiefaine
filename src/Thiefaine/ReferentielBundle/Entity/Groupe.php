@@ -295,4 +295,9 @@ class Groupe
     {
         return $this->gendarmerie;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }
