@@ -69,6 +69,7 @@ class Zone
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Alerte
+     * @ORM\OneToMany(targetEntity="Alerte", mappedBy="idzone", cascade={"persist"})
      */
     private $alerte;
 

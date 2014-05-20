@@ -107,4 +107,8 @@ class Typemessage
     {
         return $this->messages;
     }
+
+    public function __toString() {
+        return $this->libelle;
+    }
 }

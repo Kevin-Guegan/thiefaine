@@ -100,6 +100,7 @@ class Message
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Alerte
+     * @ORM\OneToOne(targetEntity="Alerte", mappedBy="idmessage", cascade={"persist"})
      */
     private $alerte;
 
@@ -375,5 +376,10 @@ class Message
     public function getUtilisateurweb()
     {
         return $this->utilisateurweb;
+    }
+
+    public function __toString()
+    {
+        return $this->titre;
     }
 }

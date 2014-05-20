@@ -30,7 +30,7 @@ class InformationController extends Controller
             $entities = null;
         } else {
             $idTypeMessage = $typeMessage->getId();
-            $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByIdtypemessage($idTypeMessage);
+            $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
         }
 
         return $this->render('ThiefaineReferentielBundle:Information:index.html.twig', array(
@@ -81,8 +81,8 @@ class InformationController extends Controller
 
             // On met à jour le conseil
             $entity->setDateCreation(new \DateTime('now'));
-            $entity->setIdtypemessage($typeMessage);
-            $entity->setIdutilisateur($utilisateur);
+            $entity->setTypemessage($typeMessage);
+            $entity->setUtilisateurweb($utilisateur);
 
             $em->persist($entity);
             $em->flush();

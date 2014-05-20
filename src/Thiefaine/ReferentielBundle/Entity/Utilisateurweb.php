@@ -337,6 +337,6 @@ class Utilisateurweb
 
     public function __toString()
     {
-        return $this->getNom();
+        return $this->nom;
     }
 }
