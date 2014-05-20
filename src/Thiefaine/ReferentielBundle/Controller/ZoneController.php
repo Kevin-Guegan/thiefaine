@@ -195,9 +195,14 @@ class ZoneController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('ThiefaineReferentielBundle:Zone')->find($id);
-
+            $points = $em->getRepository('ThiefaineReferentielBundle:Point')->findByZone($entity);
+            
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Zone entity.');
+            }
+
+            foreach ($points as $point) {
+                $em->remove($point);
             }
 
             $em->remove($entity);
