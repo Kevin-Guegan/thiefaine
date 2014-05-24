@@ -25,10 +25,10 @@ class AlerteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Alerte')->findAll();
+        $alertes = $em->getRepository('ThiefaineReferentielBundle:Alerte')->findAll();
 
         return $this->render('ThiefaineReferentielBundle:Alerte:index.html.twig', array(
-            'entities' => $entities,
+            'alertes' => $alertes,
         ));
     }
 
@@ -38,40 +38,7 @@ class AlerteController extends Controller
      */
     public function newAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        
-        // Message de type conseil
-        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('alerte');
-        if (!$typeMessage) {
-            throw $this->createNotFoundException('Impossible de trouver les messages de type alerte.');
-        }
-
-        // utilisateur
-        $utilisateur = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findOneById(1);
-        if (!$utilisateur) {
-            throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
-        }
-
-        // On met à jour le conseil
-        $message = new Message();
-        $message->setDateCreation(new \DateTime('now'));
-        $message->setTypemessage($typeMessage);
-        $message->setUtilisateurweb($utilisateur);
-
         $alerte = new Alerte();
-        $alerte->setMessage($message);
-
-        // on récupère les zones sélectionables
-        $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findByUtilisateurweb(1);
-        if (!$zones) {
-            //throw $this->createNotFoundException("Impossible de trouver des zones");
-            //return $this->redirect($this->generateUrl('alerte'));
-        }
-
-        $em->persist($alerte);
-
-
-        // $em->persist($alerte->getMessage());
         $form   = $this->createCreateForm($alerte);
 
         return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
@@ -86,20 +53,43 @@ class AlerteController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new ALerte();
-        $form = $this->createCreateForm($entity);
+        $alerte = new ALerte();
+        $form = $this->createCreateForm($alerte);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+
+             // Message de type alerte
+            $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('alerte');
+            if (!$typeMessage) {
+                throw $this->createNotFoundException('Impossible de trouver les messages de type alerte.');
+            }
+
+            // utilisateur
+            $utilisateur = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findOneById(1);
+            if (!$utilisateur) {
+                throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
+            }
+
+            // On met à jour le message de l'alerte
+            $message = $alerte->getMessage();
+            $message->setDateCreation(new \DateTime('now'));
+            $message->setTypemessage($typeMessage);
+            $message->setUtilisateurweb($utilisateur);
+            $em->persist($message);
+
+            $alerte->setMessage($message);
+            $em->persist($alerte);            
+
             $em->flush();
 
-            return $this->redirect($this->generateUrl('alerte_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('alerte_show', array('id' => $alerte->getId())));
         }
 
         return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $alerte,
             'form'   => $form->createView(),
         ));
     }
@@ -133,17 +123,17 @@ class AlerteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $alerte = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Alerte entity.');
+        if (!$alerte) {
+            throw $this->createNotFoundException("Impossible de trouver l'alerte.");
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($alerte);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $alerte,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -157,24 +147,24 @@ class AlerteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $alerte = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Alerte entity.');
+        if (!$alerte) {
+            throw $this->createNotFoundException("Impossible de trouver l'alerte.");
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($alerte);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('alerte_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('alerte', array('id' => $id)));
         }
 
         return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $alerte,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -217,6 +207,15 @@ class AlerteController extends Controller
             'method' => 'POST',
         ));
 
+        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
+                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
+                                                )
+                )
+                ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
+                                                 'attr' =>  array ( 'class' => 'btn btn-default' )
+                                                )
+                );
+
         return $form;
     }
 
@@ -227,12 +226,17 @@ class AlerteController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Message $entity)
+    private function createEditForm(Alerte $entity)
     {
         $form = $this->createForm(new AlerteType(), $entity, array(
             'action' => $this->generateUrl('alerte_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
+
+        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
+                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
+                                                )
+                );
 
         return $form;
     }
@@ -249,7 +253,7 @@ class AlerteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('alerte_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('annuler', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

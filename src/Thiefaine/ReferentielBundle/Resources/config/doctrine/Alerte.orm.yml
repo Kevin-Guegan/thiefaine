@@ -16,9 +16,10 @@ Thiefaine\ReferentielBundle\Entity\Alerte:
             joinColumns:
                 idmessage:
                     referencedColumnName: id
+    manyToOne:
         zone:
             targetEntity: Zone
-            inversedBy: alerte
+            inversedBy: alertes
             joinColumns:
                 idzone:
                     referencedColumnName: id

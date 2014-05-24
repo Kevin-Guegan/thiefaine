@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Thiefaine\ReferentielBundle\Form\MessageType;
+use Thiefaine\ReferentielBundle\Form\ZoneAlerteType;
 
 class AlerteType extends AbstractType
 {
@@ -18,7 +19,7 @@ class AlerteType extends AbstractType
     {
         
         $builder
-            ->add('message',new messageType() )
+            ->add('message',new messageType())
             ->add('zone', 'entity', array    (  'class' => 'ThiefaineReferentielBundle:Zone',
                                                 'property' => 'nom',
                                                 'label'  => 'Zone *',
@@ -31,14 +32,7 @@ class AlerteType extends AbstractType
                                                                     )
                                             )
                 )
-            ->add('valider', 'submit', array    ( 'label'  => 'Valider',
-                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
-                                                )
-                )
-            ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
-                                                 'attr' =>  array ( 'class' => 'btn btn-default' )
-                                                )
-                );
+            
         ;
 
     }
