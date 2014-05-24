@@ -7,7 +7,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Thiefaine\ReferentielBundle\Form\MessageType;
-use Thiefaine\ReferentielBundle\Form\ZoneAlerteType;
 
 class AlerteType extends AbstractType
 {

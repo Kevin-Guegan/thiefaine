@@ -27,4 +27,3 @@ alerte_update:
 alerte_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ThiefaineReferentielBundle:Alerte:delete" }
-    requirements: { _method: post|delete }
