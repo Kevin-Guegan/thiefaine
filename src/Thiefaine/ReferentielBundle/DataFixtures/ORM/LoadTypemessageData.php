@@ -34,4 +34,5 @@ class LoadTypemessageData extends AbstractFixture implements OrderedFixtureInter
 	{
 		return 1;
 	}
+	
 }
