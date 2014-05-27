@@ -1,0 +1,7 @@
+parameters:
+#    thiefaine_user.example.class: Thiefaine\UserBundle\Example
+
+services:
+#    thiefaine_user.example:
+#        class: %thiefaine_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

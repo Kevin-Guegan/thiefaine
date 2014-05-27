@@ -1,6 +1,6 @@
-thiefaine_referentiel_homepage:
-    pattern:  /
-    defaults: { _controller: ThiefaineReferentielBundle:Default:index }
+#thiefaine_referentiel_homepage:
+#    pattern:  /
+#    defaults: { _controller: ThiefaineReferentielBundle:Default:index }
 
 thiefaine_referentiel_accueil:
     pattern:  /accueil
@@ -37,3 +37,7 @@ thiefaine_information:
 thiefaine_alerte:
     resource: "@ThiefaineReferentielBundle/Resources/config/routing/alerte.yml"
     prefix:   /alerte
+
+fos_user:
+    resource: "@ThiefaineUserBundle/Resources/config/routing.yml"
+    prefix: /
