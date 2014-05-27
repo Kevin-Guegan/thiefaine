@@ -20,4 +20,4 @@ fos_user_change_password:
 
 fos_user_group:
     resource: "routing/group.yml"
-    prefix: /groupe
+    prefix: /groupe2
