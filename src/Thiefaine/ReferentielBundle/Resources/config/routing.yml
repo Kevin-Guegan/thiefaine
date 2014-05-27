@@ -6,37 +6,37 @@ thiefaine_referentiel_accueil:
     pattern:  /accueil
     defaults: { _controller: ThiefaineReferentielBundle:Default:accueil }
 
-thiefaine_referentiel_myaccount:
-    pattern:  /myaccount
-    defaults: { _controller: ThiefaineReferentielBundle:Default:myaccount }
-
 thiefaine_referentiel_groupe:
-    resource: "@ThiefaineReferentielBundle/Resources/config/routing/groupe.yml"
+    resource: "routing/groupe.yml"
     prefix: /groupe
 
 thiefaine_referentiel_zone:
-    resource: "@ThiefaineReferentielBundle/Resources/config/routing/zone.yml"
+    resource: "routing/zone.yml"
     prefix: /zone
 
 thiefaine_referentiel_point:
-    resource: "@ThiefaineReferentielBundle/Resources/config/routing/point.yml"
+    resource: "routing/point.yml"
     prefix:   /point
 
 thiefaine_referentiel_user:
-    resource: "@ThiefaineReferentielBundle/Resources/config/routing/utilisateurweb.yml"
-    prefix: /utilisateurweb
+    resource: "routing/utilisateurweb.yml"
+    prefix: /utilisateur
 
 thiefaine_conseil:
-    resource: "@ThiefaineReferentielBundle/Resources/config/routing/conseil.yml"
+    resource: "routing/conseil.yml"
     prefix:   /conseil
 
 thiefaine_information:
-    resource: "@ThiefaineReferentielBundle/Resources/config/routing/information.yml"
+    resource: "routing/information.yml"
     prefix:   /information
 
 thiefaine_alerte:
-    resource: "@ThiefaineReferentielBundle/Resources/config/routing/alerte.yml"
+    resource: "routing/alerte.yml"
     prefix:   /alerte
+
+thiefaine_referentiel_myaccount:
+    pattern:  /myaccount
+    defaults: { _controller: ThiefaineReferentielBundle:Default:myaccount }
 
 fos_user:
     resource: "@ThiefaineUserBundle/Resources/config/routing.yml"

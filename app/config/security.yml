@@ -2,10 +2,6 @@ security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
 
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
@@ -16,10 +12,19 @@ security:
             form_login:
                 provider:           fos_userbundle
                 csrf_provider:      form.csrf_provider
+
                 login_path:         fos_user_security_login
                 check_path:         fos_user_security_check
-                failure_path:       null
-                default_target_path: /
+
+                 # Les options de redirection en cas de succès de connexion
+                always_use_default_target_path: true
+                default_target_path:            thiefaine_referentiel_accueil
+                use_referer:                    false
+
+                # Les options de redirection en cas d'échec de connexion
+                failure_path:    null
+                failure_forward: false
+
             remember_me:
                 key:        %secret%
                 lifetime:  9999999
@@ -30,8 +35,33 @@ security:
                 target:     /
             anonymous:    true
 
+    role_hierarchy:
+        ROLE_MANAGE_ALERTE:         ROLE_USER
+        ROLE_MANAGE_INFORMATION:    ROLE_USER
+        ROLE_MANAGE_CONSEIL:        ROLE_USER
+        ROLE_MANAGE_USER:           [ROLE_MANAGE_ALERTE, ROLE_MANAGE_INFORMATION, ROLE_MANAGE_CONSEIL]
+        ROLE_MANAGE_GROUP:          ROLE_MANAGE_USER
+        ROLE_ADMIN:                 ROLE_MANAGE_GROUP
+        ROLE_SUPER_ADMIN:           [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     access_control:
         - { path: ^/connexion$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/inscription, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+
+        - { path: ^/accueil$, role: ROLE_USER }
+
+        - { path: ^/groupe/$, role: ROLE_USER }
+        - { path: ^/groupe/*+, role: ROLE_MANAGE_GROUP }
+
+        - { path: ^/utilisateur/$, role: ROLE_USER }
+        - { path: ^/utilisateur/*+, role: ROLE_MANAGE_USER }
+
+        - { path: ^/alerte/$, role: ROLE_USER }
+        - { path: ^/alerte/*+, role: ROLE_MANAGE_ALERTE }
+
+        - { path: ^/information/$, role: ROLE_USER }
+        - { path: ^/information/*+, role: ROLE_MANAGE_INFORMATION }
+
+        - { path: ^/conseil/$, role: ROLE_USER }
+        - { path: ^/conseil/*+, role: ROLE_MANAGE_CONSEIL }

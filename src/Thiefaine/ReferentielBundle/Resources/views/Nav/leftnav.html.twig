@@ -2,8 +2,8 @@
 
 {% block header %}
 	<div class="navbar-left">
-		<a href="{{ path('thiefaine_referentiel_myaccount') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-user" name="connect"></span> Mon compte</button></a>
-		<a href="{{ path('thiefaine_referentiel_homepage') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-log-out" name="connect"></span> Déconnexion</button></a>
+		<a href="{{ path('fos_user_profile_show') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-user" name="connect"></span> Mon compte</button></a>
+		<a href="{{ path('fos_user_security_logout') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-log-out" name="connect"></span> Déconnexion</button></a>
 	</div>
 {% endblock %}
 
