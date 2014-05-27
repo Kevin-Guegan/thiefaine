@@ -85,7 +85,7 @@ class AlerteController extends Controller
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('alerte_show', array('id' => $alerte->getId())));
+            return $this->redirect($this->generateUrl('alerte'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
@@ -160,7 +160,7 @@ class AlerteController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('alerte', array('id' => $id)));
+            return $this->redirect($this->generateUrl('alerte'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
