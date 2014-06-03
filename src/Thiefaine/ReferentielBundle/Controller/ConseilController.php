@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Thiefaine\ReferentielBundle\Entity\Message;
-use Thiefaine\ReferentielBundle\Form\ConseilType;
+use Thiefaine\ReferentielBundle\Form\MessageType;
 
 /**
  * Message controller.
@@ -111,10 +111,12 @@ class ConseilController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -148,6 +150,7 @@ class ConseilController extends Controller
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
 
     }
@@ -180,10 +183,20 @@ class ConseilController extends Controller
     */
     private function createCreateForm(Message $entity)
     {
-        $form = $this->createForm(new ConseilType(), $entity, array(
+        $form = $this->createForm(new MessageType(), $entity, array(
             'action' => $this->generateUrl('conseil_create'),
             'method' => 'POST',
         ));
+
+        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
+                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
+                                                )
+                )
+                ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
+                                                 'attr' =>  array ( 'class' => 'btn btn-default' )
+                                                )
+                );
+
         return $form;
     }
 
@@ -196,10 +209,15 @@ class ConseilController extends Controller
     */
     private function createEditForm(Message $entity)
     {
-        $form = $this->createForm(new ConseilType(), $entity, array(
+        $form = $this->createForm(new MessageType(), $entity, array(
             'action' => $this->generateUrl('conseil_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
+
+        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
+                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
+                                                )
+                );
 
         return $form;
     }
@@ -216,7 +234,7 @@ class ConseilController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('conseil_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('annuler', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

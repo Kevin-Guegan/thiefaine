@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Thiefaine\ReferentielBundle\Entity\Message;
-use Thiefaine\ReferentielBundle\Form\InformationType;
+use Thiefaine\ReferentielBundle\Form\MessageType;
 
 /**
  * Message controller.
@@ -44,11 +44,11 @@ class InformationController extends Controller
 	 */
 	public function newAction()
 	{
-		$entity = new Message();
-		$form   = $this->createCreateForm($entity);
+		$information = new Message();
+		$form   = $this->createCreateForm($information);
 
 		return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-			'entity' => $entity,
+			'entity' => $information,
 			'form'   => $form->createView(),
 		));
 	}
@@ -59,14 +59,14 @@ class InformationController extends Controller
 	 */
 	public function createAction(Request $request)
 	{
-		$entity = new Message();
+		$information = new Message();
 
-        $form = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($information);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
+            
             // Message de type information
             $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('information');
             if (!$typeMessage) {
@@ -78,20 +78,21 @@ class InformationController extends Controller
             if (!$utilisateur) {
                 throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
             }
+            
+            // On met à jour l'information
+            $information->setDateCreation(new \DateTime('now'));
+            $information->setTypemessage($typeMessage);
+            $information->setUtilisateurweb($utilisateur);
+			
+            $em->persist($information);
 
-            // On met à jour le conseil
-            $entity->setDateCreation(new \DateTime('now'));
-            $entity->setTypemessage($typeMessage);
-            $entity->setUtilisateurweb($utilisateur);
-
-            $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('information', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('information'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $information,
             'form'   => $form->createView(),
         ));
 	}
@@ -111,10 +112,12 @@ class InformationController extends Controller
 		}
 
 		$editForm = $this->createEditForm($entity);
+		$deleteForm = $this->createDeleteForm($id);
 
 		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
 			'entity'      => $entity,
 			'edit_form'   => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
 		));
 	}
 
@@ -142,12 +145,13 @@ class InformationController extends Controller
 
 			$em->flush();
 
-			return $this->redirect($this->generateUrl('information_edit', array('id' => $id)));
+			return $this->redirect($this->generateUrl('information'));
 		}
 
 		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
 			'entity'      => $entity,
 			'edit_form'   => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
 		));
 	}
 	/**
@@ -176,12 +180,21 @@ class InformationController extends Controller
 	*
 	* @return \Symfony\Component\Form\Form The form
 	*/
-	private function createCreateForm(Message $entity)
+	private function createCreateForm(Message $information)
 	{
-		$form = $this->createForm(new InformationType(), $entity, array(
+		$form = $this->createForm(new MessageType(), $information, array(
 			'action' => $this->generateUrl('information_create'),
 			'method' => 'POST',
 		));
+
+		$form->add('valider', 'submit', array    ( 'label'  => 'Valider',
+	                                             'attr' =>  array ( 'class' => 'btn btn-primary' )
+	                                            )
+	            )
+	            ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
+	                                             'attr' =>  array ( 'class' => 'btn btn-default' )
+	                                            )
+	            );
 
 		return $form;
 	}
@@ -195,10 +208,15 @@ class InformationController extends Controller
 	*/
 	private function createEditForm(Message $entity)
 	{
-		$form = $this->createForm(new InformationType(), $entity, array(
+		$form = $this->createForm(new MessageType(), $entity, array(
 			'action' => $this->generateUrl('information_update', array('id' => $entity->getId())),
 			'method' => 'PUT',
 		));
+
+		$form->add('valider', 'submit', array    ( 'label'  => 'Valider',
+                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
+                                                )
+                );
 
 		return $form;
 	}
@@ -215,7 +233,7 @@ class InformationController extends Controller
 		return $this->createFormBuilder()
 			->setAction($this->generateUrl('information_delete', array('id' => $id)))
 			->setMethod('DELETE')
-			->add('submit', 'submit', array('label' => 'Delete'))
+			->add('annuler', 'submit', array('label' => 'Delete'))
 			->getForm()
 		;
 	}

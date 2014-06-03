@@ -14,15 +14,20 @@
                         <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
                     </tr>
 
-                    {% for entity in entities %}
+                    {% for alerte in alertes %}
                         <tr>
                             <td>
-                                    <a href="{{ path('conseil_edit', { 'id': entity.id }) }}" >edit</a>
-                                    <a href="{{ path('conseil_delete', {'id': entity.id}) }}" onclick="return confirm('Eves vous sûr de vouloir supprimer ce conseil ?')" >delete</a>
+                 
+                                    <a href="{{ path('alerte_edit', { 'id': alerte.id }) }}">
+                                        <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                                    </a>
+                                    <a href="{{ path('alerte_delete', {'id': alerte.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette alerte ?')">
+                                        <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                                    </a>
                             </td>
-                            <td>{{ entity.titre }}</td>
-                            <td>{{ entity.datecreation|date("d/m/Y") }}</td>
-                            <td>{{ entity.datevalidite is empty ? "" :entity.datevalidite|date("d/m/Y") }}</td>
+                            <td>{{ alerte.message.titre }}</td>
+                            <td>{{ alerte.message.datecreation|date("d/m/Y") }}</td>
+                            <td>{{ alerte.message.datevalidite is empty ? "" :alerte.message.datevalidite|date("d/m/Y") }}</td>
                         </tr>
                     {% endfor %}
 

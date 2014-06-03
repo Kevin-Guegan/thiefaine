@@ -299,4 +299,42 @@ class Zone
     {
         return $this->getNom();
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $alertes;
+
+
+    /**
+     * Add alertes
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alertes
+     * @return Zone
+     */
+    public function addAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alertes)
+    {
+        $this->alertes[] = $alertes;
+
+        return $this;
+    }
+
+    /**
+     * Remove alertes
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alertes
+     */
+    public function removeAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alertes)
+    {
+        $this->alertes->removeElement($alertes);
+    }
+
+    /**
+     * Get alertes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAlertes()
+    {
+        return $this->alertes;
+    }
 }

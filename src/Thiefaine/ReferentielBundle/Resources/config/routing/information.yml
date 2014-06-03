@@ -27,4 +27,3 @@ information_update:
 information_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ThiefaineReferentielBundle:Information:delete" }
-    requirements: { _method: post|delete }

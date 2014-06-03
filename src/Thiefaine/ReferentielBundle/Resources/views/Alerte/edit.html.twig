@@ -1,16 +1,58 @@
-{% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Alerte edit</h1>
+{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
 
-    {{ form(edit_form) }}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+{% endblock %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('alerte') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+
+{% block content %}
+
+    <div class="content">
+        
+        <h3>Création d'une alerte</h1>
+
+		{{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
+
+			{{ form_errors(edit_form) }}
+
+			<div class="form-group">
+
+				<p>
+					{{ form_label(edit_form.message.titre) }}
+					{{ form_widget(edit_form.message.titre) }}
+				</p>
+				<p>
+					{{ form_label(edit_form.message.urlphoto) }}
+					{{ form_widget(edit_form.message.urlphoto) }}
+				</p>
+				<p>
+					{{ form_label(edit_form.message.urllien) }}
+					{{ form_widget(edit_form.message.urllien) }}
+				</p>
+				<p>
+					{{ form_label(edit_form.zone) }}
+					{{ form_widget(edit_form.zone) }}
+				</p>
+				<p class="dateElement">
+					{{ form_label(edit_form.message.datevalidite) }}
+					{{ form_widget(edit_form.message.datevalidite) }}
+				</p>
+				<p>
+					{{ form_label(edit_form.message.message) }}
+					{{ form_widget(edit_form.message.message) }}
+				</p>
+
+				{{ form_widget(edit_form.valider) }}
+				{{ form_widget(delete_form.annuler) }}
+
+			</div>
+
+		{{ form_end(edit_form) }}
+
+    </div>
+
+
 {% endblock %}

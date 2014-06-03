@@ -43,8 +43,7 @@ Thiefaine\ReferentielBundle\Entity\Zone:
         points:
             targetEntity: Point
             mappedBy: zone
-    oneToOne:
-        alerte:
+        alertes:
             targetEntity: Alerte
             mappedBy: zone
 

@@ -24,7 +24,7 @@ class Alerte
     /**
      * @var \Zone
      *
-     * @ORM\OneToMany(targetEntity="Zone")
+     * @ORM\ManyToOne(targetEntity="Zone")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idzone", referencedColumnName="id")
      * })
