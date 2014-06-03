@@ -1,5 +1,4 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
+{% extends 'ThiefaineReferentielBundle:Default:connexion.html.twig' %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -10,7 +9,7 @@
 
 <form class="navbar-form navbar-left" action="{{ path("fos_user_security_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
+    
     <div class="form-group">
 	    <input class="form-control" placeholder="Identifiant" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autofocus />
 	</div>
@@ -18,11 +17,10 @@
 	<div class="form-group">
 		<input type="password" class="form-control" id="password" placeholder="Mot de passe" name="_password" required="required" />
 	</div>
-
+	test
     <button type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" >
 	    <span class="glyphicon glyphicon-log-in" name="connect" ></span>
 	    Connexion
 	</button>
 </form>
 {% endblock fos_user_content %}
-

@@ -23,7 +23,7 @@ class GroupeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Groupe')->findAll();
+        $entities = $em->getRepository('ThiefaineUserBundle:Groupe')->findAll();
 
         return $this->render('ThiefaineReferentielBundle:Groupe:index.html.twig', array(
             'entities' => $entities,

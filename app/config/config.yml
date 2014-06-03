@@ -72,6 +72,6 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Thiefaine\UserBundle\Entity\User
+    user_class: Thiefaine\UserBundle\Entity\Utilisateurweb
     group:
-        group_class: Thiefaine\UserBundle\Entity\Group
+        group_class: Thiefaine\UserBundle\Entity\Groupe

@@ -32,13 +32,6 @@ Thiefaine\ReferentielBundle\Entity\Zone:
         actif:
             type: boolean
             nullable: false
-    manyToOne:
-        utilisateurweb:
-            targetEntity: Utilisateurweb
-            inversedBy: zones
-            joinColumns:
-                idutilisateur:
-                    referencedColumnName: id
     oneToMany:
         points:
             targetEntity: Point

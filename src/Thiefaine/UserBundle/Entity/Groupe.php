@@ -2,17 +2,18 @@
 
 namespace Thiefaine\UserBundle\Entity;
 
+use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Group
+ * Groupe
  */
-class Group
+class Groupe extends BaseGroup
 {
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
 
     /**

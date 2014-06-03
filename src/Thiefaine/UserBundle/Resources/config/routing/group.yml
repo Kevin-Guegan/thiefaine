@@ -1,5 +1,5 @@
 fos_user_group_list:
-  pattern: /list
+  pattern: /
   defaults: { _controller: FOSUserBundle:Group:list }
   requirements: { _method: GET}
 

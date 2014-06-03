@@ -6,72 +6,38 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Zone
- *
- * @ORM\Table(name="ZONE", indexes={@ORM\Index(name="IDX_967E2DB3DBDD131C", columns={"idutilisateur"})})
- * @ORM\Entity
  */
 class Zone
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="latitude", type="string", length=255, nullable=false)
      */
     private $latitude;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="longitude", type="string", length=255, nullable=false)
      */
     private $longitude;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="zoom", type="integer", nullable=false)
      */
     private $zoom;
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="actif", type="boolean", nullable=false)
      */
     private $actif;
-
-    /**
-     * @var \Utilisateurweb
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateurweb")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idutilisateur", referencedColumnName="id")
-     * })
-     */
-    private $idutilisateur;
-
-
-    /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Alerte
-     * @ORM\OneToMany(targetEntity="Alerte", mappedBy="idzone", cascade={"persist"})
-     */
-    private $alerte;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -79,9 +45,9 @@ class Zone
     private $points;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $utilisateurweb;
+    private $alertes;
 
     /**
      * Constructor
@@ -89,6 +55,7 @@ class Zone
     public function __construct()
     {
         $this->points = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->alertes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -217,29 +184,6 @@ class Zone
     }
 
     /**
-     * Set alerte
-     *
-     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alerte
-     * @return Zone
-     */
-    public function setAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alerte = null)
-    {
-        $this->alerte = $alerte;
-
-        return $this;
-    }
-
-    /**
-     * Get alerte
-     *
-     * @return \Thiefaine\ReferentielBundle\Entity\Alerte 
-     */
-    public function getAlerte()
-    {
-        return $this->alerte;
-    }
-
-    /**
      * Add points
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Point $points
@@ -271,39 +215,6 @@ class Zone
     {
         return $this->points;
     }
-
-    /**
-     * Set utilisateurweb
-     *
-     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb
-     * @return Zone
-     */
-    public function setUtilisateurweb(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb = null)
-    {
-        $this->utilisateurweb = $utilisateurweb;
-
-        return $this;
-    }
-
-    /**
-     * Get utilisateurweb
-     *
-     * @return \Thiefaine\ReferentielBundle\Entity\Utilisateurweb 
-     */
-    public function getUtilisateurweb()
-    {
-        return $this->utilisateurweb;
-    }
-
-    public function __toString()
-    {
-        return $this->getNom();
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $alertes;
-
 
     /**
      * Add alertes
