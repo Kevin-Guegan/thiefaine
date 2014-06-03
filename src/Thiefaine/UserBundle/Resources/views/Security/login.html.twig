@@ -2,7 +2,7 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
+{% block header %}
 {% if error %}
     <div>{{ error|trans }}</div>
 {% endif %}
@@ -23,4 +23,4 @@
 	    Connexion
 	</button>
 </form>
-{% endblock fos_user_content %}
+{% endblock header %}
