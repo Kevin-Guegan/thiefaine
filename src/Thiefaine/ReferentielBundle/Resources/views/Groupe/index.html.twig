@@ -21,6 +21,9 @@
                             <a href="{{ path('fos_user_group_edit', {'groupName': group.getName()} ) }}">
                                 <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
                             </a>
+                            <a href="{{ path('fos_user_group_delete', {'groupName': group.getName()} ) }}">
+                                <span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
+                            </a>
                         </td>
                         <td>{{ group.getName() }}</td>
                     </tr>
