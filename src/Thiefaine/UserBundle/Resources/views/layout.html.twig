@@ -5,8 +5,12 @@
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="navbar-left">
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} | 
-                <a href="{{ path('fos_user_profile_show') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-user" name="connect"></span> Mon compte</button></a>
-                <a href="{{ path('fos_user_security_logout') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-log-out" name="connect"></span> Déconnexion</button></a>
+                <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-user" name="connect"></span> Mon compte
+                </a>
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-log-out" name="connect"></span> Déconnexion
+                </a>
             </div>
         {% else %}
             <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
@@ -17,9 +21,9 @@
 {% block connexion %}
     {% for type, messages in app.session.flashbag.all() %}
         {% for message in messages %}
-            <div class="flash-{{ type }}">
+            <span class="flash-{{ type }}">
                 {{ message }}
-            </div>
+            </span>
         {% endfor %}
     {% endfor %}
 {% endblock %}

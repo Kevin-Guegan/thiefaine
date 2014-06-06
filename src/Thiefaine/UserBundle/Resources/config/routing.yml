@@ -16,7 +16,7 @@ fos_user_resetting:
 
 fos_user_change_password:
     resource: "routing/change_password.yml"
-    prefix: /compte
+    prefix: /moncompte
 
 fos_user_group:
     resource: "routing/group.yml"

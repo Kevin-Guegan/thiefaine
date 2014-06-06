@@ -75,3 +75,6 @@ fos_user:
     user_class: Thiefaine\UserBundle\Entity\Utilisateurweb
     group:
         group_class: Thiefaine\UserBundle\Entity\Groupe
+    profile:
+        form:
+            type: thiefaine_user_profile
