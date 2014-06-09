@@ -78,3 +78,6 @@ fos_user:
     profile:
         form:
             type: thiefaine_user_profile
+    change_password:
+        form:
+            type: thiefaine_user_change_password

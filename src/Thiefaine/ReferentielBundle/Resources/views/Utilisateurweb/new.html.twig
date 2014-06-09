@@ -1,7 +1,4 @@
-{% extends 'ThiefaineUserBundle::layout.html.twig' %}
-
 {% block javascripts %}
-	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
 {% endblock %}
 
@@ -9,9 +6,12 @@
 	<div class="content">
 		<h1>Utilisateurweb creation</h1>
 
-    	{{ form(form) }}
+		<p>
+    		{{ form(form) }}
+    	</p>
 
     	<p>
+        	<button class="btn btn-primary" type="submit">Créer l'utilisateur</button>
 			<a class="btn btn-default" href={{ path('utilisateurweb') }}>Annuler</a>
 		</p>
 

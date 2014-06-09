@@ -14,5 +14,4 @@ fos_user_registration_confirm:
 
 fos_user_registration_confirmed:
   pattern: /confirmed
-  defaults: { _controller: FOSUserBundle:Registration:confirmed }
-  requirements: { _method: GET}
+  defaults: { _controller: ThiefaineReferentielBundle:Default:accueil }
