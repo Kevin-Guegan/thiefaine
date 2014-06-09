@@ -1,32 +1,30 @@
-{% extends 'ThiefaineUserBundle::layout.html.twig' %}
-
 {% block content %}
 	<div class="content">
-		<h1>Groupe creation</h1>
-
+		<h3>Création d'un groupe</h3>
+		
     	{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
 			<div class="form-group">
 
 				<p>
-					{{ form_label(form.nom) }}
-					{{ form_widget(form.nom) }}
+					 {{ form_label(form.name) }}
+					 {{ form_widget(form.name) }}
 				</p>
 				<p class="list-form-control" data-toggle="tooltip" data-placement="right" title="Cocher les droits d'administration du groupe.">
 					<label>Administration</label>
 					<table class="table table-hover">
 						<tr>
 							<td>
-					  			{{ form_label(form.gerergroupes) }}
+					  			<!-- form_label(form.gerergroupes) -->
 					  		</td><td style="text-align: right;">
-					  			{{ form_widget(form.gerergroupes) }}
+					  			<!-- form_widget(form.gerergroupes) -->
 					  		</td>
 					  	</tr>
 					  	<tr>
 					  		<td>
-					  			{{ form_label(form.gererutilisateurs) }}
+					  			<!-- form_label(form.gererutilisateurs) -->
 					  		</td><td style="text-align: right;">
-					  			{{ form_widget(form.gererutilisateurs) }}
+					  			<!-- form_widget(form.gererutilisateurs) -->
 					  		</td>
 						</tr>
 					</table>
@@ -37,30 +35,30 @@
 					<table class="table table-hover">
 						<tr>
 							<td>
-					  			{{ form_label(form.gereralertes) }}
+					  			<!-- form_label(form.gereralertes) -->
 					  		</td><td style="text-align: right;">
-					  			{{ form_widget(form.gereralertes) }}
+					  			<!-- form_widget(form.gereralertes) -->
 					  		</td>
 					  	</tr>
 					  	<tr>
 					  		<td>
-					  			{{ form_label(form.gererinfos) }}
+					  			<!-- form_label(form.gererinfos) -->
 					  		</td><td style="text-align: right;">
-					  			{{ form_widget(form.gererinfos) }}
+					  			<!-- form_widget(form.gererinfos) -->
 					  		</td>
 						</tr>
 						<tr>
 					  		<td>
-					  			{{ form_label(form.gererconseils) }}
+					  			<!-- form_label(form.gererconseils) -->
 					  		</td><td style="text-align: right;">
-					  			{{ form_widget(form.gererconseils) }}
+					  			<!-- form_widget(form.gererconseils) -->
 					  		</td>
 						</tr>
 					</table>
 				</p>
 
 				<p>
-					<a class="btn btn-default" href={{ path('groupe') }}>Annuler</a>
+					<a class="btn btn-default" href={{ path('fos_user_group_list') }}>Annuler</a>
 				</p>
 
 
