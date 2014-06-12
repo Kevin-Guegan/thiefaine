@@ -49,13 +49,26 @@ class GroupController extends BaseController
 	            $gererConseils = $form['gererconseils']->getData();
 
 	            if ($gererGroupes) {
-	            	$roles[] = '';
+	            	$roles[] = 'ROLE_MANAGE_GROUP';
 	            }
 
+	            if ($gererUtilisateurs) {
+	            	$roles[] = 'ROLE_MANAGE_USER';
+	            }
 
+	            if ($gererAlertes) {
+	            	$roles[] = 'ROLE_MANAGE_ALERTE';
+	            }
 
-	            $user->setRoles(array('ROLE_USER'))
+	            if ($gererInfos) {
+	            	$roles[] = 'ROLE_MANAGE_INFORMATION';
+	            }
 
+	            if ($gererConseils) {
+	            	$roles[] = 'ROLE_MANAGE_CONSEIL';
+	            }
+
+	            $group->setRoles($roles);
 
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::GROUP_CREATE_SUCCESS, $event);
