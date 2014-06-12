@@ -2,7 +2,7 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
+{% block header %}
 {% if error %}
     <div>{{ error|trans }}</div>
 {% endif %}
@@ -17,10 +17,10 @@
 	<div class="form-group">
 		<input type="password" class="form-control" id="password" placeholder="Mot de passe" name="_password" required="required" />
 	</div>
-	test
+	
     <button type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" >
 	    <span class="glyphicon glyphicon-log-in" name="connect" ></span>
 	    Connexion
 	</button>
 </form>
-{% endblock fos_user_content %}
+{% endblock %}
