@@ -11,6 +11,7 @@
                     <th>Alertes <span class="glyphicon cheveron-down" title="Trier par alertes"></span></th>
                     <th>Informations <span class="glyphicon cheveron-down" title="Trier par informations"></span></th>
                     <th>Conseils <span class="glyphicon cheveron-down" title="Trier par conseils"></span></th>
+                    <th>Zones <span class="glyphicon cheveron-down" title="Trier par conseils"></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -20,15 +21,57 @@
                         <td data-element="{{ group.getName() }}">
                             <a href="{{ path('fos_user_group_edit', {'groupName': group.getName()} ) }}">
                                 <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
-                            </a>
+                            </a>                            
                             <a href="{{ path('fos_user_group_delete', {'groupName': group.getName()} ) }}">
                                 <span class="glyphicon glyphicon-remove removeElement" title="Supprimer"></span>
                             </a>
                         </td>
                         <td>{{ group.getName() }}</td>
+                        <td>
+                        {% if group.hasRole('ROLE_MANAGE_GROUP') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if group.hasRole('ROLE_MANAGE_USER') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if group.hasRole('ROLE_MANAGE_ALERTE') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if group.hasRole('ROLE_MANAGE_INFORMATION') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if group.hasRole('ROLE_MANAGE_CONSEIL') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if group.hasRole('ROLE_MANAGE_ZONE') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
                     </tr>
-                {% endfor %}
 
+                {% endfor %}
             </tbody>
         </table>
     </div>
