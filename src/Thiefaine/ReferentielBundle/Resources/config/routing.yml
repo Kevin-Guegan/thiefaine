@@ -7,10 +7,6 @@ thiefaine_referentiel_accueil:
     pattern:  /accueil
     defaults: { _controller: ThiefaineReferentielBundle:Default:accueil }
 
-thiefaine_referentiel_groupe:
-    resource: "routing/groupe.yml"
-    prefix: /groupe
-
 thiefaine_referentiel_zone:
     resource: "routing/zone.yml"
     prefix: /zone
