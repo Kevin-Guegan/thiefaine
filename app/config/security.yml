@@ -36,6 +36,7 @@ security:
             anonymous:    true
 
     role_hierarchy:
+        ROLE_MANAGE_ZONE:           ROLE_USER
         ROLE_MANAGE_ALERTE:         ROLE_USER
         ROLE_MANAGE_INFORMATION:    ROLE_USER
         ROLE_MANAGE_CONSEIL:        ROLE_USER
