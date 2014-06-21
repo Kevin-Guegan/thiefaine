@@ -14,6 +14,9 @@ namespace Thiefaine\UserBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\GroupFormType as BaseType;
 
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 class GroupFormType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -90,6 +93,20 @@ class GroupFormType extends BaseType
             'mapped' => false,
             'required' => false,
         ));
+
+        $builder->addEventListener(FormEvents::BIND,function(FormEvent $event){
+
+            $data = $event->getData();
+            $form = $event->getForm();
+
+            printf($data);
+
+            if ($data->hasRole('ROLE_MANAGE_GROUP')) {
+
+            } else {
+
+            }
+        });
 
     }
 
