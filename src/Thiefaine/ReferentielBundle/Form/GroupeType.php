@@ -73,6 +73,11 @@ class GroupeType extends AbstractType
                     'class' => 'form-control pull-right',
                 )
             ))
+            ->add('valider', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn btn-primary'
+                )
+            ))
             ->add('gendarmerie');
     }
     
