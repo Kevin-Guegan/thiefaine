@@ -1,0 +1,4 @@
+thiefaine_referentiel_api_base :
+    type: rest
+    resource: 'ThiefaineReferentielBundle:Point'
+    name_prefix: thiefaine_referentiel_api_
