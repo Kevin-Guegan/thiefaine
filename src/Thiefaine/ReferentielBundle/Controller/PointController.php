@@ -5,9 +5,12 @@ namespace Thiefaine\ReferentielBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Get;
 
 use Thiefaine\ReferentielBundle\Entity\Point;
 use Thiefaine\ReferentielBundle\Form\PointType;
+use FOS\RestBundle\View\View;
 
 /**
  * Point controller.
@@ -208,3 +211,48 @@ class PointController extends Controller
         ;
     }
 }
+
+    /**
+      *Get availalble Point.
+      *
+      *@param $zone id of th e zone.
+      *
+      *@Get("/point/{zone}")
+      *@ApiDoc
+    */
+
+    public function getPointAction($zone) {
+
+        $view = View::create();
+
+        //$view = new View();
+
+        $em = $this->getDoctrine()->getManager();
+
+
+
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Point')->find($zone);
+
+        $view->setData($entity);
+
+        
+
+        return $this->handlerView($view);
+
+    }
+
+    
+
+    /**
+      *@return \FOS\RestBundle\View\ViewHandler
+     */
+
+    protected function handlerView($view)
+
+    {
+
+        return $this->container->get('fos_rest.view_handler')->handle($view);
+
+    }
+
+ }
