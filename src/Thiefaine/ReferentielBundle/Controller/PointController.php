@@ -210,7 +210,6 @@ class PointController extends Controller
             ->getForm()
         ;
     }
-}
 
     /**
       *Get availalble Point.
@@ -255,4 +254,4 @@ class PointController extends Controller
 
     }
 
- }
+}
