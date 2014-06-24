@@ -54,6 +54,13 @@
 					  			{{ form_widget(form.gererconseils) }}
 					  		</td>
 						</tr>
+						<tr>
+					  		<td>
+					  			{{ form_label(form.gererzones) }}
+					  		</td><td style="text-align: right;">
+					  			{{ form_widget(form.gererzones) }}
+					  		</td>
+						</tr>
 					</table>
 				</p>
 
@@ -66,6 +73,12 @@
 			</div>
 
 		{{ form_end(form) }}
+
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="flash-notice">
+		        {{ flashMessage }}
+		    </div>
+		{% endfor %}
 
 	</div>
 {% endblock %}

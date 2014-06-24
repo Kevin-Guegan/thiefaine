@@ -42,7 +42,7 @@ security:
         ROLE_MANAGE_CONSEIL:        ROLE_USER
         ROLE_MANAGE_USER:           ROLE_USER
         ROLE_MANAGE_GROUP:          ROLE_USER
-        ROLE_ADMIN:                 [ROLE_MANAGE_GROUP, ROLE_MANAGE_USER, ROLE_MANAGE_CONSEIL, ROLE_MANAGE_INFORMATION, ROLE_MANAGE_ALERTE]
+        ROLE_ADMIN:                 [ROLE_MANAGE_GROUP, ROLE_MANAGE_USER, ROLE_MANAGE_CONSEIL, ROLE_MANAGE_INFORMATION, ROLE_MANAGE_ALERTE, ROLE_MANAGE_ZONE]
         ROLE_SUPER_ADMIN:           [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
@@ -66,3 +66,6 @@ security:
 
         - { path: ^/conseil/$, role: ROLE_USER }
         - { path: ^/conseil/*+, role: ROLE_MANAGE_CONSEIL }
+
+        - { path: ^/zone/$, role: ROLE_USER }
+        - { path: ^/zone/*+, role: ROLE_MANAGE_ZONE }

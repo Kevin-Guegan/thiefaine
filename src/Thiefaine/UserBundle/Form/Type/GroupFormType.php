@@ -17,12 +17,45 @@ use FOS\UserBundle\Form\Type\GroupFormType as BaseType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
+use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
+
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
 class GroupFormType extends BaseType
 {
+
+    private $class;
+
+    /**
+     * Constructor
+     * 
+     * @param $class
+     */
+    public function __construct($class)
+    {
+        $this->class = $class;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // $em = ...
+        // $objFromDb = $em->getRepository('')->find($id);
 
-         parent::buildForm($builder, $options);
+        //$em = $this->getDoctrine()->getManager();
+        //$groupe = $em->getRepository('ThiefaineUserBundle:Alerte')->find($id);
+
+        //$groupManager = $this->container->get('fos_user.group_manager');
+        //$group = $groupManager->findGroupBy('name', $groupName);
+
+        
+        //$var = $objFromDb->hasRoles('ROLE_MANAGE_GROUP');
+
+        //$em = $options['em'];
+        //$group = $em->getRepository('ThiefaineUserBundle:Group')->find($id);
+
+        //$rp = $this->em->getRepository('ThiefaineUserBundle:Groupe');
+
+        parent::buildForm($builder, $options);
 
          $builder
         ->add('name', 'text', array(
@@ -92,22 +125,26 @@ class GroupFormType extends BaseType
             ),
             'mapped' => false,
             'required' => false,
+        ))
+        ->add('gererzones', 'checkbox', array(
+            'label' => 'Gestion des zones',
+            'label_attr' => array(
+                'style' => 'font-weight: inherit;'
+            ),
+            'attr' => array(
+                'class' => 'form-control pull-right',
+            ),
+            'mapped' => false,
+            'required' => false,
         ));
 
-        $builder->addEventListener(FormEvents::BIND,function(FormEvent $event){
+    }
 
-            $data = $event->getData();
-            $form = $event->getForm();
-
-            printf($data);
-
-            if ($data->hasRole('ROLE_MANAGE_GROUP')) {
-
-            } else {
-
-            }
-        });
-
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Thiefaine\UserBundle\Entity\Groupe',
+        ));
     }
 
     public function getName()

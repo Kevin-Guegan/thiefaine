@@ -42,12 +42,25 @@ class GroupController extends BaseController
 
             if ($form->isValid()) {
 
+                $groupExist = $groupManager->findGroupByName($group->getName());
+                if ($groupExist != null){
+                    $this->container->get('session')->getFlashBag()->add(
+                        'notice',
+                        'Le nom du groupe existe déjà.'
+                    );
+                    return $this->container->get('templating')->renderResponse('FOSUserBundle:Group:new.html.'.$this->getEngine(), array(
+                        'form' => $form->createview(),
+                    ));
+                }
+
 				$gererGroupes = $form['gerergroupes']->getData();
 	            $gererUtilisateurs = $form['gererutilisateurs']->getData();
 	            $gererAlertes = $form['gereralertes']->getData();
 	            $gererInfos = $form['gererinfos']->getData();
 	            $gererConseils = $form['gererconseils']->getData();
+                $gererZones = $form['gererzones']->getData();
 
+                $roles = array();
 	            if ($gererGroupes) {
 	            	$roles[] = 'ROLE_MANAGE_GROUP';
 	            }
@@ -67,6 +80,10 @@ class GroupController extends BaseController
 	            if ($gererConseils) {
 	            	$roles[] = 'ROLE_MANAGE_CONSEIL';
 	            }
+
+                if ($gererZones) {
+                    $roles[] = 'ROLE_MANAGE_ZONE';
+                }
 
 	            $group->setRoles($roles);
 
@@ -96,6 +113,9 @@ class GroupController extends BaseController
     */
     public function editAction(Request $request, $groupName)
     {
+        /** @var $groupManager \FOS\UserBundle\Model\GroupManagerInterface */
+        $groupManager = $this->container->get('fos_user.group_manager');
+
         $group = $this->findGroupBy('name', $groupName);
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
@@ -114,18 +134,21 @@ class GroupController extends BaseController
         $form = $formFactory->createForm();
         $form->setData($group);
 
-
         if ($request->isMethod('POST')) {
             $form->bind($request);
 
             if ($form->isValid()) {
+
+                $newName = $form['name']->getData();
 
                 $gererGroupes = $form['gerergroupes']->getData();
                 $gererUtilisateurs = $form['gererutilisateurs']->getData();
                 $gererAlertes = $form['gereralertes']->getData();
                 $gererInfos = $form['gererinfos']->getData();
                 $gererConseils = $form['gererconseils']->getData();
+                $gererZones = $form['gererzones']->getData();
 
+                $roles = array();
                 if ($gererGroupes) {
                     $roles[] = 'ROLE_MANAGE_GROUP';
                 }
@@ -146,10 +169,38 @@ class GroupController extends BaseController
                     $roles[] = 'ROLE_MANAGE_CONSEIL';
                 }
 
+                if ($gererZones) {
+                    $roles[] = 'ROLE_MANAGE_ZONE';
+                }
+
                 $group->setRoles($roles);
-                
-                /** @var $groupManager \FOS\UserBundle\Model\GroupManagerInterface */
-                $groupManager = $this->container->get('fos_user.group_manager');
+
+                if ($groupName != $newName) {
+                    $groupExist = $groupManager->findGroupByName($group->getName());
+
+                    if ($groupExist != null){
+
+                        $group->setName($groupName);
+                        $form = $formFactory->createForm();
+                        $form->setData($group);
+
+                        $this->container->get('session')->getFlashBag()->add(
+                            'notice',
+                            'Le nom du groupe existe déjà.'
+                        );
+
+                        return $this->container->get('templating')->renderResponse('FOSUserBundle:Group:edit.html.'.$this->getEngine(), array(
+                            'form' => $form->createview(),
+                            'group_name' => $group->getName(),
+                            'group_role_manage_group' => $group->hasRole('ROLE_MANAGE_GROUP'),
+                            'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
+                            'group_role_manage_alerte' => $group->hasRole('ROLE_MANAGE_ALERTE'),
+                            'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
+                            'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
+                            'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
+                        ));
+                    }
+                }
 
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::GROUP_EDIT_SUCCESS, $event);
@@ -157,7 +208,7 @@ class GroupController extends BaseController
                 $groupManager->updateGroup($group);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->container->get('router')->generate('fos_user_group_show', array('groupName' => $group->getName()));
+                    $url = $this->container->get('router')->generate('fos_user_group_list');
                     $response = new RedirectResponse($url);
                 }
 
@@ -170,6 +221,12 @@ class GroupController extends BaseController
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Group:edit.html.'.$this->getEngine(), array(
             'form' => $form->createview(),
             'group_name' => $group->getName(),
+            'group_role_manage_group' => $group->hasRole('ROLE_MANAGE_GROUP'),
+            'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
+            'group_role_manage_alerte' => $group->hasRole('ROLE_MANAGE_ALERTE'),
+            'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
+            'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
+            'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
         ));
     }
 
