@@ -16,6 +16,9 @@ class LoadUtilisateurwebData extends AbstractFixture implements OrderedFixtureIn
 		$admin->setEmail('admin@admin.user');
         $admin->setPlainPassword('admin');
         $admin->setEnabled(true);
+
+        $roles[] = 'ROLE_SUPER_ADMIN';
+        $admin->setRoles($roles);
  
 		$em->persist($admin);
 		$em->flush();
