@@ -15,3 +15,8 @@ services:
         arguments: [%fos_user.model.group.class%]
         tags:
             - { name: form.type, alias: thiefaine_user_group }
+    thiefaine_user.change_password.form.type:
+        class: Thiefaine\UserBundle\Form\Type\ChangePasswordFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: thiefaine_user_change_password }

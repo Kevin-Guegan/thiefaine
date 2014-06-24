@@ -80,3 +80,6 @@ fos_user:
         group_class: Thiefaine\UserBundle\Entity\Groupe
         form:
             type: thiefaine_user_group
+    change_password:
+        form:
+            type: thiefaine_user_change_password
