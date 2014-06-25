@@ -31,6 +31,11 @@ class Utilisateurweb extends BaseUser
     protected $infos;
 
     /**
+     * @var string
+     */
+    protected $groupe;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     protected $groupes;
@@ -74,6 +79,16 @@ class Utilisateurweb extends BaseUser
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Get groupe
+     *
+     * @return string 
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
     }
 
     /**
