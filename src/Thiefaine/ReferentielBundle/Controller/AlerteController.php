@@ -68,7 +68,8 @@ class AlerteController extends Controller
             }
 
             // utilisateur
-            $utilisateur = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findOneById(1);
+            $utilisateur = $this->container->get('security.context')->getToken()->getUser()->getId();
+
             if (!$utilisateur) {
                 throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
             }
@@ -92,27 +93,6 @@ class AlerteController extends Controller
             'entity' => $alerte,
             'form'   => $form->createView(),
         ));
-    }
-
-    /**
-     * Finds and displays a Alerte entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Alerte entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('ThiefaineReferentielBundle:Alerte:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**

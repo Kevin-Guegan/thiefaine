@@ -8,26 +8,26 @@
 	"buffers":
 	[
 		{
-			"file": "thiefaine.sublime-project",
+			"file": "src/Thiefaine/ReferentielBundle/Controller/AlerteController.php",
 			"settings":
 			{
-				"buffer_size": 254,
+				"buffer_size": 7775,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/Thiefaine/UserBundle/Controller/GroupController.php",
+			"file": "src/Thiefaine/ReferentielBundle/Entity/Message.php",
 			"settings":
 			{
-				"buffer_size": 6123,
+				"buffer_size": 5003,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/Thiefaine/UserBundle/Form/Type/GroupFormType.php",
+			"file": "src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Message.orm.yml",
 			"settings":
 			{
-				"buffer_size": 3768,
+				"buffer_size": 1406,
 				"line_ending": "Unix"
 			}
 		},
@@ -65,10 +65,10 @@
 			}
 		},
 		{
-			"contents": "=> /var/www/thiefaine/src/Thiefaine/UserBundle/Form/Type/GroupFormType.php\n	|+| 27\n	|+| 99\n=> /var/www/thiefaine/web/test.php\n	|+| 4\n",
+			"contents": "=> /var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/AlerteController.php\n	|+| 56\n",
 			"settings":
 			{
-				"buffer_size": 133,
+				"buffer_size": 94,
 				"line_ending": "Unix",
 				"name": "Xdebug Breakpoint",
 				"read_only": true,
@@ -79,9 +79,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 54.0,
+		"height": 76.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -110,18 +114,47 @@
 	"file_history":
 	[
 		"/var/www/thiefaine/app/bootstrap.php.cache",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/DataFixtures/ORM/LoadUtilisateurwebData.php",
+		"/var/www/thiefaine/app/config/security.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Controller/GroupController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Alerte.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/DataFixtures/ORM/LoadTypemessageData.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/config/services.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Entity/Utilisateurweb.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/UserManager.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Tests/Propel/UserTest.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/edit.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/index.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/new.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Form/Type/GroupFormType.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/GroupeController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/show.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/views/Group/edit.html.twig",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/Group.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/views/Group/new.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Alerte/index.html.twig",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/GroupManager.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Controller/GroupController.php",
 		"/var/www/thiefaine/web/app_dev.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Debug/ErrorHandler.php",
+		"/var/www/thiefaine/app/cache/dev/classes.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/GroupManagerInterface.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/GroupableInterface.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Controller/ChangePasswordController.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Form/Type/GroupFormType.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Form/Type/ProfileFormType.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/DependencyInjection/DependencyInjectionExtension.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/FormRegistry.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/FormFactory.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Form/Factory/FormFactory.php",
+		"/var/www/thiefaine/thiefaine.sublime-project",
 		"/var/www/thiefaine/web/test.php",
 		"/root/.config/sublime-text-3/Packages/Xdebug Client/Xdebug.sublime-settings",
-		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/Group.php",
-		"/var/www/thiefaine/src/Thiefaine/UserBundle/Controller/GroupController.php",
-		"/var/www/thiefaine/src/Thiefaine/UserBundle/Form/Type/GroupFormType.php",
 		"/root/.config/sublime-text-3/Packages/User/Xdebug.sublime-settings",
-		"/var/www/thiefaine/thiefaine.sublime-project",
 		"/root/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
 		"/root/.config/sublime-text-3/Packages/Xdebug/Xdebug.sublime-settings",
 		"/root/.config/sublime-text-3/Packages/Xdebug.sublime-settings",
-		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Controller/GroupController.php",
 		"/root/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
 	],
 	"find":
@@ -130,9 +163,13 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 92.0,
 		"where_history":
 		[
+			"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle",
+			"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle",
+			"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model",
+			"/var/www/thiefaine/src/Thiefaine/UserBundle/Form"
 		]
 	},
 	"find_state":
@@ -140,6 +177,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"plainpassword",
+			"setPassword",
+			"gererconseils",
+			"flash",
+			"GroupableInterface",
+			"modifier",
+			"thiefaine_user_profile",
 			"proxy",
 			"true"
 		],
@@ -159,52 +203,53 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "thiefaine.sublime-project",
+					"file": "src/Thiefaine/ReferentielBundle/Controller/AlerteController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 254,
+						"buffer_size": 7775,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								184,
-								184
+								2438,
+								2438
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 865.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/Thiefaine/UserBundle/Controller/GroupController.php",
+					"file": "src/Thiefaine/ReferentielBundle/Entity/Message.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6123,
+						"buffer_size": 5003,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3848,
-								3848
+								4292,
+								4296
 							]
 						],
 						"settings":
@@ -214,36 +259,36 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1345.0,
+						"translation.y": 3510.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "src/Thiefaine/UserBundle/Form/Type/GroupFormType.php",
+					"file": "src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Message.orm.yml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3768,
+						"buffer_size": 1406,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1487,
-								1487
+								706,
+								706
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/YAML/YAML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 310.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -346,15 +391,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 133,
+						"buffer_size": 94,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								133,
-								133
+								94,
+								94
 							]
 						],
 						"settings":
@@ -377,7 +422,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"layout":
 	{
@@ -457,20 +502,10 @@
 			"hide_conflict": true,
 			"restore_index":
 			{
-				"170":
-				{
-					"group": 0,
-					"index": 1
-				},
-				"72":
+				"3323":
 				{
 					"group": 0,
 					"index": 0
-				},
-				"91":
-				{
-					"group": 0,
-					"index": 2
 				}
 			},
 			"restore_layout":
@@ -501,7 +536,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 246.0,
+	"side_bar_width": 415.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

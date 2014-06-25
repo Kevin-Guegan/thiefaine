@@ -74,7 +74,7 @@ class ConseilController extends Controller
             }
 
             // utilisateur
-            $utilisateur = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findOneById(1);
+            $utilisateur = $this->container->get('security.context')->getToken()->getUser()->getId();
             if (!$utilisateur) {
                 throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
             }
