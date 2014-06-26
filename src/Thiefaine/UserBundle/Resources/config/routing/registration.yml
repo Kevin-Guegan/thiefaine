@@ -14,4 +14,4 @@ fos_user_registration_confirm:
 
 fos_user_registration_confirmed:
   pattern: /confirmed
-  defaults: { _controller: ThiefaineReferentielBundle:Default:accueil }
+  defaults: { _controller: ThiefaineReferentielBundle:Utilisateurweb:index }

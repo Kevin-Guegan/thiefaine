@@ -83,3 +83,6 @@ fos_user:
     change_password:
         form:
             type: thiefaine_user_change_password
+    registration:
+        form:
+            type: thiefaine_user_registration
