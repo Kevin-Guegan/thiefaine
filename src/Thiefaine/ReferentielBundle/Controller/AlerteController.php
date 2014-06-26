@@ -68,7 +68,7 @@ class AlerteController extends Controller
             }
 
             // utilisateur
-            $utilisateur = $this->container->get('security.context')->getToken()->getUser()->getId();
+            $utilisateur = $this->container->get('security.context')->getToken()->getUser();
 
             if (!$utilisateur) {
                 throw $this->createNotFoundException("Impossible de trouver l'utilisateur");

@@ -36,11 +36,6 @@ class Utilisateurweb extends BaseUser
     protected $groupes;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $messages;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -159,7 +154,12 @@ class Utilisateurweb extends BaseUser
     {
         return $this->groupes;
     }
-    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $messages;
+
+
     /**
      * Add messages
      *

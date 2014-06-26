@@ -8,14 +8,6 @@
 	"buffers":
 	[
 		{
-			"file": "src/Thiefaine/ReferentielBundle/Controller/AlerteController.php",
-			"settings":
-			{
-				"buffer_size": 7775,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "src/Thiefaine/ReferentielBundle/Entity/Message.php",
 			"settings":
 			{
@@ -24,10 +16,34 @@
 			}
 		},
 		{
+			"file": "src/Thiefaine/UserBundle/Entity/Utilisateurweb.php",
+			"settings":
+			{
+				"buffer_size": 3302,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Thiefaine/UserBundle/Resources/config/doctrine/Utilisateurweb.orm.yml",
+			"settings":
+			{
+				"buffer_size": 1155,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Message.orm.yml",
 			"settings":
 			{
-				"buffer_size": 1406,
+				"buffer_size": 1651,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "doctrine:\n     dbal:\n        connections:\n        default:\n            driver: %database_driver%\n            host: %database_host%\n            port: %database_port%\n            dbname: %database_name%\n            user: %database_user%\n            password: %database_password%\n            charset: UTF8\n\n        orm:\n            auto_generate_proxy_classes: %kernel.debug%\n            default_entity_manager: default\n            entity_managers:\n                default:\n                    connection: default\n                    mappings:\n                        SetfiveBundle:\n                            dir: Entity\n                        ThiefaineReferentielBundle: ~\n                user:\n                    connection: default\n                    mappings:\n                        SetfiveBundle:\n                            dir: Entity\n                        ThiefaineUserBundle: ~\n",
+			"settings":
+			{
+				"buffer_size": 892,
 				"line_ending": "Unix"
 			}
 		},
@@ -65,10 +81,10 @@
 			}
 		},
 		{
-			"contents": "=> /var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/AlerteController.php\n	|+| 56\n",
+			"contents": "",
 			"settings":
 			{
-				"buffer_size": 94,
+				"buffer_size": 0,
 				"line_ending": "Unix",
 				"name": "Xdebug Breakpoint",
 				"read_only": true,
@@ -113,6 +129,17 @@
 	},
 	"file_history":
 	[
+		"/var/www/thiefaine/app/config/config.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Entity/Utilisateurweb.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Message.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Message.php~",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/AlerteController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Message.orm.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/config/doctrine/Utilisateurweb.orm.yml",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/ConseilController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/InformationController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Alerte.orm.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Entity/Groupe.php",
 		"/var/www/thiefaine/app/bootstrap.php.cache",
 		"/var/www/thiefaine/src/Thiefaine/UserBundle/DataFixtures/ORM/LoadUtilisateurwebData.php",
 		"/var/www/thiefaine/app/config/security.yml",
@@ -120,7 +147,6 @@
 		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Alerte.php",
 		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/DataFixtures/ORM/LoadTypemessageData.php",
 		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/config/services.yml",
-		"/var/www/thiefaine/src/Thiefaine/UserBundle/Entity/Utilisateurweb.php",
 		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
 		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/UserManager.php",
 		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Tests/Propel/UserTest.php",
@@ -177,6 +203,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"utilisateur",
+			"show",
 			"plainpassword",
 			"setPassword",
 			"gererconseils",
@@ -203,40 +231,11 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/Thiefaine/ReferentielBundle/Controller/AlerteController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7775,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2438,
-								2438
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 865.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "src/Thiefaine/ReferentielBundle/Entity/Message.php",
 					"semi_transient": false,
 					"settings":
@@ -248,8 +247,8 @@
 						"selection":
 						[
 							[
-								4292,
-								4296
+								5003,
+								5003
 							]
 						],
 						"settings":
@@ -259,26 +258,55 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3510.0,
+						"translation.y": 3652.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Message.orm.yml",
+					"buffer": 1,
+					"file": "src/Thiefaine/UserBundle/Entity/Utilisateurweb.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1406,
+						"buffer_size": 3302,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								706,
-								706
+								603,
+								603
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Thiefaine/UserBundle/Resources/config/doctrine/Utilisateurweb.orm.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1155,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								575,
+								575
 							]
 						],
 						"settings":
@@ -288,40 +316,36 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 120.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 3,
+					"file": "src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Message.orm.yml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 1651,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1399,
+								1413
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 405.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -331,21 +355,22 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 892,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								510,
+								510
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -391,15 +416,75 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 94,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								94,
-								94
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -502,10 +587,20 @@
 			"hide_conflict": true,
 			"restore_index":
 			{
-				"3323":
+				"16":
 				{
 					"group": 0,
 					"index": 0
+				},
+				"23":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"24":
+				{
+					"group": 0,
+					"index": 2
 				}
 			},
 			"restore_layout":

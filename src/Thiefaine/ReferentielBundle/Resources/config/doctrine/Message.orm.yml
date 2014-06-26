@@ -50,6 +50,12 @@ Thiefaine\ReferentielBundle\Entity\Message:
             joinColumns:
                 idtypemessage:
                     referencedColumnName: id
+        utilisateurweb:
+            targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb
+            inversedBy: messages
+            joinColumn:
+                name: idutilisateurweb
+                referencedColumnName: id
     oneToOne:
         alerte:
             targetEntity: Alerte

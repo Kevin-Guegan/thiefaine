@@ -36,5 +36,9 @@ Thiefaine\UserBundle\Entity\Utilisateurweb:
                 inverseJoinColumns:
                     groupe:
                         referencedColumnName: id
+    oneToMany:
+        messages:
+            targetEntity: Thiefaine\ReferentielBundle\Entity\Message
+            mappedBy: utilisateurweb
 
     lifecycleCallbacks: {  }

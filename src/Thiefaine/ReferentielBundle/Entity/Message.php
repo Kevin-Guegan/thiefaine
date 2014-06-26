@@ -64,6 +64,11 @@ class Message
      */
     private $typemessage;
 
+    /**
+     * @var \Thiefaine\UserBundle\Entity\Utilisateurweb
+     */
+    private $utilisateurweb;
+
 
     /**
      * Get id
@@ -303,5 +308,28 @@ class Message
     public function getTypemessage()
     {
         return $this->typemessage;
+    }
+
+    /**
+     * Set utilisateurweb
+     *
+     * @param \Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb
+     * @return Message
+     */
+    public function setUtilisateurweb(\Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb = null)
+    {
+        $this->utilisateurweb = $utilisateurweb;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateurweb
+     *
+     * @return \Thiefaine\UserBundle\Entity\Utilisateurweb 
+     */
+    public function getUtilisateurweb()
+    {
+        return $this->utilisateurweb;
     }
 }
