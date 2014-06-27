@@ -1,4 +1,4 @@
-utilisateurweb:
+utilisateurweb_list:
     pattern:  /
     defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurweb:index" }
 
