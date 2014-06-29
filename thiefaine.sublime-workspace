@@ -1,0 +1,753 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/Thiefaine/ReferentielBundle/Resources/views/Utilisateurweb/new.html.twig",
+			"settings":
+			{
+				"buffer_size": 624,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Thiefaine/ReferentielBundle/Controller/UtilisateurwebController.php",
+			"settings":
+			{
+				"buffer_size": 5910,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Thiefaine/UserBundle/Controller/GroupController.php",
+			"settings":
+			{
+				"buffer_size": 9002,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\n\nnamespace Thiefaine\\UserBundle\\Controller;\n\nuse FOS\\UserBundle\\Controller\\RegistrationController as BaseController;\n\nuse FOS\\UserBundle\\FOSUserEvents;\nuse FOS\\UserBundle\\Event\\FormEvent;\nuse FOS\\UserBundle\\Event\\GetResponseUserEvent;\nuse FOS\\UserBundle\\Event\\UserEvent;\nuse FOS\\UserBundle\\Event\\FilterUserResponseEvent;\nuse Symfony\\Component\\DependencyInjection\\ContainerAware;\nuse Symfony\\Component\\HttpFoundation\\Request;\nuse Symfony\\Component\\HttpFoundation\\RedirectResponse;\nuse Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException;\nuse Symfony\\Component\\Security\\Core\\Exception\\AccessDeniedException;\nuse FOS\\UserBundle\\Model\\UserInterface;\n\nclass RegistrationController extends BaseController\n{\n    public function registerAction(Request $request)\n    {\n        /** @var $formFactory \\FOS\\UserBundle\\Form\\Factory\\FactoryInterface */\n        $formFactory = $this->container->get('fos_user.registration.form.factory');\n        /** @var $userManager \\FOS\\UserBundle\\Model\\UserManagerInterface */\n        $userManager = $this->container->get('fos_user.user_manager');\n        /** @var $dispatcher \\Symfony\\Component\\EventDispatcher\\EventDispatcherInterface */\n        $dispatcher = $this->container->get('event_dispatcher');\n\n        $user = $userManager->createUser();\n        $user->setEnabled(true);\n\n        $event = new GetResponseUserEvent($user, $request);\n        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);\n\n        if (null !== $event->getResponse()) {\n            return $event->getResponse();\n        }\n\n        $form = $formFactory->createForm();\n        $form->setData($user);\n\n        if ('POST' === $request->getMethod()) {\n            $form->bind($request);\n\n            if ($form->isValid()) {\n\n                $userExist = $userManager->findUserByEmail($user->getEmail());\n                if ($userExist == null) {\n                    $userExist = $userManager->findUserByUsername($user->getUsername());\n                    $notice = 'Le login de connexion est déjà utilisé.';\n                } else {\n                    $notice = 'L\\'adresse email est déjà utilisée.';\n                }\n                if ($userExist != null){\n                    $this->container->get('session')->getFlashBag()->add(\n                        'notice',\n                        $notice\n                    );\n                    return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(\n                        'form' => $form->createView(),\n                    ));\n                }\n\n                $event = new FormEvent($form, $request);\n                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);\n\n                $userManager->updateUser($user);\n\n                if (null === $response = $event->getResponse()) {\n                    $url = $this->container->get('router')->generate('utilisateurweb_list');\n                    $response = new RedirectResponse($url);\n                }\n\n                //$dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));\n\n                return $response;\n            }\n        }\n\n        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(\n            'form' => $form->createView(),\n        ));\n    }\n\n}\n",
+			"file": "src/Thiefaine/UserBundle/Controller/RegistrationController.php",
+			"file_size": 5326,
+			"file_write_time": 130483553833887951,
+			"settings":
+			{
+				"buffer_size": 3433,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
+			"settings":
+			{
+				"buffer_size": 11650,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Thiefaine/UserBundle/Resources/config/routing/registration.yml",
+			"settings":
+			{
+				"buffer_size": 558,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Thiefaine/ReferentielBundle/Resources/config/routing/utilisateurweb.yml",
+			"settings":
+			{
+				"buffer_size": 1004,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Context",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "=> /var/www/thiefaine/src/Thiefaine/UserBundle/Controller/RegistrationController.php\n	|+| 92\n	|+| 126\n",
+			"settings":
+			{
+				"buffer_size": 102,
+				"line_ending": "Unix",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 76.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler({\"http\":\"http://christopher.cdpnr01:Chris29120!@10.3.0.1:3128\"})) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler(\"http://christopher.cdpnr01:Chris29120!@10.3.0.1:3128\")) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Doctrine/UserManager.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/UserManager.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Controller/RegistrationController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Nav/leftnav.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/config/routing/group.yml",
+		"/var/www/thiefaine/app/bootstrap.php.cache",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/new.html.twig",
+		"/var/www/thiefaine/web/app_dev.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Debug/ErrorHandler.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/ThiefaineUserBundle.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Form/Type/RegistrationFormType.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/GroupeController.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Entity/Utilisateurweb.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Message.orm.yml",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Message.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/InformationController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/ConseilController.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/config/services.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/config/doctrine/Utilisateurweb.orm.yml",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/AlerteController.php",
+		"/var/www/thiefaine/app/config/config.yml",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Message.php~",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/config/doctrine/Alerte.orm.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Entity/Groupe.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/DataFixtures/ORM/LoadUtilisateurwebData.php",
+		"/var/www/thiefaine/app/config/security.yml",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Controller/GroupController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Alerte.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/DataFixtures/ORM/LoadTypemessageData.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Tests/Propel/UserTest.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/edit.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/index.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Form/Type/GroupFormType.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/show.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/views/Group/edit.html.twig",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/Group.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/views/Group/new.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Alerte/index.html.twig",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/GroupManager.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Controller/GroupController.php",
+		"/var/www/thiefaine/app/cache/dev/classes.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/GroupManagerInterface.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/GroupableInterface.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Controller/ChangePasswordController.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Form/Type/GroupFormType.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Form/Type/ProfileFormType.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/DependencyInjection/DependencyInjectionExtension.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/FormRegistry.php",
+		"/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/FormFactory.php",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Form/Factory/FormFactory.php",
+		"/var/www/thiefaine/thiefaine.sublime-project",
+		"/var/www/thiefaine/web/test.php",
+		"/root/.config/sublime-text-3/Packages/Xdebug Client/Xdebug.sublime-settings",
+		"/root/.config/sublime-text-3/Packages/User/Xdebug.sublime-settings",
+		"/root/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
+		"/root/.config/sublime-text-3/Packages/Xdebug/Xdebug.sublime-settings",
+		"/root/.config/sublime-text-3/Packages/Xdebug.sublime-settings",
+		"/root/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 92.0,
+		"where_history":
+		[
+			"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle",
+			"/var/www/thiefaine/src/Thiefaine/UserBundle",
+			"/var/www/thiefaine/src/Thiefaine/ReferentielBundle",
+			"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle",
+			"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle",
+			"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model",
+			"/var/www/thiefaine/src/Thiefaine/UserBundle/Form"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"updateUser",
+			"fos_user_group_list",
+			"findUser",
+			"utilisateurweb",
+			"utilisateur",
+			"show",
+			"plainpassword",
+			"setPassword",
+			"gererconseils",
+			"flash",
+			"GroupableInterface",
+			"modifier",
+			"thiefaine_user_profile",
+			"proxy",
+			"true"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/Thiefaine/ReferentielBundle/Resources/views/Utilisateurweb/new.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 624,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								422,
+								422
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/Thiefaine/ReferentielBundle/Controller/UtilisateurwebController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1175,
+								1175
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Thiefaine/UserBundle/Controller/GroupController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9002,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3450,
+								3450
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 651.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/Thiefaine/UserBundle/Controller/RegistrationController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3433,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1241,
+								1241
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11650,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4445,
+								4445
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3128.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/Thiefaine/UserBundle/Resources/config/routing/registration.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 558,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								263,
+								263
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/Thiefaine/ReferentielBundle/Resources/config/routing/utilisateurweb.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1004,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								139,
+								139
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 9,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 102,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								102,
+								102
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.7,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.xdebug":
+	{
+		"height": 180.0
+	},
+	"project": "thiefaine.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": true,
+			"restore_index":
+			{
+				"128":
+				{
+					"group": 0,
+					"index": 5
+				},
+				"130":
+				{
+					"group": 0,
+					"index": 4
+				},
+				"31":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"32":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"34":
+				{
+					"group": 0,
+					"index": 2
+				},
+				"35":
+				{
+					"group": 0,
+					"index": 3
+				},
+				"386":
+				{
+					"group": 0,
+					"index": 6
+				},
+				"403":
+				{
+					"group": 0,
+					"index": 7
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 415.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

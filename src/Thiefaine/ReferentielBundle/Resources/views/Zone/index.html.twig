@@ -1,4 +1,4 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block content %}
     <div class="content">
@@ -26,7 +26,7 @@
                     {% endif %}
                     </td>
                     <td>{{ entity.nom }}</td>
-                    <td>{{ entity.utilisateurweb }}</td>
+                    <td> <b>lien a créer</b>{#{ entity.utilisateurweb }#}</td>
                 </tr>
             {% endfor %}
             </tbody>

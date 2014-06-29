@@ -1,12 +1,5 @@
 {% extends 'ThiefaineReferentielBundle:Default:index.html.twig' %}
 
-{% block header %}
-	<div class="navbar-left">
-		<a href="{{ path('thiefaine_referentiel_myaccount') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-user" name="connect"></span> Mon compte</button></a>
-		<a href="{{ path('thiefaine_referentiel_homepage') }}"><button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-log-out" name="connect"></span> Déconnexion</button></a>
-	</div>
-{% endblock %}
-
 {% block leftbar %}
 	<div id="left_bar">
 		<ul class="nav nav-pills nav-stacked">
@@ -17,8 +10,8 @@
 				   <li class='has-sub last'>
 				   	  <a><span>Gestion des groupes</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
 				      <ul>
-				         <li><a href="{{ path('groupe_new') }}"><span>Créer</span></a></li>
-				         <li class='last'><a href="{{ path('groupe') }}"><span>Gérer</span></a></li>
+				         <li><a href="{{ path('fos_user_group_new') }}"><span>Créer</span></a></li>
+				         <li class='last'><a href="{{ path('fos_user_group_list') }}"><span>Gérer</span></a></li>
 				      </ul>
 				   </li>
 				</ul>
@@ -30,8 +23,8 @@
 				   <li class='has-sub last'>
 				   	  <a><span>Gestion des utilisateurs</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
 				      <ul>
-				         <li><a href="{{ path('utilisateurweb_new') }}"><span>Créer</span></a></li>
-				         <li class='last'><a href="{{ path('utilisateurweb') }}"><span>Gérer</span></a></li>
+				         <li><a href="{{ path('fos_user_registration_register') }}"><span>Créer</span></a></li>
+				         <li class='last'><a href="{{ path('utilisateurweb_list') }}"><span>Gérer</span></a></li>
 				      </ul>
 				   </li>
 				</ul>

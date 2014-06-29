@@ -74,7 +74,7 @@ class InformationController extends Controller
             }
 
             // utilisateur
-            $utilisateur = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findOneById(1);
+            $utilisateur = $this->container->get('security.context')->getToken()->getUser();
             if (!$utilisateur) {
                 throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
             }

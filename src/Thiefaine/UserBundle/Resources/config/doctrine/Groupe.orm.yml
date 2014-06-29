@@ -1,0 +1,13 @@
+Thiefaine\UserBundle\Entity\Groupe:
+    type: entity
+    table: GROUPE
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    lifecycleCallbacks: {  }

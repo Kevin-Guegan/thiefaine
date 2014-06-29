@@ -6,6 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
+
+    public function connexionAction()
+    {
+        return $this->render('ThiefaineReferentielBundle:Default:connexion.html.twig');
+    }
+
     public function indexAction()
     {
         return $this->render('ThiefaineReferentielBundle:Pages:accueil.html.twig');

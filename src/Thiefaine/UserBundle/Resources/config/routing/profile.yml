@@ -1,0 +1,7 @@
+fos_user_profile_show:
+  pattern:  /accueil
+  defaults: { _controller: ThiefaineReferentielBundle:Default:accueil }
+
+fos_user_profile_edit:
+  pattern: /moncompte
+  defaults: { _controller: FOSUserBundle:Profile:edit }

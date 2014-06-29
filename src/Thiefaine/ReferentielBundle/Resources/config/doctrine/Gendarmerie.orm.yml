@@ -15,9 +15,5 @@ Thiefaine\ReferentielBundle\Entity\Gendarmerie:
             nullable: false
             length: 255
             fixed: false
-    oneToMany:
-        groupes:
-            targetEntity: Groupe
-            mappedBy: gendarmerie
 
     lifecycleCallbacks: {  }

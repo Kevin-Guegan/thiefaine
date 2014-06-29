@@ -1,5 +1,3 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
-
 {% block content %}
     <div class="content">
         <h3>Gestion des groupes</h3>
@@ -13,68 +11,66 @@
                     <th>Alertes <span class="glyphicon cheveron-down" title="Trier par alertes"></span></th>
                     <th>Informations <span class="glyphicon cheveron-down" title="Trier par informations"></span></th>
                     <th>Conseils <span class="glyphicon cheveron-down" title="Trier par conseils"></span></th>
+                    <th>Zones <span class="glyphicon cheveron-down" title="Trier par conseils"></span></th>
                 </tr>
             </thead>
             <tbody>
-                {% for entity in entities %}
+
+                {% for group in groups %}
                     <tr>
-                        <td data-element="{{ entity.nom }}">
-                            <a href="{{ path('groupe_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
-                            {#<a href="{{ path('groupe_delete', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-remove" title="Supprimer"></span></a>#}
+                        <td data-element="{{ group.getName() }}">
+                            <a href="{{ path('fos_user_group_edit', {'groupName': group.getName()} ) }}">
+                                <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                            </a>                            
+                            <a href="{{ path('fos_user_group_delete', {'groupName': group.getName()}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce groupe ?')">
+                                <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                            </a>
                         </td>
-
-                        {#<td><a href="{{ path('groupe_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
-                        <td>{{ entity.nom }}</td>
+                        <td>{{ group.getName() }}</td>
                         <td>
-                            {% if entity.gerergroupes == 1 %}
-                                <span class="glyphicon glyphicon-ok"></span>
-                            {% else %}
-                                -
-                            {% endif %}
+                        {% if group.hasRole('ROLE_MANAGE_GROUP') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
                         </td>
-                        
                         <td>
-                            {% if entity.gererutilisateurs == 1 %}
-                                <span class="glyphicon glyphicon-ok"></span>
-                            {% else %}
-                                -
-                            {% endif %}
+                        {% if group.hasRole('ROLE_MANAGE_USER') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
                         </td>
-
                         <td>
-                            {% if entity.gereralertes == 1 %}
-                                <span class="glyphicon glyphicon-ok"></span>
-                            {% else %}
-                                -
-                            {% endif %}
+                        {% if group.hasRole('ROLE_MANAGE_ALERTE') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
                         </td>
-
                         <td>
-                            {% if entity.gererinfos == 1 %}
-                                <span class="glyphicon glyphicon-ok"></span>
-                            {% else %}
-                                -
-                            {% endif %}
+                        {% if group.hasRole('ROLE_MANAGE_INFORMATION') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
                         </td>
-
                         <td>
-                            {% if entity.gererconseils == 1 %}
-                                <span class="glyphicon glyphicon-ok"></span>
-                            {% else %}
-                                -
-                            {% endif %}
+                        {% if group.hasRole('ROLE_MANAGE_CONSEIL') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
                         </td>
-                        {#<td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('groupe_show', { 'id': entity.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('groupe_edit', { 'id': entity.id }) }}">edit</a>
-                            </li>
-                        </ul>
-                        </td>#}
+                        <td>
+                        {% if group.hasRole('ROLE_MANAGE_ZONE') %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
                     </tr>
+
                 {% endfor %}
             </tbody>
         </table>

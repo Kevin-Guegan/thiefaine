@@ -1,4 +1,4 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block content %}
     <div class="content">
@@ -8,6 +8,7 @@
                 <tr>
                     <th>Actions</th>
                     <th>Nom</th>
+                    <th>Username</th>
                     <th>Prenom</th>
                     <th>Groupe</th>
                     <th>Email</th>
@@ -18,9 +19,10 @@
                 {% for entity in entities %}
                     <tr>
                         <td>
-                            <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
+                            /* <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a> */
                         </td>
                         <td>{{ entity.nom }}</td>
+                        <td>{{ entity.username }}</td>
                         <td>{{ entity.prenom }}</td>
                         <td>{{ entity.groupe }}</td>
                         <td>{{ entity.email }}</td>

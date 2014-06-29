@@ -1,16 +1,14 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
-
 {% block content %}
 	<div class="content">
-		<h1>Groupe creation</h1>
-
+		<h3>Création d'un groupe</h3>
+		
     	{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
 			<div class="form-group">
 
 				<p>
-					{{ form_label(form.nom) }}
-					{{ form_widget(form.nom) }}
+					 {{ form_label(form.name) }}
+					 {{ form_widget(form.name) }}
 				</p>
 				<p class="list-form-control" data-toggle="tooltip" data-placement="right" title="Cocher les droits d'administration du groupe.">
 					<label>Administration</label>
@@ -56,17 +54,31 @@
 					  			{{ form_widget(form.gererconseils) }}
 					  		</td>
 						</tr>
+						<tr>
+					  		<td>
+					  			{{ form_label(form.gererzones) }}
+					  		</td><td style="text-align: right;">
+					  			{{ form_widget(form.gererzones) }}
+					  		</td>
+						</tr>
 					</table>
 				</p>
 
 				<p>
-					<a class="btn btn-default" href={{ path('groupe') }}>Annuler</a>
+					<input class="btn btn-primary" type="submit" value="Valider" />
+					<a class="btn btn-default" href={{ path('fos_user_group_list') }}>Annuler</a>
 				</p>
 
 
 			</div>
 
 		{{ form_end(form) }}
+
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="flash-notice">
+		        {{ flashMessage }}
+		    </div>
+		{% endfor %}
 
 	</div>
 {% endblock %}

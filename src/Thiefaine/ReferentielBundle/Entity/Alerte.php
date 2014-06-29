@@ -6,41 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Alerte
- *
- * @ORM\Table(name="ALERTE", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_F356B2BC69B96211", columns={"idmessage"}), @ORM\UniqueConstraint(name="UNIQ_F356B2BC732431A7", columns={"idzone"})})
- * @ORM\Entity
  */
 class Alerte
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var \Zone
-     *
-     * @ORM\ManyToOne(targetEntity="Zone")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idzone", referencedColumnName="id")
-     * })
-     */
-    private $idzone;
-
-    /**
-     * @var \Message
-     *
-     * @ORM\OneToOne(targetEntity="Message")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idmessage", referencedColumnName="id")
-     * })
-     */
-    private $idmessage;
-
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Message
