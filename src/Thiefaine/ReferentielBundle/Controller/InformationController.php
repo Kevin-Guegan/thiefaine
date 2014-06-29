@@ -16,7 +16,7 @@ class InformationController extends Controller
 {
 
 	/**
-	 * Lists all Message entities.
+	 * Liste des informations
 	 *
 	 */
 	public function indexAction()
@@ -27,14 +27,14 @@ class InformationController extends Controller
         $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('information');
         if (!$typeMessage) {
             throw $this->createNotFoundException('Impossible de trouver les messages de type information.');
-            $entities = null;
+            $informations = null;
         } else {
             $idTypeMessage = $typeMessage->getId();
-            $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
+            $informations = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
         }
 
         return $this->render('ThiefaineReferentielBundle:Information:index.html.twig', array(
-            'entities' => $entities,
+            'informations' => $informations,
         ));
 	}
 
@@ -112,12 +112,12 @@ class InformationController extends Controller
 		}
 
 		$editForm = $this->createEditForm($entity);
-		$deleteForm = $this->createDeleteForm($id);
+		//$deleteForm = $this->createDeleteForm($id);
 
 		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
 			'entity'      => $entity,
 			'edit_form'   => $editForm->createView(),
-			'delete_form' => $deleteForm->createView(),
+			//'delete_form' => $deleteForm->createView(),
 		));
 	}
 
@@ -151,7 +151,7 @@ class InformationController extends Controller
 		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
 			'entity'      => $entity,
 			'edit_form'   => $editForm->createView(),
-			'delete_form' => $deleteForm->createView(),
+			//'delete_form' => $deleteForm->createView(),
 		));
 	}
 	/**
@@ -187,15 +187,6 @@ class InformationController extends Controller
 			'method' => 'POST',
 		));
 
-		$form->add('valider', 'submit', array    ( 'label'  => 'Valider',
-	                                             'attr' =>  array ( 'class' => 'btn btn-primary' )
-	                                            )
-	            )
-	            ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
-	                                             'attr' =>  array ( 'class' => 'btn btn-default' )
-	                                            )
-	            );
-
 		return $form;
 	}
 
@@ -212,11 +203,6 @@ class InformationController extends Controller
 			'action' => $this->generateUrl('information_update', array('id' => $entity->getId())),
 			'method' => 'PUT',
 		));
-
-		$form->add('valider', 'submit', array    ( 'label'  => 'Valider',
-                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
-                                                )
-                );
 
 		return $form;
 	}

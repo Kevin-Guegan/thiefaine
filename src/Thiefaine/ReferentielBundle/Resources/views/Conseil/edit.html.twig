@@ -38,8 +38,10 @@
 					{{ form_label(edit_form.message) }}
 					{{ form_widget(edit_form.message) }}
 				</p>
-				{{ form_widget(edit_form.valider) }}
-				{{ form_widget(delete_form.annuler) }}
+				<p>	
+		      		<button class="btn btn-primary" type="submit">Modifier le conseil</button>
+					<a class="btn btn-default" href={{ path('conseil') }}>Annuler</a>
+		  	  	</p>
 
 			</div>
 

@@ -50,6 +50,11 @@ class Zone
     private $alertes;
 
     /**
+     * @var \Thiefaine\UserBundle\Entity\Utilisateurweb
+     */
+    private $utilisateurweb;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -247,5 +252,28 @@ class Zone
     public function getAlertes()
     {
         return $this->alertes;
+    }
+
+    /**
+     * Set utilisateurweb
+     *
+     * @param \Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb
+     * @return Zone
+     */
+    public function setUtilisateurweb(\Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb = null)
+    {
+        $this->utilisateurweb = $utilisateurweb;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateurweb
+     *
+     * @return \Thiefaine\UserBundle\Entity\Utilisateurweb 
+     */
+    public function getUtilisateurweb()
+    {
+        return $this->utilisateurweb;
     }
 }

@@ -12,22 +12,42 @@
                         <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
                         <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
                         <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                        <th>Créateur <span class="glyphicon cheveron-down" title="Trier par créateur"></span></th>
+                        <th>Photo <span class="glyphicon cheveron-down" title="Trier par photo"></span></th>
+                        <th>Lien <span class="glyphicon cheveron-down" title="Trier par lien"></span></th>
                     </tr>
 
-                    {% for entity in entities %}
+                    {% for conseil in conseils %}
                         <tr>
                             <td>
-                                    <a href="{{ path('conseil_edit', { 'id': entity.id }) }}">
+                                    <a href="{{ path('conseil_edit', { 'id': conseil.id }) }}">
                                         <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
                                     </a>
 
-                                    <a href="{{ path('conseil_delete', {'id': entity.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce conseil ?')">
+                                    <a href="{{ path('conseil_delete', {'id': conseil.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce conseil ?')">
                                         <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                                     </a>
                             </td>
-                            <td>{{ entity.titre }}</td>
-                            <td>{{ entity.datecreation|date("d/m/Y") }}</td>
-                            <td>{{ entity.datevalidite is empty ? "" :entity.datevalidite|date("d/m/Y") }}</td>
+                            <td>{{ conseil.titre }}</td>
+                            <td>{{ conseil.datecreation|date("d/m/Y") }}</td>
+                            <td>{{ conseil.datevalidite is empty ? "" :conseil.datevalidite|date("d/m/Y") }}</td>
+                            <td>
+                                {{ conseil.utilisateurweb.nom }} {{ conseil.utilisateurweb.prenom }}
+                            </td>
+                            <td>
+                            {% if conseil.urlphoto %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if conseil.urllien %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
 

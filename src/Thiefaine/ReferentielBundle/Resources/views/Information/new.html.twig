@@ -38,8 +38,10 @@
 					{{ form_label(form.message) }}
 					{{ form_widget(form.message) }}
 				</p>
-				{{ form_widget(form.valider) }}
-				{{ form_widget(form.annuler) }}
+				<p>	
+		      		<button class="btn btn-primary" type="submit">Créer l'information</button>
+					<a class="btn btn-default" href={{ path('information') }}>Annuler</a>
+		  	  	</p>
 
 			</div>
 

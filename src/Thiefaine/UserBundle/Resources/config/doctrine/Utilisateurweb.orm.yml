@@ -40,5 +40,8 @@ Thiefaine\UserBundle\Entity\Utilisateurweb:
         messages:
             targetEntity: Thiefaine\ReferentielBundle\Entity\Message
             mappedBy: utilisateurweb
+        zones:
+            targetEntity: Thiefaine\ReferentielBundle\Entity\Zone
+            mappedBy: utilisateurweb
 
     lifecycleCallbacks: {  }

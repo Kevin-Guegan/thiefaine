@@ -46,6 +46,12 @@ class Utilisateurweb extends BaseUser
     private $messages;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $zones;
+
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -206,5 +212,38 @@ class Utilisateurweb extends BaseUser
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Add zones
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Zone $zones
+     * @return Utilisateurweb
+     */
+    public function addZone(\Thiefaine\ReferentielBundle\Entity\Zone $zones)
+    {
+        $this->zones[] = $zones;
+
+        return $this;
+    }
+
+    /**
+     * Remove zones
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Zone $zones
+     */
+    public function removeZone(\Thiefaine\ReferentielBundle\Entity\Zone $zones)
+    {
+        $this->zones->removeElement($zones);
+    }
+
+    /**
+     * Get zones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getZones()
+    {
+        return $this->zones;
     }
 }

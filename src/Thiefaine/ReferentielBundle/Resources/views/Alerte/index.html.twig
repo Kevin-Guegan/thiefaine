@@ -12,22 +12,45 @@
                         <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
                         <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
                         <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                        <th>Zone <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                        <th>Créateur <span class="glyphicon cheveron-down" title="Trier par créateur"></span></th>
+                        <th>Photo <span class="glyphicon cheveron-down" title="Trier par photo"></span></th>
+                        <th>Lien <span class="glyphicon cheveron-down" title="Trier par lien"></span></th>
                     </tr>
 
                     {% for alerte in alertes %}
                         <tr>
                             <td>
-                 
-                                    <a href="{{ path('alerte_edit', { 'id': alerte.id }) }}">
-                                        <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
-                                    </a>
-                                    <a href="{{ path('alerte_delete', {'id': alerte.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette alerte ?')">
-                                        <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-                                    </a>
+                                <a href="{{ path('alerte_edit', { 'id': alerte.id }) }}">
+                                    <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                                </a>
+                                <a href="{{ path('alerte_delete', {'id': alerte.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette alerte ?')">
+                                    <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                                </a>
                             </td>
                             <td>{{ alerte.message.titre }}</td>
                             <td>{{ alerte.message.datecreation|date("d/m/Y") }}</td>
                             <td>{{ alerte.message.datevalidite is empty ? "" :alerte.message.datevalidite|date("d/m/Y") }}</td>
+                            <td>
+                                {{ alerte.zone.nom }}
+                            </td>
+                            <td>
+                                {{ alerte.message.utilisateurweb.nom }} {{ alerte.message.utilisateurweb.prenom }}
+                            </td>
+                            <td>
+                            {% if alerte.message.urlphoto %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if alerte.message.urllien %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                -
+                            {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
 

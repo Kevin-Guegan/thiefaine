@@ -13,13 +13,51 @@
 
 {% block content %}
 	<div class="content">
-		<h1>Zone creation</h1>
 
-    	{{ form(form) }}
+		<h3>Création d'une zone</h3>
 
-    	<p>
-			<a class="btn btn-default" href={{ path('zone') }}>Annuler</a>
-		</p>
+		<form class="form-horizontal">
+			<div class="form-group">
+
+				<p>
+					{{ form_label(form.nom) }}
+					{{ form_widget(form.nom, {'id': 'zoneTitle'} ) }}
+				</p>
+
+			  	<p>
+			  		{{ form_label(form.zoom) }}
+			  	</p>
+
+			      <div 	class="input-group list-form-control" 
+			      		data-toggle="tooltip"
+			      		data-placement="right"
+			      		title="Saisisser le rayon de la zone à créer. (nota : il est possible de modifier le rayon et déplacer la zone une fois celle-ci crée.)">
+
+						{{ form_widget(form.zoom, {'id': 'zoneRadius'} ) }}
+
+						<span class="input-group-btn">
+							<button id="zoneRadiusBtn" class="btn btn-primary" type="button">Générer la zone</button>
+						</span>
+
+			      </div>
+
+			      <div id="MesCercleGoogle">
+			      	<table class="table table-hover" style="border-collapse: inherit; margin-bottom: 0px;">
+				      	
+			      	</table>
+				</div>
+				<div id="MaCarteGoogle"></div>
+
+		      </p>
+
+			<p>	
+				<button class="btn btn-primary" href="?url=zone&action=manage">Valider</button>
+				<a class="btn btn-default" href={{ path('zone') }}>Annuler</a>
+			</p>
+
+		    </div>
+		</form>
+
 	</div>
 {% endblock %}
 

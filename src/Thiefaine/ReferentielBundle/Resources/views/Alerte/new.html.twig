@@ -44,8 +44,10 @@
 					{{ form_widget(form.message.message) }}
 				</p>
 
-				{{ form_widget(form.valider) }}
-				{{ form_widget(form.annuler) }}
+				<p>	
+		      		<button class="btn btn-primary" type="submit">Créer l'alerte</button>
+					<a class="btn btn-default" href={{ path('alerte') }}>Annuler</a>
+		  	  	</p>
 
 			</div>
 

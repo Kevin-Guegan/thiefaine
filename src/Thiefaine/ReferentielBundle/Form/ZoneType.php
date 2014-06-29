@@ -28,11 +28,20 @@ class ZoneType extends AbstractType
                     'data-placement' => 'right'
                 )
             ))
+            ->add('zoom', 'text', array(
+                'label' => 'Rayon de la zone',
+                'label_attr' => array(
+                    'class' => 'control-label',
+                    'for' => 'zoneRadius',
+                ),
+                'attr' => array(
+                    'class' => 'form-control',
+                )
+            ))
             ->add('latitude')
             ->add('longitude')
-            ->add('zoom')
-            ->add('actif');
-            //->add('utilisateurweb')
+            ->add('actif')
+            ->add('utilisateurweb');
     }
     
     /**

@@ -2,10 +2,6 @@ alerte:
     pattern:  /
     defaults: { _controller: "ThiefaineReferentielBundle:Alerte:index" }
 
-alerte_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "ThiefaineReferentielBundle:Alerte:show" }
-
 alerte_new:
     pattern:  /new
     defaults: { _controller: "ThiefaineReferentielBundle:Alerte:new" }

@@ -16,7 +16,7 @@ class ConseilController extends Controller
 {
 
     /**
-     * Lists all Message entities.
+     * Liste de tous les conseils
      *
      */
     public function indexAction()
@@ -27,14 +27,14 @@ class ConseilController extends Controller
         $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
         if (!$typeMessage) {
             throw $this->createNotFoundException('Impossible de trouver les messages de type conseil.');
-            $entities = null;
+            $conseils = null;
         } else {
             $idTypeMessage = $typeMessage->getId();
-            $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
+            $conseils = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
         }
 
         return $this->render('ThiefaineReferentielBundle:Conseil:index.html.twig', array(
-            'entities' => $entities,
+            'conseils' => $conseils,
         ));
     }
 
@@ -111,12 +111,12 @@ class ConseilController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        //$deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -141,7 +141,6 @@ class ConseilController extends Controller
 
             // On met à jour la date de mise à jour
             $entity->setDatemiseajour(new \DateTime('now'));
-
             $em->flush();
 
             return $this->redirect($this->generateUrl('conseil', array('id' => $id)));
@@ -150,7 +149,7 @@ class ConseilController extends Controller
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
 
     }
@@ -188,15 +187,6 @@ class ConseilController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
-                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
-                                                )
-                )
-                ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
-                                                 'attr' =>  array ( 'class' => 'btn btn-default' )
-                                                )
-                );
-
         return $form;
     }
 
@@ -213,11 +203,6 @@ class ConseilController extends Controller
             'action' => $this->generateUrl('conseil_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
-        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
-                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
-                                                )
-                );
 
         return $form;
     }

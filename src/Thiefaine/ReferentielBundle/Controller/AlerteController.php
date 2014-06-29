@@ -110,12 +110,12 @@ class AlerteController extends Controller
         }
 
         $editForm = $this->createEditForm($alerte);
-        $deleteForm = $this->createDeleteForm($id);
+        //$deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
             'entity'      => $alerte,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -133,7 +133,7 @@ class AlerteController extends Controller
             throw $this->createNotFoundException("Impossible de trouver l'alerte.");
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        //$deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($alerte);
         $editForm->handleRequest($request);
 
@@ -146,7 +146,7 @@ class AlerteController extends Controller
         return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
             'entity'      => $alerte,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
@@ -182,15 +182,6 @@ class AlerteController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
-                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
-                                                )
-                )
-                ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
-                                                 'attr' =>  array ( 'class' => 'btn btn-default' )
-                                                )
-                );
-
         return $form;
     }
 
@@ -208,11 +199,6 @@ class AlerteController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('valider', 'submit', array    ( 'label'  => 'Valider',
-                                                 'attr' =>  array ( 'class' => 'btn btn-primary' )
-                                                )
-                );
-
         return $form;
     }
 
@@ -226,9 +212,11 @@ class AlerteController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('alerte_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('annuler', 'submit', array('label' => 'Delete'))
+            ->setAction($this->generateUrl('alerte'))
+            ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
+                                                 'attr' =>  array ( 'class' => 'btn btn-default' )
+                                                )
+                )
             ->getForm()
         ;
     }

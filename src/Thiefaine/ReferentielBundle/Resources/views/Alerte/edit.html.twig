@@ -44,8 +44,10 @@
 					{{ form_widget(edit_form.message.message) }}
 				</p>
 
-				{{ form_widget(edit_form.valider) }}
-				{{ form_widget(delete_form.annuler) }}
+				<p>	
+		      		<button class="btn btn-primary" type="submit">Modifier l'alerte</button>
+					<a class="btn btn-default" href={{ path('alerte') }}>Annuler</a>
+		  	  	</p>
 
 			</div>
 

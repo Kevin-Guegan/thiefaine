@@ -39,5 +39,12 @@ Thiefaine\ReferentielBundle\Entity\Zone:
         alertes:
             targetEntity: Alerte
             mappedBy: zone
+    manyToOne:
+        utilisateurweb:
+            targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb
+            inversedBy: zones
+            joinColumn:
+                name: idutilisateurweb
+                referencedColumnName: id
 
     lifecycleCallbacks: {  }
