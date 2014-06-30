@@ -17,21 +17,21 @@ Thiefaine\ReferentielBundle\Entity\Zone:
             fixed: false
         latitude:
             type: string
-            nullable: false
+            nullable: true
             length: 255
             fixed: false
         longitude:
             type: string
-            nullable: false
+            nullable: true
             length: 255
             fixed: false
         zoom:
             type: integer
-            nullable: false
+            nullable: true
             unsigned: false
         actif:
             type: boolean
-            nullable: false
+            nullable: true
     oneToMany:
         points:
             targetEntity: Point

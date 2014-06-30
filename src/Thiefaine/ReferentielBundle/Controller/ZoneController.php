@@ -29,63 +29,6 @@ class ZoneController extends Controller
             'entities' => $entities,
         ));
     }
-    /**
-     * Creates a new Zone entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new Zone();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('zone_edit', array('id' => $entity->getId())));
-        }
-
-        return $this->render('ThiefaineReferentielBundle:Zone:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to create a Zone entity.
-    *
-    * @param Zone $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Zone $entity)
-    {
-        $form = $this->createForm(new ZoneType(), $entity, array(
-            'action' => $this->generateUrl('zone_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Zone entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Zone();
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('ThiefaineReferentielBundle:Zone:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
 
     /**
      * Finds and displays a Zone entity.
@@ -108,6 +51,54 @@ class ZoneController extends Controller
         return $this->render('ThiefaineReferentielBundle:Zone:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        
+        ));
+    }
+
+     /**
+     * Displays a form to create a new Zone entity.
+     *
+     */
+    public function newAction()
+    {
+        $entity = new Zone();
+        $form   = $this->createCreateForm($entity);
+
+        return $this->render('ThiefaineReferentielBundle:Zone:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+    }
+
+    /**
+     * Creates a new Zone entity.
+     *
+     */
+    public function createAction(Request $request)
+    {
+        $zone = new Zone();
+        $form = $this->createCreateForm($zone);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            
+            // utilisateur web
+            $utilisateur = $this->container->get('security.context')->getToken()->getUser();
+            if (!$utilisateur) {
+                throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
+            }
+
+            $zone->setUtilisateurweb($utilisateur);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($zone);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('zone_edit', array('id' => $zone->getId())));
+        }
+
+        return $this->render('ThiefaineReferentielBundle:Zone:new.html.twig', array(
+            'entity' => $zone,
+            'form'   => $form->createView(),
         ));
     }
 
@@ -135,24 +126,6 @@ class ZoneController extends Controller
         ));
     }
 
-    /**
-    * Creates a form to edit a Zone entity.
-    *
-    * @param Zone $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Zone $entity)
-    {
-        $form = $this->createForm(new ZoneType(), $entity, array(
-            'action' => $this->generateUrl('zone_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
     /**
      * Edits an existing Zone entity.
      *
@@ -183,6 +156,7 @@ class ZoneController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Zone entity.
      *
@@ -206,6 +180,44 @@ class ZoneController extends Controller
 
         return $this->redirect($this->generateUrl('zone'));
     }
+
+    /**
+    * Creates a form to create a Zone entity.
+    *
+    * @param Zone $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm(Zone $entity)
+    {
+        $form = $this->createForm(new ZoneType(), $entity, array(
+            'action' => $this->generateUrl('zone_create'),
+            'method' => 'POST',
+        ));
+
+        return $form;
+    }
+
+    /**
+    * Creates a form to edit a Zone entity.
+    *
+    * @param Zone $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Zone $entity)
+    {
+        $form = $this->createForm(new ZoneType(), $entity, array(
+            'action' => $this->generateUrl('zone_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Update'));
+
+        return $form;
+    }
+
+
 
     /**
      * Creates a form to delete a Zone entity by id.
