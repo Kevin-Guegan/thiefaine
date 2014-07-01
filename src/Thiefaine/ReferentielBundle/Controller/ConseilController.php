@@ -79,6 +79,18 @@ class ConseilController extends Controller
                 throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
             }
 
+            // file
+            $file = $form['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $entity->setUrlphoto($finalNameFile);
+            }
+
             // On met à jour le conseil
             $entity->setDateCreation(new \DateTime('now'));
             $entity->setTypemessage($typeMessage);
@@ -141,6 +153,18 @@ class ConseilController extends Controller
 
             // On met à jour la date de mise à jour
             $entity->setDatemiseajour(new \DateTime('now'));
+
+            // file
+            $file = $editForm['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $entity->setUrlphoto($finalNameFile);
+            }
 
             $em->flush();
 
