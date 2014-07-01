@@ -39,11 +39,12 @@ class MessageType extends AbstractType
                     'class' => 'control-label'
                 ),
                 'attr'   =>  array(
-                    'class' => 'form-control',
+                    'class' => 'form-control filestyle',
                     'placeholder' => 'Photo',
                     'title' => "Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).",
                     'data-toggle' => 'tooltip',
-                    'data-placement' => 'right'
+                    'data-placement' => 'right',
+                    'data-buttonText' => ' Rechercher...'
                 ),
                 'mapped' => false )
             )
