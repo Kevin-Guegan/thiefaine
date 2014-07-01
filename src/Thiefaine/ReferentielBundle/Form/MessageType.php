@@ -28,14 +28,25 @@ class MessageType extends AbstractType
             ->add('urlphoto', 'text', array     (   'label'  => 'Photo',
                                                     'required' => false,
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
-                                                'attr'   =>  array (    'class' => 'form-control',
-                                                                        'placeholder' => 'Photo',
-                                                                        'title' => "Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).",
-                                                                        'data-toggle' => 'tooltip',
-                                                                        'data-placement' => 'right'
-                                                                    )
+                                                'attr'   =>  array ( 'class' => 'form-control' ),
+                                                'disabled' => true
                                             )
                 )
+            ->add('attachement', 'file', array( 
+                'label'  => 'Joindre une photo',
+                'required' => false,
+                'label_attr'   =>  array(
+                    'class' => 'control-label'
+                ),
+                'attr'   =>  array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Photo',
+                    'title' => "Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).",
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right'
+                ),
+                'mapped' => false )
+            )
             ->add('urllien', 'text', array  (   'label'  => 'Lien',
                                                 'required' => false,
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
