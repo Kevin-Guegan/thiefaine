@@ -4,6 +4,7 @@ namespace Thiefaine\ReferentielBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Thiefaine\ReferentielBundle\Entity\Alerte;
 use Thiefaine\ReferentielBundle\Entity\Message;
@@ -76,6 +77,18 @@ class AlerteController extends Controller
 
             // On met à jour le message de l'alerte
             $message = $alerte->getMessage();
+
+            // file
+            $file = $form['message']['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $message->setUrlphoto($finalNameFile);
+            }
             $message->setDateCreation(new \DateTime('now'));
             $message->setTypemessage($typeMessage);
             $message->setUtilisateurweb($utilisateur);
@@ -139,6 +152,18 @@ class AlerteController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+
+            // file
+            $file = $editForm['message']['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $alerte->setUrlphoto($finalNameFile);
+            }
 
             return $this->redirect($this->generateUrl('alerte'));
         }
