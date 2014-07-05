@@ -1,0 +1,26 @@
+Thiefaine\ReferentielBundle\Entity\Utilisateurmobile:
+    type: entity
+    table: UTILISATEURMOBILE
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        token:
+            type: text
+            nullable: false
+        datecreation:
+            type: datetime
+            nullable: false
+    manyToOne:
+        gendarmerie:
+            targetEntity: Gendarmerie
+            inversedBy: utilisateurmobile
+            joinColumns:
+                idgendarmerie:
+                    referencedColumnName: id
+    lifecycleCallbacks: {  }
