@@ -37,3 +37,7 @@ thiefaine_information:
 thiefaine_alerte:
     resource: "@ThiefaineReferentielBundle/Resources/config/routing/alerte.yml"
     prefix:   /alerte
+
+thiefaine_utilisateurmobile:
+        resource: "@ThiefaineReferentielBundle/Resources/config/routing/utilisateurmobile.yml"
+        prefix:   /utilisateurmobile   
