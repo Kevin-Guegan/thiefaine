@@ -5,8 +5,13 @@ namespace Thiefaine\ReferentielBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Post;
+
 use Thiefaine\ReferentielBundle\Entity\Utilisateurmobile;
 use Thiefaine\ReferentielBundle\Form\UtilisateurmobileType;
+
+use FOS\RestBundle\View\View;
 
 /**
  * Utilisateurmobile controller.
@@ -29,13 +34,34 @@ class UtilisateurmobileController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
-     * Creates a new Utilisateurmobile entity.
-     *
-     */
-    public function createAction(Request $request)
+    * Post new mobile user.
+    * 
+    * @param $idGend id of Gendarmerie.
+    * @param $token notification token.
+    * 
+    * @Post("/utilisateurmobile/create/{idGend}/{token}")
+    * @ApiDoc
+    */
+    public function createAction(Request $request, $idGend, $token)
     {
-        $entity = new Utilisateurmobile();
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $gend = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->find($idGend);
+        $date = date('Y-m-d H:i:s');
+
+        $utilisateurmobile = new Utilisateurmobile();
+        $utilisateurmobile->setGendarmerie($idGend);
+        $utilisateurmobile->setToken($token);
+        $utilisateurmobile->setDatecreation($date);
+
+        $em->persist($utilisateurmobile);
+        $em->flush();
+
+        return true;
+
+       /* $entity = new Utilisateurmobile();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -50,7 +76,7 @@ class UtilisateurmobileController extends Controller
         return $this->render('ThiefaineReferentielBundle:Utilisateurmobile:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        ));
+        ));*/
     }
 
     /**
