@@ -4,6 +4,7 @@
 	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -23,8 +24,8 @@
 					{{ form_widget(form.titre) }}
 				</p>
 				<p>
-					{{ form_label(form.urlphoto) }}
-					{{ form_widget(form.urlphoto) }}
+					{{ form_label(form.attachement) }}
+					{{ form_widget(form.attachement) }}
 				</p>
 				<p>
 					{{ form_label(form.urllien) }}
