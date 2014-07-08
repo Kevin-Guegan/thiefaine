@@ -10,7 +10,7 @@
 	{
 		"xdebug":
 		{
-			"url": "http://127.0.0.1/thiefaine/web/app_dev.php/connexion",
+			"url": "http://127.0.0.1:8000",
 			"super_globals": true,
          	"close_on_stop": true
 		}
