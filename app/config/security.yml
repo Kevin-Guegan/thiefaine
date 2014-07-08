@@ -32,7 +32,7 @@ security:
                 domain:     ~
             logout:
                 path:       fos_user_security_logout
-                target:     /connexion
+                target:     /
             anonymous:    true
 
     role_hierarchy:
