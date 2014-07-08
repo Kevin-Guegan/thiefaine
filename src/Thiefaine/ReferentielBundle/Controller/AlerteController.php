@@ -19,7 +19,7 @@ class AlerteController extends Controller
 {
 
     /**
-     * Lists all Alerte entities.
+     * Liste de toutes les alertes
      *
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class AlerteController extends Controller
     }
 
     /**
-     * Displays a form to create a new Alerte entity.
+     * Afficher un formulaire pour la création des alertes
      *
      */
     public function newAction()
@@ -49,7 +49,7 @@ class AlerteController extends Controller
     }
 
     /**
-     * Creates a new Alerte entity.
+     * Création d'une nouvelle alerte
      *
      */
     public function createAction(Request $request)
@@ -65,17 +65,59 @@ class AlerteController extends Controller
             // Message de type alerte
             $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('alerte');
             if (!$typeMessage) {
-                throw $this->createNotFoundException('Impossible de trouver les messages de type alerte.');
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Impossible de trouver les messages de type alerte.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
+                    'entity' => $alerte,
+                    'form'   => $form->createView(),
+                ));
             }
 
             // utilisateur
             $utilisateur = $this->container->get('security.context')->getToken()->getUser();
             if (!$utilisateur) {
-                throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Impossible de trouver l\'utilisateur.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
+                    'entity' => $alerte,
+                    'form'   => $form->createView(),
+                ));
             }
 
-            // On met à jour le message de l'alerte
-            $message = $alerte->getMessage();
+            // Contrôle de l'alerte
+            $messageAlerte = $alerte->getMessage();
+
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $messageAlerte->getMessage(), -1);
+
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
+                    'entity' => $alerte,
+                    'form'   => $form->createView(),
+                ));
+            }
+
+            // Contrôle de la zone
+            $zoneAlerte = $alerte->getZone();
+            if (null === $zoneAlerte) {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez sélectionner une zone.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Alerte:new.html.twig', array(
+                    'entity' => $alerte,
+                    'form'   => $form->createView(),
+                ));
+            }
 
             // file
             $file = $form['message']['attachement']->getData();
@@ -86,14 +128,14 @@ class AlerteController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $message->setUrlphoto($finalNameFile);
+                $messageAlerte->setUrlphoto($finalNameFile);
             }
-            $message->setDateCreation(new \DateTime('now'));
-            $message->setTypemessage($typeMessage);
-            $message->setUtilisateurweb($utilisateur);
-            $em->persist($message);
+            $messageAlerte->setDateCreation(new \DateTime('now'));
+            $messageAlerte->setTypemessage($typeMessage);
+            $messageAlerte->setUtilisateurweb($utilisateur);
+            $em->persist($messageAlerte);
 
-            $alerte->setMessage($message);
+            $alerte->setMessage($messageAlerte);
             $em->persist($alerte);            
 
             $em->flush();
@@ -108,7 +150,7 @@ class AlerteController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Alerte entity.
+     * Afficher un formulaire pour éditer une alerte
      *
      */
     public function editAction($id)
@@ -132,7 +174,7 @@ class AlerteController extends Controller
     }
 
     /**
-     * Edits an existing Alerte entity.
+     * Modifier une alerte
      *
      */
     public function updateAction(Request $request, $id)
@@ -142,7 +184,14 @@ class AlerteController extends Controller
         $alerte = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
 
         if (!$alerte) {
-            throw $this->createNotFoundException("Impossible de trouver l'alerte.");
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver l\'alerte.'
+            );
+            return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
+                'entity'      => $alerte,
+                'edit_form'   => $editForm->createView(),
+            ));
         }
 
         //$deleteForm = $this->createDeleteForm($id);
@@ -150,6 +199,26 @@ class AlerteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+            // On met à jour le message de l'alerte
+            $messageAlerte = $alerte->getMessage();
+
+            // message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $messageAlerte->getMessage(), -1);
+
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
+                    'entity'      => $alerte,
+                    'edit_form'   => $editForm->createView(),
+                ));
+            }
+
             $em->flush();
 
             // file
@@ -170,11 +239,11 @@ class AlerteController extends Controller
         return $this->render('ThiefaineReferentielBundle:Alerte:edit.html.twig', array(
             'entity'      => $alerte,
             'edit_form'   => $editForm->createView(),
-            //'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
-     * Deletes a Alerte entity.
+     * Supprimer une alerte
      *
      */
     public function deleteAction(Request $request, $id)
@@ -183,7 +252,11 @@ class AlerteController extends Controller
         $entity = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException("Impossible de trouver l'alerte");
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver l\'alerte'
+            );
+            return $this->redirect($this->generateUrl('alerte'));
         }
 
         $em->remove($entity);

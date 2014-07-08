@@ -53,22 +53,34 @@ class RegistrationFormType extends BaseType
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array('label' => 'form.password'),
-                'second_options' => array('label' => 'form.password_confirmation'),
+                'first_options' => array(
+                    'label' => 'Password',
+                    'label_attr' => array(
+                        'class' => 'control-label',
+                        ),
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => 'Password',
+                        'title' => 'Renseigner le password de l\'utilisateur.',
+                        'data-toggle' => 'tooltip',
+                        'data-placement' => 'right',
+                        ),
+                    ),
+                'second_options' => array(
+                    'label' => 'Vérification',
+                    'label_attr' => array(
+                        'class' => 'control-label',
+                        ),
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => 'Password',
+                        'title' => 'Renseigner le password de l\'utilisateur.',
+                        'data-toggle' => 'tooltip',
+                        'data-placement' => 'right',
+                        ),
+                    ),
                 'invalid_message' => 'fos_user.password.mismatch',
-                'label' => 'Password',
-                'label_attr' => array(
-                    'class' => 'control-label'
-                ),
-                'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Password',
-                    'title' => 'Renseigner le password de l\'utilisateur.',
-                    'data-toggle' => 'tooltip',
-                    'data-placement' => 'right'
-                ),
             ))
-
             ->add('email', 'email', array(
                 'label' => 'Email',
                 'label_attr' => array(
@@ -95,7 +107,21 @@ class RegistrationFormType extends BaseType
                     'data-placement' => 'right'
                 )
             ))
-        	->add('groupes');
+            ->add('groupes','entity', array(
+                'class'     => 'ThiefaineUserBundle:Groupe',
+                'label'     => 'Groupe',
+                'expanded'  => false,
+                'multiple'  => false,
+                'label_attr'   =>  array ( 'class' => 'control-label' ),
+                'attr'   =>  array  (   'class' => 'form-control',
+                                        'placeholder' => 'Titre',
+                                        'title' => "Renseigner le nom du groupe.",
+                                        'data-toggle' => 'tooltip',
+                                        'data-placement' => 'right'
+                                    )
+                )
+            );
+
     }
 
     public function getName()

@@ -39,7 +39,7 @@ class ConseilController extends Controller
     }
 
     /**
-     * Afficher un foormulaire pour créer un conseil
+     * Afficher un formulaire pour créer un conseil
      *
      */
     public function newAction()

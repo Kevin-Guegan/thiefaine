@@ -32,7 +32,7 @@
                             <td>{{ alerte.message.datecreation|date("d/m/Y") }}</td>
                             <td>{{ alerte.message.datevalidite is empty ? "" :alerte.message.datevalidite|date("d/m/Y") }}</td>
                             <td>
-                                {{ alerte.zone.nom }}
+                                {{ alerte.zone.nom | default("-") }}
                             </td>
                             <td>
                                 {{ alerte.message.utilisateurweb.nom }} {{ alerte.message.utilisateurweb.prenom }}
@@ -55,5 +55,12 @@
                     {% endfor %}
 
                 </table>
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
         </div>
 {% endblock %}

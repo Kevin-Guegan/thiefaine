@@ -25,8 +25,8 @@
 					{{ form_widget(form.message.titre) }}
 				</p>
 				<p>
-					{{ form_label(form.message.urlphoto) }}
-					{{ form_widget(form.message.urlphoto) }}
+					{{ form_label(form.message.attachement) }}
+					{{ form_widget(form.message.attachement) }}
 				</p>
 				<p>
 					{{ form_label(form.message.urllien) }}
@@ -48,11 +48,17 @@
 				<p>	
 		      		<button class="btn btn-primary" type="submit">Créer l'alerte</button>
 					<a class="btn btn-default" href={{ path('alerte') }}>Annuler</a>
-		  	  	</p>
+		  	  	</p>	
 
 			</div>
 
 		{{ form_end(form) }}
+
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="flash-notice">
+		        {{ flashMessage }}
+		    </div>
+		{% endfor %}
 
     </div>
 

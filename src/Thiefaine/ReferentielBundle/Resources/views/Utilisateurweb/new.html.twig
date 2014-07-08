@@ -4,7 +4,7 @@
 
 {% block content %}
 	<div class="content">
-		<h3>Création d'un utilisateurs</h3>
+		<h3>Création d'un utilisateur</h3>
 
 		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -22,8 +22,12 @@
 					{{ form_widget(form.username) }}
 				</p>
 				<p>
-					{{ form_label(form.plainPassword) }}
-					{{ form_widget(form.plainPassword) }}
+					{{ form_label (form.plainPassword.first) }}
+					{{ form_widget (form.plainPassword.first) }}
+				</p>
+				<p>
+					{{ form_label (form.plainPassword.second) }}
+					{{ form_widget (form.plainPassword.second) }}
 				</p>
 				<p>
 					{{ form_label(form.groupes) }}

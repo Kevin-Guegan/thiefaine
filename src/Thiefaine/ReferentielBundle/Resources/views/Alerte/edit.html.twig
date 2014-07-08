@@ -12,7 +12,7 @@
 
     <div class="content">
         
-        <h3>Création d'une alerte</h1>
+        <h3>Edition d'une alerte</h1>
 
 		{{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -25,8 +25,8 @@
 					{{ form_widget(edit_form.message.titre) }}
 				</p>
 				<p>
-					{{ form_label(edit_form.message.urlphoto) }}
-					{{ form_widget(edit_form.message.urlphoto) }}
+					{{ form_label(edit_form.message.attachement) }}
+					{{ form_widget(edit_form.message.attachement) }}
 				</p>
 				<p>
 					{{ form_label(edit_form.message.urllien) }}
@@ -53,6 +53,12 @@
 			</div>
 
 		{{ form_end(edit_form) }}
+
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="flash-notice">
+		        {{ flashMessage }}
+		    </div>
+		{% endfor %}
 
     </div>
 
