@@ -62,7 +62,7 @@ class AlerteController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-             // Message de type alerte
+            // Message de type alerte
             $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('alerte');
             if (!$typeMessage) {
                 throw $this->createNotFoundException('Impossible de trouver les messages de type alerte.');

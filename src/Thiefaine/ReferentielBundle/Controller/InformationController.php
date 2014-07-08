@@ -40,7 +40,7 @@ class InformationController extends Controller
 	}
 
 	/**
-	 * Displays a form to create a new Message entity.
+	 * Afficher un formulaire pour créer une information
 	 *
 	 */
 	public function newAction()
@@ -55,7 +55,7 @@ class InformationController extends Controller
 	}
 
 	/**
-	 * Creates a new Message entity.
+	 * Création de l'information
 	 *
 	 */
 	public function createAction(Request $request)
@@ -66,18 +66,49 @@ class InformationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+        	// message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $information->getMessage(), -1);
+
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
+                    'entity' => $information,
+                    'form'   => $form->createView(),
+                ));
+            }
+
             $em = $this->getDoctrine()->getManager();
             
             // Message de type information
             $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('information');
             if (!$typeMessage) {
-                throw $this->createNotFoundException('Impossible de trouver les messages de type information.');
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Impossible de trouver les messages de type information.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
+                    'entity' => $information,
+                    'form'   => $form->createView(),
+                ));
             }
 
             // utilisateur
             $utilisateur = $this->container->get('security.context')->getToken()->getUser();
             if (!$utilisateur) {
-                throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Impossible de trouver l\'utilisateur.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
+                    'entity' => $information,
+                    'form'   => $form->createView(),
+                ));
             }
 
             // file
@@ -111,47 +142,63 @@ class InformationController extends Controller
 	}
 
 	/**
-	 * Displays a form to edit an existing Message entity.
+	 * Affiche un formulaire pour modifier une information
 	 *
 	 */
 	public function editAction($id)
 	{
 		$em = $this->getDoctrine()->getManager();
 
-		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+		$information = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-		if (!$entity) {
+		if (!$information) {
 			throw $this->createNotFoundException("Impossible de trouver l'information.");
 		}
 
-		$editForm = $this->createEditForm($entity);
+		$editForm = $this->createEditForm($information);
 		//$deleteForm = $this->createDeleteForm($id);
 
 		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-			'entity'      => $entity,
+			'entity'      => $information,
 			'edit_form'   => $editForm->createView(),
 			//'delete_form' => $deleteForm->createView(),
 		));
 	}
 
 	/**
-	 * Edits an existing Message entity.
+	 * Modification d'une information
 	 *
 	 */
 	public function updateAction(Request $request, $id)
 	{
 		$em = $this->getDoctrine()->getManager();
 
-		$entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+		$information = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-		if (!$entity) {
+		if (!$information) {
 			throw $this->createNotFoundException("Impossible de trouver l'information.");
 		}
 
-		$editForm = $this->createEditForm($entity);
+		$editForm = $this->createEditForm($information);
 		$editForm->handleRequest($request);
 
 		if ($editForm->isValid()) {
+
+			// message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $information->getMessage(), -1);
+
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
+                    'entity' => $information,
+                    'edit_form'   => $editForm->createView(),
+                ));
+            }
 
 			// file
             $file = $editForm['attachement']->getData();
@@ -162,11 +209,11 @@ class InformationController extends Controller
 				$finalNameFile = rand(1, 99999).'-'.$nameFile;
 
             	$file->move($dir, $finalNameFile);
-            	$entity->setUrlphoto($finalNameFile);
+            	$information->setUrlphoto($finalNameFile);
             }
 
 			// On met à jour la date de mise à jour
-            $entity->setDatemiseajour(new \DateTime('now'));
+            $information->setDatemiseajour(new \DateTime('now'));
 
 			$em->flush();
 
@@ -174,13 +221,13 @@ class InformationController extends Controller
 		}
 
 		return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-			'entity'      => $entity,
+			'entity'      => $information,
 			'edit_form'   => $editForm->createView(),
-			//'delete_form' => $deleteForm->createView(),
 		));
 	}
+
 	/**
-	 * Deletes a Message entity.
+	 * Suppression d'une information
 	 *
 	 */
 	public function deleteAction(Request $request, $id)
