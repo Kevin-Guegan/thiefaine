@@ -257,10 +257,36 @@ class ConseilController extends Controller
         $view = View::create();
         //$view = new View();
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage(1);
+        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
+        $idTypeMessage = $typeMessage->getId();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
         $view->setData($entity);
 
         return $this->handlerView($view);
+    }
+
+    /**
+    * Get availalble OneConseil.
+    *
+    * @param $idConseil id of a conseil.
+    * @Get("/conseil/{idConseil}")
+    *
+    * @ApiDoc
+    */
+    public function getOneConseilAction($idConseil) {
+        $view = View::create();
+        //$view = new View();
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($idConseil);
+        $typemessage = $entity->getTypemessage()->getLibelle();
+        if($typemessage == "conseil"){
+            $view->setData($entity);
+
+            return $this->handlerView($view);
+
+        }else{
+            return $this->handlerView($view);
+        }
     }
 
     /**
