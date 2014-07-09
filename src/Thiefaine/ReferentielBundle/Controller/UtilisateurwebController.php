@@ -62,27 +62,27 @@ class UtilisateurwebController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->find($id);
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->find($id);
-
-        if (!$entity) {
+        if (!$user) {
             throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        //$deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($user);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
 
-            return $this->redirect($this->generateUrl('utilisateurweb', array('id' => $id)));
+            $userManager = $this->container->get('fos_user.user_manager');
+            $userManager->updateUser($user);
+
+            return $this->redirect($this->generateUrl('thiefaine_referentiel_utilisateurweb_list'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Utilisateurweb:edit.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $user,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
     

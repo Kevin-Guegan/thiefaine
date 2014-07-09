@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th>Actions</th>
+                    <th>Login</th>
                     <th>Nom</th>
-                    <th>Username</th>
                     <th>Prenom</th>
                     <th>Groupe</th>
                     <th>Email</th>
@@ -19,10 +19,15 @@
                 {% for entity in entities %}
                     <tr>
                         <td>
-                            <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
+                            <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}">
+                                <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                            </a>
+                            <a href="{{ path('utilisateurweb_delete', {'id': entity.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet utilisateur ?')">
+                                <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                            </a>
                         </td>
-                        <td>{{ entity.nom }}</td>
                         <td>{{ entity.username }}</td>
+                        <td>{{ entity.nom }}</td>
                         <td>{{ entity.prenom }}</td>
                         <td>
                             {% for group in entity.groups %}
