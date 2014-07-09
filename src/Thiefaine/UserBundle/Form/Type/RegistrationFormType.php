@@ -107,8 +107,9 @@ class RegistrationFormType extends BaseType
                     'data-placement' => 'right'
                 )
             ))
-            ->add('groupes','entity', array(
-                'class'     => 'ThiefaineUserBundle:Groupe',
+            ->add('groups','entity', array(
+                'class'     => 'ThiefaineUserBundle:Group',
+                'property'  => 'name',
                 'label'     => 'Groupe',
                 'expanded'  => false,
                 'multiple'  => false,

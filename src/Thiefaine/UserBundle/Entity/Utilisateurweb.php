@@ -2,8 +2,8 @@
 
 namespace Thiefaine\UserBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Utilisateurweb
@@ -31,24 +31,14 @@ class Utilisateurweb extends BaseUser
     protected $infos;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      */
-    protected $groupe;
+    protected $messages;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    protected $groupes;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $messages;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $zones;
+    protected $zones;
 
 
     /**
@@ -57,6 +47,8 @@ class Utilisateurweb extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->zones = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -90,16 +82,6 @@ class Utilisateurweb extends BaseUser
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Get groupe
-     *
-     * @return string 
-     */
-    public function getGroupe()
-    {
-        return $this->groupe;
     }
 
     /**
@@ -148,39 +130,6 @@ class Utilisateurweb extends BaseUser
         return $this->infos;
     }
 
-    /**
-     * Add groupes
-     *
-     * @param \Thiefaine\UserBundle\Entity\Groupe $groupes
-     * @return Utilisateurweb
-     */
-    public function addGroupe(\Thiefaine\UserBundle\Entity\Groupe $groupes)
-    {
-        $this->groupes[] = $groupes;
-
-        return $this;
-    }
-
-    /**
-     * Remove groupes
-     *
-     * @param \Thiefaine\UserBundle\Entity\Groupe $groupes
-     */
-    public function removeGroupe(\Thiefaine\UserBundle\Entity\Groupe $groupes)
-    {
-        $this->groupes->removeElement($groupes);
-    }
-
-    /**
-     * Get groupes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGroupes()
-    {
-        return $this->groupes;
-    }
-    
     /**
      * Add messages
      *
@@ -246,4 +195,10 @@ class Utilisateurweb extends BaseUser
     {
         return $this->zones;
     }
+
+    public function setGroups(\Thiefaine\UserBundle\Entity\Group $group){
+        $this->addGroup($group);
+        return $this;
+    }
+
 }

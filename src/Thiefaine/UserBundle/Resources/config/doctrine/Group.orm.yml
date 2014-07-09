@@ -1,4 +1,4 @@
-Thiefaine\UserBundle\Entity\Groupe:
+Thiefaine\UserBundle\Entity\Group:
     type: entity
     table: GROUPE
     id:

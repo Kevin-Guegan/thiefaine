@@ -66,7 +66,7 @@ class RegistrationController extends BaseController
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $userManager->updateUser($user);
-
+                
                 if (null === $response = $event->getResponse()) {
                     $url = $this->container->get('router')->generate('utilisateurweb_list');
                     $response = new RedirectResponse($url);

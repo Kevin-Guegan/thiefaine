@@ -38,23 +38,6 @@ class GroupFormType extends BaseType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // $em = ...
-        // $objFromDb = $em->getRepository('')->find($id);
-
-        //$em = $this->getDoctrine()->getManager();
-        //$groupe = $em->getRepository('ThiefaineUserBundle:Alerte')->find($id);
-
-        //$groupManager = $this->container->get('fos_user.group_manager');
-        //$group = $groupManager->findGroupBy('name', $groupName);
-
-        
-        //$var = $objFromDb->hasRoles('ROLE_MANAGE_GROUP');
-
-        //$em = $options['em'];
-        //$group = $em->getRepository('ThiefaineUserBundle:Group')->find($id);
-
-        //$rp = $this->em->getRepository('ThiefaineUserBundle:Groupe');
-
         parent::buildForm($builder, $options);
 
          $builder
@@ -143,7 +126,7 @@ class GroupFormType extends BaseType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Thiefaine\UserBundle\Entity\Groupe',
+            'data_class' => 'Thiefaine\UserBundle\Entity\Group',
         ));
     }
 

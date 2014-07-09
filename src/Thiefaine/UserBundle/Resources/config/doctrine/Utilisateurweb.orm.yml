@@ -26,8 +26,8 @@ Thiefaine\UserBundle\Entity\Utilisateurweb:
             length: null
             fixed: false
     manyToMany:
-        groupes:
-            targetEntity: Groupe
+        groups:
+            targetEntity: Group
             joinTable:
                 name: UTILISATEURWEB_GROUPE
                 joinColumns:

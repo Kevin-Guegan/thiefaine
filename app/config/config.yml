@@ -77,7 +77,7 @@ fos_user:
         form:
             type: thiefaine_user_profile
     group:
-        group_class: Thiefaine\UserBundle\Entity\Groupe
+        group_class: Thiefaine\UserBundle\Entity\Group
         form:
             type: thiefaine_user_group
     change_password:
