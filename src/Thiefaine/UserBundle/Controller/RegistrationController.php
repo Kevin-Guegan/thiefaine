@@ -69,7 +69,7 @@ class RegistrationController extends BaseController
                 $userManager->updateUser($user);
                 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->container->get('router')->generate('utilisateurweb_list');
+                    $url = $this->container->get('router')->generate('thiefaine_referentiel_utilisateurweb_list');
                     $response = new RedirectResponse($url);
                 }
 

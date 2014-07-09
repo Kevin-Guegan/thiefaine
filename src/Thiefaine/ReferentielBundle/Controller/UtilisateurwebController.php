@@ -92,22 +92,21 @@ class UtilisateurwebController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$user) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver l\'utilisateur.'
+            );
+            return $this->redirect($this->generateUrl('thiefaine_referentiel_utilisateurweb_list'));
         }
 
-        return $this->redirect($this->generateUrl('utilisateurweb'));
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('thiefaine_referentiel_utilisateurweb_list'));
     }
 
     /**

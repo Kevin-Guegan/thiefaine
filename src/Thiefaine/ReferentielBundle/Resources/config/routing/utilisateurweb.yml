@@ -14,4 +14,3 @@ utilisateurweb_update:
 utilisateurweb_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurweb:delete" }
-    requirements: { _method: post|delete }
