@@ -18,6 +18,7 @@ use FOS\UserBundle\Model\UserInterface;
 
 class RegistrationController extends BaseController
 {
+
     public function registerAction(Request $request)
     {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
@@ -82,7 +83,6 @@ class RegistrationController extends BaseController
             'form' => $form->createView(),
         ));
     }
-
         /**
      * Receive the confirmation token from user email provider, login the user
      */

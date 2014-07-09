@@ -8,7 +8,7 @@ fos_user_profile:
 
 fos_user_register:
     resource: "routing/registration.yml"
-    prefix: /inscription
+    prefix: /utilisateur
 
 fos_user_resetting:
     resource: "routing/resetting.yml"

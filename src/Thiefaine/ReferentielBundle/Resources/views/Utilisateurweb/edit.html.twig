@@ -7,14 +7,58 @@
 
 {% block content %}
 	<div class="content">
-		<h1>Utilisateurweb edit</h1>
 
-    	{{ form(edit_form) }}
-    	{{ form(delete_form) }}
+		<h3>Modifier un utilisateur</h3>
 
-    	<p>
-			<a class="btn btn-default" href={{ path('utilisateurweb') }}>Annuler</a>
-		</p>
+		{{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
+
+			<div class="form-group">
+				<p>
+					{{ form_label(edit_form.nom) }}
+					{{ form_widget(edit_form.nom) }}
+				</p>
+				<p>
+					{{ form_label(edit_form.prenom) }}
+					{{ form_widget(edit_form.prenom) }}
+				</p>
+			    <p>
+					{{ form_label(edit_form.username) }}
+					{{ form_widget(edit_form.username) }}
+				</p>
+				<p>
+					{{ form_label (edit_form.plainPassword.first) }}
+					{{ form_widget (edit_form.plainPassword.first) }}
+				</p>
+				<p>
+					{{ form_label (edit_form.plainPassword.second) }}
+					{{ form_widget (edit_form.plainPassword.second) }}
+				</p>
+				<p>
+					{{ form_label(edit_form.groups) }}
+					{{ form_widget(edit_form.groups) }}
+				</p>
+				<p>
+					{{ form_label(edit_form.email) }}
+					{{ form_widget(edit_form.email) }}
+				</p>
+			  	<p>
+					{{ form_label(edit_form.infos) }}
+					{{ form_widget(edit_form.infos) }}
+				</p>
+		      	<p>	
+		      		<button class="btn btn-primary" type="submit">Modifier l'utilisateur</button>
+					<a class="btn btn-default" href={{ path('thiefaine_referentiel_utilisateurweb_list') }}>Annuler</a>
+		  	  	</p>
+		    </div>
+
+		{{ form_end(edit_form) }}
+
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="flash-notice">
+		        {{ flashMessage }}
+		    </div>
+		{% endfor %}
+
 
 	</div>
 {% endblock %}
