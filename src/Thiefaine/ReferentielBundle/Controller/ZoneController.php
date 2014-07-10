@@ -23,10 +23,10 @@ class ZoneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
+        $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
 
         return $this->render('ThiefaineReferentielBundle:Zone:index.html.twig', array(
-            'entities' => $entities,
+            'zones' => $zones,
         ));
     }
 

@@ -2,34 +2,50 @@
 
 {% block content %}
     <div class="content">
+
         <h3>Gestion des zones</h3>
-        <table class="records_list table table-hover">
+
+        <table class="table table-hover">
             <thead>
-                <tr>
-                    <th>Actions</th>
-                    <th>Active</th>
-                    <th>Nom</th>
-                    <th>Créateur</th>
-                </tr>
+            <tr>
+                <th>Actions</th>
+                <th>Active</th>
+                <th>Nom <span class="glyphicon cheveron-down" title="Trier par nom"></span></th>
+                <th>Créateur <span class="glyphicon cheveron-down" title="Trier par créateur"></span></th>
+            </tr>
             </thead>
             <tbody>
-            {% for entity in entities %}
+            {% for zone in zones %}
                 <tr>
                     <td>
-                        <a href="{{ path('zone_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
+                        <a href="{{ path('zone_edit', { 'id': zone.id }) }}">
+                            <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                        </a>
+
+                        <a href="{{ path('zone_delete', {'id': zone.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette zone ?')">
+                            <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                        </a>
                     </td>
-                    <td>
-                    {% if entity.actif == 1 %}
-                        Oui
+                     <td>
+                    {% if zone.actif %}
+                        <span class="glyphicon glyphicon-ok"></span>
                     {% else %}
-                        Non
+                        -
                     {% endif %}
                     </td>
-                    <td>{{ entity.nom }}</td>
-                    <td> <b>lien a créer</b>{#{ entity.utilisateurweb }#}</td>
+                    <td>{{ zone.nom }}</td>
+                    <td>
+                        {{ zone.utilisateurweb.nom }} {{ zone.utilisateurweb.prenom }}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
