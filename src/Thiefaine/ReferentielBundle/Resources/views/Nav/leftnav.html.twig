@@ -4,6 +4,7 @@
 	<div id="left_bar">
 		<ul class="nav nav-pills nav-stacked">
 		  <li class=""><a href="{{ path('thiefaine_referentiel_accueil') }}">Accueil</a></li>
+		  {% if is_granted('ROLE_MANAGE_GROUP') %}
 		  <li class="">
 		  	<div id='cssmenu'>
 				<ul>
@@ -17,6 +18,8 @@
 				</ul>
 			</div>
 		  </li>
+		  {% endif %}
+		  {% if is_granted('ROLE_MANAGE_USER') %}
 		  <li class="">
 		  	<div id='cssmenu'>
 				<ul>
@@ -30,6 +33,8 @@
 				</ul>
 			</div>
 		  </li>
+		  {% endif %}
+		  {% if is_granted('ROLE_MANAGE_ZONE') %}
 		  <li class="">
 		  	<div id='cssmenu'>
 				<ul>
@@ -43,6 +48,8 @@
 				</ul>
 			</div>
 		  </li>
+		  {% endif %}
+		  {% if is_granted('ROLE_MANAGE_ALERTE') %}
 		  <li class="">
 		  	<div id='cssmenu'>
 				<ul>
@@ -56,6 +63,8 @@
 				</ul>
 			</div>
 		  </li>
+		  {% endif %}
+		  {% if is_granted('ROLE_MANAGE_INFORMATION') %}
 		  <li class="">
 		  	<div id='cssmenu'>
 				<ul>
@@ -69,6 +78,8 @@
 				</ul>
 			</div>
 		  </li>
+		  {% endif %}
+		  {% if is_granted('ROLE_MANAGE_CONSEIL') %}
 		  <li class="">
 		  	<div id='cssmenu'>
 				<ul>
@@ -82,6 +93,7 @@
 				</ul>
 			</div>
 		  </li>
+		  {% endif %}
 		</ul>
 	</div>
 {% endblock %}
