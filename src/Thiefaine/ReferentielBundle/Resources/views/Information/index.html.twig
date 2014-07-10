@@ -3,62 +3,63 @@
 {% block content %}
         <div class="content">
 
-                <h3>Gestion des informations</h3>
+            <h3>Gestion des informations</h3>
 
-                <table class="table table-hover">
-
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
+                    <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
+                    <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                    <th>Créateur <span class="glyphicon cheveron-down" title="Trier par créateur"></span></th>
+                    <th>Photo <span class="glyphicon cheveron-down" title="Trier par photo"></span></th>
+                    <th>Lien <span class="glyphicon cheveron-down" title="Trier par lien"></span></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for information in informations %}
                     <tr>
-                        <th>Actions</th>
-                        <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
-                        <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
-                        <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
-                        <th>Créateur <span class="glyphicon cheveron-down" title="Trier par créateur"></span></th>
-                        <th>Photo <span class="glyphicon cheveron-down" title="Trier par photo"></span></th>
-                        <th>Lien <span class="glyphicon cheveron-down" title="Trier par lien"></span></th>
+                        <td>
+      
+                                <a href="{{ path('information_edit', { 'id': information.id }) }}">
+                                    <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                                </a>
+
+                                <a href="{{ path('information_delete', {'id': information.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette information ?')">
+                                    <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                                </a>
+                        </td>
+                        <td>{{ information.titre }}</td>
+                        <td>{{ information.datecreation|date("d/m/Y") }}</td>
+                        <td>{{ information.datevalidite is empty ? "" :information.datevalidite|date("d/m/Y") }}</td>
+                        <td>
+                            {{ information.utilisateurweb.nom }} {{ information.utilisateurweb.prenom }}
+                        </td>
+                        <td>
+                        {% if information.urlphoto %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if information.urllien %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
                     </tr>
-
-                    {% for information in informations %}
-                        <tr>
-                            <td>
-          
-                                    <a href="{{ path('information_edit', { 'id': information.id }) }}">
-                                        <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
-                                    </a>
-
-                                    <a href="{{ path('information_delete', {'id': information.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette information ?')">
-                                        <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-                                    </a>
-                            </td>
-                            <td>{{ information.titre }}</td>
-                            <td>{{ information.datecreation|date("d/m/Y") }}</td>
-                            <td>{{ information.datevalidite is empty ? "" :information.datevalidite|date("d/m/Y") }}</td>
-                            <td>
-                                {{ information.utilisateurweb.nom }} {{ information.utilisateurweb.prenom }}
-                            </td>
-                            <td>
-                            {% if information.urlphoto %}
-                                <span class="glyphicon glyphicon-ok"></span>
-                            {% else %}
-                                -
-                            {% endif %}
-                            </td>
-                            <td>
-                            {% if information.urllien %}
-                                <span class="glyphicon glyphicon-ok"></span>
-                            {% else %}
-                                -
-                            {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-
-                </table>
-
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    <div class="flash-notice">
-                        {{ flashMessage }}
-                    </div>
                 {% endfor %}
+                </tbody>
+            </table>
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
 
         </div>
 {% endblock %}
