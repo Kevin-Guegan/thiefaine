@@ -21,12 +21,27 @@ class RegistrationController extends BaseController
 
     public function registerAction(Request $request)
     {
+
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
         $userManager = $this->container->get('fos_user.user_manager');
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->container->get('event_dispatcher');
+
+        $form = $formFactory->createForm();
+
+        // on regarde si il existe des geoupes avant ^_^
+        $em = $this->container->get('doctrine')->getManager();
+        if ( count($em->getRepository('ThiefaineUserBundle:Group')->findAll()) == 0) {
+             $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Veuillez tout d\'abord créer un groupe dans l\'application.'
+            );
+            return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
+                'form' => $form->createView(),
+            ));
+        }
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
@@ -38,7 +53,6 @@ class RegistrationController extends BaseController
             return $event->getResponse();
         }
 
-        $form = $formFactory->createForm();
         $form->setData($user);
 
         if ('POST' === $request->getMethod()) {
