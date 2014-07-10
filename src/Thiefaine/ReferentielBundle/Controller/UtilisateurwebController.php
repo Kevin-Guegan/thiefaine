@@ -68,12 +68,17 @@ class UtilisateurwebController extends Controller
             throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
         }
 
-        //$deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($user);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
 
+            // on supprime tous les groupes et on ajoute celui qu'on a sélectionné
+            foreach ($user->getGroups() as $group) {
+                $user->removeGroup($group);
+            }
+            $user->addGroup($editForm['groups']->getData());
+            
             $userManager = $this->container->get('fos_user.user_manager');
             $userManager->updateUser($user);
 
