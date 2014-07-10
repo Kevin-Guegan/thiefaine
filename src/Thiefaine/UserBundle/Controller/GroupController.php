@@ -22,6 +22,7 @@ class GroupController extends BaseController
      */
     public function newAction(Request $request)
     {
+        $em = $this->container->get('doctrine')->getManager();
         /** @var $groupManager \FOS\UserBundle\Model\GroupManagerInterface */
         $groupManager = $this->container->get('fos_user.group_manager');
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
@@ -52,6 +53,21 @@ class GroupController extends BaseController
                         'form' => $form->createview(),
                     ));
                 }
+
+                // On set la gendarmerie de l'appli
+                $gendarmeries = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->findAll();
+                if (count($gendarmeries) != 1) {
+                    $this->container->get('session')->getFlashBag()->add(
+                        'notice',
+                        'Impossible de trouver la gendarmerie dans l\'application.'
+                    );
+                    return $this->render('FOSUserBundle:Group:new.html.twig', array(
+                        'form'   => $form->createView(),
+                    ));
+                } else {
+                    $gendarmerie = $gendarmeries[0];    
+                }
+                $group->setGendarmerie($gendarmerie);
 
 				$gererGroupes = $form['gerergroupes']->getData();
 	            $gererUtilisateurs = $form['gererutilisateurs']->getData();

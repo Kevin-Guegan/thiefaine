@@ -9,5 +9,12 @@ Thiefaine\UserBundle\Entity\Group:
             id: true
             generator:
                 strategy: IDENTITY
+    manyToOne:
+        gendarmerie:
+            targetEntity: Thiefaine\ReferentielBundle\Entity\Gendarmerie
+            inversedBy: groups
+            joinColumns:
+                idgendarmerie:
+                    referencedColumnName: id
 
     lifecycleCallbacks: {  }
