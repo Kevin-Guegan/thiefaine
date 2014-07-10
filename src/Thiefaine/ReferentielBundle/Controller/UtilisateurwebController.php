@@ -23,10 +23,10 @@ class UtilisateurwebController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->findAll();
+        $users = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->findAll();
 
         return $this->render('ThiefaineReferentielBundle:Utilisateurweb:index.html.twig', array(
-            'entities' => $entities,
+            'users' => $users,
         ));
     }
 
