@@ -4,10 +4,12 @@ namespace Thiefaine\ReferentielBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Get;
 
 use Thiefaine\ReferentielBundle\Entity\Message;
 use Thiefaine\ReferentielBundle\Form\MessageType;
-
+use FOS\RestBundle\View\View;
 /**
  * Message controller.
  *
@@ -237,4 +239,56 @@ class InformationController extends Controller
 			->getForm()
 		;
 	}
+
+
+    /**
+    * Get availalble Information.
+    *
+    * @Get("/information")
+    *
+    * @ApiDoc
+    */
+    public function getInformationAction() {
+        $view = View::create();
+        //$view = new View();
+        $em = $this->getDoctrine()->getManager();
+        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('information');
+        $idTypeMessage = $typeMessage->getId();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
+        $view->setData($entity);
+
+        return $this->handlerView($view);
+    }
+
+    /**
+    * Get availalble OneInformation.
+    *
+    * @param $idInformation id of an information.
+    * @Get("/information/{idInformation}")
+    *
+    * @ApiDoc
+    */
+    public function getOneInformationAction($idInformation) {
+        $view = View::create();
+        //$view = new View();
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($idInformation);
+        $typemessage = $entity->getTypemessage()->getLibelle();
+        if($typemessage == "information"){
+            $view->setData($entity);
+
+            return $this->handlerView($view);
+
+        }else{
+            return $this->handlerView($view);
+        }
+    }
+
+    /**
+    * @return \FOS\RestBundle\View\ViewHandler
+    */
+    protected function handlerView($view)
+    {
+        return $this->container->get('fos_rest.view_handler')->handle($view);
+    }
 }
