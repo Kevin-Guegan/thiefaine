@@ -46,37 +46,22 @@ class UtilisateurmobileController extends Controller
     */
     public function createAction(Request $request, $idGend, $token)
     {
+        $view = View::create();
         $em = $this->getDoctrine()->getEntityManager();
 
         $gend = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->find($idGend);
-        $date = date('Y-m-d H:i:s');
+        $date = new \DateTime('now');
 
         $utilisateurmobile = new Utilisateurmobile();
-        $utilisateurmobile->setGendarmerie($idGend);
+        $utilisateurmobile->setGendarmerie($gend);
         $utilisateurmobile->setToken($token);
         $utilisateurmobile->setDatecreation($date);
 
         $em->persist($utilisateurmobile);
         $em->flush();
 
-        return true;
-
-       /* $entity = new Utilisateurmobile();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('utilisateurmobile_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('ThiefaineReferentielBundle:Utilisateurmobile:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));*/
+        $view->setData("success");
+        return $this->handlerView($view);
     }
 
     /**
@@ -246,5 +231,13 @@ class UtilisateurmobileController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /**
+    * @return \FOS\RestBundle\View\ViewHandler
+    */
+    protected function handlerView($view)
+    {
+        return $this->container->get('fos_rest.view_handler')->handle($view);
     }
 }
