@@ -5,8 +5,14 @@ namespace Thiefaine\ReferentielBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Get;
+
 use Thiefaine\ReferentielBundle\Entity\Message;
 use Thiefaine\ReferentielBundle\Form\MessageType;
+
+
+use FOS\RestBundle\View\View;
 
 /**
  * Message controller.
@@ -293,5 +299,57 @@ class ConseilController extends Controller
             ->add('annuler', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+
+    /**
+    * Get availalble Conseil.
+    *
+    * @Get("/conseil")
+    *
+    * @ApiDoc
+    */
+    public function getConseilAction() {
+        $view = View::create();
+        //$view = new View();
+        $em = $this->getDoctrine()->getManager();
+        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
+        $idTypeMessage = $typeMessage->getId();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
+        $view->setData($entity);
+
+        return $this->handlerView($view);
+    }
+
+    /**
+    * Get availalble OneConseil.
+    *
+    * @param $idConseil id of a conseil.
+    * @Get("/conseil/{idConseil}")
+    *
+    * @ApiDoc
+    */
+    public function getOneConseilAction($idConseil) {
+        $view = View::create();
+        //$view = new View();
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($idConseil);
+        $typemessage = $entity->getTypemessage()->getLibelle();
+        if($typemessage == "conseil"){
+            $view->setData($entity);
+
+            return $this->handlerView($view);
+
+        }else{
+            return $this->handlerView($view);
+        }
+    }
+
+    /**
+    * @return \FOS\RestBundle\View\ViewHandler
+    */
+    protected function handlerView($view)
+    {
+        return $this->container->get('fos_rest.view_handler')->handle($view);
     }
 }

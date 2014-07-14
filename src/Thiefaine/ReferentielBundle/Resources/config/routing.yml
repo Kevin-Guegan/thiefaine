@@ -38,3 +38,7 @@ thiefaine_referentiel_myaccount:
 fos_user:
     resource: "@ThiefaineUserBundle/Resources/config/routing.yml"
     prefix: /
+
+thiefaine_utilisateurmobile:
+    resource: "@ThiefaineReferentielBundle/Resources/config/routing/utilisateurmobile.yml"
+    prefix:   /utilisateurmobile

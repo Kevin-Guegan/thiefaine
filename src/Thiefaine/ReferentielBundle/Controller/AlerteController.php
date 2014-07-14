@@ -5,6 +5,9 @@ namespace Thiefaine\ReferentielBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\View\View;
 
 use Thiefaine\ReferentielBundle\Entity\Alerte;
 use Thiefaine\ReferentielBundle\Entity\Message;
@@ -316,5 +319,47 @@ class AlerteController extends Controller
                 )
             ->getForm()
         ;
+    }
+
+    /**
+      *Get availalble Alerte.
+      *
+      *@param $id id of the alerte.
+      *
+      *@Get("/alerte/{id}")
+      *@ApiDoc
+    */
+
+    public function getAlerteAction($id) {
+
+        $view = View::create();
+
+        //$view = new View();
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Alerte')->find($id);
+
+        $view->setData($entity);
+
+        
+
+        return $this->handlerView($view);
+
+    }
+
+    
+
+    /**
+      *@return \FOS\RestBundle\View\ViewHandler
+     */
+
+    protected function handlerView($view)
+
+    {
+
+        return $this->container->get('fos_rest.view_handler')->handle($view);
+
     }
 }
