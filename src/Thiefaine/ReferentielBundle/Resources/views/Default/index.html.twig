@@ -21,16 +21,6 @@
 			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/jquery-2.1.0.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/ckeditor/ckeditor.js') }}"></script>
-
-			<script type="text/javascript">
-			    $("form").submit( function() {
-			        var messageLength = CKEDITOR.instances['cke_thiefaine_referentielbundle_message_message'].getData().replace(/<[^>]*>/gi, '').trim().length();
-			        if( !messageLength ) {
-			            alert( 'Please enter a message' );
-			        }
-			    })
-			</script>
-
 			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/datepicker-fr.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/function.js') }}"></script>
