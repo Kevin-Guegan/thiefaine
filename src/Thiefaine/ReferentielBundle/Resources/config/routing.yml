@@ -27,10 +27,6 @@ thiefaine_information:
     resource: "routing/information.yml"
     prefix:   /information
 
-thiefaine_alerte:
-    resource: "routing/alerte.yml"
-    prefix:   /alerte
-
 thiefaine_referentiel_myaccount:
     pattern:  /myaccount
     defaults: { _controller: ThiefaineReferentielBundle:Default:myaccount }

@@ -1,6 +1,6 @@
-Thiefaine\ReferentielBundle\Entity\Alerte:
+Thiefaine\ReferentielBundle\Entity\Information:
     type: entity
-    table: ALERTE
+    table: INFORMATION
     id:
         id:
             type: integer
@@ -9,17 +9,21 @@ Thiefaine\ReferentielBundle\Entity\Alerte:
             id: true
             generator:
                 strategy: IDENTITY
+    fields:
+        alerte:
+            type: boolean
+            nullable: true
     oneToOne:
         message:
             targetEntity: Message
-            inversedBy: alerte
+            inversedBy: information
             joinColumns:
                 idmessage:
                     referencedColumnName: id
     manyToOne:
         zone:
             targetEntity: Zone
-            inversedBy: alertes
+            inversedBy: informations
             joinColumns:
                 idzone:
                     referencedColumnName: id

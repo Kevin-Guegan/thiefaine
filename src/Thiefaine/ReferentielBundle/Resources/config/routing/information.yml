@@ -2,10 +2,6 @@ information:
     pattern:  /
     defaults: { _controller: "ThiefaineReferentielBundle:Information:index" }
 
-information_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "ThiefaineReferentielBundle:Information:show" }
-
 information_new:
     pattern:  /new
     defaults: { _controller: "ThiefaineReferentielBundle:Information:new" }

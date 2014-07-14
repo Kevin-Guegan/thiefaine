@@ -1,8 +1,3 @@
-thiefaine_referentiel_api_alerte :
-    type: rest
-    resource: 'ThiefaineReferentielBundle:Alerte'
-    name_prefix: thiefaine_referentiel_api_
-
 thiefaine_referentiel_api_point :
     type: rest
     resource: 'ThiefaineReferentielBundle:Point'

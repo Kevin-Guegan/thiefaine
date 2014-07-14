@@ -37,7 +37,6 @@ security:
 
     role_hierarchy:
         ROLE_MANAGE_ZONE:           ROLE_USER
-        ROLE_MANAGE_ALERTE:         ROLE_USER
         ROLE_MANAGE_INFORMATION:    ROLE_USER
         ROLE_MANAGE_CONSEIL:        ROLE_USER
         ROLE_MANAGE_USER:           ROLE_USER
@@ -57,9 +56,6 @@ security:
 
         - { path: ^/utilisateur/$, role: ROLE_USER }
         - { path: ^/utilisateur/*+, role: ROLE_MANAGE_USER }
-
-        - { path: ^/alerte/$, role: ROLE_USER }
-        - { path: ^/alerte/*+, role: ROLE_MANAGE_ALERTE }
 
         - { path: ^/information/$, role: ROLE_USER }
         - { path: ^/information/*+, role: ROLE_MANAGE_INFORMATION }

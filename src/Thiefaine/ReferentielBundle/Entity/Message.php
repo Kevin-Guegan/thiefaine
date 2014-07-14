@@ -55,9 +55,9 @@ class Message
     private $urllien;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Alerte
+     * @var \Thiefaine\ReferentielBundle\Entity\Information
      */
-    private $alerte;
+    private $information;
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Typemessage
@@ -265,26 +265,26 @@ class Message
     }
 
     /**
-     * Set alerte
+     * Set information
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alerte
+     * @param \Thiefaine\ReferentielBundle\Entity\Information $information
      * @return Message
      */
-    public function setAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alerte = null)
+    public function setInformation(\Thiefaine\ReferentielBundle\Entity\Information $information = null)
     {
-        $this->alerte = $alerte;
+        $this->information = $information;
 
         return $this;
     }
 
     /**
-     * Get alerte
+     * Get information
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Alerte 
+     * @return \Thiefaine\ReferentielBundle\Entity\Information 
      */
-    public function getAlerte()
+    public function getInformation()
     {
-        return $this->alerte;
+        return $this->information;
     }
 
     /**

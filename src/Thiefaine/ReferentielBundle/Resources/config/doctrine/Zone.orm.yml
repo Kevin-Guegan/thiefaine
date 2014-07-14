@@ -36,8 +36,8 @@ Thiefaine\ReferentielBundle\Entity\Zone:
         points:
             targetEntity: Point
             mappedBy: zone
-        alertes:
-            targetEntity: Alerte
+        informations:
+            targetEntity: Information
             mappedBy: zone
     manyToOne:
         utilisateurweb:

@@ -3,17 +3,11 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
 
 /**
- * Alerte
- *
- * @ORM\Table(name="ALERTE", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_F356B2BC69B96211", columns={"idmessage"}), @ORM\UniqueConstraint(name="UNIQ_F356B2BC732431A7", columns={"idzone"})})
- * @ORM\Entity
- * @ExclusionPolicy ("all")
+ * Information
  */
-class Alerte
+class Information
 {
     /**
      * @var integer
@@ -21,8 +15,12 @@ class Alerte
     private $id;
 
     /**
+     * @var boolean
+     */
+    private $alerte;
+
+    /**
      * @var \Thiefaine\ReferentielBundle\Entity\Message
-     * @Expose
      */
     private $message;
 
@@ -43,10 +41,33 @@ class Alerte
     }
 
     /**
+     * Set alerte
+     *
+     * @param boolean $alerte
+     * @return Information
+     */
+    public function setAlerte($alerte)
+    {
+        $this->alerte = $alerte;
+
+        return $this;
+    }
+
+    /**
+     * Get alerte
+     *
+     * @return boolean 
+     */
+    public function getAlerte()
+    {
+        return $this->alerte;
+    }
+
+    /**
      * Set message
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Message $message
-     * @return Alerte
+     * @return Information
      */
     public function setMessage(\Thiefaine\ReferentielBundle\Entity\Message $message = null)
     {
@@ -69,7 +90,7 @@ class Alerte
      * Set zone
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Zone $zone
-     * @return Alerte
+     * @return Information
      */
     public function setZone(\Thiefaine\ReferentielBundle\Entity\Zone $zone = null)
     {

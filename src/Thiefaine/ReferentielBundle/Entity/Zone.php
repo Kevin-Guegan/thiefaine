@@ -47,7 +47,7 @@ class Zone
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $alertes;
+    private $informations;
 
     /**
      * @var \Thiefaine\UserBundle\Entity\Utilisateurweb
@@ -60,7 +60,7 @@ class Zone
     public function __construct()
     {
         $this->points = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->alertes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->informations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -222,36 +222,36 @@ class Zone
     }
 
     /**
-     * Add alertes
+     * Add informations
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alertes
+     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
      * @return Zone
      */
-    public function addAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alertes)
+    public function addInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
     {
-        $this->alertes[] = $alertes;
+        $this->informations[] = $informations;
 
         return $this;
     }
 
     /**
-     * Remove alertes
+     * Remove informations
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alertes
+     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
      */
-    public function removeAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alertes)
+    public function removeInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
     {
-        $this->alertes->removeElement($alertes);
+        $this->informations->removeElement($informations);
     }
 
     /**
-     * Get alertes
+     * Get informations
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getAlertes()
+    public function getInformations()
     {
-        return $this->alertes;
+        return $this->informations;
     }
 
     /**

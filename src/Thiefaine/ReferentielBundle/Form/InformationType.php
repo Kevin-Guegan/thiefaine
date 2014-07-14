@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Thiefaine\ReferentielBundle\Form\MessageType;
 
-class AlerteType extends AbstractType
+class InformationType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -31,7 +31,18 @@ class AlerteType extends AbstractType
                                                                     )
                                             )
                 )
-            
+            ->add('alerte', 'checkbox', array(
+                'label' => 'Envoyer une alerte',
+
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+
+                ),
+                'attr' => array(
+                    'class' => 'form-control pull-right',
+                ),
+                'required' => false,
+            ))
         ;
 
     }
@@ -42,7 +53,7 @@ class AlerteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Alerte'
+            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Information'
         ));
     }
 
@@ -51,6 +62,6 @@ class AlerteType extends AbstractType
      */
     public function getName()
     {
-        return 'thiefaine_referentielbundle_alerte';
+        return 'thiefaine_referentielbundle_information';
     }
 }

@@ -1,17 +1,18 @@
 {% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block javascripts %}
-	{{ parent() }}
-	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
 {% endblock %}
+
 
 {% block content %}
 
-	<div class="content">
-		
-		<h3>Création d'une information</h1>
+    <div class="content">
+        
+        <h3>Création d'une information</h1>
 
 		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -20,29 +21,47 @@
 			<div class="form-group">
 
 				<p>
-					{{ form_label(form.titre) }}
-					{{ form_widget(form.titre) }}
+					{{ form_label(form.message.titre) }}
+					{{ form_widget(form.message.titre) }}
 				</p>
 				<p>
-					{{ form_label(form.attachement) }}
-					{{ form_widget(form.attachement) }}
+					{{ form_label(form.message.attachement) }}
+					{{ form_widget(form.message.attachement) }}
 				</p>
 				<p>
-					{{ form_label(form.urllien) }}
-					{{ form_widget(form.urllien) }}
+					{{ form_label(form.message.urllien) }}
+					{{ form_widget(form.message.urllien) }}
+				</p>
+				<p>
+					{{ form_label(form.zone) }}
+					{{ form_widget(form.zone) }}
 				</p>
 				<p class="dateElement">
-					{{ form_label(form.datevalidite) }}
-					{{ form_widget(form.datevalidite) }}
+					{{ form_label(form.message.datevalidite) }}
+					{{ form_widget(form.message.datevalidite) }}
 				</p>
 				<p>
-					{{ form_label(form.message) }}
-					{{ form_widget(form.message) }}
+					{{ form_label(form.message.message) }}
+					{{ form_widget(form.message.message) }}
+				</p>
+				
+				<p class="list-form-control">
+					<label>Notifications</label>
+					<table class="table table-hover">
+						<tr>
+							<td>
+					  			{{ form_label(form.alerte) }}
+					  		</td>
+					  		<td style="text-align: right;">
+					  			{{ form_widget(form.alerte) }}
+					  		</td>
+					  	</tr>
+					</table>
 				</p>
 				<p>	
 		      		<button class="btn btn-primary" type="submit">Créer l'information</button>
 					<a class="btn btn-default" href={{ path('information') }}>Annuler</a>
-		  	  	</p>
+		  	  	</p>	
 
 			</div>
 
@@ -54,8 +73,7 @@
 		    </div>
 		{% endfor %}
 
-	</div>
-
+    </div>
 
 
 {% endblock %}
