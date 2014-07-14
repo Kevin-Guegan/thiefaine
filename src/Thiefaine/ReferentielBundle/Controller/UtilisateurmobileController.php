@@ -41,7 +41,7 @@ class UtilisateurmobileController extends Controller
     * @param $idGend id of Gendarmerie.
     * @param $token notification token.
     * 
-    * @Post("/api/utilisateurmobile/create/{idGend}/{token}")
+    * @Post("/utilisateurmobile/create/{idGend}/{token}")
     * @ApiDoc
     */
     public function createAction(Request $request, $idGend, $token)
