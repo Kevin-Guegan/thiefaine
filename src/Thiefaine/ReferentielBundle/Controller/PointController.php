@@ -230,7 +230,7 @@ class PointController extends Controller
 
 
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Point')->find($zone);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Point')->findByZone($zone);
 
         $view->setData($entity);
 
