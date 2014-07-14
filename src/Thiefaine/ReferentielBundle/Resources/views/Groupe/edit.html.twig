@@ -1,6 +1,20 @@
+
 {% block content %}
+
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+
 	<div class="content">
-		<h3>Mise à jour d'un groupe</h3>
+		<h3>Mise à jour du groupe {{ group_name }}</h3>
+
+		{% if flashMessages|length > 0 %}
+    	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
 		
     	{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -103,12 +117,6 @@
 			</div>
 
 		{{ form_end(form) }}
-
-		{% for flashMessage in app.session.flashbag.get('notice') %}
-		    <div class="flash-notice">
-		        {{ flashMessage }}
-		    </div>
-		{% endfor %}
 
 	</div>
 {% endblock %}

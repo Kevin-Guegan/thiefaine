@@ -10,9 +10,21 @@
 
 {% block content %}
 
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+
     <div class="content">
         
-        <h3>Edition d'un conseil</h1>
+        <h3>Edition du conseil {{ conseil.titre }}</h1>
+
+        {% if flashMessages|length > 0 %}
+    	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
 
 		{{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -21,7 +33,7 @@
 			<div class="form-group">
 
 				<p>
-					{{ form_label(edit_form.titre) }}
+					{{ form_label(edit_form.titre) }} *
 					{{ form_widget(edit_form.titre) }}
 				</p>
 				<p>
@@ -42,7 +54,7 @@
 					{{ form_widget(edit_form.datevalidite) }}
 				</p>
 				<p>
-					{{ form_label(edit_form.message) }}
+					{{ form_label(edit_form.message) }} *
 					{{ form_widget(edit_form.message) }}
 				</p>
 				<p>	
@@ -53,12 +65,6 @@
 			</div>
 
 		{{ form_end(edit_form) }}
-
-		{% for flashMessage in app.session.flashbag.get('notice') %}
-		    <div class="flash-notice">
-		        {{ flashMessage }}
-		    </div>
-		{% endfor %}
 
     </div>
 

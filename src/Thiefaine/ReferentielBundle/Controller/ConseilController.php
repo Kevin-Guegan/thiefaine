@@ -163,7 +163,7 @@ class ConseilController extends Controller
         //$deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
-            'entity'      => $conseil,
+            'conseil'      => $conseil,
             'edit_form'   => $editForm->createView(),
             //'delete_form' => $deleteForm->createView(),
         ));

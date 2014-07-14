@@ -3,11 +3,22 @@
 {% endblock %}
 
 {% block content %}
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+	
 	<div class="content">
 
 		<h3>Création d'un utilisateur</h3>
 
-		{% set flashMessages = app.session.flashbag.get('notice') %}
+		{% if flashMessages|length > 0 %}
+    	<div class="alert alert-warning" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
+
 		{% if flashMessages|length == 0 %}
 
 		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
@@ -52,14 +63,7 @@
 		    </div>
 
 		{{ form_end(form) }}
-
 		{% endif %}
-
-		{% for flashMessage in flashMessages %}
-		    <div class="flash-notice">
-		        {{ flashMessage }}
-		    </div>
-		{% endfor %}
 
 	</div>
 

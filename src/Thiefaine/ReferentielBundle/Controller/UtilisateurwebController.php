@@ -39,17 +39,17 @@ class UtilisateurwebController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->find($id);
+        $utilisateurweb = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
+        if (!$utilisateurweb) {
+            throw $this->createNotFoundException('Unable to find Utilisateurweb utilisateurweb.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($utilisateurweb);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Utilisateurweb:edit.html.twig', array(
-            'entity'      => $entity,
+            'utilisateurweb'      => $utilisateurweb,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

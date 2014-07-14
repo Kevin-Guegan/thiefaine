@@ -170,7 +170,7 @@ class InformationController extends Controller
         //$deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-            'entity'      => $information,
+            'information'      => $information,
             'edit_form'   => $editForm->createView(),
             //'delete_form' => $deleteForm->createView(),
         ));

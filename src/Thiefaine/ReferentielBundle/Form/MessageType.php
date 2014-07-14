@@ -15,7 +15,7 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre', 'text', array    (   'label'  => 'Titre *',
+            ->add('titre', 'text', array    (   'label'  => 'Titre',
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                                                 'attr'   =>  array  (   'class' => 'form-control',
                                                                         'placeholder' => 'Titre',
@@ -73,7 +73,7 @@ class MessageType extends AbstractType
                                                                     )
                                             )
                 )
-            ->add('message', 'textarea', array  (   'label'  => 'Message *',
+            ->add('message', 'textarea', array  (   'label'  => 'Message',
                                                 'label_attr'   =>  array (  'class' => 'control-label',
                                                                             'for' => 'infoInformation' ),
                                                 'attr'   =>  array (    'class' => 'form-control',
