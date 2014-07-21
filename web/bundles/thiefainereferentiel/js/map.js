@@ -99,7 +99,7 @@
 
 		//Création du champ de saisie
 		$("#MesCercleGoogle table").append('<tr class="cercleGMap" data-cercle="'+id+'"></tr>');
-		$('.cercleGMap[data-cercle='+id+']').append("<td>Cercle n°"+cptCercle+"</td>");
+		$('.cercleGMap[data-cercle='+id+']').append("<td>Cercle n°"+(cptCercle+1)+"</td>");
 		$('.cercleGMap[data-cercle='+id+']').append("<td class='input-group'></td>");
 		$('.cercleGMap[data-cercle='+id+'] .input-group').append("<input style='width: 100px;' type='text' data-cercle='"+id+"' class='cercleRadius pull-right form-control' value='"+rad+"' />");
 		$('.cercleGMap[data-cercle='+id+'] .input-group').append('<span class="input-group-btn"><button data-cercle="'+id+'" class="btn btn-default supprCercle" type="button">x</button></span>');
