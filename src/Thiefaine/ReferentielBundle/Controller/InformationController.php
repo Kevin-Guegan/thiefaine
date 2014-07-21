@@ -45,8 +45,18 @@ class InformationController extends Controller
         $information = new Information();
         $form   = $this->createCreateForm($information);
 
+        $em = $this->getDoctrine()->getManager();
+        $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
+        if (!$zones) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Veuillez d\'abord créer une zone.'
+            );
+        }
+
         return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-            'entity' => $information,
+            'information' => $information,
+            'zones' => $zones,
             'form'   => $form->createView(),
         ));
     }
@@ -61,9 +71,12 @@ class InformationController extends Controller
         $form = $this->createCreateForm($information);
         $form->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+        $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
+
         if ($form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
+           
 
             // Message de type information
             $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('information');
@@ -73,7 +86,8 @@ class InformationController extends Controller
                     'Impossible de trouver les messages de type information.'
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'entity' => $information,
+                    'information' => $information,
+                    'zones' => $zones,
                     'form'   => $form->createView(),
                 ));
             }
@@ -86,7 +100,8 @@ class InformationController extends Controller
                     'Impossible de trouver l\'utilisateur.'
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'entity' => $information,
+                    'information' => $information,
+                    'zones' => $zones,
                     'form'   => $form->createView(),
                 ));
             }
@@ -104,7 +119,8 @@ class InformationController extends Controller
                     'Veuillez saisir un message.'
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'entity' => $information,
+                    'information' => $information,
+                    'zones' => $zones,
                     'form'   => $form->createView(),
                 ));
             }
@@ -117,7 +133,8 @@ class InformationController extends Controller
                     'Veuillez sélectionner une zone.'
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'entity' => $information,
+                    'information' => $information,
+                    'zones' => $zones,
                     'form'   => $form->createView(),
                 ));
             }
@@ -147,7 +164,8 @@ class InformationController extends Controller
         }
 
         return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-            'entity' => $information,
+            'information' => $information,
+            'zones' => $zones,
             'form'   => $form->createView(),
         ));
     }
@@ -233,7 +251,7 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->setUrlphoto($finalNameFile);
+                $information->getMessage()->setUrlphoto($finalNameFile);
             }
 
             return $this->redirect($this->generateUrl('information'));

@@ -16,6 +16,33 @@
 
         <h3>Création d'une information</h1>
 
+        {% if flashMessages|length > 0 %}
+        	{% if zones == null %}
+        		<p>
+			    	<div class="alert alert-warning" role="alert" style="margin-top: 20px">
+						{% for flashMessage in flashMessages %}
+						    <div class="flash-notice">
+						        {{ flashMessage }}
+						    </div>
+						{% endfor %}
+					</div>
+				</p>
+        	{% else %}
+        		<p>
+			    	<div class="alert alert-danger" role="alert">
+						{% for flashMessage in flashMessages %}
+						    <div class="flash-notice">
+						        {{ flashMessage }}
+						    </div>
+						{% endfor %}
+					</div>
+				</p>
+        	{% endif %}
+		{% endif %}
+
+
+		{% if zones != null %}
+
 		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
 			{{ form_errors(form) }}
@@ -25,6 +52,10 @@
 				<p>
 					{{ form_label(form.message.titre) }}
 					{{ form_widget(form.message.titre) }}
+				</p>
+				<p>
+					{{ form_label(form.message.urlphoto) }}
+					{{ form_widget(form.message.urlphoto) }}
 				</p>
 				<p>
 					{{ form_label(form.message.attachement) }}
@@ -69,16 +100,6 @@
 
 		{{ form_end(form) }}
 
-		{% if flashMessages|length > 0 %}
-    	<p>
-    	<div class="alert alert-danger" role="alert">
-			{% for flashMessage in flashMessages %}
-			    <div class="flash-notice">
-			        {{ flashMessage }}
-			    </div>
-			{% endfor %}
-		</div>
-		</p>
 		{% endif %}
 
     </div>

@@ -27,4 +27,3 @@ zone_update:
 zone_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ThiefaineReferentielBundle:Zone:delete" }
-    requirements: { _method: post|delete }
