@@ -12,42 +12,48 @@
 {% endblock %}
 
 {% block content %}
-	<div class="content zone" data-zone={{ entity.id }}>
+	<div class="content zone col-md-9" data-zone={{ entity.id }}>
 		<h1>Zone edit</h1>
 
-    	{{ form(edit_form) }}
-    	{{ form(delete_form) }}
+    	{{ form_start(edit_form) }}
+	    	<p>
+				{{ form_label(edit_form.nom) }}
+				{{ form_widget(edit_form.nom) }}
+			</p>
 
-    	<p>
-    		<table id="mesPoints">
-		        <tbody>
-	                {% for point in entity.points %}
-	                <tr>
-	                    <td class="idpoint"> {{ point.id }} </td>
-	                    <td class="latitudepoint"> {{ point.latitude }} </td>
-	                    <td class="longitudepoint"> {{ point.longitude }} </td>
-	                    <td class="radiuspoint"> {{ point.radius }} </td>
-	                </tr>
-	                {% endfor %}		            
-		        </tbody>
-		    </table>
+	    	<p>
+	    		<table id="mesPoints">
+			        <tbody>
+		                {% for point in entity.points %}
+		                <tr>
+		                    <td class="idpoint"> {{ point.id }} </td>
+		                    <td class="latitudepoint"> {{ point.latitude }} </td>
+		                    <td class="longitudepoint"> {{ point.longitude }} </td>
+		                    <td class="radiuspoint"> {{ point.radius }} </td>
+		                </tr>
+		                {% endfor %}		            
+			        </tbody>
+			    </table>
 
-			<label for="zoneRadius" class="control-label">Rayon de la zone</label>
-			<div class="input-group list-form-control" data-toggle="tooltip" data-placement="right" title="Saisisser le rayon de la zone à créer. (nota : il est 	possible de modifier le rayon et déplacer la zone une fois celle-ci crée.)">
-				<input type="text" class="form-control" id="zoneRadius" placeholder="Rayon de la zone">
-				<span class="input-group-btn">
-				  <button id="zoneRadiusBtn" class="btn btn-primary" type="button">Générer la zone</button>
-				</span>
-			</div>
-			<div id="MesCercleGoogle">
-				<table class="table table-hover" style="border-collapse: inherit; margin-bottom: 0px;">
-			  	
-				</table>
-			</div>
-			<div id="MaCarteGoogle"></div>
-		</p>
-		<p>
-			<a class="btn btn-default" href={{ path('zone') }}>Annuler</a>
-		</p>
+				<label for="zoneRadius" class="control-label">Points de la zone</label>
+				<div class="input-group list-form-control" data-toggle="tooltip" data-placement="right" title="Saisisser le rayon de la zone à créer. (nota : il est 	possible de modifier le rayon et déplacer la zone une fois celle-ci crée.)">
+					<input type="text" class="form-control" id="zoneRadius" placeholder="Rayon du point">
+					<span class="input-group-btn">
+					  <button id="zoneRadiusBtn" class="btn btn-primary" type="button">Générer la zone</button>
+					</span>
+				</div>
+				<div id="MesCercleGoogle">
+					<table class="table table-hover" style="border-collapse: inherit; margin-bottom: 0px;">
+				  	
+					</table>
+				</div>
+				<div id="MaCarteGoogle"></div>
+			</p>
+			<p>
+				<button class="btn btn-primary" type="submit">Modifier la zone</button>
+				<a class="btn btn-default" href={{ path('zone') }}>Annuler</a>
+			</p>
+		{{ form_end(edit_form) }}
+
 	</div>
 {% endblock %}
