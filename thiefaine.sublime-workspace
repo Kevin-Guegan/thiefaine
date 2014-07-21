@@ -8,65 +8,6 @@
 	"buffers":
 	[
 		{
-			"file": "src/Thiefaine/ReferentielBundle/Resources/views/Utilisateurweb/new.html.twig",
-			"settings":
-			{
-				"buffer_size": 624,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Thiefaine/ReferentielBundle/Controller/UtilisateurwebController.php",
-			"settings":
-			{
-				"buffer_size": 5910,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Thiefaine/UserBundle/Controller/GroupController.php",
-			"settings":
-			{
-				"buffer_size": 9002,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<?php\n\nnamespace Thiefaine\\UserBundle\\Controller;\n\nuse FOS\\UserBundle\\Controller\\RegistrationController as BaseController;\n\nuse FOS\\UserBundle\\FOSUserEvents;\nuse FOS\\UserBundle\\Event\\FormEvent;\nuse FOS\\UserBundle\\Event\\GetResponseUserEvent;\nuse FOS\\UserBundle\\Event\\UserEvent;\nuse FOS\\UserBundle\\Event\\FilterUserResponseEvent;\nuse Symfony\\Component\\DependencyInjection\\ContainerAware;\nuse Symfony\\Component\\HttpFoundation\\Request;\nuse Symfony\\Component\\HttpFoundation\\RedirectResponse;\nuse Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException;\nuse Symfony\\Component\\Security\\Core\\Exception\\AccessDeniedException;\nuse FOS\\UserBundle\\Model\\UserInterface;\n\nclass RegistrationController extends BaseController\n{\n    public function registerAction(Request $request)\n    {\n        /** @var $formFactory \\FOS\\UserBundle\\Form\\Factory\\FactoryInterface */\n        $formFactory = $this->container->get('fos_user.registration.form.factory');\n        /** @var $userManager \\FOS\\UserBundle\\Model\\UserManagerInterface */\n        $userManager = $this->container->get('fos_user.user_manager');\n        /** @var $dispatcher \\Symfony\\Component\\EventDispatcher\\EventDispatcherInterface */\n        $dispatcher = $this->container->get('event_dispatcher');\n\n        $user = $userManager->createUser();\n        $user->setEnabled(true);\n\n        $event = new GetResponseUserEvent($user, $request);\n        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);\n\n        if (null !== $event->getResponse()) {\n            return $event->getResponse();\n        }\n\n        $form = $formFactory->createForm();\n        $form->setData($user);\n\n        if ('POST' === $request->getMethod()) {\n            $form->bind($request);\n\n            if ($form->isValid()) {\n\n                $userExist = $userManager->findUserByEmail($user->getEmail());\n                if ($userExist == null) {\n                    $userExist = $userManager->findUserByUsername($user->getUsername());\n                    $notice = 'Le login de connexion est déjà utilisé.';\n                } else {\n                    $notice = 'L\\'adresse email est déjà utilisée.';\n                }\n                if ($userExist != null){\n                    $this->container->get('session')->getFlashBag()->add(\n                        'notice',\n                        $notice\n                    );\n                    return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(\n                        'form' => $form->createView(),\n                    ));\n                }\n\n                $event = new FormEvent($form, $request);\n                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);\n\n                $userManager->updateUser($user);\n\n                if (null === $response = $event->getResponse()) {\n                    $url = $this->container->get('router')->generate('utilisateurweb_list');\n                    $response = new RedirectResponse($url);\n                }\n\n                //$dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));\n\n                return $response;\n            }\n        }\n\n        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(\n            'form' => $form->createView(),\n        ));\n    }\n\n}\n",
-			"file": "src/Thiefaine/UserBundle/Controller/RegistrationController.php",
-			"file_size": 5326,
-			"file_write_time": 130483553833887951,
-			"settings":
-			{
-				"buffer_size": 3433,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
-			"settings":
-			{
-				"buffer_size": 11650,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Thiefaine/UserBundle/Resources/config/routing/registration.yml",
-			"settings":
-			{
-				"buffer_size": 558,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Thiefaine/ReferentielBundle/Resources/config/routing/utilisateurweb.yml",
-			"settings":
-			{
-				"buffer_size": 1004,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"contents": "",
 			"settings":
 			{
@@ -148,6 +89,13 @@
 	},
 	"file_history":
 	[
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Controller/RegistrationController.php",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Utilisateurweb/new.html.twig",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Controller/UtilisateurwebController.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Controller/GroupController.php",
+		"/var/www/thiefaine/src/Thiefaine/UserBundle/Resources/config/routing/registration.yml",
+		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/config/routing/utilisateurweb.yml",
+		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
 		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Doctrine/UserManager.php",
 		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/UserManager.php",
 		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Controller/RegistrationController.php",
@@ -174,10 +122,8 @@
 		"/var/www/thiefaine/src/Thiefaine/UserBundle/Entity/Groupe.php",
 		"/var/www/thiefaine/src/Thiefaine/UserBundle/DataFixtures/ORM/LoadUtilisateurwebData.php",
 		"/var/www/thiefaine/app/config/security.yml",
-		"/var/www/thiefaine/src/Thiefaine/UserBundle/Controller/GroupController.php",
 		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Entity/Alerte.php",
 		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/DataFixtures/ORM/LoadTypemessageData.php",
-		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
 		"/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Tests/Propel/UserTest.php",
 		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/edit.html.twig",
 		"/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Groupe/index.html.twig",
@@ -263,29 +209,34 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/Thiefaine/ReferentielBundle/Resources/views/Utilisateurweb/new.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 624,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								422,
-								422
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -295,273 +246,66 @@
 				},
 				{
 					"buffer": 1,
-					"file": "src/Thiefaine/ReferentielBundle/Controller/UtilisateurwebController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5910,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1175,
-								1175
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 225.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 2,
-					"file": "src/Thiefaine/UserBundle/Controller/GroupController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9002,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3450,
-								3450
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 651.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "src/Thiefaine/UserBundle/Controller/RegistrationController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3433,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1241,
-								1241
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11650,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4445,
-								4445
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3128.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/Thiefaine/UserBundle/Resources/config/routing/registration.yml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 558,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								263,
-								263
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/Thiefaine/ReferentielBundle/Resources/config/routing/utilisateurweb.yml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1004,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								139,
-								139
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 7,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 9,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
 					"semi_transient": false,
 					"settings":
 					{

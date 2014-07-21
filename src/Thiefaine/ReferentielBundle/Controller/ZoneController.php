@@ -163,25 +163,19 @@ class ZoneController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $zone = $em->getRepository('ThiefaineReferentielBundle:Zone')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Zone')->find($id);
-            $points = $em->getRepository('ThiefaineReferentielBundle:Point')->findByZone($entity);
-            
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Zone entity.');
-            }
-
-            foreach ($points as $point) {
-                $em->remove($point);
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$zone) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver la zone'
+            );
+            return $this->redirect($this->generateUrl('zone'));
         }
+
+        $em->remove($zone);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('zone'));
     }

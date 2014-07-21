@@ -13,9 +13,38 @@
 
 {% block content %}
 	<div class="content zone" data-zone={{ entity.id }}>
-		<h1>Zone edit</h1>
+		<h1>Edition de la zone</h1>
 
-    	{{ form(edit_form) }}
+		<p>
+				{{ form_label(edit_form.nom) }}
+				{{ form_widget(edit_form.nom, {'id': 'zoneTitle'} ) }}
+			</p>
+			<p>
+				{{ form_label(edit_form.latitude) }}
+				{{ form_widget(edit_form.latitude) }}
+			</p>
+			<p>
+				{{ form_label(edit_form.longitude) }}
+				{{ form_widget(edit_form.longitude) }}
+			</p>
+			<p>
+				{{ form_label(edit_form.zoom) }}
+				{{ form_widget(edit_form.zoom) }}
+			</p>
+
+			<p class="list-form-control" data-toggle="tooltip" data-placement="right" title="Cocher pour activer/désactiver la zone.">
+				<label>Etat de la zone</label>
+				<table class="table table-hover">
+					<tr>
+						<td>
+				  			{{ form_label(edit_form.actif) }}
+				  		</td><td style="text-align: right;">
+				  			{{ form_widget(edit_form.actif) }}
+				  		</td>
+				  	</tr>
+				</table>
+			</p>
+
     	{{ form(delete_form) }}
 
     	<p>
@@ -25,7 +54,7 @@
 	                <tr>
 	                    <td class="idpoint"> {{ point.id }} </td>
 	                    <td class="latitudepoint"> {{ point.latitude }} </td>
-	                    <td class="longitudepoint"> {{ point.longitude }} </td>
+	                    <td class="	"> {{ point.longitude }} </td>
 	                    <td class="radiuspoint"> {{ point.radius }} </td>
 	                </tr>
 	                {% endfor %}		            

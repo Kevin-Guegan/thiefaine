@@ -31,7 +31,7 @@
                         </td>
                         <td>{{ conseil.titre }}</td>
                         <td>{{ conseil.datecreation|date("d/m/Y") }}</td>
-                        <td>{{ conseil.datevalidite is empty ? "" :conseil.datevalidite|date("d/m/Y") }}</td>
+                        <td>{{ conseil.datevalidite is empty ? "-" :conseil.datevalidite|date("d/m/Y") }}</td>
                         <td>
                             {{ conseil.utilisateurweb.nom }} {{ conseil.utilisateurweb.prenom }}
                         </td>

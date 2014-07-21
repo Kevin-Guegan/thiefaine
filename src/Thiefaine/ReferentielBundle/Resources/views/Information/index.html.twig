@@ -32,7 +32,7 @@
                         </td>
                         <td>{{ information.message.titre }}</td>
                         <td>{{ information.message.datecreation|date("d/m/Y") }}</td>
-                        <td>{{ information.message.datevalidite is empty ? "" :information.message.datevalidite|date("d/m/Y") }}</td>
+                        <td>{{ information.message.datevalidite is empty ? "-" :information.message.datevalidite|date("d/m/Y") }}</td>
                         <td>
                             {{ information.zone.nom | default("-") }}
                         </td>

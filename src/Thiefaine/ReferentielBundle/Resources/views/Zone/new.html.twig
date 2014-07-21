@@ -24,6 +24,31 @@
 					{{ form_label(form.nom) }}
 					{{ form_widget(form.nom, {'id': 'zoneTitle'} ) }}
 				</p>
+				<p>
+					{{ form_label(form.latitude) }}
+					{{ form_widget(form.latitude) }}
+				</p>
+				<p>
+					{{ form_label(form.longitude) }}
+					{{ form_widget(form.longitude) }}
+				</p>
+				<p>
+					{{ form_label(form.zoom) }}
+					{{ form_widget(form.zoom) }}
+				</p>
+
+				<p class="list-form-control" data-toggle="tooltip" data-placement="right" title="Cocher pour activer/désactiver la zone.">
+					<label>Etat de la zone</label>
+					<table class="table table-hover">
+						<tr>
+							<td>
+					  			{{ form_label(form.actif) }}
+					  		</td><td style="text-align: right;">
+					  			{{ form_widget(form.actif) }}
+					  		</td>
+					  	</tr>
+					</table>
+				</p>
 
 				<p>	
 					<input class="btn btn-primary" type="submit" value="Valider" />
