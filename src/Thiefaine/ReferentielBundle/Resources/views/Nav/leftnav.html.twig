@@ -1,84 +1,86 @@
 {% extends 'ThiefaineReferentielBundle:Default:index.html.twig' %}
 
 {% block leftbar %}
-	<div id="left_bar" class="col-md-3">
-		<ul class="nav nav-pills nav-stacked">
-		  <li class=""><a href="{{ path('thiefaine_referentiel_accueil') }}">Accueil</a></li>
-		  {% if is_granted('ROLE_MANAGE_GROUP') %}
-		  <li class="">
-		  	<div id='cssmenu'>
-				<ul>
-				   <li class='has-sub last'>
-				   	  <a><span>Gestion des groupes</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
-				      <ul>
-				         <li><a href="{{ path('fos_user_group_new') }}"><span>Créer</span></a></li>
-				         <li class='last'><a href="{{ path('fos_user_group_list') }}"><span>Gérer</span></a></li>
-				      </ul>
-				   </li>
-				</ul>
-			</div>
-		  </li>
-		  {% endif %}
-		  {% if is_granted('ROLE_MANAGE_USER') %}
-		  <li class="">
-		  	<div id='cssmenu'>
-				<ul>
-				   <li class='has-sub last'>
-				   	  <a><span>Gestion des utilisateurs</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
-				      <ul>
-				         <li><a href="{{ path('fos_user_registration_register') }}"><span>Créer</span></a></li>
-				         <li class='last'><a href="{{ path('thiefaine_referentiel_utilisateurweb_list') }}"><span>Gérer</span></a></li>
-				      </ul>
-				   </li>
-				</ul>
-			</div>
-		  </li>
-		  {% endif %}
-		  {% if is_granted('ROLE_MANAGE_ZONE') %}
-		  <li class="">
-		  	<div id='cssmenu'>
-				<ul>
-				   <li class='has-sub last'>
-				   	  <a><span>Gestion des zones</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
-				      <ul>
-				         <li><a href="{{ path('zone_new') }}"><span>Créer</span></a></li>
-				         <li class='last'><a href="{{ path('zone') }}"><span>Gérer</span></a></li>
-				      </ul>
-				   </li>
-				</ul>
-			</div>
-		  </li>
-		  {% endif %}
-		  {% if is_granted('ROLE_MANAGE_INFORMATION') %}
-		  <li class="">
-		  	<div id='cssmenu'>
-				<ul>
-				   <li class='has-sub last'>
-				   	  <a><span>Gestion des informations</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
-				      <ul>
-				         <li><a href="{{ path('information_new') }}"><span>Créer</span></a></li>
-				         <li class='last'><a href="{{ path('information') }}"><span>Gérer</span></a></li>
-				      </ul>
-				   </li>
-				</ul>
-			</div>
-		  </li>
-		  {% endif %}
-		  {% if is_granted('ROLE_MANAGE_CONSEIL') %}
-		  <li class="">
-		  	<div id='cssmenu'>
-				<ul>
-				   <li class='has-sub last'>
-				   	  <a><span>Gestion des conseils</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
-				      <ul>
-				         <li><a href="{{ path('conseil_new') }}"><span>Créer</span></a></li>
-				         <li class='last'><a href="{{ path('conseil') }}"><span>Gérer</span></a></li>
-				      </ul>
-				   </li>
-				</ul>
-			</div>
-		  </li>
-		  {% endif %}
-		</ul>
+	<div class="col-md-3">
+		<div id="left_bar">
+			<ul class="nav nav-pills nav-stacked">
+			  <li class=""><a href="{{ path('thiefaine_referentiel_accueil') }}">Accueil</a></li>
+			  {% if is_granted('ROLE_MANAGE_GROUP') %}
+			  <li class="">
+			  	<div id='cssmenu'>
+					<ul>
+					   <li class='has-sub last'>
+					   	  <a><span>Gestion des groupes</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
+					      <ul>
+					         <li><a href="{{ path('fos_user_group_new') }}"><span>Créer</span></a></li>
+					         <li class='last'><a href="{{ path('fos_user_group_list') }}"><span>Gérer</span></a></li>
+					      </ul>
+					   </li>
+					</ul>
+				</div>
+			  </li>
+			  {% endif %}
+			  {% if is_granted('ROLE_MANAGE_USER') %}
+			  <li class="">
+			  	<div id='cssmenu'>
+					<ul>
+					   <li class='has-sub last'>
+					   	  <a><span>Gestion des utilisateurs</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
+					      <ul>
+					         <li><a href="{{ path('fos_user_registration_register') }}"><span>Créer</span></a></li>
+					         <li class='last'><a href="{{ path('thiefaine_referentiel_utilisateurweb_list') }}"><span>Gérer</span></a></li>
+					      </ul>
+					   </li>
+					</ul>
+				</div>
+			  </li>
+			  {% endif %}
+			  {% if is_granted('ROLE_MANAGE_ZONE') %}
+			  <li class="">
+			  	<div id='cssmenu'>
+					<ul>
+					   <li class='has-sub last'>
+					   	  <a><span>Gestion des zones</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
+					      <ul>
+					         <li><a href="{{ path('zone_new') }}"><span>Créer</span></a></li>
+					         <li class='last'><a href="{{ path('zone') }}"><span>Gérer</span></a></li>
+					      </ul>
+					   </li>
+					</ul>
+				</div>
+			  </li>
+			  {% endif %}
+			  {% if is_granted('ROLE_MANAGE_INFORMATION') %}
+			  <li class="">
+			  	<div id='cssmenu'>
+					<ul>
+					   <li class='has-sub last'>
+					   	  <a><span>Gestion des informations</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
+					      <ul>
+					         <li><a href="{{ path('information_new') }}"><span>Créer</span></a></li>
+					         <li class='last'><a href="{{ path('information') }}"><span>Gérer</span></a></li>
+					      </ul>
+					   </li>
+					</ul>
+				</div>
+			  </li>
+			  {% endif %}
+			  {% if is_granted('ROLE_MANAGE_CONSEIL') %}
+			  <li class="">
+			  	<div id='cssmenu'>
+					<ul>
+					   <li class='has-sub last'>
+					   	  <a><span>Gestion des conseils</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
+					      <ul>
+					         <li><a href="{{ path('conseil_new') }}"><span>Créer</span></a></li>
+					         <li class='last'><a href="{{ path('conseil') }}"><span>Gérer</span></a></li>
+					      </ul>
+					   </li>
+					</ul>
+				</div>
+			  </li>
+			  {% endif %}
+			</ul>
+		</div>
 	</div>
 {% endblock %}
