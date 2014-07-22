@@ -174,6 +174,12 @@ class ZoneController extends Controller
             return $this->redirect($this->generateUrl('zone'));
         }
 
+        $points = $zone->getPoints();
+        foreach ($points as $point) {
+            $em->remove($point);
+            $em->flush();
+        }
+
         $em->remove($zone);
         $em->flush();
 
