@@ -76,17 +76,6 @@ class GroupFormType extends BaseType
             'mapped' => false,
             'required' => false,
         ))
-        ->add('gereralertes', 'checkbox', array(
-            'label' => 'Gestion des alertes',
-            'label_attr' => array(
-                'style' => 'font-weight: inherit;'
-            ),
-            'attr' => array(
-                'class' => 'form-control pull-right',
-            ),
-            'mapped' => false,
-            'required' => false,
-        ))
         ->add('gererinfos', 'checkbox', array(
             'label' => 'Gestion des informations',
             'label_attr' => array(

@@ -46,15 +46,6 @@ class GroupeType extends AbstractType
                     'class' => 'pull-right',
                 )
             ))
-            ->add('gereralertes', 'checkbox', array(
-                'label' => 'Gestion des alertes',
-                'label_attr' => array(
-                    'style' => 'font-weight: inherit;'
-                ),
-                'attr' => array(
-                    'class' => 'pull-right',
-                )
-            ))
             ->add('gererinfos', 'checkbox', array(
                 'label' => 'Gestion des informations',
                 'label_attr' => array(

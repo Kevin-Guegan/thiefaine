@@ -71,7 +71,6 @@ class GroupController extends BaseController
 
 				$gererGroupes = $form['gerergroupes']->getData();
 	            $gererUtilisateurs = $form['gererutilisateurs']->getData();
-	            $gererAlertes = $form['gereralertes']->getData();
 	            $gererInfos = $form['gererinfos']->getData();
 	            $gererConseils = $form['gererconseils']->getData();
                 $gererZones = $form['gererzones']->getData();
@@ -83,10 +82,6 @@ class GroupController extends BaseController
 
 	            if ($gererUtilisateurs) {
 	            	$roles[] = 'ROLE_MANAGE_USER';
-	            }
-
-	            if ($gererAlertes) {
-	            	$roles[] = 'ROLE_MANAGE_ALERTE';
 	            }
 
 	            if ($gererInfos) {
@@ -159,7 +154,6 @@ class GroupController extends BaseController
 
                 $gererGroupes = $form['gerergroupes']->getData();
                 $gererUtilisateurs = $form['gererutilisateurs']->getData();
-                $gererAlertes = $form['gereralertes']->getData();
                 $gererInfos = $form['gererinfos']->getData();
                 $gererConseils = $form['gererconseils']->getData();
                 $gererZones = $form['gererzones']->getData();
@@ -171,10 +165,6 @@ class GroupController extends BaseController
 
                 if ($gererUtilisateurs) {
                     $roles[] = 'ROLE_MANAGE_USER';
-                }
-
-                if ($gererAlertes) {
-                    $roles[] = 'ROLE_MANAGE_ALERTE';
                 }
 
                 if ($gererInfos) {
@@ -210,7 +200,6 @@ class GroupController extends BaseController
                             'group_name' => $group->getName(),
                             'group_role_manage_group' => $group->hasRole('ROLE_MANAGE_GROUP'),
                             'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
-                            'group_role_manage_alerte' => $group->hasRole('ROLE_MANAGE_ALERTE'),
                             'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
                             'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
                             'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
@@ -239,7 +228,6 @@ class GroupController extends BaseController
             'group_name' => $group->getName(),
             'group_role_manage_group' => $group->hasRole('ROLE_MANAGE_GROUP'),
             'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
-            'group_role_manage_alerte' => $group->hasRole('ROLE_MANAGE_ALERTE'),
             'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
             'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
             'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
