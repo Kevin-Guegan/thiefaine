@@ -8,7 +8,6 @@
                     <th>Nom <span class="glyphicon cheveron-down" title="Trier par nom"></span></th>
                     <th>Groupe <span class="glyphicon cheveron-down" title="Trier par groupe"></span></th>
                     <th>Utilisateurs <span class="glyphicon cheveron-down" title="Trier par utilisateurs"></span></th>
-                    <th>Alertes <span class="glyphicon cheveron-down" title="Trier par alertes"></span></th>
                     <th>Informations <span class="glyphicon cheveron-down" title="Trier par informations"></span></th>
                     <th>Conseils <span class="glyphicon cheveron-down" title="Trier par conseils"></span></th>
                     <th>Zones <span class="glyphicon cheveron-down" title="Trier par conseils"></span></th>
@@ -36,13 +35,6 @@
                         </td>
                         <td>
                         {% if group.hasRole('ROLE_MANAGE_USER') %}
-                            <span class="glyphicon glyphicon-ok"></span>
-                        {% else %}
-                            -
-                        {% endif %}
-                        </td>
-                        <td>
-                        {% if group.hasRole('ROLE_MANAGE_ALERTE') %}
                             <span class="glyphicon glyphicon-ok"></span>
                         {% else %}
                             -
