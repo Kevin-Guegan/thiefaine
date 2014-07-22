@@ -39,7 +39,8 @@ class ZoneType extends AbstractType
                     'title' => 'Renseigner la latitude de la zone.',
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'right'
-                )
+                ),
+                'required' => false,
             ))
             ->add('longitude', 'text', array(
                 'label' => 'Longitude',
@@ -52,7 +53,8 @@ class ZoneType extends AbstractType
                     'title' => 'Renseigner la longitude de la zone.',
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'right'
-                )
+                ),
+                'required' => false,
             ))
             ->add('zoom', 'text', array(
                 'label' => 'Zoom',
@@ -65,7 +67,8 @@ class ZoneType extends AbstractType
                     'title' => 'Renseigner le zoom de la zone.',
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'right'
-                )
+                ),
+                'required' => false,
             ))
             ->add('actif', 'checkbox', array(
                 'label' => 'Activée',
@@ -74,7 +77,8 @@ class ZoneType extends AbstractType
                 ),
                 'attr' => array(
                     'class' => 'form-control pull-right',
-                )
+                ),
+                'required' => false,
             ));
     }
     
