@@ -82,7 +82,7 @@ class PointController extends Controller
      */
     public function newAction($idzone, $lat, $lng, $rad)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $zone = $em->getRepository('ThiefaineReferentielBundle:Zone')->find($idzone);
 
