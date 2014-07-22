@@ -34,7 +34,7 @@ class GroupeType extends AbstractType
                     'style' => 'font-weight: inherit;'
                 ),
                 'attr' => array(
-                    'class' => 'form-control pull-right',
+                    'class' => 'pull-right',
                 )
             ))
             ->add('gererutilisateurs', 'checkbox', array(
@@ -43,7 +43,7 @@ class GroupeType extends AbstractType
                     'style' => 'font-weight: inherit;'
                 ),
                 'attr' => array(
-                    'class' => 'form-control pull-right',
+                    'class' => 'pull-right',
                 )
             ))
             ->add('gereralertes', 'checkbox', array(
@@ -52,7 +52,7 @@ class GroupeType extends AbstractType
                     'style' => 'font-weight: inherit;'
                 ),
                 'attr' => array(
-                    'class' => 'form-control pull-right',
+                    'class' => 'pull-right',
                 )
             ))
             ->add('gererinfos', 'checkbox', array(
@@ -61,7 +61,7 @@ class GroupeType extends AbstractType
                     'style' => 'font-weight: inherit;'
                 ),
                 'attr' => array(
-                    'class' => 'form-control pull-right',
+                    'class' => 'pull-right',
                 )
             ))
             ->add('gererconseils', 'checkbox', array(
@@ -70,7 +70,7 @@ class GroupeType extends AbstractType
                     'style' => 'font-weight: inherit;'
                 ),
                 'attr' => array(
-                    'class' => 'form-control pull-right',
+                    'class' => 'pull-right',
                 )
             ))
             ->add('gendarmerie');

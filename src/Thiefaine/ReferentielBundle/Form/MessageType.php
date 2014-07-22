@@ -44,7 +44,8 @@ class MessageType extends AbstractType
                     'title' => "Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).",
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'right',
-                    'data-buttonText' => ' Rechercher...'
+                    'data-buttonText' => ' Rechercher...',
+                    'accept' => 'image/*'
                 ),
                 'mapped' => false )
             )

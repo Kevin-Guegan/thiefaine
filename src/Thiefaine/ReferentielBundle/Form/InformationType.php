@@ -39,7 +39,7 @@ class InformationType extends AbstractType
 
                 ),
                 'attr' => array(
-                    'class' => 'form-control pull-right',
+                    'class' => 'pull-right',
                 ),
                 'required' => false,
             ))
