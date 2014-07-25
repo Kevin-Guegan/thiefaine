@@ -43,6 +43,17 @@ Thiefaine\ReferentielBundle\Entity\Message:
             nullable: true
             length: null
             fixed: false
+    manyToMany:
+        categories:
+            targetEntity: Categorie
+            joinTable:
+                name: CATEGORIE_MESSAGE
+                joinColumns:
+                    message:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    categorie:
+                        referencedColumnName: id
     manyToOne:
         typemessage:
             targetEntity: Typemessage
