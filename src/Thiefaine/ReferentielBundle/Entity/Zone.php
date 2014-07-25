@@ -3,19 +3,24 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Zone
+ * @ExclusionPolicy("all")
  */
 class Zone
 {
     /**
      * @var integer
+     * @Expose
      */
     private $id;
 
     /**
      * @var string
+     * @Expose
      */
     private $nom;
 
@@ -41,6 +46,7 @@ class Zone
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * @Expose
      */
     private $points;
 

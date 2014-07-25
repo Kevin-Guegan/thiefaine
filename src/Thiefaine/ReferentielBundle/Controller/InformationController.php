@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\View\View;
+use FOS\RestBundle\Controller\Annotations\View;
 
 use Thiefaine\ReferentielBundle\Entity\Information;
 use Thiefaine\ReferentielBundle\Entity\Message;
@@ -340,64 +340,37 @@ class InformationController extends Controller
     }
 
     /**
-      *Get availalble Information.
+      *Get availalble one Information.
       *
       *@param $id id of the information.
+      *
+      *@View()
       *
       *@Get("/information/{id}")
       *@ApiDoc
     */
-
-    public function getInformationAction($id) {
-
-        $view = View::create();
-
-        //$view = new View();
+    public function getInformationOneAction($id) {
 
         $em = $this->getDoctrine()->getManager();
-
-
         $entity = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
 
-        $view->setData($entity);
-
-        
-
-        return $this->handlerView($view);
+        return $entity;
 
     }
 
     /**
-      *Get availalble one Information.
+      * Get availalble Information.
       *
-      *@QueryParam(name="id")
-      *@Get("/information/")
-      *@ApiDoc
+      * @View()
+      * @Get("/information")
+      * @ApiDoc
     */
+    public function getInformationAction() {
 
-    public function getInformationOneAction() {
-
-        $view = View::create();
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('ThiefaineReferentielBundle:Information')->findAll();
-        $view->setData($entity);
 
-        return $this->handlerView($view);
-
-    }
-
-    
-
-    /**
-      *@return \FOS\RestBundle\View\ViewHandler
-     */
-
-    protected function handlerView($view)
-
-    {
-
-        return $this->container->get('fos_rest.view_handler')->handle($view);
+        return $entity;
 
     }
 }

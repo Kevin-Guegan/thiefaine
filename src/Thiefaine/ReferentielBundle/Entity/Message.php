@@ -3,24 +3,30 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Message
+ * @ExclusionPolicy("all")
  */
 class Message
 {
     /**
      * @var integer
+     * @Expose
      */
     private $id;
 
     /**
      * @var string
+     * @Expose
      */
     private $titre;
 
     /**
      * @var string
+     * @Expose
      */
     private $message;
 
@@ -31,11 +37,13 @@ class Message
 
     /**
      * @var \DateTime
+     * @Expose
      */
     private $datemiseajour;
 
     /**
      * @var \DateTime
+     * @Expose
      */
     private $datevalidite;
 
@@ -46,11 +54,13 @@ class Message
 
     /**
      * @var string
+     * @Expose
      */
     private $urlphoto;
 
     /**
      * @var string
+     * @Expose
      */
     private $urllien;
 
