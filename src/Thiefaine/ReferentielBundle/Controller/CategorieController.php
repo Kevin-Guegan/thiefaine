@@ -29,10 +29,10 @@ class CategorieController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
+        $categories = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
 
         return array(
-            'entities' => $entities,
+            'categories' => $categories,
         );
     }
     /**
@@ -44,20 +44,20 @@ class CategorieController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Categorie();
-        $form = $this->createCreateForm($entity);
+        $categorie = new Categorie();
+        $form = $this->createCreateForm($categorie);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+            $em->persist($categorie);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('categorie_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('categorie_show', array('id' => $categorie->getId())));
         }
 
         return array(
-            'entity' => $entity,
+            'categorie' => $categorie,
             'form'   => $form->createView(),
         );
     }
@@ -90,11 +90,11 @@ class CategorieController extends Controller
      */
     public function newAction()
     {
-        $entity = new Categorie();
-        $form   = $this->createCreateForm($entity);
+        $categorie = new Categorie();
+        $form   = $this->createCreateForm($categorie);
 
         return array(
-            'entity' => $entity,
+            'categorie' => $categorie,
             'form'   => $form->createView(),
         );
     }
@@ -135,17 +135,17 @@ class CategorieController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
+        $categorie = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Categorie entity.');
+        if (!$categorie) {
+            throw $this->createNotFoundException('Unable to find Categorie categorie.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($categorie);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'categorie'      => $categorie,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -180,14 +180,14 @@ class CategorieController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
+        $categorie = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Categorie entity.');
+        if (!$categorie) {
+            throw $this->createNotFoundException('Unable to find Categorie categorie.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($categorie);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -197,7 +197,7 @@ class CategorieController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
+            'categorie'      => $categorie,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
