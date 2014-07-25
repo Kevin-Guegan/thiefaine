@@ -50,6 +50,21 @@
 				</div>
 			  </li>
 			  {% endif %}
+			   {% if is_granted('ROLE_MANAGE_CATEGORIE') %}
+			  <li class="">
+			  	<div id='cssmenu'>
+					<ul>
+					   <li class='has-sub last'>
+					   	  <a><span>Gestion des categories</span><span style="float:right; font-weight: bold;">&rsaquo;</span></a>
+					      <ul>
+					         <li><a href="{{ path('categorie_new') }}"><span>Créer</span></a></li>
+					         <li class='last'><a href="{{ path('categorie') }}"><span>Gérer</span></a></li>
+					      </ul>
+					   </li>
+					</ul>
+				</div>
+			  </li>
+			  {% endif %}
 			  {% if is_granted('ROLE_MANAGE_INFORMATION') %}
 			  <li class="">
 			  	<div id='cssmenu'>
