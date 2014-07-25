@@ -1,12 +1,13 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block content %}
-    <div class="content">
+    <div class="content col-md-9">
         <h3>Gestion des utilisateurs</h3>
         <table class="records_list table table-hover">
             <thead>
                 <tr>
                     <th>Actions</th>
+                    <th>Login</th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Groupe</th>
@@ -15,16 +16,28 @@
                 </tr>
             </thead>
             <tbody>
-                {% for entity in entities %}
+                {% for user in users %}
                     <tr>
                         <td>
-                            <a href="{{ path('utilisateurweb_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil" title="Modifier"></span></a>
+                            <a href="{{ path('utilisateurweb_edit', { 'id': user.id }) }}">
+                                <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                            </a>
+                            {% if user.hasRole('ROLE_SUPER_ADMIN') == false %}
+                            <a href="{{ path('utilisateurweb_delete', {'id': user.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet utilisateur ?')">
+                                <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                            </a>
+                            {% endif %}
                         </td>
-                        <td>{{ entity.nom }}</td>
-                        <td>{{ entity.prenom }}</td>
-                        <td>{{ entity.groupe }}</td>
-                        <td>{{ entity.email }}</td>
-                        <td>{{ entity.infos|striptags('html') }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>
+                            {% for group in user.groups %}
+                            {{ group.name }}
+                            {% endfor %}
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.infos| raw }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

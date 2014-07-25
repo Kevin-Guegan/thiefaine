@@ -10,41 +10,58 @@ use Thiefaine\ReferentielBundle\Form\MessageType;
 
 class InformationType extends AbstractType
 {
-		/**
-	 * @param FormBuilderInterface $builder
-	 * @param array $options
-	 */
-	public function buildForm(FormBuilderInterface $builder, array $options)
-	{
-		$builder
-			->add('message',new messageType()
+        /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        
+        $builder
+            ->add('message',new messageType())
+            ->add('zone', 'entity', array    (  'class' => 'ThiefaineReferentielBundle:Zone',
+                                                'property' => 'nom',
+                                                'label'  => 'Zone *',
+                                                'label_attr'   =>  array ( 'class' => 'control-label' ),
+                                                'attr'   =>  array  (   'class' => 'form-control',
+                                                                        'placeholder' => 'Titre',
+                                                                        'title' => "Renseigner le titre de l'information.",
+                                                                        'data-toggle' => 'tooltip',
+                                                                        'data-placement' => 'right'
+                                                                    )
+                                            )
                 )
-			->add('valider', 'submit', array 	( 'label'  => 'Valider',
-												 'attr' =>  array ( 'class' => 'btn btn-primary' )
-												)
-				)
-			->add('annuler', 'reset', array 	( 'label'  => 'Annuler',
-												 'attr' =>  array ( 'class' => 'btn btn-default' )
-												)
-				);
+            ->add('alerte', 'checkbox', array(
+                'label' => 'Envoyer une alerte',
 
-	}
-	
-	/**
-	 * @param OptionsResolverInterface $resolver
-	 */
-	public function setDefaultOptions(OptionsResolverInterface $resolver)
-	{
-		$resolver->setDefaults(array(
-			'data_class' => 'Thiefaine\ReferentielBundle\Entity\Message'
-		));
-	}
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
 
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return 'thiefaine_referentielbundle_information';
-	}
+                ),
+                'attr' => array(
+                    'class' => 'pull-right',
+                ),
+                'required' => false,
+            ))
+        ;
+
+    }
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Information'
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'thiefaine_referentielbundle_information';
+    }
 }

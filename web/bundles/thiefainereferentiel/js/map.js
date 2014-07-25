@@ -1,3 +1,5 @@
+	
+	//Variables globales
 	var maCarte;
 	var monCercle;
 	var cptCercle=0;
@@ -63,6 +65,14 @@
 		}
 	}// end of initialisation
 
+	/**
+	 * Permet l'affichage d'un nouveau point pour une zone
+	 *
+	 * @param id integer 		id du point
+	 * @param lat integer 		latitude du point
+	 * @param lng integer 		longitude du point
+	 * @param rad integer 		radius du point
+	 */
 	function NewPoint(id, lat, lng, rad){
 
 		var optionsCercle = {
@@ -89,7 +99,7 @@
 
 		//Création du champ de saisie
 		$("#MesCercleGoogle table").append('<tr class="cercleGMap" data-cercle="'+id+'"></tr>');
-		$('.cercleGMap[data-cercle='+id+']').append("<td>Cercle n°"+cptCercle+"</td>");
+		$('.cercleGMap[data-cercle='+id+']').append("<td>Cercle n°"+(cptCercle+1)+"</td>");
 		$('.cercleGMap[data-cercle='+id+']').append("<td class='input-group'></td>");
 		$('.cercleGMap[data-cercle='+id+'] .input-group').append("<input style='width: 100px;' type='text' data-cercle='"+id+"' class='cercleRadius pull-right form-control' value='"+rad+"' />");
 		$('.cercleGMap[data-cercle='+id+'] .input-group').append('<span class="input-group-btn"><button data-cercle="'+id+'" class="btn btn-default supprCercle" type="button">x</button></span>');
@@ -120,7 +130,7 @@
 		    mesCercle[$(this).data("cercle")].setRadius(parseInt($(this).val()));
 		});
 
-		//Initialisation pour le focus de cercle (champ submit)
+		//Initialisation pour le focus/défocus de cercle (champ submit)
 		$(".cercleRadius[data-cercle="+id+"]")
 			.focus(function() {
 				mesCercle[$(this).data("cercle")].setOptions({
@@ -154,6 +164,14 @@
 	
 	}// end of NewPoint	
 
+	/**
+	 * Permet la création d'un nouveau point pour une zone
+	 *
+	 * @param idzone integer 	id de la zone
+	 * @param lat integer 		latitude de la zone
+	 * @param lng integer 		longitude de la zone
+	 * @param rad integer 		radius de la zone
+	 */
 	function CreatPoint(idzone, lat, lng, rad){
 		var addr = url + "/point/new/"+ idzone +"/"+lat+"/"+lng+"/"+rad;
 
@@ -175,6 +193,11 @@
 
 	}//end of CreatPoint
 
+	/**
+	 * Permet la suppression d'un point pour une zone
+	 *
+	 * @param idpoint integer 	id du point
+	 */
 	function DeletPoint(idpoint){
 
 		var addr = url + "/point/"+idpoint+"/delete";
@@ -196,6 +219,14 @@
 
 	}// end of DeletPoint
 
+	/**
+	 * Permet la modification d'un point pour une zone
+	 *
+	 * @param idpoint integer 	id du point
+	 * @param lat integer 		latitude du point
+	 * @param lng integer 		longitude du point
+	 * @param rad integer 		radius du point
+	 */
 	function ModifyPoint(idpoint, lat, lng, rad){
 		var addr = url + "/point/"+idpoint+"/"+lat+"/"+lng+"/"+rad+"/update";
 
@@ -216,8 +247,12 @@
 
 	}//end of ModifyPoint
 
+	/**
+	 * Une fois que le document est chargé
+	 */
 	$(document).ready(function(){
 
+		//Initialisation de la google carte
 		google.maps.event.addDomListener(window, 'load', initialisation);
 
 		//Initialisation de l'ajout un point

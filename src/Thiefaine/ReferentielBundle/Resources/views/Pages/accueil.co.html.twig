@@ -1,8 +1,8 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block content %}
 	<!-- BODY -->
-	<div class="content">
+	<div class="content col-md-9">
 	  <h3>Description des modules de l'application</h3>
 	  	<div class="panel-group" id="accordion">
 
@@ -16,7 +16,17 @@
 		    </div>
 		    <div id="collapseOne" class="panel-collapse collapse in">
 		      <div class="panel-body">
-		        Description module : Gestion des groupes
+		        <p>
+		        	Dans cette partie, vous avez la possiblité de gérer l'ensemble des groupes de l'application.
+		        </p>
+		        <p>
+		        	Ces groupes permettent de définir les rôles des utilisateurs au sein de l'application.
+		        </p>
+		        <p>
+		        	<i>
+			        	A savoir : chaque rôle représente une fonctionnalité de l'application. Il faut donc les définir avec précaution. De plus, si un groupe est supprimé, tous les utilisateurs liés au groupe seront supprimés.
+			        </i>
+		        </p>
 		      </div>
 		    </div>
 		  </div>
@@ -31,7 +41,18 @@
 		    </div>
 		    <div id="collapseTwo" class="panel-collapse collapse">
 		      <div class="panel-body">
-		        Description module : Gestion des utilisateurs
+		      	<p>
+		      		Dans cette partie, vous auvez la possiblité de gérer l'ensemble des utilisateurs de l'application.
+		      	</p>
+		        <p>
+		        	Pour ajouter un utilisateur, il faut renseigner son adresse e-mail, son nom d'utilisateur 
+		        	(pseudonyme afin de se connecter à l'application), son mot de passe (défini par le créateur) ainsi que le groupe auquel il appartiendra.
+		        </p>
+		        <p>
+		        	<i>
+		        		A savoir : un utilisateur ne peut être créé s'il n'est pas lié à un groupe. C'est pourquoi il est nécessaire de créer au moins un groupe avant de créer un utilisateur.
+		        	</i>
+		        </p>
 		      </div>
 		    </div>
 		  </div>
@@ -46,12 +67,23 @@
 		    </div>
 		    <div id="collapseThree" class="panel-collapse collapse">
 		      <div class="panel-body">
-		        Description module : Gestion des zones
+		        <p>
+		        	Dans cette partie, vous avez la possiblité de gérer l'ensemble des zones de notifications pour les informations.
+		        </p>
+		        <p>
+		        	Une zone doit être renseignée par un nom, une longitude, une latitude, un zoom sur la carte, ainsi que la 
+		        	possibilité de la rendre active ou non. Par défaut, si la longitude et la latitude ne sont pas renseignées, 
+		        	la carte se positionnera automatiquement au milieu de Rennes.
+		        </p>
+		        <p>
+		        	Pour ces zones, il faut par la suite définir une liste de point afin de la délimiter. Pour se faire, il suffit de 
+		        	renseigner le champ prévu à cet effet pour créer un nouveau point avec la taille du rayon (en mètres).
+		        </p>
 		      </div>
 		    </div>
 		  </div>
 
-		  <div class="panel panel-default">
+		  <!--<div class="panel panel-default">
 		    <div class="panel-heading">
 		      <h4 class="panel-title">
 		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
@@ -61,10 +93,25 @@
 		    </div>
 		    <div id="collapseFour" class="panel-collapse collapse">
 		      <div class="panel-body">
-		        Description module : Gestion des alertes
+		        <p>
+		        	Dans cette partie, vous aurez la possiblité de gérer l'ensemble des alertes de l'application.
+		        </p>
+		        <p>
+		        	Une alerte devra être renseignée par un nom, une zone et un message au minimum. Vous aurez la possibilité, en 
+		        	plus de ces trois champs obligatoires d'y ajouter une photo, pour illustrer votre alerte. Ainsi qu'un lien, si toute
+		        	fois vous décidez de fournir plus d'information à une alerte grâce à un article internet. Puis une date de validitée, si 
+		        	vous souhaitez que l'alerte ne dure qu'un certain temps.
+		        </p>
+		        <p>
+		        	<i>
+		        		A savoir : La création d'une alerte engendra systématiquement un envoie sur les mobiles qui dispose de l'application 
+		        		et qui sont abonnés à la zone cible de l'alerte. Soyez donc vigilant par rapport à la création d'alerte afin de ne pas 
+		        		"gener" les utilisateurs mobile.
+		        	</i>
+		        </p>
 		      </div>
 		    </div>
-		  </div>
+		  </div>-->
 
 		  <div class="panel panel-default">
 		    <div class="panel-heading">
@@ -76,7 +123,20 @@
 		    </div>
 		    <div id="collapseFive" class="panel-collapse collapse">
 		      <div class="panel-body">
-		        Description module : Gestion des informations
+		        <p>
+		        	Dans cette partie, vous avez la possiblité de gérer l'ensemble des informations de l'application.
+		        </p>
+		        <p>
+		        	Une information doit être renseignée par un nom, une zone et un message au minimum. Vous avez la possibilité, en 
+		        	plus de ces trois champs obligatoires, d'y ajouter une photo pour illustrer votre information, un lien si toutefois vous décidez de fournir plus d'informations à celle-ci grâce à un article internet. Puis une date de validitée, si 
+		        	vous souhaitez que l'information ne dure qu'un certain temps.
+		        </p>
+		        <p>
+		        	<i>
+		        		A savoir : La création d'une information engendre systématiquement un envoi sur tous les mobiles qui disposent de l'application (avec notification ou non). 
+		        		Soyez donc vigilant par rapport à la création d'une information afin de ne pas "gêner" les utilisateurs mobile.
+		        	</i>
+		        </p>
 		      </div>
 		    </div>
 		  </div>
@@ -91,7 +151,17 @@
 		    </div>
 		    <div id="collapseSix" class="panel-collapse collapse">
 		      <div class="panel-body">
-		        Description module : Gestion des conseils
+		        <p>
+		        	Dans cette partie, vous avez la possiblité de gérer l'ensemble des conseils de l'application.
+		        </p>
+		        <p>
+		        	Le renseignement d'un conseil est identique à une information (voir ci-dessus), mise à part que le conseil n'est pas ciblé sur une zone mais sur l'ensemble des utilisateurs de l'application mobile.
+		        </p>
+		        <p>
+		        	<i>
+		        		A savoir : La création d'un conseil engendre systématiquement un envoi sur tous les mobiles qui disposent de l'application sans créer de notification.
+		        	</i>
+		        </p>
 		      </div>
 		    </div>
 		  </div>

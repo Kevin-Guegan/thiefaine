@@ -6,28 +6,18 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Typemessage
- *
- * @ORM\Table(name="TYPEMESSAGE")
- * @ORM\Entity
  */
 class Typemessage
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="libelle", type="string", length=45, nullable=true)
      */
     private $libelle;
-
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -106,9 +96,5 @@ class Typemessage
     public function getMessages()
     {
         return $this->messages;
-    }
-
-    public function __toString() {
-        return $this->libelle;
     }
 }

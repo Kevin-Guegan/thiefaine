@@ -1,16 +1,30 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/message.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="content">
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+
+    <div class="content col-md-9">
         
-        <h3>Edition d'un conseil</h1>
+        <h3>Edition du conseil «{{ conseil.titre }}»</h1>
+
+        {% if flashMessages|length > 0 %}
+    	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
 
 		{{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -19,12 +33,17 @@
 			<div class="form-group">
 
 				<p>
-					{{ form_label(edit_form.titre) }}
+					{{ form_label(edit_form.titre) }} *
 					{{ form_widget(edit_form.titre) }}
 				</p>
 				<p>
 					{{ form_label(edit_form.urlphoto) }}
 					{{ form_widget(edit_form.urlphoto) }}
+					<a class="btn btn-default showImage" style="width:100%;">Visualiser l'image</a>
+				</p>
+				<p>
+					{{ form_label(edit_form.attachement) }}
+					{{ form_widget(edit_form.attachement) }}
 				</p>
 				<p>
 					{{ form_label(edit_form.urllien) }}
@@ -35,11 +54,13 @@
 					{{ form_widget(edit_form.datevalidite) }}
 				</p>
 				<p>
-					{{ form_label(edit_form.message) }}
+					{{ form_label(edit_form.message) }} *
 					{{ form_widget(edit_form.message) }}
 				</p>
-				{{ form_widget(edit_form.valider) }}
-				{{ form_widget(edit_form.annuler) }}
+				<p>	
+		      		<button class="btn btn-primary" type="submit">Modifier le conseil</button>
+					<a class="btn btn-default" href={{ path('conseil') }}>Annuler</a>
+		  	  	</p>
 
 			</div>
 
@@ -47,6 +68,30 @@
 
     </div>
 
+{% endblock %}
 
-
+{% block modal %}
+	<div id="showImageModal" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">
+		        <span aria-hidden="true">&times;</span>
+		        <span class="sr-only">Fermer</span>
+	        </button>
+	        <h4 class="modal-title">Visualisation de l'image</h4>
+	      </div>
+	      <div class="modal-body">
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <a class="showFull btn btn-default" type="button">
+	        	Zoom
+	        	<span class="glyphicon glyphicon-resize-full"></span>
+	        </a>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 {% endblock %}

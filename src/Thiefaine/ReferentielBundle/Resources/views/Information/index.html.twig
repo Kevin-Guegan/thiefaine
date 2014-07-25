@@ -1,31 +1,75 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block content %}
-        <div class="content">
+        <div class="content col-md-9">
 
-                <h3>Gestion des informations</h3>
+            <h3>Gestion des informations</h3>
 
-                <table class="table table-hover">
-
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
+                    <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
+                    <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                    <th>Zone <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                    <th>Créateur <span class="glyphicon cheveron-down" title="Trier par créateur"></span></th>
+                    <th>Photo <span class="glyphicon cheveron-down" title="Trier par photo"></span></th>
+                    <th>Lien <span class="glyphicon cheveron-down" title="Trier par lien"></span></th>
+                    <th>Alerte <span class="glyphicon cheveron-down" title="Trier par lien"></span></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for information in informations %}
                     <tr>
-                        <th>Actions</th>
-                        <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
-                        <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
-                        <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                        <td>
+                            <a href="{{ path('information_edit', { 'id': information.id }) }}">
+                                <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                            </a>
+                            <a href="{{ path('information_delete', {'id': information.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette information ?')">
+                                <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                            </a>
+                        </td>
+                        <td>{{ information.message.titre }}</td>
+                        <td>{{ information.message.datecreation|date("d/m/Y") }}</td>
+                        <td>{{ information.message.datevalidite is empty ? "-" :information.message.datevalidite|date("d/m/Y") }}</td>
+                        <td>
+                            {{ information.zone.nom | default("-") }}
+                        </td>
+                        <td>
+                            {{ information.message.utilisateurweb.nom }} {{ information.message.utilisateurweb.prenom }}
+                        </td>
+                        <td>
+                        {% if information.message.urlphoto %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if information.message.urllien %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if information.alerte %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
                     </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-                    {% for entity in entities %}
-                        <tr>
-                            <td>
-                                    <a href="{{ path('conseil_edit', { 'id': entity.id }) }}" >edit</a>
-                                    <a href="{{ path('conseil_delete', {'id': entity.id}) }}" onclick="return confirm('Eves vous sûr de vouloir supprimer cette information ?')" >delete</a>
-                            </td>
-                            <td>{{ entity.titre }}</td>
-                            <td>{{ entity.datecreation|date("d/m/Y") }}</td>
-                            <td>{{ entity.datevalidite is empty ? "" :entity.datevalidite|date("d/m/Y") }}</td>
-                        </tr>
-                    {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
 
-                </table>
         </div>
 {% endblock %}

@@ -1,0 +1,30 @@
+utilisateurmobile:
+    path:     /
+    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:index" }
+
+utilisateurmobile_show:
+    path:     /{id}/show
+    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:show" }
+
+utilisateurmobile_new:
+    path:     /new
+    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:new" }
+
+utilisateurmobile_create:
+    path:     /create/{idGend}/{token}
+    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:create" }
+    requirements: { _method: post }
+
+utilisateurmobile_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:edit" }
+
+utilisateurmobile_update:
+    path:     /{id}/update
+    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:update" }
+    requirements: { _method: post|put }
+
+utilisateurmobile_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:delete" }
+    requirements: { _method: post|delete }

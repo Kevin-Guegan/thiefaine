@@ -1,0 +1,47 @@
+Thiefaine\UserBundle\Entity\Utilisateurweb:
+    type: entity
+    table: UTILISATEURWEB
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        prenom:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        infos:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+    manyToMany:
+        groups:
+            targetEntity: Group
+            joinTable:
+                name: UTILISATEURWEB_GROUPE
+                joinColumns:
+                    utilisateurweb:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    groupe:
+                        referencedColumnName: id
+    oneToMany:
+        messages:
+            targetEntity: Thiefaine\ReferentielBundle\Entity\Message
+            mappedBy: utilisateurweb
+        zones:
+            targetEntity: Thiefaine\ReferentielBundle\Entity\Zone
+            mappedBy: utilisateurweb
+
+    lifecycleCallbacks: {  }

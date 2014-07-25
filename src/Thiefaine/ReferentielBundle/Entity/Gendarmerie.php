@@ -6,41 +6,19 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Gendarmerie
- *
- * @ORM\Table(name="GENDARMERIE")
- * @ORM\Entity
  */
 class Gendarmerie
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="libelle", type="string", length=255, nullable=false)
      */
     private $libelle;
 
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $groupes;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->groupes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -74,42 +52,49 @@ class Gendarmerie
     {
         return $this->libelle;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $groups;
 
     /**
-     * Add groupes
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add groups
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Groupe $groupes
+     * @param \Thiefaine\UserBundle\Entity\Group $groups
      * @return Gendarmerie
      */
-    public function addGroupe(\Thiefaine\ReferentielBundle\Entity\Groupe $groupes)
+    public function addGroup(\Thiefaine\UserBundle\Entity\Group $groups)
     {
-        $this->groupes[] = $groupes;
+        $this->groups[] = $groups;
 
         return $this;
     }
 
     /**
-     * Remove groupes
+     * Remove groups
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Groupe $groupes
+     * @param \Thiefaine\UserBundle\Entity\Group $groups
      */
-    public function removeGroupe(\Thiefaine\ReferentielBundle\Entity\Groupe $groupes)
+    public function removeGroup(\Thiefaine\UserBundle\Entity\Group $groups)
     {
-        $this->groupes->removeElement($groupes);
+        $this->groups->removeElement($groups);
     }
 
     /**
-     * Get groupes
+     * Get groups
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGroupes()
+    public function getGroups()
     {
-        return $this->groupes;
-    }
-    
-    public function __toString()
-    {
-        return $this->getLibelle();
+        return $this->groups;
     }
 }

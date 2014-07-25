@@ -15,7 +15,7 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre', 'text', array    (   'label'  => 'Titre *',
+            ->add('titre', 'text', array    (   'label'  => 'Titre',
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                                                 'attr'   =>  array  (   'class' => 'form-control',
                                                                         'placeholder' => 'Titre',
@@ -28,14 +28,27 @@ class MessageType extends AbstractType
             ->add('urlphoto', 'text', array     (   'label'  => 'Photo',
                                                     'required' => false,
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
-                                                'attr'   =>  array (    'class' => 'form-control',
-                                                                        'placeholder' => 'Photo',
-                                                                        'title' => "Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).",
-                                                                        'data-toggle' => 'tooltip',
-                                                                        'data-placement' => 'right'
-                                                                    )
+                                                'attr'   =>  array ( 'class' => 'form-control' ),
+                                                'disabled' => true
                                             )
                 )
+            ->add('attachement', 'file', array( 
+                'label'  => 'Joindre une photo',
+                'required' => false,
+                'label_attr'   =>  array(
+                    'class' => 'control-label'
+                ),
+                'attr'   =>  array(
+                    'class' => 'form-control filestyle',
+                    'placeholder' => 'Photo',
+                    'title' => "Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).",
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right',
+                    'data-buttonText' => ' Rechercher...',
+                    'accept' => 'image/*'
+                ),
+                'mapped' => false )
+            )
             ->add('urllien', 'text', array  (   'label'  => 'Lien',
                                                 'required' => false,
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
@@ -61,7 +74,7 @@ class MessageType extends AbstractType
                                                                     )
                                             )
                 )
-            ->add('message', 'textarea', array  (   'label'  => 'Message *',
+            ->add('message', 'textarea', array  (   'label'  => 'Message',
                                                 'label_attr'   =>  array (  'class' => 'control-label',
                                                                             'for' => 'infoInformation' ),
                                                 'attr'   =>  array (    'class' => 'form-control',

@@ -1,0 +1,19 @@
+thiefaine_referentiel_api_point :
+    type: rest
+    resource: 'ThiefaineReferentielBundle:Point'
+    name_prefix: thiefaine_referentiel_api_
+
+thiefaine_referentiel_api_utilisateurmobile :
+    type: rest
+    resource: 'ThiefaineReferentielBundle:Utilisateurmobile'
+    name_prefix: thiefaine_referentiel_api_
+
+thiefaine_referentiel_api_conseil :
+    type: rest
+    resource: 'ThiefaineReferentielBundle:Conseil'
+    name_prefix: thiefaine_referentiel_api_
+
+thiefaine_referentiel_api_Information :
+    type: rest
+    resource: 'ThiefaineReferentielBundle:Information'
+    name_prefix: thiefaine_referentiel_api_

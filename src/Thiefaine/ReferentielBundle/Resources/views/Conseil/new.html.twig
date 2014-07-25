@@ -1,16 +1,29 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="content">
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+
+    <div class="content col-md-9">
         
         <h3>Création d'un conseil</h1>
+
+        {% if flashMessages|length > 0 %}
+    	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
 
 		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -19,27 +32,33 @@
 			<div class="form-group">
 
 				<p>
-					{{ form_label(form.message.titre) }}
-					{{ form_widget(form.message.titre) }}
+					{{ form_label(form.titre) }} *
+					{{ form_widget(form.titre) }}
 				</p>
 				<p>
-					{{ form_label(form.message.urlphoto) }}
-					{{ form_widget(form.message.urlphoto) }}
+					{{ form_label(form.urlphoto) }}
+					{{ form_widget(form.urlphoto) }}
 				</p>
 				<p>
-					{{ form_label(form.message.urllien) }}
-					{{ form_widget(form.message.urllien) }}
+					{{ form_label(form.attachement) }}
+					{{ form_widget(form.attachement) }}
+				</p>
+				<p>
+					{{ form_label(form.urllien) }}
+					{{ form_widget(form.urllien) }}
 				</p>
 				<p class="dateElement">
-					{{ form_label(form.message.datevalidite) }}
-					{{ form_widget(form.message.datevalidite) }}
+					{{ form_label(form.datevalidite) }}
+					{{ form_widget(form.datevalidite) }}
 				</p>
 				<p>
-					{{ form_label(form.message.message) }}
-					{{ form_widget(form.message.message) }}
+					{{ form_label(form.message) }} *
+					{{ form_widget(form.message) }}
 				</p>
-				{{ form_widget(form.valider) }}
-				{{ form_widget(form.annuler) }}
+				<p>	
+		      		<button class="btn btn-primary" type="submit">Créer le conseil</button>
+					<a class="btn btn-default" href={{ path('conseil') }}>Annuler</a>
+		  	  	</p>
 
 			</div>
 

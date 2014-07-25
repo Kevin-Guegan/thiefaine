@@ -1,0 +1,20 @@
+Thiefaine\UserBundle\Entity\Group:
+    type: entity
+    table: GROUPE
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        gendarmerie:
+            targetEntity: Thiefaine\ReferentielBundle\Entity\Gendarmerie
+            inversedBy: groups
+            joinColumns:
+                idgendarmerie:
+                    referencedColumnName: id
+
+    lifecycleCallbacks: {  }

@@ -28,11 +28,58 @@ class ZoneType extends AbstractType
                     'data-placement' => 'right'
                 )
             ))
-            ->add('latitude')
-            ->add('longitude')
-            ->add('zoom')
-            ->add('actif')
-            ->add('utilisateurweb');
+            ->add('latitude', 'text', array(
+                'label' => 'Latitude',
+                'label_attr' => array(
+                    'class' => 'control-label'
+                ),
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Latitude',
+                    'title' => 'Renseigner la latitude de la zone.',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right'
+                ),
+                'required' => false,
+            ))
+            ->add('longitude', 'text', array(
+                'label' => 'Longitude',
+                'label_attr' => array(
+                    'class' => 'control-label'
+                ),
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Longitude',
+                    'title' => 'Renseigner la longitude de la zone.',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right'
+                ),
+                'required' => false,
+            ))
+            ->add('zoom', 'text', array(
+                'label' => 'Zoom',
+                'label_attr' => array(
+                    'class' => 'control-label'
+                ),
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Zoom',
+                    'title' => 'Renseigner le zoom de la zone.',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'right'
+                ),
+                'required' => false,
+            ))
+            ->add('actif', 'checkbox', array(
+                'label' => 'Activée',
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+                ),
+                'attr' => array(
+                    'class' => 'form-control pull-right',
+                ),
+                'required' => false,
+            ));
     }
     
     /**

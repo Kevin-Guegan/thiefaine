@@ -6,103 +6,58 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Message
- *
- * @ORM\Table(name="MESSAGE", indexes={@ORM\Index(name="IDX_89F8CE65AA98CC6B", columns={"idtypemessage"}), @ORM\Index(name="IDX_89F8CE6599788D65", columns={"idutilisateurweb"})})
- * @ORM\Entity
  */
 class Message
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
      */
     private $titre;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="message", type="text", nullable=false)
      */
     private $message;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="datecreation", type="datetime", nullable=false)
      */
     private $datecreation;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="datemiseajour", type="datetime", nullable=true)
      */
     private $datemiseajour;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="datevalidite", type="date", nullable=true)
      */
     private $datevalidite;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="compteurlecture", type="integer", nullable=true)
      */
     private $compteurlecture;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="urlphoto", type="text", nullable=true)
      */
     private $urlphoto;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="urllien", type="text", nullable=true)
      */
     private $urllien;
 
     /**
-     * @var \Utilisateurweb
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateurweb")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idutilisateurweb", referencedColumnName="id")
-     * })
+     * @var \Thiefaine\ReferentielBundle\Entity\Information
      */
-    private $idutilisateurweb;
-
-    /**
-     * @var \Typemessage
-     *
-     * @ORM\ManyToOne(targetEntity="Typemessage")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idtypemessage", referencedColumnName="id")
-     * })
-     */
-    private $idtypemessage;
-
-
-    /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Alerte
-     * @ORM\OneToOne(targetEntity="Alerte", mappedBy="idmessage", cascade={"persist"})
-     */
-    private $alerte;
+    private $information;
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Typemessage
@@ -110,7 +65,7 @@ class Message
     private $typemessage;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Utilisateurweb
+     * @var \Thiefaine\UserBundle\Entity\Utilisateurweb
      */
     private $utilisateurweb;
 
@@ -310,26 +265,26 @@ class Message
     }
 
     /**
-     * Set alerte
+     * Set information
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Alerte $alerte
+     * @param \Thiefaine\ReferentielBundle\Entity\Information $information
      * @return Message
      */
-    public function setAlerte(\Thiefaine\ReferentielBundle\Entity\Alerte $alerte = null)
+    public function setInformation(\Thiefaine\ReferentielBundle\Entity\Information $information = null)
     {
-        $this->alerte = $alerte;
+        $this->information = $information;
 
         return $this;
     }
 
     /**
-     * Get alerte
+     * Get information
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Alerte 
+     * @return \Thiefaine\ReferentielBundle\Entity\Information 
      */
-    public function getAlerte()
+    public function getInformation()
     {
-        return $this->alerte;
+        return $this->information;
     }
 
     /**
@@ -358,10 +313,10 @@ class Message
     /**
      * Set utilisateurweb
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb
+     * @param \Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb
      * @return Message
      */
-    public function setUtilisateurweb(\Thiefaine\ReferentielBundle\Entity\Utilisateurweb $utilisateurweb = null)
+    public function setUtilisateurweb(\Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb = null)
     {
         $this->utilisateurweb = $utilisateurweb;
 
@@ -371,15 +326,10 @@ class Message
     /**
      * Get utilisateurweb
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Utilisateurweb 
+     * @return \Thiefaine\UserBundle\Entity\Utilisateurweb 
      */
     public function getUtilisateurweb()
     {
         return $this->utilisateurweb;
-    }
-
-    public function __toString()
-    {
-        return $this->titre;
     }
 }

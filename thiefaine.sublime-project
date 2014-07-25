@@ -1,0 +1,18 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/var/www/thiefaine"
+		}
+	],
+	"settings":
+	{
+		"xdebug":
+		{
+			"url": "http://127.0.0.1:8000",
+			"super_globals": true,
+         	"close_on_stop": true
+		}
+	}
+}

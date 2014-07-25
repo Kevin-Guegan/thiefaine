@@ -5,8 +5,14 @@ namespace Thiefaine\ReferentielBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Get;
+
 use Thiefaine\ReferentielBundle\Entity\Message;
-use Thiefaine\ReferentielBundle\Form\ConseilType;
+use Thiefaine\ReferentielBundle\Form\MessageType;
+
+
+use FOS\RestBundle\View\View;
 
 /**
  * Message controller.
@@ -16,7 +22,7 @@ class ConseilController extends Controller
 {
 
     /**
-     * Lists all Message entities.
+     * Liste de tous les conseils
      *
      */
     public function indexAction()
@@ -27,145 +33,218 @@ class ConseilController extends Controller
         $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
         if (!$typeMessage) {
             throw $this->createNotFoundException('Impossible de trouver les messages de type conseil.');
-            $entities = null;
+            $conseils = null;
         } else {
             $idTypeMessage = $typeMessage->getId();
-            $entities = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
+            $conseils = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
         }
 
         return $this->render('ThiefaineReferentielBundle:Conseil:index.html.twig', array(
-            'entities' => $entities,
+            'conseils' => $conseils,
         ));
     }
 
     /**
-     * Displays a form to create a new Message entity.
+     * Afficher un formulaire pour créer un conseil
      *
      */
     public function newAction()
     {
-        $entity = new Message();
-        $form   = $this->createCreateForm($entity);
+        $conseil = new Message();
+        $form   = $this->createCreateForm($conseil);
 
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $conseil,
             'form'   => $form->createView(),
         ));
     }
     
     /**
-     * Creates a new Message entity.
+     * Création d'un nouveau conseil
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Message();
+        $conseil = new Message();
 
-        $form = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($conseil);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            // message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $conseil->getMessage(), -1);
+
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
+                    'entity' => $conseil,
+                    'form'   => $form->createView(),
+                ));
+            }
+
             $em = $this->getDoctrine()->getManager();
 
             // Message de type conseil
             $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
             if (!$typeMessage) {
-                throw $this->createNotFoundException('Impossible de trouver les messages de type conseil.');
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Impossible de trouver les messages de type conseil'
+                );
+                return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
+                    'entity' => $conseil,
+                    'form'   => $form->createView(),
+                ));
             }
 
             // utilisateur
-            $utilisateur = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findOneById(1);
+            $utilisateur = $this->container->get('security.context')->getToken()->getUser();
             if (!$utilisateur) {
-                throw $this->createNotFoundException("Impossible de trouver l'utilisateur");
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Impossible de trouver l\'utilisateur'
+                );
+                return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
+                    'entity' => $conseil,
+                    'form'   => $form->createView(),
+                ));
+            }
+
+            // file
+            $file = $form['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $conseil->setUrlphoto($finalNameFile);
             }
 
             // On met à jour le conseil
-            $entity->setDateCreation(new \DateTime('now'));
-            $entity->setTypemessage($typeMessage);
-            $entity->setUtilisateurweb($utilisateur);
+            $conseil->setDateCreation(new \DateTime('now'));
+            $conseil->setTypemessage($typeMessage);
+            $conseil->setUtilisateurweb($utilisateur);
 
-            $em->persist($entity);
+            $em->persist($conseil);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('conseil', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('conseil', array('id' => $conseil->getId())));
         }
 
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $conseil,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Message entity.
+     * Afficher un formulaire pour éditer un conseil
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        if (!$entity) {
+        if (!$conseil) {
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($conseil);
+        //$deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
-            'entity'      => $entity,
+            'conseil'      => $conseil,
             'edit_form'   => $editForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Edits an existing Message entity.
+     * Modifier un conseil
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        if (!$entity) {
+        if (!$conseil) {
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($conseil);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
 
-            // On met à jour la date de mise à jour
-            $entity->setDatemiseajour(new \DateTime('now'));
+            // message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $conseil->getMessage(), -1);
 
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
+                    'entity' => $conseil,
+                    'edit_form'   => $editForm->createView(),
+                ));
+            }
+
+            // On met à jour la date de mise à jour
+            $conseil->setDatemiseajour(new \DateTime('now'));
+
+            // file
+            $file = $editForm['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $conseil->setUrlphoto($finalNameFile);
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('conseil', array('id' => $id)));
         }
 
         return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $conseil,
             'edit_form'   => $editForm->createView(),
         ));
 
     }
+
     /**
-     * Deletes a Message entity.
+     * Supprimer un conseil
      *
      */
     public function deleteAction(Request $request, $id)
     {
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        if (!$entity) {
+        if (!$conseil) {
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
         }
 
-        $em->remove($entity);
+        $em->remove($conseil);
         $em->flush();
 
         return $this->redirect($this->generateUrl('conseil'));
@@ -180,10 +259,11 @@ class ConseilController extends Controller
     */
     private function createCreateForm(Message $entity)
     {
-        $form = $this->createForm(new ConseilType(), $entity, array(
+        $form = $this->createForm(new MessageType(), $entity, array(
             'action' => $this->generateUrl('conseil_create'),
             'method' => 'POST',
         ));
+
         return $form;
     }
 
@@ -196,7 +276,7 @@ class ConseilController extends Controller
     */
     private function createEditForm(Message $entity)
     {
-        $form = $this->createForm(new ConseilType(), $entity, array(
+        $form = $this->createForm(new MessageType(), $entity, array(
             'action' => $this->generateUrl('conseil_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -216,8 +296,60 @@ class ConseilController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('conseil_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('annuler', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+
+    /**
+    * Get availalble Conseil.
+    *
+    * @Get("/conseil")
+    *
+    * @ApiDoc
+    */
+    public function getConseilAction() {
+        $view = View::create();
+        //$view = new View();
+        $em = $this->getDoctrine()->getManager();
+        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
+        $idTypeMessage = $typeMessage->getId();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
+        $view->setData($entity);
+
+        return $this->handlerView($view);
+    }
+
+    /**
+    * Get availalble OneConseil.
+    *
+    * @param $idConseil id of a conseil.
+    * @Get("/conseil/{idConseil}")
+    *
+    * @ApiDoc
+    */
+    public function getOneConseilAction($idConseil) {
+        $view = View::create();
+        //$view = new View();
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($idConseil);
+        $typemessage = $entity->getTypemessage()->getLibelle();
+        if($typemessage == "conseil"){
+            $view->setData($entity);
+
+            return $this->handlerView($view);
+
+        }else{
+            return $this->handlerView($view);
+        }
+    }
+
+    /**
+    * @return \FOS\RestBundle\View\ViewHandler
+    */
+    protected function handlerView($view)
+    {
+        return $this->container->get('fos_rest.view_handler')->handle($view);
     }
 }

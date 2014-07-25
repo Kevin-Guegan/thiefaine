@@ -23,90 +23,13 @@ class UtilisateurwebController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->findAll();
+        $users = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->findAll();
 
         return $this->render('ThiefaineReferentielBundle:Utilisateurweb:index.html.twig', array(
-            'entities' => $entities,
-        ));
-    }
-    /**
-     * Creates a new Utilisateurweb entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new Utilisateurweb();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('utilisateurweb'));
-        }
-
-        return $this->render('ThiefaineReferentielBundle:Utilisateurweb:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+            'users' => $users,
         ));
     }
 
-    /**
-    * Creates a form to create a Utilisateurweb entity.
-    *
-    * @param Utilisateurweb $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Utilisateurweb $entity)
-    {
-        $form = $this->createForm(new UtilisateurwebType(), $entity, array(
-            'action' => $this->generateUrl('utilisateurweb_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Utilisateurweb entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Utilisateurweb();
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('ThiefaineReferentielBundle:Utilisateurweb:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a Utilisateurweb entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('ThiefaineReferentielBundle:Utilisateurweb:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
-    }
 
     /**
      * Displays a form to edit an existing Utilisateurweb entity.
@@ -116,40 +39,22 @@ class UtilisateurwebController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->find($id);
+        $utilisateurweb = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
+        if (!$utilisateurweb) {
+            throw $this->createNotFoundException('Unable to find Utilisateurweb utilisateurweb.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($utilisateurweb);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Utilisateurweb:edit.html.twig', array(
-            'entity'      => $entity,
+            'utilisateurweb'      => $utilisateurweb,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
-    /**
-    * Creates a form to edit a Utilisateurweb entity.
-    *
-    * @param Utilisateurweb $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Utilisateurweb $entity)
-    {
-        $form = $this->createForm(new UtilisateurwebType(), $entity, array(
-            'action' => $this->generateUrl('utilisateurweb_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
     /**
      * Edits an existing Utilisateurweb entity.
      *
@@ -157,51 +62,56 @@ class UtilisateurwebController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->find($id);
 
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->find($id);
-
-        if (!$entity) {
+        if (!$user) {
             throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($user);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
 
-            return $this->redirect($this->generateUrl('utilisateurweb', array('id' => $id)));
+            // on supprime tous les groupes et on ajoute celui qu'on a sélectionné
+            foreach ($user->getGroups() as $group) {
+                $user->removeGroup($group);
+            }
+            $user->addGroup($editForm['groups']->getData());
+            
+            $userManager = $this->container->get('fos_user.user_manager');
+            $userManager->updateUser($user);
+
+            return $this->redirect($this->generateUrl('thiefaine_referentiel_utilisateurweb_list'));
         }
 
         return $this->render('ThiefaineReferentielBundle:Utilisateurweb:edit.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $user,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
+    
     /**
      * Deletes a Utilisateurweb entity.
      *
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Utilisateurweb')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Utilisateurweb entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$user) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver l\'utilisateur.'
+            );
+            return $this->redirect($this->generateUrl('thiefaine_referentiel_utilisateurweb_list'));
         }
 
-        return $this->redirect($this->generateUrl('utilisateurweb'));
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('thiefaine_referentiel_utilisateurweb_list'));
     }
 
     /**
@@ -219,5 +129,39 @@ class UtilisateurwebController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /**
+    * Creates a form to edit a Utilisateurweb entity.
+    *
+    * @param Utilisateurweb $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(\Thiefaine\UserBundle\Entity\Utilisateurweb $entity)
+    {
+        $form = $this->createForm(new \Thiefaine\UserBundle\Form\Type\RegistrationFormType('\Thiefaine\UserBundle\Entity\Utilisateurweb'), $entity, array(
+            'action' => $this->generateUrl('utilisateurweb_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        return $form;
+    }
+
+    /**
+    * Creates a form to create a Utilisateurweb entity.
+    *
+    * @param Utilisateurweb $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm(\Thiefaine\UserBundle\Entity\Utilisateurweb $entity)
+    {
+        $form = $this->createForm(new \Thiefaine\UserBundle\Form\Type\ProfileFormType(), $entity, array(
+            'action' => $this->generateUrl('utilisateurweb_create'),
+            'method' => 'POST',
+        ));
+
+        return $form;
     }
 }

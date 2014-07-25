@@ -1,0 +1,31 @@
+Thiefaine\ReferentielBundle\Entity\Information:
+    type: entity
+    table: INFORMATION
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        alerte:
+            type: boolean
+            nullable: true
+    oneToOne:
+        message:
+            targetEntity: Message
+            inversedBy: information
+            joinColumns:
+                idmessage:
+                    referencedColumnName: id
+    manyToOne:
+        zone:
+            targetEntity: Zone
+            inversedBy: informations
+            joinColumns:
+                idzone:
+                    referencedColumnName: id
+
+    lifecycleCallbacks: {  }

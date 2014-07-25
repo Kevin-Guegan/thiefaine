@@ -1,19 +1,6 @@
-utilisateurweb:
-    pattern:  /
-    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurweb:index" }
-
-utilisateurweb_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurweb:show" }
-
-utilisateurweb_new:
-    pattern:  /new
-    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurweb:new" }
-
-utilisateurweb_create:
-    pattern:  /create
-    defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurweb:create" }
-    requirements: { _method: post }
+thiefaine_referentiel_utilisateurweb_list:
+  pattern: /
+  defaults: { _controller: ThiefaineReferentielBundle:Utilisateurweb:index }
 
 utilisateurweb_edit:
     pattern:  /{id}/edit
@@ -27,4 +14,3 @@ utilisateurweb_update:
 utilisateurweb_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurweb:delete" }
-    requirements: { _method: post|delete }

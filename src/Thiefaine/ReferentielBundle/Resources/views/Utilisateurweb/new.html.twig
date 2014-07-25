@@ -1,20 +1,71 @@
-{% extends 'ThiefaineReferentielBundle:Nav:leftnav.html.twig' %}
-
 {% block javascripts %}
-	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-	<div class="content">
-		<h1>Utilisateurweb creation</h1>
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+	
+	<div class="content col-md-9">
 
-    	{{ form(form) }}
+		<h3>Création d'un utilisateur</h3>
 
-    	<p>
-			<a class="btn btn-default" href={{ path('utilisateurweb') }}>Annuler</a>
-		</p>
+		{% if flashMessages|length > 0 %}
+    	<div class="alert alert-warning" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+		{% if flashMessages|length == 0 %}
+
+		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
+
+			<div class="form-group">
+				<p>
+					{{ form_label(form.nom) }}
+					{{ form_widget(form.nom) }}
+				</p>
+				<p>
+					{{ form_label(form.prenom) }}
+					{{ form_widget(form.prenom) }}
+				</p>
+			    <p>
+					{{ form_label(form.username) }}
+					{{ form_widget(form.username) }}
+				</p>
+				<p>
+					{{ form_label (form.plainPassword.first) }}
+					{{ form_widget (form.plainPassword.first) }}
+				</p>
+				<p>
+					{{ form_label (form.plainPassword.second) }}
+					{{ form_widget (form.plainPassword.second) }}
+				</p>
+				<p>
+					{{ form_label(form.groups) }}
+					{{ form_widget(form.groups) }}
+				</p>
+				<p>
+					{{ form_label(form.email) }}
+					{{ form_widget(form.email) }}
+				</p>
+			  	<p>
+					{{ form_label(form.infos) }}
+					{{ form_widget(form.infos) }}
+				</p>
+		      	<p>	
+		      		<button class="btn btn-primary" type="submit">Créer l'utilisateur</button>
+					<a class="btn btn-default" href={{ path('thiefaine_referentiel_utilisateurweb_list') }}>Annuler</a>
+		  	  	</p>
+		    </div>
+
+		{{ form_end(form) }}
+		{% endif %}
 
 	</div>
+
 {% endblock %}
 
