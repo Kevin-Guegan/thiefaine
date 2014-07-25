@@ -53,7 +53,7 @@ class CategorieController extends Controller
             $em->persist($categorie);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('categorie_show', array('id' => $categorie->getId())));
+            return $this->redirect($this->generateUrl('categorie'));
         }
 
         return array(
@@ -193,7 +193,7 @@ class CategorieController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('categorie_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('categorie', array('id' => $id)));
         }
 
         return array(
@@ -203,27 +203,24 @@ class CategorieController extends Controller
         );
     }
     /**
-     * Deletes a Categorie entity.
+     * Supprimer une categorie
      *
-     * @Route("/{id}", name="categorie_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Categorie entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver la categorie'
+            );
+            return $this->redirect($this->generateUrl('categorie'));
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('categorie'));
     }
