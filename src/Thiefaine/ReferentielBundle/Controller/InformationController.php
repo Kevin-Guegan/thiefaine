@@ -367,6 +367,26 @@ class InformationController extends Controller
 
     }
 
+    /**
+      *Get availalble one Information.
+      *
+      *@QueryParam(name="id")
+      *@Get("/information/")
+      *@ApiDoc
+    */
+
+    public function getInformationOneAction() {
+
+        $view = View::create();
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Information')->findAll();
+        $view->setData($entity);
+
+        return $this->handlerView($view);
+
+    }
+
     
 
     /**
