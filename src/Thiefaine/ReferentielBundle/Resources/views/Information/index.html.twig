@@ -30,24 +30,24 @@
                                 <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                             </a>
                         </td>
-                        <td>{{ information.message.titre }}</td>
-                        <td>{{ information.message.datecreation|date("d/m/Y") }}</td>
-                        <td>{{ information.message.datevalidite is empty ? "-" :information.message.datevalidite|date("d/m/Y") }}</td>
+                        <td>{{ information.titre }}</td>
+                        <td>{{ information.datecreation|date("d/m/Y") }}</td>
+                        <td>{{ information.datevalidite is empty ? "-" :information.datevalidite|date("d/m/Y") }}</td>
                         <td>
                             {{ information.zone.nom | default("-") }}
                         </td>
                         <td>
-                            {{ information.message.utilisateurweb.nom }} {{ information.message.utilisateurweb.prenom }}
+                            {{ information.utilisateurweb.nom }} {{ information.utilisateurweb.prenom }}
                         </td>
                         <td>
-                        {% if information.message.urlphoto %}
+                        {% if information.urlphoto %}
                             <span class="glyphicon glyphicon-ok"></span>
                         {% else %}
                             -
                         {% endif %}
                         </td>
                         <td>
-                        {% if information.message.urllien %}
+                        {% if information.urllien %}
                             <span class="glyphicon glyphicon-ok"></span>
                         {% else %}
                             -

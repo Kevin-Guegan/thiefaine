@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MessageType extends AbstractType
+class ConseilType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -93,7 +93,7 @@ class MessageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Message'
+            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Conseil'
         ));
     }
 
@@ -102,6 +102,6 @@ class MessageType extends AbstractType
      */
     public function getName()
     {
-        return 'thiefaine_referentielbundle_message';
+        return 'thiefaine_referentielbundle_conseil';
     }
 }

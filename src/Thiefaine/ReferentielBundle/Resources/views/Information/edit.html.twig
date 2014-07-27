@@ -15,7 +15,7 @@
 
     <div class="content col-md-9">
         
-        <h3>Edition de l'information «{{information.message.titre}}»</h1>
+        <h3>Edition de l'information «{{information.titre}}»</h1>
 
 		{{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -24,33 +24,33 @@
 			<div class="form-group">
 
 				<p>
-					{{ form_label(edit_form.message.titre) }}
-					{{ form_widget(edit_form.message.titre) }}
+					{{ form_label(edit_form.titre) }}
+					{{ form_widget(edit_form.titre) }}
 				</p>
 				<p>
-					{{ form_label(edit_form.message.urlphoto) }}
-					{{ form_widget(edit_form.message.urlphoto) }}
+					{{ form_label(edit_form.urlphoto) }}
+					{{ form_widget(edit_form.urlphoto) }}
 					<a class="btn btn-default showImage" style="width:100%;">Visualiser l'image</a>
 				</p>
 				<p>
-					{{ form_label(edit_form.message.attachement) }}
-					{{ form_widget(edit_form.message.attachement) }}
+					{{ form_label(edit_form.attachement) }}
+					{{ form_widget(edit_form.attachement) }}
 				</p>
 				<p>
-					{{ form_label(edit_form.message.urllien) }}
-					{{ form_widget(edit_form.message.urllien) }}
+					{{ form_label(edit_form.urllien) }}
+					{{ form_widget(edit_form.urllien) }}
 				</p>
 				<p>
 					{{ form_label(edit_form.zone) }}
 					{{ form_widget(edit_form.zone) }}
 				</p>
 				<p class="dateElement">
-					{{ form_label(edit_form.message.datevalidite) }}
-					{{ form_widget(edit_form.message.datevalidite) }}
+					{{ form_label(edit_form.datevalidite) }}
+					{{ form_widget(edit_form.datevalidite) }}
 				</p>
 				<p>
-					{{ form_label(edit_form.message.message) }}
-					{{ form_widget(edit_form.message.message) }}
+					{{ form_label(edit_form.message) }}
+					{{ form_widget(edit_form.message) }}
 				</p>
 				<p class="list-form-control">
 					<label>Notifications</label>

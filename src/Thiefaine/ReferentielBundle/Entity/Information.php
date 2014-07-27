@@ -20,15 +20,55 @@ class Information
     private $id;
 
     /**
-     * @var boolean
+     * @var string
+     * @Expose
      */
-    private $alerte;
+    private $titre;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Message
+     * @var string
      * @Expose
      */
     private $message;
+
+    /**
+     * @var \DateTime
+     */
+    private $datecreation;
+
+    /**
+     * @var \DateTime
+     */
+    private $datemiseajour;
+
+    /**
+     * @var \DateTime
+     * @Expose
+     */
+    private $datevalidite;
+
+    /**
+     * @var integer
+     */
+    private $compteurlecture;
+
+    /**
+     * @var string
+     * @Expose
+     */
+    private $urlphoto;
+
+    /**
+     * @var string
+     * @Expose
+     */
+    private $urllien;
+
+    /**
+     * @var boolean
+     * @Expose
+     */
+    private $alerte;
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Zone
@@ -36,6 +76,11 @@ class Information
      * @SerializedName("lieu")
      */
     private $zone;
+
+    /**
+     * @var \Thiefaine\UserBundle\Entity\Utilisateurweb
+     */
+    private $utilisateurweb;
 
 
     /**
@@ -46,6 +91,190 @@ class Information
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     * @return Information
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string 
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Information
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string 
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set datecreation
+     *
+     * @param \DateTime $datecreation
+     * @return Information
+     */
+    public function setDatecreation($datecreation)
+    {
+        $this->datecreation = $datecreation;
+
+        return $this;
+    }
+
+    /**
+     * Get datecreation
+     *
+     * @return \DateTime 
+     */
+    public function getDatecreation()
+    {
+        return $this->datecreation;
+    }
+
+    /**
+     * Set datemiseajour
+     *
+     * @param \DateTime $datemiseajour
+     * @return Information
+     */
+    public function setDatemiseajour($datemiseajour)
+    {
+        $this->datemiseajour = $datemiseajour;
+
+        return $this;
+    }
+
+    /**
+     * Get datemiseajour
+     *
+     * @return \DateTime 
+     */
+    public function getDatemiseajour()
+    {
+        return $this->datemiseajour;
+    }
+
+    /**
+     * Set datevalidite
+     *
+     * @param \DateTime $datevalidite
+     * @return Information
+     */
+    public function setDatevalidite($datevalidite)
+    {
+        $this->datevalidite = $datevalidite;
+
+        return $this;
+    }
+
+    /**
+     * Get datevalidite
+     *
+     * @return \DateTime 
+     */
+    public function getDatevalidite()
+    {
+        return $this->datevalidite;
+    }
+
+    /**
+     * Set compteurlecture
+     *
+     * @param integer $compteurlecture
+     * @return Information
+     */
+    public function setCompteurlecture($compteurlecture)
+    {
+        $this->compteurlecture = $compteurlecture;
+
+        return $this;
+    }
+
+    /**
+     * Get compteurlecture
+     *
+     * @return integer 
+     */
+    public function getCompteurlecture()
+    {
+        return $this->compteurlecture;
+    }
+
+    /**
+     * Set urlphoto
+     *
+     * @param string $urlphoto
+     * @return Information
+     */
+    public function setUrlphoto($urlphoto)
+    {
+        $this->urlphoto = $urlphoto;
+
+        return $this;
+    }
+
+    /**
+     * Get urlphoto
+     *
+     * @return string 
+     */
+    public function getUrlphoto()
+    {
+        return $this->urlphoto;
+    }
+
+    /**
+     * Set urllien
+     *
+     * @param string $urllien
+     * @return Information
+     */
+    public function setUrllien($urllien)
+    {
+        $this->urllien = $urllien;
+
+        return $this;
+    }
+
+    /**
+     * Get urllien
+     *
+     * @return string 
+     */
+    public function getUrllien()
+    {
+        return $this->urllien;
     }
 
     /**
@@ -72,29 +301,6 @@ class Information
     }
 
     /**
-     * Set message
-     *
-     * @param \Thiefaine\ReferentielBundle\Entity\Message $message
-     * @return Information
-     */
-    public function setMessage(\Thiefaine\ReferentielBundle\Entity\Message $message = null)
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-    /**
-     * Get message
-     *
-     * @return \Thiefaine\ReferentielBundle\Entity\Message 
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-    /**
      * Set zone
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Zone $zone
@@ -115,5 +321,28 @@ class Information
     public function getZone()
     {
         return $this->zone;
+    }
+
+    /**
+     * Set utilisateurweb
+     *
+     * @param \Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb
+     * @return Information
+     */
+    public function setUtilisateurweb(\Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb = null)
+    {
+        $this->utilisateurweb = $utilisateurweb;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateurweb
+     *
+     * @return \Thiefaine\UserBundle\Entity\Utilisateurweb 
+     */
+    public function getUtilisateurweb()
+    {
+        return $this->utilisateurweb;
     }
 }

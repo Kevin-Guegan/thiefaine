@@ -1,6 +1,6 @@
-Thiefaine\ReferentielBundle\Entity\Message:
+Thiefaine\ReferentielBundle\Entity\Conseil:
     type: entity
-    table: MESSAGE
+    table: CONSEIL
     id:
         id:
             type: integer
@@ -44,21 +44,11 @@ Thiefaine\ReferentielBundle\Entity\Message:
             length: null
             fixed: false
     manyToOne:
-        typemessage:
-            targetEntity: Typemessage
-            inversedBy: messages
-            joinColumns:
-                idtypemessage:
-                    referencedColumnName: id
         utilisateurweb:
             targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb
-            inversedBy: messages
+            inversedBy: conseils
             joinColumn:
                 name: idutilisateurweb
                 referencedColumnName: id
-    oneToOne:
-        information:
-            targetEntity: Information
-            mappedBy: message
 
     lifecycleCallbacks: {  }

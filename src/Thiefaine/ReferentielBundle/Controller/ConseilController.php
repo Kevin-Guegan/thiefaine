@@ -8,8 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Get;
 
-use Thiefaine\ReferentielBundle\Entity\Message;
-use Thiefaine\ReferentielBundle\Form\MessageType;
+use Thiefaine\ReferentielBundle\Entity\Conseil;
+use Thiefaine\ReferentielBundle\Form\ConseilType;
 
 
 use FOS\RestBundle\View\View;
@@ -28,16 +28,7 @@ class ConseilController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        // Message de type conseil
-        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
-        if (!$typeMessage) {
-            throw $this->createNotFoundException('Impossible de trouver les messages de type conseil.');
-            $conseils = null;
-        } else {
-            $idTypeMessage = $typeMessage->getId();
-            $conseils = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
-        }
+        $conseils = $em->getRepository('ThiefaineReferentielBundle:Conseil')->findAll();
 
         return $this->render('ThiefaineReferentielBundle:Conseil:index.html.twig', array(
             'conseils' => $conseils,
@@ -50,11 +41,11 @@ class ConseilController extends Controller
      */
     public function newAction()
     {
-        $conseil = new Message();
+        $conseil = new Conseil();
         $form   = $this->createCreateForm($conseil);
 
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-            'entity' => $conseil,
+            'conseil' => $conseil,
             'form'   => $form->createView(),
         ));
     }
@@ -65,7 +56,7 @@ class ConseilController extends Controller
      */
     public function createAction(Request $request)
     {
-        $conseil = new Message();
+        $conseil = new Conseil();
 
         $form = $this->createCreateForm($conseil);
         $form->handleRequest($request);
@@ -89,19 +80,6 @@ class ConseilController extends Controller
             }
 
             $em = $this->getDoctrine()->getManager();
-
-            // Message de type conseil
-            $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
-            if (!$typeMessage) {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Impossible de trouver les messages de type conseil'
-                );
-                return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-                    'entity' => $conseil,
-                    'form'   => $form->createView(),
-                ));
-            }
 
             // utilisateur
             $utilisateur = $this->container->get('security.context')->getToken()->getUser();
@@ -130,7 +108,6 @@ class ConseilController extends Controller
 
             // On met à jour le conseil
             $conseil->setDateCreation(new \DateTime('now'));
-            $conseil->setTypemessage($typeMessage);
             $conseil->setUtilisateurweb($utilisateur);
 
             $em->persist($conseil);
@@ -140,7 +117,7 @@ class ConseilController extends Controller
         }
 
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-            'entity' => $conseil,
+            'conseil' => $conseil,
             'form'   => $form->createView(),
         ));
     }
@@ -153,7 +130,7 @@ class ConseilController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $conseil = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($id);
 
         if (!$conseil) {
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
@@ -177,7 +154,7 @@ class ConseilController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $conseil = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($id);
 
         if (!$conseil) {
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
@@ -199,7 +176,7 @@ class ConseilController extends Controller
                     'Veuillez saisir un message.'
                 );
                 return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
-                    'entity' => $conseil,
+                    'conseil' => $conseil,
                     'edit_form'   => $editForm->createView(),
                 ));
             }
@@ -238,7 +215,7 @@ class ConseilController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $conseil = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($id);
 
         if (!$conseil) {
             throw $this->createNotFoundException('Impossible de trouver le conseil.');
@@ -251,15 +228,15 @@ class ConseilController extends Controller
     }
 
      /**
-    * Creates a form to create a Message entity.
+    * Creates a form to create a Conseil entity.
     *
-    * @param Message $entity The entity
+    * @param Conseil $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Message $entity)
+    private function createCreateForm(Conseil $entity)
     {
-        $form = $this->createForm(new MessageType(), $entity, array(
+        $form = $this->createForm(new ConseilType(), $entity, array(
             'action' => $this->generateUrl('conseil_create'),
             'method' => 'POST',
         ));
@@ -268,15 +245,15 @@ class ConseilController extends Controller
     }
 
     /**
-    * Creates a form to edit a Message entity.
+    * Creates a form to edit a Conseil entity.
     *
-    * @param Message $entity The entity
+    * @param Conseil $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Message $entity)
+    private function createEditForm(Conseil $entity)
     {
-        $form = $this->createForm(new MessageType(), $entity, array(
+        $form = $this->createForm(new ConseilType(), $entity, array(
             'action' => $this->generateUrl('conseil_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -313,10 +290,8 @@ class ConseilController extends Controller
         $view = View::create();
         //$view = new View();
         $em = $this->getDoctrine()->getManager();
-        $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('conseil');
-        $idTypeMessage = $typeMessage->getId();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->findByTypemessage($idTypeMessage);
-        $view->setData($entity);
+        $conseils = $em->getRepository('ThiefaineReferentielBundle:Conseil')->findAll();
+        $view->setData($conseils);
 
         return $this->handlerView($view);
     }
@@ -333,16 +308,9 @@ class ConseilController extends Controller
         $view = View::create();
         //$view = new View();
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($idConseil);
-        $typemessage = $entity->getTypemessage()->getLibelle();
-        if($typemessage == "conseil"){
-            $view->setData($entity);
-
-            return $this->handlerView($view);
-
-        }else{
-            return $this->handlerView($view);
-        }
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($idConseil);
+        $view->setData($conseil);
+        return $this->handlerView($view);
     }
 
     /**

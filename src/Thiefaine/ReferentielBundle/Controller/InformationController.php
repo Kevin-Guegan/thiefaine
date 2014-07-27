@@ -10,7 +10,6 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 
 use Thiefaine\ReferentielBundle\Entity\Information;
-use Thiefaine\ReferentielBundle\Entity\Message;
 use Thiefaine\ReferentielBundle\Entity\Zone;
 use Thiefaine\ReferentielBundle\Form\InformationType;
 
@@ -76,22 +75,6 @@ class InformationController extends Controller
 
         if ($form->isValid()) {
 
-           
-
-            // Message de type information
-            $typeMessage = $em->getRepository('ThiefaineReferentielBundle:Typemessage')->findOneByLibelle('information');
-            if (!$typeMessage) {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Impossible de trouver les messages de type information.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'information' => $information,
-                    'zones' => $zones,
-                    'form'   => $form->createView(),
-                ));
-            }
-
             // utilisateur
             $utilisateur = $this->container->get('security.context')->getToken()->getUser();
             if (!$utilisateur) {
@@ -108,10 +91,9 @@ class InformationController extends Controller
 
             // Contrôle de l'information
             $messageInformation = $information->getMessage();
-
             $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
             $replacement = '';
-            $message = preg_replace($pattern, $replacement, $messageInformation->getMessage(), -1);
+            $message = preg_replace($pattern, $replacement, $messageInformation, -1);
 
             if ($message == '') {
                 $this->container->get('session')->getFlashBag()->add(
@@ -140,7 +122,7 @@ class InformationController extends Controller
             }
 
             // file
-            $file = $form['message']['attachement']->getData();
+            $file = $form['attachement']->getData();
             if($file != null){
                 $dir = __DIR__.'/../../../../web/uploads/documents';
 
@@ -148,12 +130,11 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $messageInformation->setUrlphoto($finalNameFile);
+                $information->setUrlphoto($finalNameFile);
             }
-            $messageInformation->setDateCreation(new \DateTime('now'));
-            $messageInformation->setTypemessage($typeMessage);
-            $messageInformation->setUtilisateurweb($utilisateur);
-            $em->persist($messageInformation);
+            $information->setDateCreation(new \DateTime('now'));
+            $information->setUtilisateurweb($utilisateur);
+            $em->persist($information);
 
             $information->setMessage($messageInformation);
             $em->persist($information);            
@@ -227,7 +208,7 @@ class InformationController extends Controller
             // message non vide
             $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
             $replacement = '';
-            $message = preg_replace($pattern, $replacement, $messageInformation->getMessage(), -1);
+            $message = preg_replace($pattern, $replacement, $messageInformation, -1);
 
             if ($message == '') {
                 $this->container->get('session')->getFlashBag()->add(
@@ -240,10 +221,8 @@ class InformationController extends Controller
                 ));
             }
 
-            $em->flush();
-
             // file
-            $file = $editForm['message']['attachement']->getData();
+            $file = $editForm['attachement']->getData();
             if($file != null){
                 $dir = __DIR__.'/../../../../web/uploads/documents';
 
@@ -251,8 +230,10 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->getMessage()->setUrlphoto($finalNameFile);
+                $information->setUrlphoto($finalNameFile);
             }
+
+            $em->flush();
 
             return $this->redirect($this->generateUrl('information'));
         }
@@ -352,7 +333,7 @@ class InformationController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
-
+        
         return $information;
 
     }

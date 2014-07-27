@@ -33,13 +33,17 @@ class Utilisateurweb extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    protected $messages;
+    protected $conseils;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    protected $informations;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     protected $zones;
-
 
     /**
      * Constructor
@@ -47,7 +51,8 @@ class Utilisateurweb extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->conseils = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->informations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->zones = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -131,36 +136,69 @@ class Utilisateurweb extends BaseUser
     }
 
     /**
-     * Add messages
+     * Add conseils
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
+     * @param \Thiefaine\ReferentielBundle\Entity\Conseil $conseils
      * @return Utilisateurweb
      */
-    public function addMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
+    public function addConseil(\Thiefaine\ReferentielBundle\Entity\Conseil $conseils)
     {
-        $this->messages[] = $messages;
+        $this->conseils[] = $conseils;
 
         return $this;
     }
 
     /**
-     * Remove messages
+     * Remove conseils
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
+     * @param \Thiefaine\ReferentielBundle\Entity\Conseil $conseils
      */
-    public function removeMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
+    public function removeConseil(\Thiefaine\ReferentielBundle\Entity\Conseil $conseils)
     {
-        $this->messages->removeElement($messages);
+        $this->conseils->removeElement($conseils);
     }
 
     /**
-     * Get messages
+     * Get conseils
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getMessages()
+    public function getConseils()
     {
-        return $this->messages;
+        return $this->conseils;
+    }
+
+    /**
+     * Add informations
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
+     * @return Utilisateurweb
+     */
+    public function addInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
+    {
+        $this->informations[] = $informations;
+
+        return $this;
+    }
+
+    /**
+     * Remove informations
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
+     */
+    public function removeInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
+    {
+        $this->informations->removeElement($informations);
+    }
+
+    /**
+     * Get informations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInformations()
+    {
+        return $this->informations;
     }
 
     /**
@@ -194,11 +232,6 @@ class Utilisateurweb extends BaseUser
     public function getZones()
     {
         return $this->zones;
-    }
-
-    public function setGroups(\Thiefaine\UserBundle\Entity\Group $group){
-        $this->addGroup($group);
-        return $this;
     }
 
 }

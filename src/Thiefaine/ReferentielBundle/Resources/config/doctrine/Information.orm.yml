@@ -10,16 +10,42 @@ Thiefaine\ReferentielBundle\Entity\Information:
             generator:
                 strategy: IDENTITY
     fields:
+        titre:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        message:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+        datecreation:
+            type: datetime
+            nullable: false
+        datemiseajour:
+            type: datetime
+            nullable: true
+        datevalidite:
+            type: date
+            nullable: true
+        compteurlecture:
+            type: integer
+            nullable: true
+            unsigned: false
+        urlphoto:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+        urllien:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
         alerte:
             type: boolean
             nullable: true
-    oneToOne:
-        message:
-            targetEntity: Message
-            inversedBy: information
-            joinColumns:
-                idmessage:
-                    referencedColumnName: id
     manyToOne:
         zone:
             targetEntity: Zone
@@ -27,5 +53,11 @@ Thiefaine\ReferentielBundle\Entity\Information:
             joinColumns:
                 idzone:
                     referencedColumnName: id
+        utilisateurweb:
+            targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb
+            inversedBy: informations
+            joinColumn:
+                name: idutilisateurweb
+                referencedColumnName: id
 
     lifecycleCallbacks: {  }
