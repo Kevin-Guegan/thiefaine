@@ -340,21 +340,20 @@ class InformationController extends Controller
     }
 
     /**
-      *Get availalble one Information.
+      * Get availalble one Information.
       *
-      *@param $id id of the information.
+      * @param $id id of the information.
       *
-      *@View()
-      *
-      *@Get("/information/{id}")
-      *@ApiDoc
+      * @View()
+      * @Get("/information/{id}")
+      * @ApiDoc
     */
     public function getInformationOneAction($id) {
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
 
-        return $entity;
+        return $information;
 
     }
 
@@ -370,7 +369,13 @@ class InformationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('ThiefaineReferentielBundle:Information')->findAll();
 
-        return $entity;
+        $informations = array(); $i=0;
+        foreach ($entity as $information) {
+            $informations[$i] = $information->getId();
+            $i++;
+        }
+
+        return $informations;
 
     }
 }
