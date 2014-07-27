@@ -364,6 +364,7 @@ class InformationController extends Controller
         
 
         return $this->handlerView($view);
+        //test
 
     }
 
