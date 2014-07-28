@@ -267,6 +267,100 @@ class InformationController extends Controller
     }
 
     /**
+    * Afficher un formulaire pour cloner une information
+    *
+    */
+    public function cloneAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        if (!$information) {
+            throw $this->createNotFoundException("Impossible de trouver l'information.");
+        }
+
+
+        $cloneForm = $this->createCloneForm($information);
+
+        return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+            'information' => $information,
+            'clone_form' => $cloneForm->createView(),
+        ));
+    }
+
+        /**
+    * Modifier une information
+    *
+    */
+    public function cloneupdateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+
+        $information = clone $information;
+        $em->persist($information);
+        $em->flush();
+
+        $cloneForm = $this->createCloneForm($information);
+        $cloneForm->handleRequest($request);
+
+        if (!$information) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver l\'information.'
+            );
+            return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+                'information' => $information,
+                'clone_form' => $cloneForm->createView(),
+            ));
+        }
+
+        if ($cloneForm->isValid()) {
+
+            // On met à jour le message de l'information
+            $messageInformation = $information->getMessage();
+
+            // message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $messageInformation, -1);
+
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+                    'information' => $information,
+                    'edit_form' => $cloneForm->createView(),
+                ));
+            }
+
+            // file
+            $file = $cloneForm['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $information->setUrlphoto($finalNameFile);
+            }
+
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('information'));
+        }
+
+        return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+            'information' => $information,
+            'clone_form' => $cloneForm->createView(),
+        ));
+    }
+
+    /**
      * Supprimer une information
      *
      */
@@ -303,6 +397,23 @@ class InformationController extends Controller
             'method' => 'POST',
         ));
 
+        return $form;
+    }
+
+        /**
+    * Creates a form to create a Information entity.
+    *
+    * @param Information $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCloneForm($information)
+    {
+
+        $form = $this->createForm(new InformationType(), $information, array(
+            'action' => $this->generateUrl('information_cloneupdate', array('id' => $information->getId())),
+            'method' => 'POST'
+        ));
         return $form;
     }
 

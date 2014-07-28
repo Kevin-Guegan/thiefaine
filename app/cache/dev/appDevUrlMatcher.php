@@ -365,6 +365,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'information_clone')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::cloneAction',));
             }
 
+            // information_cloneupdate
+            if (preg_match('#^/information/(?P<id>[^/]++)/cloneupdate$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'information_cloneupdate')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::cloneupdateAction',));
+            }
+
             // information_delete
             if (preg_match('#^/information/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'information_delete')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::deleteAction',));
@@ -712,6 +717,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'thiefaine_referentiel_api_update')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::updateAction',  '_format' => NULL,));
             }
             not_thiefaine_referentiel_api_update:
+
+            // thiefaine_referentiel_api_clone
+            if (preg_match('#^/api/(?P<id>[^/]++)/clone(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PATCH') {
+                    $allow[] = 'PATCH';
+                    goto not_thiefaine_referentiel_api_clone;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'thiefaine_referentiel_api_clone')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::cloneAction',  '_format' => NULL,));
+            }
+            not_thiefaine_referentiel_api_clone:
+
+            // thiefaine_referentiel_api_cloneupdate
+            if (preg_match('#^/api/(?P<id>[^/]++)/cloneupdate(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PATCH') {
+                    $allow[] = 'PATCH';
+                    goto not_thiefaine_referentiel_api_cloneupdate;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'thiefaine_referentiel_api_cloneupdate')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::cloneupdateAction',  '_format' => NULL,));
+            }
+            not_thiefaine_referentiel_api_cloneupdate:
 
             // thiefaine_referentiel_api_delete
             if (preg_match('#^/api/(?P<id>[^/\\.]++)(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {

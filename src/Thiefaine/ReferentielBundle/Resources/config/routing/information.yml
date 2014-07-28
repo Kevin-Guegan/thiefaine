@@ -19,6 +19,10 @@ information_clone:
     pattern:  /{id}/clone
     defaults: { _controller: "ThiefaineReferentielBundle:Information:clone" }
 
+information_cloneupdate:
+    pattern:  /{id}/cloneupdate
+    defaults: { _controller: "ThiefaineReferentielBundle:Information:cloneupdate" }
+
 information_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ThiefaineReferentielBundle:Information:delete" }
