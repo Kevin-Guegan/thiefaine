@@ -57,9 +57,9 @@ class __TwigTemplate_4fa691a6d5695fd215916b8173351a37d38cf4a61949c8404332cd22fce
                         <td>
                             <a href=\"";
             // line 26
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("information_edit", array("id" => $this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "id"))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("information_show", array("id" => $this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "id"))), "html", null, true);
             echo "\">
-                                <span class=\"glyphicon glyphicon-pencil\" title=\"Modifier\"></span>
+                                <span class=\"glyphicon glyphicon-eye-open\" title=\"Visionner\"></span>
                             </a>
                             <a href=\"";
             // line 29
@@ -67,28 +67,34 @@ class __TwigTemplate_4fa691a6d5695fd215916b8173351a37d38cf4a61949c8404332cd22fce
             echo "\" onclick=\"return confirm('Etes vous sûr de vouloir supprimer cette information ?')\">
                                 <span class=\"glyphicon glyphicon-remove\" title=\"Supprimer\"></span>
                             </a>
+                            <a href=\"";
+            // line 32
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("information_clone", array("id" => $this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "id"))), "html", null, true);
+            echo "\">
+                                <span class=\"glyphicon glyphicon-th-large\" title=\"Cloner\"></span>
+                            </a
                         </td>
                         <td>";
-            // line 33
+            // line 36
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "titre"), "html", null, true);
             echo "</td>
                         <td>";
-            // line 34
+            // line 37
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "datecreation"), "d/m/Y"), "html", null, true);
             echo "</td>
                         <td>";
-            // line 35
+            // line 38
             echo twig_escape_filter($this->env, ((twig_test_empty($this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "datevalidite"))) ? ("-") : (twig_date_format_filter($this->env, $this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "datevalidite"), "d/m/Y"))), "html", null, true);
             echo "</td>
                         <td>
                             ";
-            // line 37
+            // line 40
             echo twig_escape_filter($this->env, (($this->getAttribute($this->getAttribute((isset($context["information"]) ? $context["information"] : null), "zone", array(), "any", false, true), "nom", array(), "any", true, true)) ? (_twig_default_filter($this->getAttribute($this->getAttribute((isset($context["information"]) ? $context["information"] : null), "zone", array(), "any", false, true), "nom"), "-")) : ("-")), "html", null, true);
             echo "
                         </td>
                         <td>
                             ";
-            // line 40
+            // line 43
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "utilisateurweb"), "nom"), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "utilisateurweb"), "prenom"), "html", null, true);
@@ -96,45 +102,45 @@ class __TwigTemplate_4fa691a6d5695fd215916b8173351a37d38cf4a61949c8404332cd22fce
                         </td>
                         <td>
                         ";
-            // line 43
+            // line 46
             if ($this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "urlphoto")) {
-                // line 44
+                // line 47
                 echo "                            <span class=\"glyphicon glyphicon-ok\"></span>
                         ";
             } else {
-                // line 46
+                // line 49
                 echo "                            -
                         ";
             }
-            // line 48
+            // line 51
             echo "                        </td>
                         <td>
                         ";
-            // line 50
+            // line 53
             if ($this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "urllien")) {
-                // line 51
+                // line 54
                 echo "                            <span class=\"glyphicon glyphicon-ok\"></span>
                         ";
             } else {
-                // line 53
+                // line 56
                 echo "                            -
                         ";
             }
-            // line 55
+            // line 58
             echo "                        </td>
                         <td>
                         ";
-            // line 57
+            // line 60
             if ($this->getAttribute((isset($context["information"]) ? $context["information"] : $this->getContext($context, "information")), "alerte")) {
-                // line 58
+                // line 61
                 echo "                            <span class=\"glyphicon glyphicon-ok\"></span>
                         ";
             } else {
-                // line 60
+                // line 63
                 echo "                            -
                         ";
             }
-            // line 62
+            // line 65
             echo "                        </td>
                     </tr>
                 ";
@@ -142,19 +148,19 @@ class __TwigTemplate_4fa691a6d5695fd215916b8173351a37d38cf4a61949c8404332cd22fce
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['information'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 65
+        // line 68
         echo "                </tbody>
             </table>
 
             ";
-        // line 68
+        // line 71
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "flashbag"), "get", array(0 => "notice"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
-            // line 69
+            // line 72
             echo "                <div class=\"flash-notice\">
                     ";
-            // line 70
+            // line 73
             echo twig_escape_filter($this->env, (isset($context["flashMessage"]) ? $context["flashMessage"] : $this->getContext($context, "flashMessage")), "html", null, true);
             echo "
                 </div>
@@ -163,7 +169,7 @@ class __TwigTemplate_4fa691a6d5695fd215916b8173351a37d38cf4a61949c8404332cd22fce
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flashMessage'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 73
+        // line 76
         echo "
         </div>
 ";
@@ -181,6 +187,6 @@ class __TwigTemplate_4fa691a6d5695fd215916b8173351a37d38cf4a61949c8404332cd22fce
 
     public function getDebugInfo()
     {
-        return array (  167 => 73,  158 => 70,  155 => 69,  151 => 68,  146 => 65,  138 => 62,  134 => 60,  130 => 58,  128 => 57,  124 => 55,  120 => 53,  116 => 51,  114 => 50,  110 => 48,  106 => 46,  102 => 44,  100 => 43,  92 => 40,  86 => 37,  81 => 35,  77 => 34,  73 => 33,  66 => 29,  60 => 26,  56 => 24,  52 => 23,  31 => 4,  28 => 3,);
+        return array (  173 => 76,  164 => 73,  161 => 72,  157 => 71,  152 => 68,  144 => 65,  140 => 63,  136 => 61,  134 => 60,  130 => 58,  126 => 56,  122 => 54,  120 => 53,  116 => 51,  112 => 49,  108 => 47,  106 => 46,  98 => 43,  92 => 40,  87 => 38,  83 => 37,  79 => 36,  72 => 32,  66 => 29,  60 => 26,  56 => 24,  52 => 23,  31 => 4,  28 => 3,);
     }
 }

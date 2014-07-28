@@ -114,7 +114,7 @@
   'ThiefaineReferentielBundle:Nav:leftnav.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Nav/leftnav.html.twig',
   'ThiefaineReferentielBundle:Information:index.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Information/index.html.twig',
   'ThiefaineReferentielBundle:Information:new.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Information/new.html.twig',
-  'ThiefaineReferentielBundle:Information:edit.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Information/edit.html.twig',
+  'ThiefaineReferentielBundle:Information:show.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Information/show.html.twig',
   'ThiefaineReferentielBundle:Conseil:index.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Conseil/index.html.twig',
   'ThiefaineReferentielBundle:Conseil:new.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Conseil/new.html.twig',
   'ThiefaineReferentielBundle:Conseil:edit.html.twig' => '/var/www/thiefaine/src/Thiefaine/ReferentielBundle/Resources/views/Conseil/edit.html.twig',

@@ -36,6 +36,28 @@ class InformationController extends Controller
     }
 
     /**
+     * Afficher un formulaire pour visionner une information
+     *
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+
+        if (!$information) {
+            throw $this->createNotFoundException("Impossible de trouver l'information.");
+        }
+
+        $showForm = $this->createShowForm($information);
+
+        return $this->render('ThiefaineReferentielBundle:Information:show.html.twig', array(
+            'information' => $information,
+            'show_form' => $showForm->createView(),
+        ));
+    }
+
+    /**
      * Afficher un formulaire pour la création des informations
      *
      */
@@ -152,9 +174,9 @@ class InformationController extends Controller
     }
 
     /**
-     * Afficher un formulaire pour éditer une information
-     *
-     */
+    * Afficher un formulaire pour éditer une information
+    *
+    */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -169,16 +191,16 @@ class InformationController extends Controller
         //$deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-            'information'      => $information,
-            'edit_form'   => $editForm->createView(),
+            'information' => $information,
+            'edit_form' => $editForm->createView(),
             //'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Modifier une information
-     *
-     */
+    * Modifier une information
+    *
+    */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -191,8 +213,8 @@ class InformationController extends Controller
                 'Impossible de trouver l\'information.'
             );
             return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-                'entity'      => $information,
-                'edit_form'   => $editForm->createView(),
+                'entity' => $information,
+                'edit_form' => $editForm->createView(),
             ));
         }
 
@@ -216,8 +238,8 @@ class InformationController extends Controller
                     'Veuillez saisir un message.'
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-                    'entity'      => $information,
-                    'edit_form'   => $editForm->createView(),
+                    'entity' => $information,
+                    'edit_form' => $editForm->createView(),
                 ));
             }
 
@@ -239,8 +261,8 @@ class InformationController extends Controller
         }
 
         return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-            'entity'      => $information,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $information,
+            'edit_form' => $editForm->createView(),
         ));
     }
 
@@ -285,23 +307,6 @@ class InformationController extends Controller
     }
 
     /**
-    * Creates a form to edit a Information entity.
-    *
-    * @param Information $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Information $entity)
-    {
-        $form = $this->createForm(new InformationType(), $entity, array(
-            'action' => $this->generateUrl('information_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        return $form;
-    }
-
-    /**
      * Creates a form to delete a Information entity by id.
      *
      * @param mixed $id The entity id
@@ -318,6 +323,22 @@ class InformationController extends Controller
                 )
             ->getForm()
         ;
+    }
+
+    /**
+     * Creates a form to show a Information entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createShowForm(Information $entity)
+    {
+        $form = $this->createForm(new InformationType(), $entity, array(
+            'action' => $this->generateUrl('information'),
+        ));
+
+        return $form;
     }
 
     /**

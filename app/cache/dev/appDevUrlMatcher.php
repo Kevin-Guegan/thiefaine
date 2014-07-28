@@ -355,21 +355,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_information_create:
 
-            // information_edit
-            if (preg_match('#^/information/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'information_edit')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::editAction',));
+            // information_show
+            if (preg_match('#^/information/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'information_show')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::showAction',));
             }
 
-            // information_update
-            if (preg_match('#^/information/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
-                    $allow = array_merge($allow, array('POST', 'PUT'));
-                    goto not_information_update;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'information_update')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::updateAction',));
+            // information_clone
+            if (preg_match('#^/information/(?P<id>[^/]++)/clone$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'information_clone')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::cloneAction',));
             }
-            not_information_update:
 
             // information_delete
             if (preg_match('#^/information/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
@@ -628,17 +622,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/api')) {
-            // thiefaine_referentiel_api_show
-            if (preg_match('#^/api/(?P<id>[^/]++)/show(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'PATCH') {
-                    $allow[] = 'PATCH';
-                    goto not_thiefaine_referentiel_api_show;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'thiefaine_referentiel_api_show')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\UtilisateurmobileController::showAction',  '_format' => NULL,));
-            }
-            not_thiefaine_referentiel_api_show:
-
             if (0 === strpos($pathinfo, '/api/conseil')) {
                 // thiefaine_referentiel_api_get_conseil
                 if (preg_match('#^/api/conseil(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
@@ -674,6 +657,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'thiefaine_referentiel_api_index')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::indexAction',  '_format' => NULL,));
             }
             not_thiefaine_referentiel_api_index:
+
+            // thiefaine_referentiel_api_show
+            if (preg_match('#^/api/(?P<id>[^/]++)/show(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PATCH') {
+                    $allow[] = 'PATCH';
+                    goto not_thiefaine_referentiel_api_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'thiefaine_referentiel_api_show')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\InformationController::showAction',  '_format' => NULL,));
+            }
+            not_thiefaine_referentiel_api_show:
 
             // thiefaine_referentiel_api_new
             if (0 === strpos($pathinfo, '/api/new') && preg_match('#^/api/new(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
