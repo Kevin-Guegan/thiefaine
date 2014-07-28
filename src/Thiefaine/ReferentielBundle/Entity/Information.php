@@ -44,6 +44,7 @@ class Information
     /**
      * @var \DateTime
      * @Expose
+     * @SerializedName("validite")
      */
     private $datevalidite;
 
@@ -55,12 +56,14 @@ class Information
     /**
      * @var string
      * @Expose
+     * @SerializedName("photo")
      */
     private $urlphoto;
 
     /**
      * @var string
      * @Expose
+     * @SerializedName("lien")     
      */
     private $urllien;
 

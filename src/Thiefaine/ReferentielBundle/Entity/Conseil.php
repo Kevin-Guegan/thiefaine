@@ -5,6 +5,7 @@ namespace Thiefaine\ReferentielBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Conseil
@@ -43,6 +44,7 @@ class Conseil
     /**
      * @var \DateTime
      * @Expose
+     * @SerializedName("validite")
      */
     private $datevalidite;
 
@@ -54,12 +56,14 @@ class Conseil
     /**
      * @var string
      * @Expose
+     * @SerializedName("photo")
      */
     private $urlphoto;
 
     /**
      * @var string
      * @Expose
+     * @SerializedName("lien")
      */
     private $urllien;
 

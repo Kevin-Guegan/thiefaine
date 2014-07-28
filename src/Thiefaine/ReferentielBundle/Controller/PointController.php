@@ -30,6 +30,7 @@ class PointController extends Controller
             'entities' => $entities,
         ));
     }
+    
     /**
      * Creates a new Point entity.
      *

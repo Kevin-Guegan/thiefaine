@@ -326,7 +326,7 @@ class InformationController extends Controller
       * @param $id id of the information.
       *
       * @View()
-      * @Get("/information/{id}")
+      * @Get("/information/{idInformation}")
       * @ApiDoc
     */
     public function getInformationOneAction($id) {
