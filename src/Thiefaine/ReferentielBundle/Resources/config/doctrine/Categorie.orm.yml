@@ -1,0 +1,19 @@
+Thiefaine\ReferentielBundle\Entity\Categorie:
+    type: entity
+    table: CATEGORIE
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        libelle:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+
+    lifecycleCallbacks: {  }

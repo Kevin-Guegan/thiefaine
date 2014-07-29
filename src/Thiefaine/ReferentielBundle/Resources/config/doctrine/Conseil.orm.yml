@@ -43,6 +43,17 @@ Thiefaine\ReferentielBundle\Entity\Conseil:
             nullable: true
             length: null
             fixed: false
+    manyToMany:
+        categories:
+            targetEntity: Categorie
+            joinTable:
+                name: CATEGORIE_MESSAGE
+                joinColumns:
+                    message:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    categorie:
+                        referencedColumnName: id
     manyToOne:
         utilisateurweb:
             targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb

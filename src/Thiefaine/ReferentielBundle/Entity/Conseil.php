@@ -68,6 +68,18 @@ class Conseil
      */
     private $utilisateurweb;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $categories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -284,5 +296,38 @@ class Conseil
     public function getUtilisateurweb()
     {
         return $this->utilisateurweb;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
+     * @return Message
+     */
+    public function addCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
+     */
+    public function removeCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
