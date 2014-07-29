@@ -23,12 +23,15 @@
                 {% for information in informations %}
                     <tr>
                         <td>
-                            <a href="{{ path('information_edit', { 'id': information.id }) }}">
-                                <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
+                            <a href="{{ path('information_show', { 'id': information.id }) }}">
+                                <span class="glyphicon glyphicon-eye-open" title="Visionner"></span>
                             </a>
                             <a href="{{ path('information_delete', {'id': information.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette information ?')">
                                 <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                             </a>
+                            <a href="{{ path('information_clone', {'id': information.id}) }}">
+                                <span class="glyphicon glyphicon-th-large" title="Cloner"></span>
+                            </a
                         </td>
                         <td>{{ information.titre }}</td>
                         <td>{{ information.datecreation|date("d/m/Y") }}</td>

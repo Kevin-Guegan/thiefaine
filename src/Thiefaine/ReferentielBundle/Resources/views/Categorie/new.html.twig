@@ -1,0 +1,41 @@
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+
+    <div class="content col-md-9">
+
+        <h3>Création d'une categorie</h1>
+
+		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
+
+			{{ form_errors(form) }}
+
+			<div class="form-group">
+
+				<p>
+					{{ form_label(form.libelle) }}
+					{{ form_widget(form.libelle) }}
+				</p>
+				<p>	
+		      		<button class="btn btn-primary" type="submit">Créer la categorie</button>
+					<a class="btn btn-default" href={{ path('categorie') }}>Annuler</a>
+		  	  	</p>	
+
+			</div>
+
+		{{ form_end(form) }}
+
+    </div>
+
+
+{% endblock %}

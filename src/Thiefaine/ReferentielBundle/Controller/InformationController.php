@@ -36,6 +36,28 @@ class InformationController extends Controller
     }
 
     /**
+     * Afficher un formulaire pour visionner une information
+     *
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+
+        if (!$information) {
+            throw $this->createNotFoundException("Impossible de trouver l'information.");
+        }
+
+        $showForm = $this->createShowForm($information);
+
+        return $this->render('ThiefaineReferentielBundle:Information:show.html.twig', array(
+            'information' => $information,
+            'show_form' => $showForm->createView(),
+        ));
+    }
+
+    /**
      * Afficher un formulaire pour la création des informations
      *
      */
@@ -152,9 +174,9 @@ class InformationController extends Controller
     }
 
     /**
-     * Afficher un formulaire pour éditer une information
-     *
-     */
+    * Afficher un formulaire pour éditer une information
+    *
+    */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -169,16 +191,16 @@ class InformationController extends Controller
         //$deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-            'information'      => $information,
-            'edit_form'   => $editForm->createView(),
+            'information' => $information,
+            'edit_form' => $editForm->createView(),
             //'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Modifier une information
-     *
-     */
+    * Modifier une information
+    *
+    */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -191,8 +213,8 @@ class InformationController extends Controller
                 'Impossible de trouver l\'information.'
             );
             return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-                'entity'      => $information,
-                'edit_form'   => $editForm->createView(),
+                'entity' => $information,
+                'edit_form' => $editForm->createView(),
             ));
         }
 
@@ -216,8 +238,8 @@ class InformationController extends Controller
                     'Veuillez saisir un message.'
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-                    'entity'      => $information,
-                    'edit_form'   => $editForm->createView(),
+                    'entity' => $information,
+                    'edit_form' => $editForm->createView(),
                 ));
             }
 
@@ -239,8 +261,102 @@ class InformationController extends Controller
         }
 
         return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-            'entity'      => $information,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $information,
+            'edit_form' => $editForm->createView(),
+        ));
+    }
+
+    /**
+    * Afficher un formulaire pour cloner une information
+    *
+    */
+    public function cloneAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        if (!$information) {
+            throw $this->createNotFoundException("Impossible de trouver l'information.");
+        }
+
+
+        $cloneForm = $this->createCloneForm($information);
+
+        return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+            'information' => $information,
+            'clone_form' => $cloneForm->createView(),
+        ));
+    }
+
+        /**
+    * Modifier une information
+    *
+    */
+    public function cloneupdateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+
+        $information = clone $information;
+        $em->persist($information);
+        $em->flush();
+
+        $cloneForm = $this->createCloneForm($information);
+        $cloneForm->handleRequest($request);
+
+        if (!$information) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Impossible de trouver l\'information.'
+            );
+            return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+                'information' => $information,
+                'clone_form' => $cloneForm->createView(),
+            ));
+        }
+
+        if ($cloneForm->isValid()) {
+
+            // On met à jour le message de l'information
+            $messageInformation = $information->getMessage();
+
+            // message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $messageInformation, -1);
+
+            if ($message == '') {
+                $this->container->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Veuillez saisir un message.'
+                );
+                return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+                    'information' => $information,
+                    'edit_form' => $cloneForm->createView(),
+                ));
+            }
+
+            // file
+            $file = $cloneForm['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $information->setUrlphoto($finalNameFile);
+            }
+
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('information'));
+        }
+
+        return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+            'information' => $information,
+            'clone_form' => $cloneForm->createView(),
         ));
     }
 
@@ -284,20 +400,20 @@ class InformationController extends Controller
         return $form;
     }
 
-    /**
-    * Creates a form to edit a Information entity.
+        /**
+    * Creates a form to create a Information entity.
     *
     * @param Information $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Information $entity)
+    private function createCloneForm($information)
     {
-        $form = $this->createForm(new InformationType(), $entity, array(
-            'action' => $this->generateUrl('information_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
 
+        $form = $this->createForm(new InformationType(), $information, array(
+            'action' => $this->generateUrl('information_cloneupdate', array('id' => $information->getId())),
+            'method' => 'POST'
+        ));
         return $form;
     }
 
@@ -318,6 +434,22 @@ class InformationController extends Controller
                 )
             ->getForm()
         ;
+    }
+
+    /**
+     * Creates a form to show a Information entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createShowForm(Information $entity)
+    {
+        $form = $this->createForm(new InformationType(), $entity, array(
+            'action' => $this->generateUrl('information'),
+        ));
+
+        return $form;
     }
 
     /**

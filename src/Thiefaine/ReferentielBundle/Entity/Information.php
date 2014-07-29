@@ -3,31 +3,24 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Information
- * @ExclusionPolicy("all")
  */
 class Information
 {
     /**
      * @var integer
-     * @Expose
      */
     private $id;
 
     /**
      * @var string
-     * @Expose
      */
     private $titre;
 
     /**
      * @var string
-     * @Expose
      */
     private $message;
 
@@ -63,20 +56,17 @@ class Information
     /**
      * @var string
      * @Expose
-     * @SerializedName("lien")     
+     * @SerializedName("lien")
      */
     private $urllien;
 
     /**
      * @var boolean
-     * @Expose
      */
     private $alerte;
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Zone
-     * @Expose
-     * @SerializedName("lieu")
      */
     private $zone;
 
@@ -85,6 +75,19 @@ class Information
      */
     private $utilisateurweb;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @Expose
+     */
+    private $categories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -347,5 +350,38 @@ class Information
     public function getUtilisateurweb()
     {
         return $this->utilisateurweb;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
+     * @return Information
+     */
+    public function addCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
+     */
+    public function removeCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

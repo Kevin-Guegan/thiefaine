@@ -14,7 +14,7 @@
 
     <div class="content col-md-9">
         
-        <h3>Edition du conseil «{{ conseil.titre }}»</h1>
+        <h3>Mise à jour du conseil «{{ conseil.titre }}»</h1>
 
         {% if flashMessages|length > 0 %}
     	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
@@ -35,6 +35,10 @@
 				<p>
 					{{ form_label(edit_form.titre) }} *
 					{{ form_widget(edit_form.titre) }}
+				</p>
+				<p>
+					{{ form_label(form.categories) }}
+					{{ form_widget(form.categories) }}
 				</p>
 				<p>
 					{{ form_label(edit_form.urlphoto) }}

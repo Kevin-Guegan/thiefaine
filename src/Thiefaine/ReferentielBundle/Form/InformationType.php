@@ -110,6 +110,22 @@ class InformationType extends AbstractType
                 ),
                 'required' => false,
             ))
+            ->add('categories','entity', array(
+                'class'     => 'ThiefaineReferentielBundle:Categorie',
+                'property'  => 'libelle',
+                'label'     => 'Categorie',
+                'expanded'  => true,
+                'multiple'  => true,
+                'label_attr'   =>  array ( 'class' => 'control-label' ),
+                'attr'   =>  array  (   'class' => 'form-control',
+                                        'placeholder' => 'Titre',
+                                        'title' => "Renseigner la catégorie.",
+                                        'data-toggle' => 'tooltip',
+                                        'data-placement' => 'right'
+                                    )
+                )
+            )
+
         ;
 
     }
