@@ -3,30 +3,24 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
 
 /**
  * Conseil
- * @ExclusionPolicy("all")
  */
 class Conseil
 {
     /**
      * @var integer
-     * @Expose
      */
     private $id;
 
     /**
      * @var string
-     * @Expose
      */
     private $titre;
 
     /**
      * @var string
-     * @Expose
      */
     private $message;
 
@@ -42,7 +36,6 @@ class Conseil
 
     /**
      * @var \DateTime
-     * @Expose
      */
     private $datevalidite;
 
@@ -53,13 +46,11 @@ class Conseil
 
     /**
      * @var string
-     * @Expose
      */
     private $urlphoto;
 
     /**
      * @var string
-     * @Expose
      */
     private $urllien;
 
@@ -302,7 +293,7 @@ class Conseil
      * Add categories
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
-     * @return Message
+     * @return Conseil
      */
     public function addCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
     {

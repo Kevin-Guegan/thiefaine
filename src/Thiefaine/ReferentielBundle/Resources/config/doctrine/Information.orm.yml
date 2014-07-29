@@ -46,6 +46,17 @@ Thiefaine\ReferentielBundle\Entity\Information:
         alerte:
             type: boolean
             nullable: true
+    manyToMany:        
+       categories:
+            targetEntity: Information
+            joinTable:
+                name: CATEGORIE_INFORMATION
+                joinColumns:
+                    information:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    categorie:
+                        referencedColumnName: id
     manyToOne:
         zone:
             targetEntity: Zone

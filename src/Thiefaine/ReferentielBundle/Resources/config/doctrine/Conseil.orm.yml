@@ -47,9 +47,9 @@ Thiefaine\ReferentielBundle\Entity\Conseil:
         categories:
             targetEntity: Categorie
             joinTable:
-                name: CATEGORIE_MESSAGE
+                name: CATEGORIE_CONSEIL
                 joinColumns:
-                    message:
+                    conseil:
                         referencedColumnName: id
                 inverseJoinColumns:
                     categorie:

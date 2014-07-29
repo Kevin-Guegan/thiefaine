@@ -309,6 +309,9 @@
       <parameter key="ROLE_MANAGE_GROUP" type="collection">
         <parameter>ROLE_USER</parameter>
       </parameter>
+      <parameter key="ROLE_MANAGE_CATEGORIE" type="collection">
+        <parameter>ROLE_USER</parameter>
+      </parameter>
       <parameter key="ROLE_ADMIN" type="collection">
         <parameter>ROLE_MANAGE_GROUP</parameter>
         <parameter>ROLE_MANAGE_USER</parameter>
@@ -316,6 +319,7 @@
         <parameter>ROLE_MANAGE_INFORMATION</parameter>
         <parameter>ROLE_MANAGE_ALERTE</parameter>
         <parameter>ROLE_MANAGE_ZONE</parameter>
+        <parameter>ROLE_MANAGE_CATEGORIE</parameter>
       </parameter>
       <parameter key="ROLE_SUPER_ADMIN" type="collection">
         <parameter>ROLE_USER</parameter>
@@ -462,7 +466,7 @@
     <parameter key="assetic.write_to">/var/www/thiefaine/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
-    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
+    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -938,80 +942,8 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.eu.xlf</argument>
-        <argument>eu</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lb.xlf</argument>
-        <argument>lb</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Cyrl.xlf</argument>
-        <argument>sr_Cyrl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
         <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Latn.xlf</argument>
         <argument>sr_Latn</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nl.xlf</argument>
-        <argument>nl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ar.xlf</argument>
-        <argument>ar</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fa.xlf</argument>
-        <argument>fa</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cs.xlf</argument>
-        <argument>cs</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.id.xlf</argument>
-        <argument>id</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.he.xlf</argument>
-        <argument>he</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hr.xlf</argument>
-        <argument>hr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sk.xlf</argument>
-        <argument>sk</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.de.xlf</argument>
-        <argument>de</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1022,14 +954,8 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ro.xlf</argument>
-        <argument>ro</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hu.xlf</argument>
-        <argument>hu</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fi.xlf</argument>
+        <argument>fi</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1040,38 +966,8 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.el.xlf</argument>
-        <argument>el</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ru.xlf</argument>
-        <argument>ru</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.it.xlf</argument>
-        <argument>it</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.tr.xlf</argument>
-        <argument>tr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.bg.xlf</argument>
-        <argument>bg</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.vi.xlf</argument>
-        <argument>vi</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nl.xlf</argument>
+        <argument>nl</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1082,68 +978,14 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fi.xlf</argument>
-        <argument>fi</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hy.xlf</argument>
-        <argument>hy</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.no.xlf</argument>
-        <argument>no</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
         <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lt.xlf</argument>
         <argument>lt</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.et.xlf</argument>
-        <argument>et</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.gl.xlf</argument>
-        <argument>gl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nb.xlf</argument>
-        <argument>nb</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sl.xlf</argument>
-        <argument>sl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fr.xlf</argument>
-        <argument>fr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_CN.xlf</argument>
-        <argument>zh_CN</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.da.xlf</argument>
-        <argument>da</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hr.xlf</argument>
+        <argument>hr</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1154,26 +996,44 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ca.xlf</argument>
-        <argument>ca</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
         <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.en.xlf</argument>
         <argument>en</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_TW.xlf</argument>
-        <argument>zh_TW</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Cyrl.xlf</argument>
+        <argument>sr_Cyrl</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt_BR.xlf</argument>
-        <argument>pt_BR</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lb.xlf</argument>
+        <argument>lb</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ru.xlf</argument>
+        <argument>ru</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fa.xlf</argument>
+        <argument>fa</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.no.xlf</argument>
+        <argument>no</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.el.xlf</argument>
+        <argument>el</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1184,20 +1044,38 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sq.xlf</argument>
-        <argument>sq</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.he.xlf</argument>
+        <argument>he</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cy.xlf</argument>
-        <argument>cy</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.eu.xlf</argument>
+        <argument>eu</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.uk.xlf</argument>
-        <argument>uk</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.th.xlf</argument>
+        <argument>th</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ca.xlf</argument>
+        <argument>ca</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cs.xlf</argument>
+        <argument>cs</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt_BR.xlf</argument>
+        <argument>pt_BR</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1214,26 +1092,134 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.th.xlf</argument>
-        <argument>th</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sq.xlf</argument>
+        <argument>sq</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.eu.xlf</argument>
-        <argument>eu</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nb.xlf</argument>
+        <argument>nb</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lb.xlf</argument>
-        <argument>lb</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ar.xlf</argument>
+        <argument>ar</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sr_Cyrl.xlf</argument>
-        <argument>sr_Cyrl</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.uk.xlf</argument>
+        <argument>uk</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.gl.xlf</argument>
+        <argument>gl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.et.xlf</argument>
+        <argument>et</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cy.xlf</argument>
+        <argument>cy</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.bg.xlf</argument>
+        <argument>bg</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.it.xlf</argument>
+        <argument>it</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sk.xlf</argument>
+        <argument>sk</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hy.xlf</argument>
+        <argument>hy</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.da.xlf</argument>
+        <argument>da</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_TW.xlf</argument>
+        <argument>zh_TW</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_CN.xlf</argument>
+        <argument>zh_CN</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.tr.xlf</argument>
+        <argument>tr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hu.xlf</argument>
+        <argument>hu</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ro.xlf</argument>
+        <argument>ro</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sl.xlf</argument>
+        <argument>sl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.id.xlf</argument>
+        <argument>id</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fr.xlf</argument>
+        <argument>fr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.de.xlf</argument>
+        <argument>de</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.vi.xlf</argument>
+        <argument>vi</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1244,110 +1230,8 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nl.xlf</argument>
-        <argument>nl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ar.xlf</argument>
-        <argument>ar</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fa.xlf</argument>
-        <argument>fa</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.cs.xlf</argument>
-        <argument>cs</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.id.xlf</argument>
-        <argument>id</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.he.xlf</argument>
-        <argument>he</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hr.xlf</argument>
-        <argument>hr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sk.xlf</argument>
-        <argument>sk</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.de.xlf</argument>
-        <argument>de</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
         <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ja.xlf</argument>
         <argument>ja</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ro.xlf</argument>
-        <argument>ro</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hu.xlf</argument>
-        <argument>hu</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt.xlf</argument>
-        <argument>pt</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.el.xlf</argument>
-        <argument>el</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ru.xlf</argument>
-        <argument>ru</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.it.xlf</argument>
-        <argument>it</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.bg.xlf</argument>
-        <argument>bg</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sv.xlf</argument>
-        <argument>sv</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1358,8 +1242,20 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hy.xlf</argument>
-        <argument>hy</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt.xlf</argument>
+        <argument>pt</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nl.xlf</argument>
+        <argument>nl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sv.xlf</argument>
+        <argument>sv</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1370,50 +1266,8 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.et.xlf</argument>
-        <argument>et</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.gl.xlf</argument>
-        <argument>gl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nb.xlf</argument>
-        <argument>nb</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sl.xlf</argument>
-        <argument>sl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fr.xlf</argument>
-        <argument>fr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.zh_CN.xlf</argument>
-        <argument>zh_CN</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.da.xlf</argument>
-        <argument>da</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lv.xlf</argument>
-        <argument>lv</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hr.xlf</argument>
+        <argument>hr</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1424,20 +1278,38 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ca.xlf</argument>
-        <argument>ca</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
         <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.en.xlf</argument>
         <argument>en</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt_BR.xlf</argument>
-        <argument>pt_BR</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sr_Cyrl.xlf</argument>
+        <argument>sr_Cyrl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lb.xlf</argument>
+        <argument>lb</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ru.xlf</argument>
+        <argument>ru</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fa.xlf</argument>
+        <argument>fa</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.el.xlf</argument>
+        <argument>el</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1448,8 +1320,32 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.uk.xlf</argument>
-        <argument>uk</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.he.xlf</argument>
+        <argument>he</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.eu.xlf</argument>
+        <argument>eu</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ca.xlf</argument>
+        <argument>ca</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.cs.xlf</argument>
+        <argument>cs</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt_BR.xlf</argument>
+        <argument>pt_BR</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1460,140 +1356,122 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nb.xlf</argument>
+        <argument>nb</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ar.xlf</argument>
+        <argument>ar</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.uk.xlf</argument>
+        <argument>uk</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.gl.xlf</argument>
+        <argument>gl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.et.xlf</argument>
+        <argument>et</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.bg.xlf</argument>
+        <argument>bg</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.it.xlf</argument>
+        <argument>it</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sk.xlf</argument>
+        <argument>sk</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hy.xlf</argument>
+        <argument>hy</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.da.xlf</argument>
+        <argument>da</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.zh_CN.xlf</argument>
+        <argument>zh_CN</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hu.xlf</argument>
+        <argument>hu</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ro.xlf</argument>
+        <argument>ro</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lv.xlf</argument>
+        <argument>lv</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sl.xlf</argument>
+        <argument>sl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.id.xlf</argument>
+        <argument>id</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fr.xlf</argument>
+        <argument>fr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.de.xlf</argument>
+        <argument>de</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.en.xlf</argument>
+        <argument>en</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
         <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ca.xlf</argument>
         <argument>ca</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.el.xlf</argument>
-        <argument>el</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sk.xlf</argument>
-        <argument>sk</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ru.xlf</argument>
-        <argument>ru</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.lb.xlf</argument>
-        <argument>lb</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.it.xlf</argument>
-        <argument>it</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pl.xlf</argument>
-        <argument>pl</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.cs.xlf</argument>
-        <argument>cs</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.de.xlf</argument>
-        <argument>de</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.hu.xlf</argument>
-        <argument>hu</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sl.xlf</argument>
-        <argument>sl</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.no.xlf</argument>
-        <argument>no</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sv.xlf</argument>
-        <argument>sv</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ro.xlf</argument>
-        <argument>ro</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.gl.xlf</argument>
-        <argument>gl</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.nl.xlf</argument>
-        <argument>nl</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_BR.xlf</argument>
-        <argument>pt_BR</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.tr.xlf</argument>
-        <argument>tr</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.es.xlf</argument>
-        <argument>es</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ua.xlf</argument>
-        <argument>ua</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.da.xlf</argument>
-        <argument>da</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Cyrl.xlf</argument>
-        <argument>sr_Cyrl</argument>
-        <argument>security</argument>
-      </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Latn.xlf</argument>
-        <argument>sr_Latn</argument>
         <argument>security</argument>
       </call>
       <call method="addResource">
@@ -1604,14 +1482,80 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.en.xlf</argument>
-        <argument>en</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.el.xlf</argument>
+        <argument>el</argument>
         <argument>security</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_PT.xlf</argument>
-        <argument>pt_PT</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.da.xlf</argument>
+        <argument>da</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.cs.xlf</argument>
+        <argument>cs</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.lb.xlf</argument>
+        <argument>lb</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ua.xlf</argument>
+        <argument>ua</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ru.xlf</argument>
+        <argument>ru</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.de.xlf</argument>
+        <argument>de</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.tr.xlf</argument>
+        <argument>tr</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.fa.xlf</argument>
+        <argument>fa</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pl.xlf</argument>
+        <argument>pl</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.hu.xlf</argument>
+        <argument>hu</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.no.xlf</argument>
+        <argument>no</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sl.xlf</argument>
+        <argument>sl</argument>
         <argument>security</argument>
       </call>
       <call method="addResource">
@@ -1622,9 +1566,75 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.fa.xlf</argument>
-        <argument>fa</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Cyrl.xlf</argument>
+        <argument>sr_Cyrl</argument>
         <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.gl.xlf</argument>
+        <argument>gl</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_PT.xlf</argument>
+        <argument>pt_PT</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sv.xlf</argument>
+        <argument>sv</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sk.xlf</argument>
+        <argument>sk</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ro.xlf</argument>
+        <argument>ro</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Latn.xlf</argument>
+        <argument>sr_Latn</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.nl.xlf</argument>
+        <argument>nl</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.es.xlf</argument>
+        <argument>es</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.it.xlf</argument>
+        <argument>it</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_BR.xlf</argument>
+        <argument>pt_BR</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
@@ -1634,164 +1644,14 @@
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fr.yml</argument>
-        <argument>fr</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.vi.yml</argument>
-        <argument>vi</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.pt_PT.yml</argument>
-        <argument>pt_PT</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sr_Latn.yml</argument>
-        <argument>sr_Latn</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.id.yml</argument>
+        <argument>id</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.da.yml</argument>
-        <argument>da</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.da.yml</argument>
-        <argument>da</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.zh_CN.yml</argument>
-        <argument>zh_CN</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lv.yml</argument>
-        <argument>lv</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.nl.yml</argument>
-        <argument>nl</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.hu.yml</argument>
-        <argument>hu</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.he.yml</argument>
-        <argument>he</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.en.yml</argument>
-        <argument>en</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lb.yml</argument>
-        <argument>lb</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.hr.yml</argument>
-        <argument>hr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ja.yml</argument>
-        <argument>ja</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.it.yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.it.yml</argument>
         <argument>it</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.tr.yml</argument>
-        <argument>tr</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ro.yml</argument>
-        <argument>ro</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.de.yml</argument>
-        <argument>de</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.bg.yml</argument>
-        <argument>bg</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sl.yml</argument>
-        <argument>sl</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sr_Latn.yml</argument>
-        <argument>sr_Latn</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.pl.yml</argument>
-        <argument>pl</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pl.yml</argument>
-        <argument>pl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.cs.yml</argument>
-        <argument>cs</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.zh_CN.yml</argument>
-        <argument>zh_CN</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fi.yml</argument>
-        <argument>fi</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
@@ -1802,21 +1662,297 @@
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sk.yml</argument>
-        <argument>sk</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.pl.yml</argument>
+        <argument>pl</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.es.yml</argument>
-        <argument>es</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.th.yml</argument>
+        <argument>th</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pt.yml</argument>
-        <argument>pt</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fa.yml</argument>
+        <argument>fa</argument>
         <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fa.yml</argument>
+        <argument>fa</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.en.yml</argument>
+        <argument>en</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.zh_CN.yml</argument>
+        <argument>zh_CN</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.hu.yml</argument>
+        <argument>hu</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.hr.yml</argument>
+        <argument>hr</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.nb.yml</argument>
+        <argument>nb</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lt.yml</argument>
+        <argument>lt</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.pt_PT.yml</argument>
+        <argument>pt_PT</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.et.yml</argument>
+        <argument>et</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.uk.yml</argument>
+        <argument>uk</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.tr.yml</argument>
+        <argument>tr</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lv.yml</argument>
+        <argument>lv</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.id.yml</argument>
+        <argument>id</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.de.yml</argument>
+        <argument>de</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sv.yml</argument>
+        <argument>sv</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pt_BR.yml</argument>
+        <argument>pt_BR</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.en.yml</argument>
+        <argument>en</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.he.yml</argument>
+        <argument>he</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ro.yml</argument>
+        <argument>ro</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ar.yml</argument>
+        <argument>ar</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sr_Latn.yml</argument>
+        <argument>sr_Latn</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.es.yml</argument>
+        <argument>es</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.da.yml</argument>
+        <argument>da</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.nb.yml</argument>
+        <argument>nb</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sr_Latn.yml</argument>
+        <argument>sr_Latn</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pl.yml</argument>
+        <argument>pl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ro.yml</argument>
+        <argument>ro</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.tr.yml</argument>
+        <argument>tr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.hr.yml</argument>
+        <argument>hr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.da.yml</argument>
+        <argument>da</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.lt.yml</argument>
+        <argument>lt</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.hu.yml</argument>
+        <argument>hu</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lb.yml</argument>
+        <argument>lb</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.lv.yml</argument>
+        <argument>lv</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
@@ -1832,189 +1968,27 @@
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.nb.yml</argument>
-        <argument>nb</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.es.yml</argument>
-        <argument>es</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.lt.yml</argument>
-        <argument>lt</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sv.yml</argument>
-        <argument>sv</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ca.yml</argument>
-        <argument>ca</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fa.yml</argument>
-        <argument>fa</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.hr.yml</argument>
-        <argument>hr</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lt.yml</argument>
-        <argument>lt</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sv.yml</argument>
-        <argument>sv</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.it.yml</argument>
-        <argument>it</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.cs.yml</argument>
-        <argument>cs</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fr.yml</argument>
-        <argument>fr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sl.yml</argument>
-        <argument>sl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.lv.yml</argument>
-        <argument>lv</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.id.yml</argument>
-        <argument>id</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
         <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ar.yml</argument>
         <argument>ar</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.id.yml</argument>
-        <argument>id</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.he.yml</argument>
-        <argument>he</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ar.yml</argument>
-        <argument>ar</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.tr.yml</argument>
-        <argument>tr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.hu.yml</argument>
-        <argument>hu</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fa.yml</argument>
-        <argument>fa</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.bg.yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.bg.yml</argument>
         <argument>bg</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fi.yml</argument>
-        <argument>fi</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.en.yml</argument>
-        <argument>en</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.et.yml</argument>
-        <argument>et</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.th.yml</argument>
-        <argument>th</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.uk.yml</argument>
-        <argument>uk</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pt_BR.yml</argument>
-        <argument>pt_BR</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.it.yml</argument>
+        <argument>it</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.vi.yml</argument>
-        <argument>vi</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pt.yml</argument>
+        <argument>pt</argument>
         <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ro.yml</argument>
-        <argument>ro</argument>
-        <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
@@ -2024,39 +1998,69 @@
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ru.yml</argument>
-        <argument>ru</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ca.yml</argument>
-        <argument>ca</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.cs.yml</argument>
+        <argument>cs</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.nl.yml</argument>
-        <argument>nl</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.nb.yml</argument>
-        <argument>nb</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ru.yml</argument>
-        <argument>ru</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sk.yml</argument>
+        <argument>sk</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.uk.yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.bg.yml</argument>
+        <argument>bg</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ja.yml</argument>
+        <argument>ja</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.uk.yml</argument>
         <argument>uk</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sv.yml</argument>
+        <argument>sv</argument>
         <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.es.yml</argument>
+        <argument>es</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.cs.yml</argument>
+        <argument>cs</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.he.yml</argument>
+        <argument>he</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/thiefaine/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.zh_CN.yml</argument>
+        <argument>zh_CN</argument>
+        <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
@@ -2259,6 +2263,22 @@
         <argument>0</argument>
       </call>
       <call method="addListenerService">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument>monolog.handler.console</argument>
+          <argument>onCommand</argument>
+        </argument>
+        <argument>255</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>console.terminate</argument>
+        <argument type="collection">
+          <argument>monolog.handler.console</argument>
+          <argument>onTerminate</argument>
+        </argument>
+        <argument>-255</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument>assetic.request_listener</argument>
@@ -2357,10 +2377,6 @@
       <call method="addSubscriberService">
         <argument>twig.exception_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ExceptionListener</argument>
-      </call>
-      <call method="addSubscriberService">
-        <argument>monolog.handler.console</argument>
-        <argument>Symfony\Bridge\Monolog\Handler\ConsoleHandler</argument>
       </call>
       <call method="addSubscriberService">
         <argument>swiftmailer.email_sender.listener</argument>
@@ -3067,7 +3083,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>53d6a9786e67a</argument>
+            <argument>53d7ed29e28c6</argument>
           </service>
         </argument>
       </argument>
@@ -3130,6 +3146,9 @@
         <argument key="ROLE_MANAGE_GROUP" type="collection">
           <argument>ROLE_USER</argument>
         </argument>
+        <argument key="ROLE_MANAGE_CATEGORIE" type="collection">
+          <argument>ROLE_USER</argument>
+        </argument>
         <argument key="ROLE_ADMIN" type="collection">
           <argument>ROLE_MANAGE_GROUP</argument>
           <argument>ROLE_MANAGE_USER</argument>
@@ -3137,6 +3156,7 @@
           <argument>ROLE_MANAGE_INFORMATION</argument>
           <argument>ROLE_MANAGE_ALERTE</argument>
           <argument>ROLE_MANAGE_ZONE</argument>
+          <argument>ROLE_MANAGE_CATEGORIE</argument>
         </argument>
         <argument key="ROLE_SUPER_ADMIN" type="collection">
           <argument>ROLE_USER</argument>
@@ -3541,7 +3561,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>53d6a9786e67a</argument>
+            <argument>53d7ed29e28c6</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3933,7 +3953,8 @@
       <argument>true</argument>
     </service>
     <service id="monolog.handler.console" class="Symfony\Bridge\Monolog\Handler\ConsoleHandler">
-      <tag name="kernel.event_subscriber"/>
+      <tag name="kernel.event_listener" event="console.command" method="onCommand" priority="255"/>
+      <tag name="kernel.event_listener" event="console.terminate" method="onTerminate" priority="-255"/>
       <argument>null</argument>
       <argument>false</argument>
       <argument type="collection"/>
@@ -5486,7 +5507,7 @@
                       <argument key="Symfony\Bundle\FrameworkBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\SecurityBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\TwigBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
-                      <argument key="Symfony\Bundle\MonologBundle">/var/www/thiefaine/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/var/www/thiefaine/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\SwiftmailerBundle">/var/www/thiefaine/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\AsseticBundle">/var/www/thiefaine/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer</argument>
                       <argument key="Doctrine\Bundle\DoctrineBundle">/var/www/thiefaine/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer</argument>
@@ -5514,7 +5535,7 @@
                       <argument key="Symfony\Bundle\FrameworkBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\SecurityBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\TwigBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
-                      <argument key="Symfony\Bundle\MonologBundle">/var/www/thiefaine/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/var/www/thiefaine/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\SwiftmailerBundle">/var/www/thiefaine/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\AsseticBundle">/var/www/thiefaine/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer</argument>
                       <argument key="Doctrine\Bundle\DoctrineBundle">/var/www/thiefaine/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer</argument>
@@ -5542,7 +5563,7 @@
                       <argument key="Symfony\Bundle\FrameworkBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\SecurityBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\TwigBundle">/var/www/thiefaine/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
-                      <argument key="Symfony\Bundle\MonologBundle">/var/www/thiefaine/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/var/www/thiefaine/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\SwiftmailerBundle">/var/www/thiefaine/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\AsseticBundle">/var/www/thiefaine/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer</argument>
                       <argument key="Doctrine\Bundle\DoctrineBundle">/var/www/thiefaine/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer</argument>
