@@ -348,10 +348,10 @@ class Information
     /**
      * Add categories
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Information $categories
+     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
      * @return Information
      */
-    public function addCategory(\Thiefaine\ReferentielBundle\Entity\Information $categories)
+    public function addCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
     {
         $this->categories[] = $categories;
 
@@ -361,9 +361,9 @@ class Information
     /**
      * Remove categories
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Information $categories
+     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
      */
-    public function removeCategory(\Thiefaine\ReferentielBundle\Entity\Information $categories)
+    public function removeCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
     {
         $this->categories->removeElement($categories);
     }

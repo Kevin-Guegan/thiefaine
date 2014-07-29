@@ -48,7 +48,7 @@ Thiefaine\ReferentielBundle\Entity\Information:
             nullable: true
     manyToMany:        
        categories:
-            targetEntity: Information
+            targetEntity: Categorie
             joinTable:
                 name: CATEGORIE_INFORMATION
                 joinColumns:

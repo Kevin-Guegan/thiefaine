@@ -111,22 +111,22 @@ class __TwigTemplate_c5af5e1e231918e9212bed8e5bb061f5ec7a7c6a17066bbdaba10dd7f75
 \t\t\t  ";
         }
         // line 53
-        echo "\t\t\t  ";
-        if ($this->env->getExtension('security')->isGranted("ROLE_MANAGE_INFORMATION")) {
+        echo "\t\t\t   ";
+        if ($this->env->getExtension('security')->isGranted("ROLE_MANAGE_CATEGORIE")) {
             // line 54
             echo "\t\t\t  <li class=\"\">
 \t\t\t  \t<div id='cssmenu'>
 \t\t\t\t\t<ul>
 \t\t\t\t\t   <li class='has-sub last'>
-\t\t\t\t\t   \t  <a><span>Gestion des informations</span><span style=\"float:right; font-weight: bold;\">&rsaquo;</span></a>
+\t\t\t\t\t   \t  <a><span>Gestion des categories</span><span style=\"float:right; font-weight: bold;\">&rsaquo;</span></a>
 \t\t\t\t\t      <ul>
 \t\t\t\t\t         <li><a href=\"";
             // line 60
-            echo $this->env->getExtension('routing')->getPath("information_new");
+            echo $this->env->getExtension('routing')->getPath("categorie_new");
             echo "\"><span>Créer</span></a></li>
 \t\t\t\t\t         <li class='last'><a href=\"";
             // line 61
-            echo $this->env->getExtension('routing')->getPath("information");
+            echo $this->env->getExtension('routing')->getPath("categorie");
             echo "\"><span>Gérer</span></a></li>
 \t\t\t\t\t      </ul>
 \t\t\t\t\t   </li>
@@ -137,21 +137,21 @@ class __TwigTemplate_c5af5e1e231918e9212bed8e5bb061f5ec7a7c6a17066bbdaba10dd7f75
         }
         // line 68
         echo "\t\t\t  ";
-        if ($this->env->getExtension('security')->isGranted("ROLE_MANAGE_CONSEIL")) {
+        if ($this->env->getExtension('security')->isGranted("ROLE_MANAGE_INFORMATION")) {
             // line 69
             echo "\t\t\t  <li class=\"\">
 \t\t\t  \t<div id='cssmenu'>
 \t\t\t\t\t<ul>
 \t\t\t\t\t   <li class='has-sub last'>
-\t\t\t\t\t   \t  <a><span>Gestion des conseils</span><span style=\"float:right; font-weight: bold;\">&rsaquo;</span></a>
+\t\t\t\t\t   \t  <a><span>Gestion des informations</span><span style=\"float:right; font-weight: bold;\">&rsaquo;</span></a>
 \t\t\t\t\t      <ul>
 \t\t\t\t\t         <li><a href=\"";
             // line 75
-            echo $this->env->getExtension('routing')->getPath("conseil_new");
+            echo $this->env->getExtension('routing')->getPath("information_new");
             echo "\"><span>Créer</span></a></li>
 \t\t\t\t\t         <li class='last'><a href=\"";
             // line 76
-            echo $this->env->getExtension('routing')->getPath("conseil");
+            echo $this->env->getExtension('routing')->getPath("information");
             echo "\"><span>Gérer</span></a></li>
 \t\t\t\t\t      </ul>
 \t\t\t\t\t   </li>
@@ -161,6 +161,31 @@ class __TwigTemplate_c5af5e1e231918e9212bed8e5bb061f5ec7a7c6a17066bbdaba10dd7f75
 \t\t\t  ";
         }
         // line 83
+        echo "\t\t\t  ";
+        if ($this->env->getExtension('security')->isGranted("ROLE_MANAGE_CONSEIL")) {
+            // line 84
+            echo "\t\t\t  <li class=\"\">
+\t\t\t  \t<div id='cssmenu'>
+\t\t\t\t\t<ul>
+\t\t\t\t\t   <li class='has-sub last'>
+\t\t\t\t\t   \t  <a><span>Gestion des conseils</span><span style=\"float:right; font-weight: bold;\">&rsaquo;</span></a>
+\t\t\t\t\t      <ul>
+\t\t\t\t\t         <li><a href=\"";
+            // line 90
+            echo $this->env->getExtension('routing')->getPath("conseil_new");
+            echo "\"><span>Créer</span></a></li>
+\t\t\t\t\t         <li class='last'><a href=\"";
+            // line 91
+            echo $this->env->getExtension('routing')->getPath("conseil");
+            echo "\"><span>Gérer</span></a></li>
+\t\t\t\t\t      </ul>
+\t\t\t\t\t   </li>
+\t\t\t\t\t</ul>
+\t\t\t\t</div>
+\t\t\t  </li>
+\t\t\t  ";
+        }
+        // line 98
         echo "\t\t\t</ul>
 \t\t</div>
 \t</div>
@@ -179,6 +204,6 @@ class __TwigTemplate_c5af5e1e231918e9212bed8e5bb061f5ec7a7c6a17066bbdaba10dd7f75
 
     public function getDebugInfo()
     {
-        return array (  164 => 83,  154 => 76,  150 => 75,  139 => 68,  129 => 61,  125 => 60,  117 => 54,  114 => 53,  104 => 46,  100 => 45,  92 => 39,  75 => 30,  67 => 24,  54 => 16,  36 => 7,  31 => 4,  28 => 3,  98 => 28,  89 => 38,  84 => 24,  71 => 21,  66 => 18,  58 => 16,  44 => 8,  40 => 8,  37 => 6,  35 => 5,  32 => 4,  29 => 3,  230 => 96,  227 => 95,  219 => 89,  214 => 86,  205 => 83,  202 => 82,  198 => 81,  194 => 79,  192 => 78,  187 => 76,  179 => 71,  168 => 63,  162 => 60,  152 => 53,  148 => 52,  142 => 69,  138 => 48,  132 => 45,  128 => 44,  122 => 41,  118 => 40,  112 => 37,  108 => 36,  101 => 32,  97 => 31,  91 => 28,  87 => 27,  79 => 31,  74 => 22,  69 => 18,  64 => 23,  62 => 14,  59 => 13,  56 => 12,  50 => 15,  46 => 7,  42 => 9,  38 => 5,  33 => 4,  30 => 3,);
+        return array (  189 => 98,  179 => 91,  175 => 90,  167 => 84,  164 => 83,  154 => 76,  150 => 75,  142 => 69,  139 => 68,  129 => 61,  125 => 60,  117 => 54,  114 => 53,  104 => 46,  100 => 45,  92 => 39,  75 => 30,  67 => 24,  64 => 23,  54 => 16,  42 => 9,  36 => 7,  98 => 28,  89 => 38,  84 => 24,  79 => 31,  74 => 22,  71 => 21,  66 => 18,  58 => 16,  50 => 15,  44 => 8,  40 => 8,  37 => 6,  35 => 5,  32 => 4,  29 => 3,  31 => 4,  28 => 3,);
     }
 }

@@ -377,6 +377,55 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/categorie')) {
+            // categorie
+            if (rtrim($pathinfo, '/') === '/categorie') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'categorie');
+                }
+
+                return array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\CategorieController::indexAction',  '_route' => 'categorie',);
+            }
+
+            // categorie_new
+            if ($pathinfo === '/categorie/new') {
+                return array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\CategorieController::newAction',  '_route' => 'categorie_new',);
+            }
+
+            // categorie_create
+            if ($pathinfo === '/categorie/create') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_categorie_create;
+                }
+
+                return array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\CategorieController::createAction',  '_route' => 'categorie_create',);
+            }
+            not_categorie_create:
+
+            // categorie_edit
+            if (preg_match('#^/categorie/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'categorie_edit')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\CategorieController::editAction',));
+            }
+
+            // categorie_update
+            if (preg_match('#^/categorie/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_categorie_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'categorie_update')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\CategorieController::updateAction',));
+            }
+            not_categorie_update:
+
+            // categorie_delete
+            if (preg_match('#^/categorie/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'categorie_delete')), array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\CategorieController::deleteAction',));
+            }
+
+        }
+
         // thiefaine_referentiel_myaccount
         if ($pathinfo === '/myaccount') {
             return array (  '_controller' => 'Thiefaine\\ReferentielBundle\\Controller\\DefaultController::myaccountAction',  '_route' => 'thiefaine_referentiel_myaccount',);

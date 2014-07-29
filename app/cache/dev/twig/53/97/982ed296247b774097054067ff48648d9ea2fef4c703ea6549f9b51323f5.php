@@ -114,57 +114,67 @@ class __TwigTemplate_5397982ed296247b774097054067ff48648d9ea2fef4c703ea6549f9b51
 \t\t\t\t<p>
 \t\t\t\t\t";
         // line 39
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "urlphoto"), 'label');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "categories"), 'label');
         echo "
 \t\t\t\t\t";
         // line 40
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "urlphoto"), 'widget');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "categories"), 'widget');
         echo "
 \t\t\t\t</p>
 \t\t\t\t<p>
 \t\t\t\t\t";
         // line 43
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "attachement"), 'label');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "urlphoto"), 'label');
         echo "
 \t\t\t\t\t";
         // line 44
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "attachement"), 'widget');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "urlphoto"), 'widget');
         echo "
 \t\t\t\t</p>
 \t\t\t\t<p>
 \t\t\t\t\t";
         // line 47
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "urllien"), 'label');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "attachement"), 'label');
         echo "
 \t\t\t\t\t";
         // line 48
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "attachement"), 'widget');
+        echo "
+\t\t\t\t</p>
+\t\t\t\t<p>
+\t\t\t\t\t";
+        // line 51
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "urllien"), 'label');
+        echo "
+\t\t\t\t\t";
+        // line 52
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "urllien"), 'widget');
         echo "
 \t\t\t\t</p>
 \t\t\t\t<p class=\"dateElement\">
 \t\t\t\t\t";
-        // line 51
+        // line 55
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "datevalidite"), 'label');
         echo "
 \t\t\t\t\t";
-        // line 52
+        // line 56
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "datevalidite"), 'widget');
         echo "
 \t\t\t\t</p>
 \t\t\t\t<p>
 \t\t\t\t\t";
-        // line 55
+        // line 59
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "message"), 'label');
         echo " *
 \t\t\t\t\t";
-        // line 56
+        // line 60
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "message"), 'widget');
         echo "
 \t\t\t\t</p>
 \t\t\t\t<p>\t
 \t\t      \t\t<button class=\"btn btn-primary\" type=\"submit\">Créer le conseil</button>
 \t\t\t\t\t<a class=\"btn btn-default\" href=";
-        // line 60
+        // line 64
         echo $this->env->getExtension('routing')->getPath("conseil");
         echo ">Annuler</a>
 \t\t  \t  \t</p>
@@ -172,7 +182,7 @@ class __TwigTemplate_5397982ed296247b774097054067ff48648d9ea2fef4c703ea6549f9b51
 \t\t\t</div>
 
 \t\t";
-        // line 65
+        // line 69
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 
@@ -195,6 +205,6 @@ class __TwigTemplate_5397982ed296247b774097054067ff48648d9ea2fef4c703ea6549f9b51
 
     public function getDebugInfo()
     {
-        return array (  176 => 65,  168 => 60,  161 => 56,  157 => 55,  151 => 52,  147 => 51,  141 => 48,  137 => 47,  131 => 44,  127 => 43,  121 => 40,  117 => 39,  111 => 36,  107 => 35,  99 => 30,  94 => 28,  91 => 27,  87 => 25,  78 => 22,  75 => 21,  71 => 20,  68 => 19,  66 => 18,  59 => 13,  57 => 12,  54 => 11,  51 => 10,  45 => 7,  41 => 6,  37 => 5,  32 => 4,  29 => 3,);
+        return array (  186 => 69,  178 => 64,  171 => 60,  167 => 59,  161 => 56,  157 => 55,  151 => 52,  147 => 51,  141 => 48,  137 => 47,  131 => 44,  127 => 43,  121 => 40,  117 => 39,  111 => 36,  107 => 35,  99 => 30,  94 => 28,  91 => 27,  87 => 25,  78 => 22,  75 => 21,  71 => 20,  68 => 19,  66 => 18,  59 => 13,  57 => 12,  54 => 11,  51 => 10,  45 => 7,  41 => 6,  37 => 5,  32 => 4,  29 => 3,);
     }
 }
