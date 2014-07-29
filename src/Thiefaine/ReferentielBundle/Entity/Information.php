@@ -3,24 +3,31 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Information
+ * @ExclusionPolicy("all")
  */
 class Information
 {
     /**
      * @var integer
+     * @Expose
      */
     private $id;
 
     /**
      * @var string
+     * @Expose
      */
     private $titre;
 
     /**
      * @var string
+     * @Expose
      */
     private $message;
 
@@ -67,6 +74,7 @@ class Information
 
     /**
      * @var \Thiefaine\ReferentielBundle\Entity\Zone
+     * @Expose
      */
     private $zone;
 

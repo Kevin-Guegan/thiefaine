@@ -9,21 +9,25 @@ use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Conseil
+ * @ExclusionPolicy("all")
  */
 class Conseil
 {
     /**
      * @var integer
+     * @Expose
      */
     private $id;
 
     /**
      * @var string
+     * @Expose
      */
     private $titre;
 
     /**
      * @var string
+     * @Expose
      */
     private $message;
 
