@@ -299,8 +299,8 @@ class InformationController extends Controller
         $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
 
         $information = clone $information;
+        $em->detach($information);
         $em->persist($information);
-        $em->flush();
 
         $cloneForm = $this->createCloneForm($information);
         $cloneForm->handleRequest($request);
