@@ -312,6 +312,11 @@ class ConseilController extends Controller
         $em = $this->getDoctrine()->getManager();
         $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($idConseil);
 
+        //decode html message
+        $conseil->setMessage(
+            strip_tags(html_entity_decode($conseil->getMessage()))
+        );
+
         return $conseil;
     }
 

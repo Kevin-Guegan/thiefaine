@@ -466,6 +466,11 @@ class InformationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($idInformation);
         
+        //decode html message
+        $information->setMessage(
+            strip_tags(html_entity_decode($information->getMessage()))
+        );
+
         return $information;
 
     }
