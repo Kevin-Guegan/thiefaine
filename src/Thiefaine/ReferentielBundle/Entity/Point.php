@@ -3,6 +3,7 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Point
@@ -16,11 +17,13 @@ class Point
 
     /**
      * @var string
+     * @SerializedName("coordonneeX")
      */
     private $latitude;
 
     /**
      * @var string
+     * @SerializedName("coordonneeY")
      */
     private $longitude;
 

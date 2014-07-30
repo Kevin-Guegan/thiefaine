@@ -5,6 +5,7 @@ namespace Thiefaine\ReferentielBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Zone
@@ -21,6 +22,7 @@ class Zone
     /**
      * @var string
      * @Expose
+     * @SerializedName("intitule")
      */
     private $nom;
 
@@ -41,6 +43,7 @@ class Zone
 
     /**
      * @var boolean
+     * @Expose
      */
     private $actif;
 

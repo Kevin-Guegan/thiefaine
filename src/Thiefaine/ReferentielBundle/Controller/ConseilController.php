@@ -7,12 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\View;
 
 use Thiefaine\ReferentielBundle\Entity\Conseil;
 use Thiefaine\ReferentielBundle\Form\ConseilType;
-
-
-use FOS\RestBundle\View\View;
 
 /**
  * Message controller.
@@ -286,42 +284,39 @@ class ConseilController extends Controller
     /**
     * Get availalble Conseil.
     *
+    * @View()
     * @Get("/conseil")
-    *
     * @ApiDoc
     */
     public function getConseilAction() {
-        $view = View::create();
-        //$view = new View();
-        $em = $this->getDoctrine()->getManager();
-        $conseils = $em->getRepository('ThiefaineReferentielBundle:Conseil')->findAll();
-        $view->setData($conseils);
 
-        return $this->handlerView($view);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Conseil')->findAll();
+
+        $conseils = array(); $i=0;
+        foreach ($entity as $conseil) {
+            $conseils[$i] = $conseil->getId();
+            $i++;
+        }
+
+        return $conseils;
     }
 
     /**
     * Get availalble OneConseil.
     *
     * @param $idConseil id of a conseil.
-    * @Get("/conseil/{idConseil}")
     *
+    * @View()
+    * @Get("/conseil/{idConseil}")
     * @ApiDoc
     */
     public function getOneConseilAction($idConseil) {
-        $view = View::create();
-        //$view = new View();
+
         $em = $this->getDoctrine()->getManager();
         $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($idConseil);
-        $view->setData($conseil);
-        return $this->handlerView($view);
+
+        return $conseil;
     }
 
-    /**
-    * @return \FOS\RestBundle\View\ViewHandler
-    */
-    protected function handlerView($view)
-    {
-        return $this->container->get('fos_rest.view_handler')->handle($view);
-    }
 }

@@ -455,16 +455,16 @@ class InformationController extends Controller
     /**
       * Get availalble one Information.
       *
-      * @param $id id of the information.
+      * @param $idInformation id of the information.
       *
       * @View()
-      * @Get("/information/{id}")
+      * @Get("/information/{idInformation}")
       * @ApiDoc
     */
-    public function getInformationOneAction($id) {
+    public function getInformationOneAction($idInformation) {
 
         $em = $this->getDoctrine()->getManager();
-        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($idInformation);
         
         return $information;
 
