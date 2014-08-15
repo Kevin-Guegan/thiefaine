@@ -19,7 +19,7 @@
                             <a href="{{ path('categorie_edit', { 'id': categorie.id }) }}">
                                 <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
                             </a>
-                            <a href="{{ path('categorie_delete', {'id': categorie.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cette categorie ?')">
+                            <a href="{{ path('categorie_delete', {'id': categorie.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer la categorie {{ categorie.libelle }} ?')">
                                 <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                             </a>
                         </td>

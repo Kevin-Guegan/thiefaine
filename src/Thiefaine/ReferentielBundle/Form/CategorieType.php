@@ -15,7 +15,16 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
+            ->add('libelle', 'text', array    (   'label'  => 'Nom',
+                                                'label_attr'   =>  array ( 'class' => 'control-label' ),
+                                                'attr'   =>  array  (   'class' => 'form-control',
+                                                                        'placeholder' => 'Titre',
+                                                                        'title' => "Renseigner le nom de la catégorie.",
+                                                                        'data-toggle' => 'tooltip',
+                                                                        'data-placement' => 'right'
+                                                                    )
+                                            )
+                )
         ;
     }
     
