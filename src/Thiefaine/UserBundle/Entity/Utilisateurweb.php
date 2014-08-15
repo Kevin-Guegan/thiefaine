@@ -234,4 +234,9 @@ class Utilisateurweb extends BaseUser
         return $this->zones;
     }
 
+    public function setGroups(\Thiefaine\UserBundle\Entity\Group $group){
+        $this->addGroup($group);
+        return $this;
+    }
+
 }
