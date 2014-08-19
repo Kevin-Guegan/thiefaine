@@ -13,6 +13,9 @@ use Thiefaine\ReferentielBundle\Entity\Information;
 use Thiefaine\ReferentielBundle\Entity\Zone;
 use Thiefaine\ReferentielBundle\Form\InformationType;
 
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+
 /**
  * Information controller.
  *
@@ -152,7 +155,7 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->setUrlphoto($finalNameFile);
+                $information->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
             $information->setDateCreation(new \DateTime('now'));
             $information->setUtilisateurweb($utilisateur);
@@ -246,13 +249,22 @@ class InformationController extends Controller
             // file
             $file = $editForm['attachement']->getData();
             if($file != null){
+                
+                //suppression de la photo
+                $photo = $information->getUrlphoto();
+                if($photo != null){
+                    $fs = new Filesystem();
+                    $dir = __DIR__.'/../../../../web';
+                    $fs->remove($dir.$photo);
+                }
+
                 $dir = __DIR__.'/../../../../web/uploads/documents';
 
                 $nameFile = $file->getClientOriginalName();
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->setUrlphoto($finalNameFile);
+                $information->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
 
             $em->flush();
@@ -346,7 +358,7 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->setUrlphoto($finalNameFile);
+                $information->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
 
             $em->flush();
@@ -379,6 +391,14 @@ class InformationController extends Controller
 
         $em->remove($entity);
         $em->flush();
+
+        //suppression de la photo
+        $photo = $entity->getUrlphoto();
+        if($photo != null){
+            $fs = new Filesystem();
+            $dir = __DIR__.'/../../../../web';
+            $fs->remove($dir.$photo);
+        }
 
         return $this->redirect($this->generateUrl('information'));
     }

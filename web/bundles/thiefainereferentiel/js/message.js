@@ -1,8 +1,7 @@
 $(document).ready(function(){
 	$('.showImage').click(function(){
 
-		var imageUrl = "/uploads/documents/";
-		imageUrl += $(this).parent().children('input').val();
+		imageUrl = $(this).parent().children('input').val();
 
 		$('#showImageModal').modal('show');
 		$('#showImageModal .modal-body').html(
