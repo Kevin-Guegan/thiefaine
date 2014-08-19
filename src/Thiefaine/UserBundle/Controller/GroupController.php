@@ -71,9 +71,10 @@ class GroupController extends BaseController
 
 				$gererGroupes = $form['gerergroupes']->getData();
 	            $gererUtilisateurs = $form['gererutilisateurs']->getData();
+                $gererCategories = $form['gerercategories']->getData();
+                $gererZones = $form['gererzones']->getData();
 	            $gererInfos = $form['gererinfos']->getData();
 	            $gererConseils = $form['gererconseils']->getData();
-                $gererZones = $form['gererzones']->getData();
 
                 $roles = array();
 	            if ($gererGroupes) {
@@ -84,6 +85,14 @@ class GroupController extends BaseController
 	            	$roles[] = 'ROLE_MANAGE_USER';
 	            }
 
+                if ($gererZones) {
+                    $roles[] = 'ROLE_MANAGE_ZONE';
+                }
+
+                if ($gererCategories) {
+                    $roles[] = 'ROLE_MANAGE_CATEGORIE';
+                }
+
 	            if ($gererInfos) {
 	            	$roles[] = 'ROLE_MANAGE_INFORMATION';
 	            }
@@ -91,10 +100,6 @@ class GroupController extends BaseController
 	            if ($gererConseils) {
 	            	$roles[] = 'ROLE_MANAGE_CONSEIL';
 	            }
-
-                if ($gererZones) {
-                    $roles[] = 'ROLE_MANAGE_ZONE';
-                }
 
 	            $group->setRoles($roles);
 
@@ -154,9 +159,10 @@ class GroupController extends BaseController
 
                 $gererGroupes = $form['gerergroupes']->getData();
                 $gererUtilisateurs = $form['gererutilisateurs']->getData();
+                $gererZones = $form['gererzones']->getData();
+                $gererCategories = $form['gerercategories']->getData();
                 $gererInfos = $form['gererinfos']->getData();
                 $gererConseils = $form['gererconseils']->getData();
-                $gererZones = $form['gererzones']->getData();
 
                 $roles = array();
                 if ($gererGroupes) {
@@ -167,16 +173,20 @@ class GroupController extends BaseController
                     $roles[] = 'ROLE_MANAGE_USER';
                 }
 
+                if ($gererZones) {
+                    $roles[] = 'ROLE_MANAGE_ZONE';
+                }
+
+                if ($gererCategories) {
+                    $roles[] = 'ROLE_MANAGE_CATEGORIE';
+                }
+
                 if ($gererInfos) {
                     $roles[] = 'ROLE_MANAGE_INFORMATION';
                 }
 
                 if ($gererConseils) {
                     $roles[] = 'ROLE_MANAGE_CONSEIL';
-                }
-
-                if ($gererZones) {
-                    $roles[] = 'ROLE_MANAGE_ZONE';
                 }
 
                 $group->setRoles($roles);
@@ -200,9 +210,10 @@ class GroupController extends BaseController
                             'group_name' => $group->getName(),
                             'group_role_manage_group' => $group->hasRole('ROLE_MANAGE_GROUP'),
                             'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
+                            'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
+                            'group_role_manage_categorie' => $group->hasRole('ROLE_MANAGE_CATEGORIE'),
                             'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
                             'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
-                            'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
                         ));
                     }
                 }
@@ -228,9 +239,10 @@ class GroupController extends BaseController
             'group_name' => $group->getName(),
             'group_role_manage_group' => $group->hasRole('ROLE_MANAGE_GROUP'),
             'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
+            'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
+            'group_role_manage_categorie' => $group->hasRole('ROLE_MANAGE_CATEGORIE'),
             'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
             'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
-            'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
         ));
     }
 

@@ -14,7 +14,17 @@
 
     <div class="content col-md-9">
 
-        <h3>Création d'une categorie</h1>
+        <h3>Création d'une categorie</h3>
+
+        {% if flashMessages|length > 0 %}
+    	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
 
 		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -27,9 +37,9 @@
 					{{ form_widget(form.libelle) }}
 				</p>
 				<p>	
-		      		<button class="btn btn-primary" type="submit">Créer la categorie</button>
+		      		<button class="btn btn-primary" type="submit">Créer la catégorie</button>
 					<a class="btn btn-default" href={{ path('categorie') }}>Annuler</a>
-		  	  	</p>	
+		  	  	</p>
 
 			</div>
 

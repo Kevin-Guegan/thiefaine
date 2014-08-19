@@ -23,7 +23,7 @@
                                 <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
                             </a>
                             {% if user.hasRole('ROLE_SUPER_ADMIN') == false %}
-                            <a href="{{ path('utilisateurweb_delete', {'id': user.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer cet utilisateur ?')">
+                            <a href="{{ path('utilisateurweb_delete', {'id': user.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer l\'utilisateur {{ user.username }} ?')">
                                 <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                             </a>
                             {% endif %}
