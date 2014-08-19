@@ -17,6 +17,16 @@
         
         <h3>Edition de la categorie «{{categorie.libelle}}»</h1>
 
+         {% if flashMessages|length > 0 %}
+    	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
+
 		{{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
 			{{ form_errors(edit_form) }}
@@ -29,25 +39,13 @@
 				</p>
 
 				<p>	
-		      		<button class="btn btn-primary" type="submit">Modifier la categorie</button>
+		      		<button class="btn btn-primary" type="submit">Modifier la catégorie</button>
 					<a class="btn btn-default" href={{ path('categorie') }}>Annuler</a>
 		  	  	</p>
 
 			</div>
 
 		{{ form_end(edit_form) }}
-
-		{% if flashMessages|length > 0 %}
-    	<p>
-    	<div class="alert alert-danger" role="alert">
-			{% for flashMessage in flashMessages %}
-			    <div class="flash-notice">
-			        {{ flashMessage }}
-			    </div>
-			{% endfor %}
-		</div>
-		</p>
-		{% endif %}
 
     </div>
 

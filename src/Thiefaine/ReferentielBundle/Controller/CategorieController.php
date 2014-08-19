@@ -35,6 +35,25 @@ class CategorieController extends Controller
             'categories' => $categories,
         );
     }
+
+    /**
+     * Displays a form to create a new Categorie entity.
+     *
+     * @Route("/new", name="categorie_new")
+     * @Method("GET")
+     * @Template()
+     */
+    public function newAction()
+    {
+        $categorie = new Categorie();
+        $form   = $this->createCreateForm($categorie);
+
+        return $this->render('ThiefaineReferentielBundle:Categorie:new.html.twig', array(
+            'categorie' => $categorie,
+            'form'   => $form->createView(),
+        ));
+    }
+
     /**
      * Creates a new Categorie entity.
      *
@@ -63,68 +82,6 @@ class CategorieController extends Controller
     }
 
     /**
-     * Creates a form to create a Categorie entity.
-     *
-     * @param Categorie $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Categorie $entity)
-    {
-        $form = $this->createForm(new CategorieType(), $entity, array(
-            'action' => $this->generateUrl('categorie_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Categorie entity.
-     *
-     * @Route("/new", name="categorie_new")
-     * @Method("GET")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $categorie = new Categorie();
-        $form   = $this->createCreateForm($categorie);
-
-        return array(
-            'categorie' => $categorie,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Finds and displays a Categorie entity.
-     *
-     * @Route("/{id}", name="categorie_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Categorie entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
      * Displays a form to edit an existing Categorie entity.
      *
      * @Route("/{id}/edit", name="categorie_edit")
@@ -138,37 +95,19 @@ class CategorieController extends Controller
         $categorie = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
 
         if (!$categorie) {
-            throw $this->createNotFoundException('Unable to find Categorie categorie.');
+            throw $this->createNotFoundException('Impossible de trouver la catégorie.');
         }
 
         $editForm = $this->createEditForm($categorie);
-        $deleteForm = $this->createDeleteForm($id);
+        //$deleteForm = $this->createDeleteForm($id);
 
         return array(
             'categorie'      => $categorie,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         );
     }
 
-    /**
-    * Creates a form to edit a Categorie entity.
-    *
-    * @param Categorie $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Categorie $entity)
-    {
-        $form = $this->createForm(new CategorieType(), $entity, array(
-            'action' => $this->generateUrl('categorie_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
     /**
      * Edits an existing Categorie entity.
      *
@@ -223,6 +162,40 @@ class CategorieController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('categorie'));
+    }
+
+        /**
+     * Creates a form to create a Categorie entity.
+     *
+     * @param Categorie $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(Categorie $entity)
+    {
+        $form = $this->createForm(new CategorieType(), $entity, array(
+            'action' => $this->generateUrl('categorie_create'),
+            'method' => 'POST',
+        ));
+
+        return $form;
+    }
+
+    /**
+    * Creates a form to edit a Categorie entity.
+    *
+    * @param Categorie $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Categorie $entity)
+    {
+        $form = $this->createForm(new CategorieType(), $entity, array(
+            'action' => $this->generateUrl('categorie_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        return $form;
     }
 
     /**

@@ -46,6 +46,20 @@
 				<p class="list-form-control" data-toggle="tooltip" data-placement="right" title="Cocher les droits de créations du groupe.">
 					<label>Messages et notifications</label>
 					<table class="table table-hover">
+						<tr>
+					  		<td>
+					  			{{ form_label(form.gererzones) }}
+					  		</td><td style="text-align: right;">
+					  			{{ form_widget(form.gererzones) }}
+					  		</td>
+						</tr>
+						<tr>
+					  		<td>
+					  			{{ form_label(form.gerercategories) }}
+					  		</td><td style="text-align: right;">
+					  			{{ form_widget(form.gerercategories) }}
+					  		</td>
+						</tr>
 					  	<tr>
 					  		<td>
 					  			{{ form_label(form.gererinfos) }}
@@ -60,13 +74,7 @@
 					  			{{ form_widget(form.gererconseils) }}
 					  		</td>
 						</tr>
-						<tr>
-					  		<td>
-					  			{{ form_label(form.gererzones) }}
-					  		</td><td style="text-align: right;">
-					  			{{ form_widget(form.gererzones) }}
-					  		</td>
-						</tr>
+						
 					</table>
 				</p>
 				<p>
