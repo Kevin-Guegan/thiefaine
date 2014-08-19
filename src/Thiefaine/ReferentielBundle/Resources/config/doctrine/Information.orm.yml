@@ -46,9 +46,10 @@ Thiefaine\ReferentielBundle\Entity\Information:
         alerte:
             type: boolean
             nullable: true
-    manyToMany:        
-       categories:
+    manyToMany:
+        categories:
             targetEntity: Categorie
+            inversedBy: informations
             joinTable:
                 name: CATEGORIE_INFORMATION
                 joinColumns:
