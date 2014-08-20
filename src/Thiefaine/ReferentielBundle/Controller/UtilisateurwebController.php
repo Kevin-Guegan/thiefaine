@@ -145,6 +145,8 @@ class UtilisateurwebController extends Controller
             'method' => 'PUT',
         ));
 
+        $form->remove('plainPassword');
+
         return $form;
     }
 
