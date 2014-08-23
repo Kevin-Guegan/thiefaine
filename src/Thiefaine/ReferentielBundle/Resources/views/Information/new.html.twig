@@ -17,7 +17,7 @@
         <h3>Création d'une information</h1>
 
         {% if flashMessages|length > 0 %}
-        	{% if zones == null %}
+        	{% if show == false %}
         		<p>
 			    	<div class="alert alert-warning" role="alert" style="margin-top: 20px">
 						{% for flashMessage in flashMessages %}
@@ -41,7 +41,7 @@
 		{% endif %}
 
 
-		{% if zones != null %}
+		{% if show == true %}
 
 		{{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 

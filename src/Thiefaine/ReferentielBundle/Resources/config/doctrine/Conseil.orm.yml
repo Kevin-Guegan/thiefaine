@@ -46,14 +46,17 @@ Thiefaine\ReferentielBundle\Entity\Conseil:
     manyToMany:
         categories:
             targetEntity: Categorie
+            inversedBy: conseils
             joinTable:
                 name: CATEGORIE_CONSEIL
                 joinColumns:
-                    conseil:
+                    information:
                         referencedColumnName: id
                 inverseJoinColumns:
                     categorie:
                         referencedColumnName: id
+            cascade:
+                - all
     manyToOne:
         utilisateurweb:
             targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb

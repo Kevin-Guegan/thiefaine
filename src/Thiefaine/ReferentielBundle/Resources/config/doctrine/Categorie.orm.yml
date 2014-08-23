@@ -15,5 +15,12 @@ Thiefaine\ReferentielBundle\Entity\Categorie:
             nullable: true
             length: 255
             fixed: false
+    manyToMany:
+        informations:
+            targetEntity: Information
+            mappedBy: categories
+        conseils:
+            targetEntity: Conseil
+            mappedBy: categories
 
     lifecycleCallbacks: {  }

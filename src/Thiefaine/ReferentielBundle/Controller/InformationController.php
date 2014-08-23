@@ -70,17 +70,34 @@ class InformationController extends Controller
         $form   = $this->createCreateForm($information);
 
         $em = $this->getDoctrine()->getManager();
+
         $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
-        if (!$zones) {
+        $categories = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
+        $show = true;
+
+        if (!$zones && !$categories) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Veuillez d\'abord créer une zone et une catégorie.'
+            );
+            $show = false;
+        } elseif (!$zones) {
             $this->container->get('session')->getFlashBag()->add(
                 'notice',
                 'Veuillez d\'abord créer une zone.'
             );
+            $show = false;
+        } elseif (!$categories) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Veuillez d\'abord créer une catégorie.'
+            );
+            $show = false;
         }
 
         return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
             'information' => $information,
-            'zones' => $zones,
+            'show' => $show,
             'form'   => $form->createView(),
         ));
     }
@@ -97,6 +114,7 @@ class InformationController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
+        $show = true;
 
         if ($form->isValid()) {
 
@@ -109,7 +127,7 @@ class InformationController extends Controller
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
                     'information' => $information,
-                    'zones' => $zones,
+                    'show' => $show,
                     'form'   => $form->createView(),
                 ));
             }
@@ -127,7 +145,7 @@ class InformationController extends Controller
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
                     'information' => $information,
-                    'zones' => $zones,
+                    'show' => $show,
                     'form'   => $form->createView(),
                 ));
             }
@@ -141,7 +159,7 @@ class InformationController extends Controller
                 );
                 return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
                     'information' => $information,
-                    'zones' => $zones,
+                    'show' => $show,
                     'form'   => $form->createView(),
                 ));
             }
@@ -171,7 +189,7 @@ class InformationController extends Controller
 
         return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
             'information' => $information,
-            'zones' => $zones,
+            'show' => $show,
             'form'   => $form->createView(),
         ));
     }

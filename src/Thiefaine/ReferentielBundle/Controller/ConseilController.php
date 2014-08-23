@@ -41,6 +41,28 @@ class ConseilController extends Controller
     }
 
     /**
+     * Afficher un formulaire pour visionner un conseil
+     *
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($id);
+
+        if (!$conseil) {
+            throw $this->createNotFoundException("Impossible de trouver le conseil.");
+        }
+
+        $showForm = $this->createShowForm($conseil);
+
+        return $this->render('ThiefaineReferentielBundle:Conseil:show.html.twig', array(
+            'conseil' => $conseil,
+            'show_form' => $showForm->createView(),
+        ));
+    }
+
+    /**
      * Afficher un formulaire pour créer un conseil
      *
      */
@@ -49,8 +71,22 @@ class ConseilController extends Controller
         $conseil = new Conseil();
         $form   = $this->createCreateForm($conseil);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $categories = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
+        $show = true;
+
+        if (!$categories) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Veuillez d\'abord créer une catégorie.'
+            );
+            $show = false;
+        }
+
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
             'conseil' => $conseil,
+            'show' => $show,
             'form'   => $form->createView(),
         ));
     }
@@ -66,6 +102,8 @@ class ConseilController extends Controller
         $form = $this->createCreateForm($conseil);
         $form->handleRequest($request);
 
+        $show = true;
+
         if ($form->isValid()) {
 
             // message non vide
@@ -80,6 +118,7 @@ class ConseilController extends Controller
                 );
                 return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
                     'entity' => $conseil,
+                    'show' => $show,
                     'form'   => $form->createView(),
                 ));
             }
@@ -95,6 +134,7 @@ class ConseilController extends Controller
                 );
                 return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
                     'entity' => $conseil,
+                    'show' => $show,
                     'form'   => $form->createView(),
                 ));
             }
@@ -123,6 +163,7 @@ class ConseilController extends Controller
 
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
             'conseil' => $conseil,
+            'show' => $show,
             'form'   => $form->createView(),
         ));
     }
@@ -298,6 +339,22 @@ class ConseilController extends Controller
             ->add('annuler', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+        /**
+     * Creates a form to show a Conseil entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createShowForm(Conseil $entity)
+    {
+        $form = $this->createForm(new ConseilType(), $entity, array(
+            'action' => $this->generateUrl('conseil'),
+        ));
+
+        return $form;
     }
 
 

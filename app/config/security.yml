@@ -52,17 +52,9 @@ security:
 
         - { path: ^/accueil$, role: ROLE_USER }
 
-        - { path: ^/groupe/$, role: ROLE_USER }
-        - { path: ^/groupe/*+, role: ROLE_MANAGE_GROUP }
-
-        - { path: ^/utilisateur/$, role: ROLE_USER }
-        - { path: ^/utilisateur/*+, role: ROLE_MANAGE_USER }
-
-        - { path: ^/information/$, role: ROLE_USER }
-        - { path: ^/information/*+, role: ROLE_MANAGE_INFORMATION }
-
-        - { path: ^/conseil/$, role: ROLE_USER }
-        - { path: ^/conseil/*+, role: ROLE_MANAGE_CONSEIL }
-
-        - { path: ^/zone/$, role: ROLE_USER }
-        - { path: ^/zone/*+, role: ROLE_MANAGE_ZONE }
+        - { path: ^/groupe*, role: ROLE_MANAGE_GROUP }
+        - { path: ^/utilisateur*, role: ROLE_MANAGE_USER }
+        - { path: ^/zone*, role: ROLE_MANAGE_ZONE }
+        - { path: ^/categorie*, role: ROLE_MANAGE_CATEGORIE }
+        - { path: ^/information*, role: ROLE_MANAGE_INFORMATION }
+        - { path: ^/conseil*, role: ROLE_MANAGE_CONSEIL }
