@@ -315,6 +315,7 @@ class ConseilController extends Controller
 
         $conseils = array(); $i=0;
         foreach ($entity as $conseil) {
+            
             $conseils[$i] = $conseil->getId();
             $i++;
         }
@@ -335,6 +336,15 @@ class ConseilController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($idConseil);
+
+        if($conseil->getUrlphoto() != null){
+            
+            $domaineName = $_SERVER['HTTP_HOST'];
+            $conseil->setUrlphoto(
+                $domaineName.$conseil->getUrlphoto()
+            );
+
+        }
 
         return $conseil;
     }

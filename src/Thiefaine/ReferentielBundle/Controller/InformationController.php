@@ -486,6 +486,15 @@ class InformationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($idInformation);
         
+        if($information->getUrlphoto() != null){
+            
+            $domaineName = $_SERVER['HTTP_HOST'];
+            $information->setUrlphoto(
+                $domaineName.$information->getUrlphoto()
+            );
+
+        }
+
         return $information;
 
     }
