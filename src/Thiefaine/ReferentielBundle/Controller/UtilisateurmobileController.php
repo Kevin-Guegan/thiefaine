@@ -49,7 +49,7 @@ class UtilisateurmobileController extends Controller
         $view = View::create();
         $em = $this->getDoctrine()->getEntityManager();
 
-        if ($idGend == null || $token == null) {
+        if ($idGend == "{idGend}" || $token == "{token}") {
             $view->setData("POST Error : no idGend / token in URL");
             return $this->handlerView($view); 
         }
