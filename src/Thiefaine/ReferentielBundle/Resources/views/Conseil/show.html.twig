@@ -1,0 +1,102 @@
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/message.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+	{% set flashMessages = app.session.flashbag.get('notice') %}
+
+    <div class="content col-md-9">
+        
+        <h3>Visionner le conseil «{{ conseil.titre }}»</h1>
+
+        {% if flashMessages|length > 0 %}
+    	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
+			{% for flashMessage in flashMessages %}
+			    <p>
+				{{ flashMessage }}
+			   </p>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+		{{ form_start(show_form,{'attr': {'class' : 'form-horizontal'}} ) }}
+
+			{{ form_errors(show_form) }}
+
+			<div class="form-group">
+
+				<p>
+					{{ form_label(show_form.titre) }} *
+					{{ form_widget(show_form.titre, { 'attr': { 'disabled': true} }) }}
+				</p>
+				<p>
+					{{ form_label(show_form.categories) }}
+					{{ form_widget(show_form.categories, { 'attr': { 'disabled': true} }) }}
+				</p>
+				<p>
+					{{ form_label(show_form.urlphoto) }}
+					{{ form_widget(show_form.urlphoto) }}
+					{% if (conseil.urlphoto) %}
+						<a class="btn btn-default showImage" style="width:100%;">Visualiser l'image</a>
+                    {% endif %}
+				</p>
+				<p>
+					{{ form_label(show_form.attachement) }}
+					{{ form_widget(show_form.attachement, { 'attr': { 'disabled': true} }) }}
+				</p>
+				<p>
+					{{ form_label(show_form.urllien) }}
+					{{ form_widget(show_form.urllien, { 'attr': { 'disabled': true} }) }}
+				</p>
+				<p class="dateElement">
+					{{ form_label(show_form.datevalidite) }}
+					{{ form_widget(show_form.datevalidite, { 'attr': { 'disabled': true} }) }}
+				</p>
+				<p>
+					{{ form_label(show_form.message) }} *
+					{{ form_widget(show_form.message, { 'attr': { 'disabled': true} }) }}
+				</p>
+		  	  	<p>	
+					<a class="btn btn-primary" href={{ path('conseil') }}>Retour à la liste des conseils</a>
+		  	  	</p>
+
+			</div>
+
+		{{ form_end(show_form) }}
+
+    </div>
+
+{% endblock %}
+
+{% block modal %}
+	<div id="showImageModal" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">
+		        <span aria-hidden="true">&times;</span>
+		        <span class="sr-only">Fermer</span>
+	        </button>
+	        <h4 class="modal-title">Visualisation de l'image</h4>
+	      </div>
+	      <div class="modal-body">
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <a class="showFull btn btn-default" type="button">
+	        	Zoom
+	        	<span class="glyphicon glyphicon-resize-full"></span>
+	        </a>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
