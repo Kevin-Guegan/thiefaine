@@ -40,7 +40,11 @@
                             {{ information.zone.nom | default("-") }}
                         </td>
                         <td>
-                            {{ information.utilisateurweb.nom }} {{ information.utilisateurweb.prenom }}
+                            {% if information.utilisateurweb %}
+                                {{ information.utilisateurweb.nom }} {{ information.utilisateurweb.prenom }}
+                            {% else %}
+                                -
+                            {% endif %}
                         </td>
                         <td>
                         {% if information.urlphoto %}

@@ -108,6 +108,21 @@ class UtilisateurwebController extends Controller
             return $this->redirect($this->generateUrl('thiefaine_referentiel_utilisateurweb_list'));
         }
 
+        // on met à jour les conseils, infos et zones de l'utilsateur => on met à null l'id utilisateur
+        $conseils = $user->getConseils();
+        $informations = $user->getInformations();
+        $zones = $user->getZones();
+
+        foreach ($conseils as $conseil) {
+            $conseil->setUtilisateurweb(null);
+        }
+        foreach ($informations as $information) {
+            $information->setUtilisateurweb(null);
+        }
+        foreach ($zones as $zone) {
+            $zone->setUtilisateurweb(null);
+        }
+
         $em->remove($user);
         $em->flush();
 
