@@ -46,8 +46,22 @@ class ConseilController extends Controller
         $conseil = new Conseil();
         $form   = $this->createCreateForm($conseil);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $categories = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
+        $show = true;
+
+        if (!$categories) {
+            $this->container->get('session')->getFlashBag()->add(
+                'notice',
+                'Veuillez d\'abord créer une catégorie.'
+            );
+            $show = false;
+        }
+
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
             'conseil' => $conseil,
+            'show' => $show,
             'form'   => $form->createView(),
         ));
     }
@@ -63,6 +77,8 @@ class ConseilController extends Controller
         $form = $this->createCreateForm($conseil);
         $form->handleRequest($request);
 
+        $show = true;
+
         if ($form->isValid()) {
 
             // message non vide
@@ -77,6 +93,7 @@ class ConseilController extends Controller
                 );
                 return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
                     'entity' => $conseil,
+                    'show' => $show,
                     'form'   => $form->createView(),
                 ));
             }
@@ -92,6 +109,7 @@ class ConseilController extends Controller
                 );
                 return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
                     'entity' => $conseil,
+                    'show' => $show,
                     'form'   => $form->createView(),
                 ));
             }
@@ -120,6 +138,7 @@ class ConseilController extends Controller
 
         return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
             'conseil' => $conseil,
+            'show' => $show,
             'form'   => $form->createView(),
         ));
     }
