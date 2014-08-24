@@ -3,19 +3,24 @@
 namespace Thiefaine\ReferentielBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Categorie
+ * @ExclusionPolicy("all")
  */
 class Categorie
 {
     /**
      * @var integer
+     * @Expose
      */
     private $id;
 
     /**
      * @var string
+     * @Expose
      */
     private $libelle;
 
