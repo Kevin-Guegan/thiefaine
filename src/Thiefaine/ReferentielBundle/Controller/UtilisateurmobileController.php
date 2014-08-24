@@ -47,7 +47,7 @@ class UtilisateurmobileController extends Controller
     public function createAction(Request $request, $idGend, $token)
     {
         $view = View::create();
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         if ($idGend == "{idGend}" || $token == "{token}") {
             $view->setData("POST Error : no idGend / token in URL");

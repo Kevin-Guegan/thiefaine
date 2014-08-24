@@ -246,5 +246,49 @@ class GroupController extends BaseController
         ));
     }
 
+     /**
+     * Delete one group
+     */
+    public function deleteAction(Request $request, $groupName)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+
+        $group = $this->findGroupBy('name', $groupName);
+
+        $users = $em->getRepository('ThiefaineUserBundle:Utilisateurweb')->findAll();
+        foreach ($users as $user) {
+            if ($user->hasGroup($group->getName())) {
+
+                // on met à jour les conseils, infos et zones de l'utilsateur => on met à null l'id utilisateur
+                $conseils = $user->getConseils();
+                $informations = $user->getInformations();
+                $zones = $user->getZones();
+
+                foreach ($conseils as $conseil) {
+                    $conseil->setUtilisateurweb(null);
+                }
+                foreach ($informations as $information) {
+                    $information->setUtilisateurweb(null);
+                }
+                foreach ($zones as $zone) {
+                    $zone->setUtilisateurweb(null);
+                }
+                $em->remove($user);
+                $em->flush();
+            }
+
+        }
+
+        $this->container->get('fos_user.group_manager')->deleteGroup($group);
+
+        $response = new RedirectResponse($this->container->get('router')->generate('fos_user_group_list'));
+
+        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch(FOSUserEvents::GROUP_DELETE_COMPLETED, new FilterGroupResponseEvent($group, $request, $response));
+
+        return $response;
+    }
+
 
 }

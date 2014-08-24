@@ -148,17 +148,31 @@ class CategorieController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
+        $categorie = $em->getRepository('ThiefaineReferentielBundle:Categorie')->find($id);
 
-        if (!$entity) {
-            $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Impossible de trouver la categorie'
-            );
-            return $this->redirect($this->generateUrl('categorie'));
+        if (!$categorie) {
+            throw $this->createNotFoundException('Impossible de trouver la catégorie.');
         }
 
-        $em->remove($entity);
+        // infos ayant cette catégories
+        // on ne supprime que si il ne reste plus que cette catégorie
+        $informations = $categorie->getInformations();
+        foreach ($informations as $information) {
+            if (count($information->getCategories())==1) {
+                $em->remove($information);
+            }
+        }
+
+        // conseils ayant cette catégories
+        // on ne supprime que si il ne reste plus que cette catégorie
+        $conseils = $categorie->getConseils();
+        foreach ($conseils as $conseil) {
+            if (count($conseil->getCategories())==1) {
+                $em->remove($conseil);
+            }
+        }
+
+        $em->remove($categorie);
         $em->flush();
 
         return $this->redirect($this->generateUrl('categorie'));
