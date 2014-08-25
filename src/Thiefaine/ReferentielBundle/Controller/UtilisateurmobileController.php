@@ -39,33 +39,54 @@ class UtilisateurmobileController extends Controller
     * Post new mobile user.
     * 
     * @param $idGend id of Gendarmerie.
+    * @param $idMobile id of Mobile.
     * @param $token notification token.
     * 
-    * @Post("/utilisateurmobile/create/{idGend}/{token}")
+    * @Post("/utilisateurmobile/create/{idGend}/{idMobile}/{token}")
     * @ApiDoc
     */
-    public function createAction(Request $request, $idGend, $token)
+    public function createAction(Request $request, $idGend, $idMobile, $token)
     {
         $view = View::create();
         $em = $this->getDoctrine()->getManager();
 
-        if ($idGend == "{idGend}" || $token == "{token}") {
-            $view->setData("POST Error : no idGend / token in URL");
+        /*if (($idGend == "{idGend}") || ($token == "{token}") || ($idMobile == "{idMobile}")) {
+            $view->setData("POST Error : no idGend / token / idMobiles in URL");
             return $this->handlerView($view); 
+        }*/
+
+        $mobileUser = $em->getRepository('ThiefaineReferentielBundle:Utilisateurmobile')->findByIdmobile($idMobile);
+        if(!$mobileUser){
+
+            $gend = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->find($idGend);
+            $date = new \DateTime('now');
+
+            $utilisateurmobile = new Utilisateurmobile();
+            $utilisateurmobile->setGendarmerie($gend);
+            $utilisateurmobile->setToken($token);
+            $utilisateurmobile->setDatecreation($date);
+            $utilisateurmobile->setIdmobile($idMobile);            
+
+            $em->persist($utilisateurmobile);
+            $em->flush();
+
+            $view->setData("add success");
+
+       }else{
+
+            $mobileUser = $mobileUser[0];
+
+            $gend = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->find($idGend);
+            $mobileUser->setGendarmerie($gend);
+            $mobileUser->setToken($token);
+
+            $em->persist($mobileUser);
+            $em->flush();
+
+            $view->setData("change success");
+
         }
 
-        $gend = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->find($idGend);
-        $date = new \DateTime('now');
-
-        $utilisateurmobile = new Utilisateurmobile();
-        $utilisateurmobile->setGendarmerie($gend);
-        $utilisateurmobile->setToken($token);
-        $utilisateurmobile->setDatecreation($date);
-
-        $em->persist($utilisateurmobile);
-        $em->flush();
-
-        $view->setData("success");
         return $this->handlerView($view);
     }
 
