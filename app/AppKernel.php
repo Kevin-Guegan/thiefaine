@@ -26,6 +26,8 @@ class AppKernel extends Kernel
 
             new Thiefaine\ReferentielBundle\ThiefaineReferentielBundle(),
             new Thiefaine\UserBundle\ThiefaineUserBundle(),
+
+            new RMS\PushNotificationsBundle\RMSPushNotificationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
