@@ -97,3 +97,9 @@ fos_rest:
 sensio_framework_extra:
     view:    { annotations: false }
     router:  { annotations: true }
+
+rms_push_notifications:
+  android:
+      gcm:
+          api_key: AIzaSyC3bsPIqqgTxie1k3tra2CXlV8Zee-zjLk
+          use_multi_curl: false
