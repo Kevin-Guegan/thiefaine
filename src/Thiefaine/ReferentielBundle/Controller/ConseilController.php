@@ -28,13 +28,13 @@ class ConseilController extends Controller
         $em = $this->getDoctrine()->getManager();
         $conseils = $em->getRepository('ThiefaineReferentielBundle:Conseil')->findAll();
 
-
-        $test = json_decode('{"id":1,"titre":"test","message":"<p>christopher lou&euml;t<\/p>","datecreation":"2014-07-29T21:44:10+0200","datemiseajour":"2014-07-30T21:03:25+0200","utilisateurweb":{"id":1,"username":"adminuser","username_canonical":"adminuser","email":"admin@admin.user","email_canonical":"admin@admin.user","enabled":true,"salt":"mihc2e4qwhcsoskck08w0wgggkkc0ks","password":"CBEhfKv3A8PCBxbPEBjE+awPAYx\/txjHsaAUDM79do2aXWrOjZkiXMLcEQi6o4wFyMLdTZDiGe+AHPfunWXuOA==","last_login":"2014-07-30T21:01:20+0200","groups":[],"locked":false,"expired":false,"roles":["ROLE_SUPER_ADMIN"],"credentials_expired":false,"nom":"admin","prenom":"admin","conseils":{"1":{"id":2,"titre":"cdls,jclcskdcl,kcs,k","message":"<p>scqsqqcsqcs<\/p>","datecreation":"2014-07-30T21:01:32+0200","categories":[]}},"informations":[{"id":1,"titre":"cacacaca","message":"<p>xsxsxsxsxs<\/p>","datecreation":"2014-07-29T21:43:59+0200","alerte":false,"zone":{"id":1,"nom":"toto","points":[]},"categories":[{"id":3,"libelle":"pupute"}]},{"id":10,"titre":"pipipipipi","message":"<p>pipipippi<\/p>","datecreation":"2014-07-29T21:43:59+0200","alerte":false,"zone":{"id":1,"nom":"toto","points":[]},"categories":[{"id":3,"libelle":"pupute"}]}],"zones":[{"id":1,"nom":"toto","points":[]}]},"categories":[]}');
-
-        return $this->render('ThiefaineReferentielBundle:Conseil:index.html.twig', array(
+        $twig = 'ThiefaineReferentielBundle:Conseil:index.html.twig';
+        $paramTwig = array(
             'conseils' => $conseils,
-            'test' => $test
-        ));
+        );
+
+
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -53,10 +53,13 @@ class ConseilController extends Controller
 
         $showForm = $this->createShowForm($conseil);
 
-        return $this->render('ThiefaineReferentielBundle:Conseil:show.html.twig', array(
+        $twig = 'ThiefaineReferentielBundle:Conseil:show.html.twig';
+        $paramTwig = array(
             'conseil' => $conseil,
             'show_form' => $showForm->createView(),
-        ));
+        );
+
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -71,21 +74,22 @@ class ConseilController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
-        $show = true;
 
-        if (!$categories) {
-            $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Veuillez d\'abord créer une catégorie.'
-            );
-            $show = false;
+        $twig = 'ThiefaineReferentielBundle:Conseil:new.html.twig';
+        $messageName = 'notice';
+        $paramTwig = array(
+            'conseil' => $conseil,
+            'show' => false,
+            'form'   => $form->createView(),
+        );
+
+        if (!$categories) {            
+            return $this->getRenderError($twig, $paramTwig, $messageName,
+                'Veuillez d\'abord créer une catégorie.');
         }
 
-        return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-            'conseil' => $conseil,
-            'show' => $show,
-            'form'   => $form->createView(),
-        ));
+        $paramTwig['show'] = true;
+        return $this->render($twig, $paramTwig);
     }
     
     /**
@@ -99,9 +103,29 @@ class ConseilController extends Controller
         $form = $this->createCreateForm($conseil);
         $form->handleRequest($request);
 
-        $show = true;
+        $twig = 'ThiefaineReferentielBundle:Conseil:new.html.twig';
+        $messageName = 'notice';
+        $paramTwig = array(
+            'entity' => $conseil,
+            'show' => true,
+            'form'   => $form->createView(),
+        );
 
         if ($form->isValid()) {
+
+            // utilisateur
+            $utilisateur = $this->container->get('security.context')->getToken()->getUser();
+            if (!$utilisateur) {
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Impossible de trouver l\'utilisateur');
+            }
+
+            // Au moins une catégorie de sélectionné
+            $categories = $conseil->getCategories();
+            if (count($categories)==0) {
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez sélectionner au moins une catégorie.');
+            }
 
             // message non vide
             $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
@@ -109,32 +133,11 @@ class ConseilController extends Controller
             $message = preg_replace($pattern, $replacement, $conseil->getMessage(), -1);
 
             if ($message == '') {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Veuillez saisir un message.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-                    'entity' => $conseil,
-                    'show' => $show,
-                    'form'   => $form->createView(),
-                ));
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez saisir un message.');
             }
 
             $em = $this->getDoctrine()->getManager();
-
-            // utilisateur
-            $utilisateur = $this->container->get('security.context')->getToken()->getUser();
-            if (!$utilisateur) {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Impossible de trouver l\'utilisateur'
-                );
-                return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-                    'entity' => $conseil,
-                    'show' => $show,
-                    'form'   => $form->createView(),
-                ));
-            }
 
             // file
             $file = $form['attachement']->getData();
@@ -158,11 +161,7 @@ class ConseilController extends Controller
             return $this->redirect($this->generateUrl('conseil', array('id' => $conseil->getId())));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Conseil:new.html.twig', array(
-            'conseil' => $conseil,
-            'show' => $show,
-            'form'   => $form->createView(),
-        ));
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -180,13 +179,14 @@ class ConseilController extends Controller
         }
 
         $editForm = $this->createEditForm($conseil);
-        //$deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
+        $twig = 'ThiefaineReferentielBundle:Conseil:edit.html.twig';
+        $paramTwig = array(
             'conseil'      => $conseil,
             'edit_form'   => $editForm->createView(),
-            //'delete_form' => $deleteForm->createView(),
-        ));
+        );
+
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -206,6 +206,13 @@ class ConseilController extends Controller
         $editForm = $this->createEditForm($conseil);
         $editForm->handleRequest($request);
 
+        $twig = 'ThiefaineReferentielBundle:Conseil:edit.html.twig';
+        $messageName = 'notice';
+        $paramTwig = array(
+            'conseil' => $conseil,
+            'edit_form'   => $editForm->createView(),
+        );
+
         if ($editForm->isValid()) {
 
             // message non vide
@@ -214,14 +221,8 @@ class ConseilController extends Controller
             $message = preg_replace($pattern, $replacement, $conseil->getMessage(), -1);
 
             if ($message == '') {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Veuillez saisir un message.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
-                    'conseil' => $conseil,
-                    'edit_form'   => $editForm->createView(),
-                ));
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez saisir un message.');
             }
 
             // On met à jour la date de mise à jour
@@ -243,11 +244,7 @@ class ConseilController extends Controller
             return $this->redirect($this->generateUrl('conseil', array('id' => $id)));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Conseil:edit.html.twig', array(
-            'entity'      => $conseil,
-            'edit_form'   => $editForm->createView(),
-        ));
-
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -374,6 +371,14 @@ class ConseilController extends Controller
         $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($idConseil);
 
         return $conseil;
+    }
+
+    private function getRenderError($twig, $paramTwig, $messageName, $message){
+        $this->container->get('session')->getFlashBag()->add(
+            $messageName,
+            $message
+        );
+        return $this->render($twig, $paramTwig);
     }
 
 }

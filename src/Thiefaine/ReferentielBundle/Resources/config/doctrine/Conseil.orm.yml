@@ -55,8 +55,6 @@ Thiefaine\ReferentielBundle\Entity\Conseil:
                 inverseJoinColumns:
                     categorie:
                         referencedColumnName: id
-            cascade:
-                - all
     manyToOne:
         utilisateurweb:
             targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb
