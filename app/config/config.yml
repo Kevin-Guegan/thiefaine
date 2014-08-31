@@ -99,7 +99,7 @@ sensio_framework_extra:
     router:  { annotations: true }
 
 rms_push_notifications:
-  android:
-      gcm:
-          api_key: AIzaSyC3bsPIqqgTxie1k3tra2CXlV8Zee-zjLk
-          use_multi_curl: false
+    android:
+        gcm:
+            api_key: AIzaSyC3bsPIqqgTxie1k3tra2CXlV8Zee-zjLk
+            use_multi_curl: false
