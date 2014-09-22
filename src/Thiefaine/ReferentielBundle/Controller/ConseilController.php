@@ -12,6 +12,9 @@ use FOS\RestBundle\Controller\Annotations\View;
 use Thiefaine\ReferentielBundle\Entity\Conseil;
 use Thiefaine\ReferentielBundle\Form\ConseilType;
 
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+
 /**
  * Message controller.
  *
@@ -148,7 +151,7 @@ class ConseilController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $conseil->setUrlphoto($finalNameFile);
+                $conseil->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
 
             // On met à jour le conseil
@@ -231,13 +234,22 @@ class ConseilController extends Controller
             // file
             $file = $editForm['attachement']->getData();
             if($file != null){
+                
+                //suppression de la photo
+                $photo = $conseil->getUrlphoto();
+                if($photo != null){
+                    $fs = new Filesystem();
+                    $dir = __DIR__.'/../../../../web';
+                    $fs->remove($dir.$photo);
+                }
+
                 $dir = __DIR__.'/../../../../web/uploads/documents';
 
                 $nameFile = $file->getClientOriginalName();
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $conseil->setUrlphoto($finalNameFile);
+                $conseil->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
             $em->flush();
 
@@ -263,6 +275,14 @@ class ConseilController extends Controller
 
         $em->remove($conseil);
         $em->flush();
+
+        //suppression de la photo
+        $photo = $conseil->getUrlphoto();
+        if($photo != null){
+            $fs = new Filesystem();
+            $dir = __DIR__.'/../../../../web';
+            $fs->remove($dir.$photo);
+        }
 
         return $this->redirect($this->generateUrl('conseil'));
     }
@@ -349,6 +369,7 @@ class ConseilController extends Controller
 
         $conseils = array(); $i=0;
         foreach ($entity as $conseil) {
+            
             $conseils[$i] = $conseil->getId();
             $i++;
         }
@@ -369,6 +390,15 @@ class ConseilController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($idConseil);
+
+        if($conseil->getUrlphoto() != null){
+            
+            $domaineName = $_SERVER['HTTP_HOST'];
+            $conseil->setUrlphoto(
+                $domaineName.$conseil->getUrlphoto()
+            );
+
+        }
 
         return $conseil;
     }

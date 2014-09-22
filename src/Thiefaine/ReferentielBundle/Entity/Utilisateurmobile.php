@@ -17,6 +17,11 @@ class Utilisateurmobile
     /**
      * @var string
      */
+    private $idmobile;
+
+    /**
+     * @var string
+     */
     private $token;
 
     /**
@@ -38,6 +43,29 @@ class Utilisateurmobile
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set idmobile
+     *
+     * @param string $idmobile
+     * @return Utilisateurmobile
+     */
+    public function setIdmobile($idmobile)
+    {
+        $this->idmobile = $idmobile;
+
+        return $this;
+    }
+
+    /**
+     * Get idmobile
+     *
+     * @return string 
+     */
+    public function getIdmobile()
+    {
+        return $this->idmobile;
     }
 
     /**
