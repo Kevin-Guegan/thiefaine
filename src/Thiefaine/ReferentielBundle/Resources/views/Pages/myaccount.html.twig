@@ -5,16 +5,58 @@
 {% block content %}
 	<!-- BODY -->
 	<div class="content col-md-9">
+
 		<h3>Gestion de mon compte</h3>
 
-		<div>
-			{{ form_widget(form) }}
-		</div>
+	    {{ form_start(form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
-	    <div style="margin-top: 10px;">
-	    	<button type="submit" class="btn btn-primary">Enregistrer</button>
-		    <a class="btn btn-primary" href="{{ path('fos_user_change_password') }}">Changer son mot de passe</a>
-		    <a class="btn btn-default" href="{{ path('thiefaine_referentiel_accueil') }}">Annuler</a>
-	    </div>
+			<div class="form-group">
+				<p>
+					{{ form_label(form.nom) }}
+					{% if is_granted('ROLE_MANAGE_USER') %}
+						{{ form_widget(form.nom, { 'attr': { 'disabled': false} }) }}
+					{% else %}
+						{{ form_widget(form.nom, { 'attr': { 'disabled': true} }) }}
+					{% endif %}
+				</p>
+				<p>
+					{{ form_label(form.prenom) }}
+					{% if is_granted('ROLE_MANAGE_USER') %}
+						{{ form_widget(form.prenom, { 'attr': { 'disabled': false} }) }}
+					{% else %}
+						{{ form_widget(form.prenom, { 'attr': { 'disabled': true} }) }}
+					{% endif %}
+				</p>
+				<p>
+					{{ form_label(form.email) }}
+					{% if is_granted('ROLE_MANAGE_USER') %}
+						{{ form_widget(form.email, { 'attr': { 'disabled': false} }) }}
+					{% else %}
+						{{ form_widget(form.email, { 'attr': { 'disabled': true} }) }}
+					{% endif %}
+				</p>
+			  	<p>
+					{{ form_label(form.infos) }}
+
+					{% if is_granted('ROLE_MANAGE_USER') %}
+						{{ form_widget(form.infos, { 'attr': { 'disabled': false} }) }}
+					{% else %}
+						{{ form_widget(form.infos, { 'attr': { 'disabled': true} }) }}
+					{% endif %}
+				</p>
+		      	<p>	
+
+					<div style="margin-top: 10px;">
+						{% if is_granted('ROLE_MANAGE_USER') %}
+				    	<button type="submit" class="btn btn-primary">Enregistrer</button>
+				    	{% endif %}
+					    <a class="btn btn-primary" href="{{ path('fos_user_change_password') }}">Changer son mot de passe</a>
+					    <a class="btn btn-default" href="{{ path('thiefaine_referentiel_accueil') }}">Annuler</a>
+			    	</div>
+		  	  	</p>
+		    </div>
+
+		{{ form_end(form) }}
+
 	</div>
 {% endblock %}
