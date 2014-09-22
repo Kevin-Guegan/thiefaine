@@ -9,8 +9,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 
-use Thiefaine\ReferentielBundle\Controller\PushController;
-
+use Thiefaine\ReferentielBundle\Entity\Push;
 use Thiefaine\ReferentielBundle\Entity\Information;
 use Thiefaine\ReferentielBundle\Entity\Zone;
 use Thiefaine\ReferentielBundle\Form\InformationType;
@@ -185,8 +184,8 @@ class InformationController extends Controller
             $em->flush();
 
             //push message
-            $pushMessage = new PushController();
-            $pushMessage->pushAction();
+            $pushMessage = new Push();
+            $this->container->get('rms_push_notifications')->send($pushMessage->makeMessage());
 
             return $this->redirect($this->generateUrl('information'));
         }
