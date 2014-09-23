@@ -13,7 +13,7 @@ Thiefaine\ReferentielBundle\Entity\Categorie:
         libelle:
             type: string
             nullable: true
-            length: 255
+            length: 25
             fixed: false
     manyToMany:
         informations:

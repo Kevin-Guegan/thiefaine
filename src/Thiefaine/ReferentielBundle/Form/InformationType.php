@@ -114,7 +114,7 @@ class InformationType extends AbstractType
                 'class'     => 'ThiefaineReferentielBundle:Categorie',
                 'property'  => 'libelle',
                 'label'     => 'Categorie',
-                'expanded'  => true,
+                'expanded'  => false,
                 'multiple'  => true,
                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                 'attr'   =>  array  (   'class' => 'form-control',
