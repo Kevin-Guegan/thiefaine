@@ -9,13 +9,13 @@ use RMS\PushNotificationsBundle\Message\AndroidMessage;
  */
 class Push {
 
-    public function makeMessage() { 
+    public function makeMessage($sendMessage, $deviceToken) { 
     
         $message = new AndroidMessage();
         $message->setGCM(true);
 
-        $pushMessage = 'Oh my! A push notification!';
-        $token = 'APA91bHKSwdWQDNz-JjeGbtehmmz3n-1iuGsEEcGiQyOR9QuXcgWax3PZ-Ezv42TAPY1KjzaRmo2mu98Vcxd1zLGaiv7v2CZw6xaI6LKS9W_ueu3CVIJ_NQkXiskT10XNPwFvjZhkbVKtdZdelZNXLu42X_6bw_bIRW1M9s3yfVYpTKyvTX6r35PiqJITRAuw2BYbx2lQLzD';
+        $pushMessage = $sendMessage;
+        $token = $deviceToken;
 
         $message->setMessage(array( 'message' => $pushMessage, ));
         $message->setDeviceIdentifier($token);

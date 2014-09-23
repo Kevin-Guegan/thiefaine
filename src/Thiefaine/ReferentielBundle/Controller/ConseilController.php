@@ -10,6 +10,8 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 
 use Thiefaine\ReferentielBundle\Entity\Conseil;
+use Thiefaine\ReferentielBundle\Entity\Push;
+use Thiefaine\ReferentielBundle\Entity\Utilisateurmobile;
 use Thiefaine\ReferentielBundle\Form\ConseilType;
 
 use Symfony\Component\Filesystem\Filesystem;
@@ -157,6 +159,22 @@ class ConseilController extends Controller
 
             $em->persist($conseil);
             $em->flush();
+
+            //push message
+            $mobileUsers = $em->getRepository('ThiefaineReferentielBundle:Utilisateurmobile')->findAll();
+            foreach ($mobileUsers as $mobileUser) {
+                
+                $pushMessage = new Push();
+                $sendMessage = array("type" => "GendarmerieConseil", "id" => $information->getId());
+                $sendMessage = json_encode($sendMessage);
+
+                $this->container->get('rms_push_notifications')->send(
+                    $pushMessage->makeMessage(
+                        $sendMessage,
+                        $mobileUser->getToken()
+                    )
+                );
+            }
 
             return $this->redirect($this->generateUrl('conseil', array('id' => $conseil->getId())));
         }

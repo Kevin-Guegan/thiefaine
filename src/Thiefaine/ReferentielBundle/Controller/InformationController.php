@@ -12,6 +12,7 @@ use FOS\RestBundle\Controller\Annotations\View;
 use Thiefaine\ReferentielBundle\Entity\Push;
 use Thiefaine\ReferentielBundle\Entity\Information;
 use Thiefaine\ReferentielBundle\Entity\Zone;
+use Thiefaine\ReferentielBundle\Entity\Utilisateurmobile;
 use Thiefaine\ReferentielBundle\Form\InformationType;
 
 use Symfony\Component\Filesystem\Filesystem;
@@ -184,8 +185,20 @@ class InformationController extends Controller
             $em->flush();
 
             //push message
-            $pushMessage = new Push();
-            $this->container->get('rms_push_notifications')->send($pushMessage->makeMessage());
+            $mobileUsers = $em->getRepository('ThiefaineReferentielBundle:Utilisateurmobile')->findAll();
+            foreach ($mobileUsers as $mobileUser) {
+                
+                $pushMessage = new Push();
+                $sendMessage = array("type" => "GendarmerieInformation", "id" => $information->getId());
+                $sendMessage = json_encode($sendMessage);
+
+                $this->container->get('rms_push_notifications')->send(
+                    $pushMessage->makeMessage(
+                        $sendMessage,
+                        $mobileUser->getToken()
+                    )
+                );
+            }
 
             return $this->redirect($this->generateUrl('information'));
         }
