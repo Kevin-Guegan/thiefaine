@@ -153,7 +153,7 @@ class ConseilController extends Controller
                 $conseil->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
 
-            // On met à jour le conseil
+            //On met à jour le conseil
             $conseil->setDateCreation(new \DateTime('now'));
             $conseil->setUtilisateurweb($utilisateur);
 
@@ -165,7 +165,7 @@ class ConseilController extends Controller
             foreach ($mobileUsers as $mobileUser) {
                 
                 $pushMessage = new Push();
-                $sendMessage = array("type" => "GendarmerieConseil", "id" => $information->getId());
+                $sendMessage = array("type" => "GendarmerieConseil", "id" => $conseil->getId());
                 $sendMessage = json_encode($sendMessage);
 
                 $this->container->get('rms_push_notifications')->send(
