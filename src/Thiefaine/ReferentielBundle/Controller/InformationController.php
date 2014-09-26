@@ -35,9 +35,12 @@ class InformationController extends Controller
 
         $informations = $em->getRepository('ThiefaineReferentielBundle:Information')->findAll();
 
-        return $this->render('ThiefaineReferentielBundle:Information:index.html.twig', array(
+        $twig = 'ThiefaineReferentielBundle:Information:index.html.twig';
+        $paramTwig = array(
             'informations' => $informations,
-        ));
+        );
+
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -55,11 +58,13 @@ class InformationController extends Controller
         }
 
         $showForm = $this->createShowForm($information);
-
-        return $this->render('ThiefaineReferentielBundle:Information:show.html.twig', array(
+        $twig = 'ThiefaineReferentielBundle:Information:show.html.twig';
+        $paramTwig = array(
             'information' => $information,
             'show_form' => $showForm->createView(),
-        ));
+        );
+
+        return $this->render($twig,$paramTwig);
     }
 
     /**
@@ -75,33 +80,29 @@ class InformationController extends Controller
 
         $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
         $categories = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
-        $show = true;
+
+        $twig = 'ThiefaineReferentielBundle:Information:new.html.twig';
+        $paramTwig = array(
+                'information' => $information,
+                'show' => false,
+                'form'   => $form->createView(),
+            );
+        $messageName = 'notice';
 
         if (!$zones && !$categories) {
-            $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Veuillez d\'abord créer une zone et une catégorie.'
-            );
-            $show = false;
-        } elseif (!$zones) {
-            $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Veuillez d\'abord créer une zone.'
-            );
-            $show = false;
-        } elseif (!$categories) {
-            $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Veuillez d\'abord créer une catégorie.'
-            );
-            $show = false;
-        }
+            return $this->getRenderError($twig, $paramTwig, $messageName,
+                'Veuillez d\'abord créer une zone et une catégorie.');
 
-        return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-            'information' => $information,
-            'show' => $show,
-            'form'   => $form->createView(),
-        ));
+        } elseif (!$zones) {
+            return $this->getRenderError($twig, $paramTwig, $messageName,
+                'Veuillez d\'abord créer une zone.');
+        } elseif (!$categories) {
+            return $this->getRenderError($twig, $paramTwig, $messageName,
+                'Veuillez d\'abord créer une catégorie.');
+        } else {
+            $paramTwig['show'] = true;
+            return $this->render($twig, $paramTwig);
+        }
     }
 
     /**
@@ -116,22 +117,29 @@ class InformationController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
-        $show = true;
+
+        $twig = 'ThiefaineReferentielBundle:Information:new.html.twig';
+        $paramTwig = array(
+                'information' => $information,
+                'show' => true,
+                'form'   => $form->createView(),
+            );
+        $messageName = 'notice';
 
         if ($form->isValid()) {
 
             // utilisateur
             $utilisateur = $this->container->get('security.context')->getToken()->getUser();
             if (!$utilisateur) {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Impossible de trouver l\'utilisateur.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'information' => $information,
-                    'show' => $show,
-                    'form'   => $form->createView(),
-                ));
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Impossible de trouver l\'utilisateur.');
+            }
+
+            // Au moins une catégorie de sélectionné
+            $categories = $information->getCategories();
+            if (count($categories)==0) {
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez sélectionner au moins une catégorie.');
             }
 
             // Contrôle de l'information
@@ -141,29 +149,15 @@ class InformationController extends Controller
             $message = preg_replace($pattern, $replacement, $messageInformation, -1);
 
             if ($message == '') {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Veuillez saisir un message.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'information' => $information,
-                    'show' => $show,
-                    'form'   => $form->createView(),
-                ));
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez saisir un message.');
             }
 
             // Contrôle de la zone
             $zoneInformation = $information->getZone();
             if (null === $zoneInformation) {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Veuillez sélectionner une zone.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-                    'information' => $information,
-                    'show' => $show,
-                    'form'   => $form->createView(),
-                ));
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez sélectionner une zone.');
             }
 
             // file
@@ -203,11 +197,7 @@ class InformationController extends Controller
             return $this->redirect($this->generateUrl('information'));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Information:new.html.twig', array(
-            'information' => $information,
-            'show' => $show,
-            'form'   => $form->createView(),
-        ));
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -220,18 +210,20 @@ class InformationController extends Controller
 
         $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
 
+        $twig = 'ThiefaineReferentielBundle:Information:edit.html.twig';
+
         if (!$information) {
             throw $this->createNotFoundException("Impossible de trouver l'information.");
         }
 
         $editForm = $this->createEditForm($information);
-        //$deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
+        $paramTwig = array(
             'information' => $information,
             'edit_form' => $editForm->createView(),
-            //'delete_form' => $deleteForm->createView(),
-        ));
+        );
+
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -244,15 +236,16 @@ class InformationController extends Controller
 
         $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
 
+        $twig = 'ThiefaineReferentielBundle:Information:edit.html.twig';
+        $paramTwig = array(
+            'entity' => $information,
+            'edit_form' => $editForm->createView(),
+        );
+        $messageName = 'notice';
+
         if (!$information) {
-            $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Impossible de trouver l\'information.'
-            );
-            return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-                'entity' => $information,
-                'edit_form' => $editForm->createView(),
-            ));
+            return $this->getRenderError($twig, $paramTwig, $messageName,
+                'Impossible de trouver l\'information.');
         }
 
         //$deleteForm = $this->createDeleteForm($id);
@@ -270,14 +263,8 @@ class InformationController extends Controller
             $message = preg_replace($pattern, $replacement, $messageInformation, -1);
 
             if ($message == '') {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Veuillez saisir un message.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-                    'entity' => $information,
-                    'edit_form' => $editForm->createView(),
-                ));
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez saisir un message.');
             }
 
             // file
@@ -306,10 +293,7 @@ class InformationController extends Controller
             return $this->redirect($this->generateUrl('information'));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Information:edit.html.twig', array(
-            'entity' => $information,
-            'edit_form' => $editForm->createView(),
-        ));
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -321,17 +305,20 @@ class InformationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+
+        $twig = 'ThiefaineReferentielBundle:Information:clone.html.twig';
+
         if (!$information) {
             throw $this->createNotFoundException("Impossible de trouver l'information.");
         }
-
-
         $cloneForm = $this->createCloneForm($information);
 
-        return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
+        $paramTwig = array(
             'information' => $information,
             'clone_form' => $cloneForm->createView(),
-        ));
+        );
+
+        return $this->render($twig, $paramTwig);
     }
 
         /**
@@ -351,15 +338,16 @@ class InformationController extends Controller
         $cloneForm = $this->createCloneForm($information);
         $cloneForm->handleRequest($request);
 
+        $twig = 'ThiefaineReferentielBundle:Information:clone.html.twig';
+        $paramTwig = array(
+            'information' => $information,
+            'clone_form' => $cloneForm->createView(),
+        );
+        $messageName = 'notice';
+
         if (!$information) {
-            $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Impossible de trouver l\'information.'
-            );
-            return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
-                'information' => $information,
-                'clone_form' => $cloneForm->createView(),
-            ));
+            return $this->getRenderError($twig, $paramTwig, $messageName,
+                'Impossible de trouver l\'information.');
         }
 
         if ($cloneForm->isValid()) {
@@ -373,14 +361,8 @@ class InformationController extends Controller
             $message = preg_replace($pattern, $replacement, $messageInformation, -1);
 
             if ($message == '') {
-                $this->container->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Veuillez saisir un message.'
-                );
-                return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
-                    'information' => $information,
-                    'edit_form' => $cloneForm->createView(),
-                ));
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez saisir un message.');
             }
 
             // file
@@ -400,10 +382,7 @@ class InformationController extends Controller
             return $this->redirect($this->generateUrl('information'));
         }
 
-        return $this->render('ThiefaineReferentielBundle:Information:clone.html.twig', array(
-            'information' => $information,
-            'clone_form' => $cloneForm->createView(),
-        ));
+        return $this->render($twig, $paramTwig);
     }
 
     /**
@@ -554,4 +533,14 @@ class InformationController extends Controller
         return $informations;
 
     }
+
+    private function getRenderError($twig, $paramTwig, $messageName, $message){
+        $this->container->get('session')->getFlashBag()->add(
+            $messageName,
+            $message
+        );
+        return $this->render($twig, $paramTwig);
+    }
+
+
 }

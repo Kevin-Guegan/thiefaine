@@ -27,6 +27,10 @@
 					{{ form_widget(show_form.titre, { 'attr': { 'disabled': true} }) }}
 				</p>
 				<p>
+					{{ form_label(show_form.categories) }}
+					{{ form_widget(show_form.categories) }}
+				</p>
+				<p>
 					{{ form_label(show_form.urlphoto) }}
 					{{ form_widget(show_form.urlphoto) }}
 					{% if (information.urlphoto) %}

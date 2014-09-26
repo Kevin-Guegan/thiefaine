@@ -3,4 +3,4 @@
 composer.lock
 /web/uploads/
 /app/cache/
-/app/log/
+/app/logs/

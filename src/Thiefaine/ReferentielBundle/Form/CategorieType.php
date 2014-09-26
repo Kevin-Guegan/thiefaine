@@ -20,6 +20,7 @@ class CategorieType extends AbstractType
                                                 'attr'   =>  array  (   'class' => 'form-control',
                                                                         'placeholder' => 'Titre',
                                                                         'title' => "Renseigner le nom de la catégorie.",
+                                                                        'maxlength' => '25',
                                                                         'data-toggle' => 'tooltip',
                                                                         'data-placement' => 'right'
                                                                     )

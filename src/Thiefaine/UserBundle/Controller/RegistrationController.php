@@ -81,6 +81,16 @@ class RegistrationController extends BaseController
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $userManager->updateUser($user);
+
+                // On envoi un mail à l'utilisateur pour changer de mot de passe
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Création d\'un nouveau compte')
+                    ->setFrom('admin@thiefaine.com')
+                    ->setTo($user->getEmail())
+                    ->setBody($this->renderView('ReferentielBundle:Utilisateurweb:email.txt.twig', array('name' => $name)))
+                ;
+                $this->get('mailer')->send($message);
+
                 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->container->get('router')->generate('thiefaine_referentiel_utilisateurweb_list');
