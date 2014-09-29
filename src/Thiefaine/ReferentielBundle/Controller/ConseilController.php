@@ -168,7 +168,11 @@ class ConseilController extends Controller
             foreach ($mobileUsers as $mobileUser) {
                 
                 $pushMessage = new Push();
-                $sendMessage = array("type" => "GendarmerieConseil", "id" => $conseil->getId());
+                $sendMessage = array(
+                    "type" => "GendarmerieConseil",
+                    "id" => $conseil->getId(),
+                    "alerte" => false
+                );
                 $sendMessage = json_encode($sendMessage);
 
                 $this->container->get('rms_push_notifications')->send(

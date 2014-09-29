@@ -183,7 +183,11 @@ class InformationController extends Controller
             foreach ($mobileUsers as $mobileUser) {
                 
                 $pushMessage = new Push();
-                $sendMessage = array("type" => "GendarmerieInformation", "id" => $information->getId());
+                $sendMessage = array(
+                    "type" => "GendarmerieInformation",
+                    "id" => $information->getId(),
+                    "alerte" => $information->getAlerte()
+                );
                 $sendMessage = json_encode($sendMessage);
 
                 $this->container->get('rms_push_notifications')->send(
@@ -378,6 +382,26 @@ class InformationController extends Controller
             }
 
             $em->flush();
+
+            //push message
+            $mobileUsers = $em->getRepository('ThiefaineReferentielBundle:Utilisateurmobile')->findAll();
+            foreach ($mobileUsers as $mobileUser) {
+                
+                $pushMessage = new Push();
+                $sendMessage = array(
+                    "type" => "GendarmerieInformation",
+                    "id" => $information->getId(),
+                    "alerte" => $information->getAlerte()
+                );
+                $sendMessage = json_encode($sendMessage);
+
+                $this->container->get('rms_push_notifications')->send(
+                    $pushMessage->makeMessage(
+                        $sendMessage,
+                        $mobileUser->getToken()
+                    )
+                );
+            }
 
             return $this->redirect($this->generateUrl('information'));
         }
