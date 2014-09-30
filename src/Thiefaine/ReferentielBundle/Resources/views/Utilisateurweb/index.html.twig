@@ -1,5 +1,11 @@
 {% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datatable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/table.js') }}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="content col-md-9">
         <h3>Gestion des utilisateurs</h3>
