@@ -76,7 +76,7 @@ class ZoneType extends AbstractType
                     'style' => 'font-weight: inherit;'
                 ),
                 'attr' => array(
-                    'class' => 'form-control pull-right',
+                    'class' => 'pull-right',
                 ),
                 'required' => false,
             ));

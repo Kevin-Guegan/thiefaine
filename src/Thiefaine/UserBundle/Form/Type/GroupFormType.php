@@ -60,7 +60,7 @@ class GroupFormType extends BaseType
                 'style' => 'font-weight: inherit;'
             ),
             'attr' => array(
-                'class' => 'form-control pull-right',
+                'class' => 'pull-right',
             ),
             'mapped' => false,
             'required' => false,
@@ -71,7 +71,7 @@ class GroupFormType extends BaseType
                 'style' => 'font-weight: inherit;'
             ),
             'attr' => array(
-                'class' => 'form-control pull-right',
+                'class' => 'pull-right',
             ),
             'mapped' => false,
             'required' => false,
@@ -82,7 +82,7 @@ class GroupFormType extends BaseType
                 'style' => 'font-weight: inherit;'
             ),
             'attr' => array(
-                'class' => 'form-control pull-right',
+                'class' => 'pull-right',
             ),
             'mapped' => false,
             'required' => false,
@@ -93,7 +93,7 @@ class GroupFormType extends BaseType
                 'style' => 'font-weight: inherit;'
             ),
             'attr' => array(
-                'class' => 'form-control pull-right',
+                'class' => 'pull-right',
             ),
             'mapped' => false,
             'required' => false,
@@ -104,7 +104,7 @@ class GroupFormType extends BaseType
                 'style' => 'font-weight: inherit;'
             ),
             'attr' => array(
-                'class' => 'form-control pull-right',
+                'class' => 'pull-right',
             ),
             'mapped' => false,
             'required' => false,
@@ -115,7 +115,7 @@ class GroupFormType extends BaseType
                 'style' => 'font-weight: inherit;'
             ),
             'attr' => array(
-                'class' => 'form-control pull-right',
+                'class' => 'pull-right',
             ),
             'mapped' => false,
             'required' => false,
