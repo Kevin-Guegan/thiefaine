@@ -109,7 +109,7 @@ class RegistrationController extends BaseController
 
             // valid === false si un seul caractère de saisie ^_^
             if ('' === $notice && false === $form->isValid()) {
-                $notice = 'Veuillez saisir au moins 2 caractères dans chaque entrée du formulaire.';
+                $notice = 'Le login et mot de passe doivent contenir au moins 2 caractères.';
             }
 
             // On ajoute l'erreur à la vue si nécessaire
