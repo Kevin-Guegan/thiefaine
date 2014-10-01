@@ -19,6 +19,32 @@ use FOS\UserBundle\Model\UserInterface;
 class RegistrationController extends BaseController
 {
 
+    public function addFlashBag($notice) {
+        $this->container->get('session')->getFlashBag()->add(
+            'notice',
+            $notice
+        );
+    }
+
+    public function renderResponse($form,$show){
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
+            'form' => $form->createView(),
+            'show' => $show
+        ));
+    }
+
+    public function sendMail(){
+        /*
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Création d\'un nouveau compte')
+            ->setFrom('admin@thiefaine.com')
+            ->setTo($user->getEmail())
+            ->setBody($this->renderView('ReferentielBundle:Utilisateurweb:email.txt.twig', array('name' => $name)))
+        ;
+        $this->get('mailer')->send($message);
+        */
+    }
+
     public function registerAction(Request $request)
     {
 
@@ -31,16 +57,11 @@ class RegistrationController extends BaseController
 
         $form = $formFactory->createForm();
 
-        // on regarde si il existe des geoupes avant ^_^
+        // on regarde si il existe des groupes avant ^_^
         $em = $this->container->get('doctrine')->getManager();
         if ( count($em->getRepository('ThiefaineUserBundle:Group')->findAll()) == 0) {
-             $this->container->get('session')->getFlashBag()->add(
-                'notice',
-                'Veuillez tout d\'abord créer un groupe dans l\'application.'
-            );
-            return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
-                'form' => $form->createView(),
-            ));
+            $this->addFlashBag('Veuillez tout d\'abord créer un groupe dans l\'application.');
+            return $this->renderResponse($form,false);
         }
 
         $user = $userManager->createUser();
@@ -56,56 +77,63 @@ class RegistrationController extends BaseController
         $form->setData($user);
 
         if ('POST' === $request->getMethod()) {
+
+            // On bind tout et on fait les contrôles
             $form->bind($request);
+            $notice = '';
 
-            if ($form->isValid()) {
+            // Contrôle que l'adresse mail n'existe pas
+            $userExist = $userManager->findUserByEmail($user->getEmail());
+            if (null !== $userExist) {
+                $notice = 'L\'adresse email est déjà utilisée.';
+            }
 
-                $userExist = $userManager->findUserByEmail($user->getEmail());
-                if ($userExist == null) {
-                    $userExist = $userManager->findUserByUsername($user->getUsername());
+            // Contrôle que le login n'est pas déjà utilisé
+            if ('' === $notice){
+                $userExist = $userManager->findUserByUsername($user->getUsername());
+                if (null !== $userExist) {
                     $notice = 'Le login de connexion est déjà utilisé.';
-                } else {
-                    $notice = 'L\'adresse email est déjà utilisée.';
                 }
-                if ($userExist != null){
-                    $this->container->get('session')->getFlashBag()->add(
-                        'notice',
-                        $notice
-                    );
-                    return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
-                        'form' => $form->createView(),
-                    ));
-                }
+            }
 
+            // Contrôle de l'information
+            if ('' === $notice){
+                $messageUser = $user->getInfos();
+                $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+                $replacement = '';
+                $message = preg_replace($pattern, $replacement, $messageUser, -1);
+                if ('' === $message) {
+                    $notice = 'Veuillez saisir les informations sur l\'utilisateur.';
+                }
+            }
+
+            // valid === false si un seul caractère de saisie ^_^
+            if ('' === $notice && false === $form->isValid()) {
+                $notice = 'Veuillez saisir au moins 2 caractères dans chaque entrée du formulaire.';
+            }
+
+            // On ajoute l'erreur à la vue si nécessaire
+            if ('' !== $notice){
+                $this->addFlashBag($notice);
+                return $this->renderResponse($form,true);
+            } else {
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $userManager->updateUser($user);
 
-                // On envoi un mail à l'utilisateur pour changer de mot de passe
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Création d\'un nouveau compte')
-                    ->setFrom('admin@thiefaine.com')
-                    ->setTo($user->getEmail())
-                    ->setBody($this->renderView('ReferentielBundle:Utilisateurweb:email.txt.twig', array('name' => $name)))
-                ;
-                $this->get('mailer')->send($message);
-
-                
+                //$this->sendMail();
                 if (null === $response = $event->getResponse()) {
                     $url = $this->container->get('router')->generate('thiefaine_referentiel_utilisateurweb_list');
                     $response = new RedirectResponse($url);
                 }
 
                 //$dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
                 return $response;
             }
         }
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
-            'form' => $form->createView(),
-        ));
+        return $this->renderResponse($form,true);
     }
         /**
      * Receive the confirmation token from user email provider, login the user
