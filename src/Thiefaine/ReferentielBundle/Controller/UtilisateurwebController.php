@@ -161,6 +161,8 @@ class UtilisateurwebController extends Controller
         ));
 
         $form->remove('plainPassword');
+        $group = $entity->getGroups()[0];
+        $form->get('groups')->setData($group);
 
         return $form;
     }
