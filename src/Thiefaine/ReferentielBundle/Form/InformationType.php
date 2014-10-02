@@ -5,6 +5,7 @@ namespace Thiefaine\ReferentielBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class InformationType extends AbstractType
 {
@@ -87,6 +88,10 @@ class InformationType extends AbstractType
                                             )
                 )
             ->add('zone', 'entity', array    (  'class' => 'ThiefaineReferentielBundle:Zone',
+                                                'query_builder' => function(EntityRepository $er) {
+                                                  return $er->createQueryBuilder('z')
+                                                            ->where('z.actif = true');
+                                                },
                                                 'property' => 'nom',
                                                 'label'  => 'Zone *',
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
