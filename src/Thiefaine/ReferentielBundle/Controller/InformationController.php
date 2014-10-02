@@ -33,7 +33,7 @@ class InformationController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $informations = $em->getRepository('ThiefaineReferentielBundle:Information')->findAll();
+        $informations = $em->getRepository('ThiefaineReferentielBundle:Information')->findBy([], ['datecreation' => 'DESC']);
 
         $twig = 'ThiefaineReferentielBundle:Information:index.html.twig';
         $paramTwig = array(

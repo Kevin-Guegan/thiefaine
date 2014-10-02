@@ -31,7 +31,7 @@ class ConseilController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $conseils = $em->getRepository('ThiefaineReferentielBundle:Conseil')->findAll();
+        $conseils = $em->getRepository('ThiefaineReferentielBundle:Conseil')->findBy([], ['datecreation' => 'DESC']);
 
         $twig = 'ThiefaineReferentielBundle:Conseil:index.html.twig';
         $paramTwig = array(
