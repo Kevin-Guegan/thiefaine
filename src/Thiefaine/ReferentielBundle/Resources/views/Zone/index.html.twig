@@ -39,10 +39,17 @@
                         -
                     {% endif %}
                     </td>
-                    <td>{{ zone.nom }}</td>
+                    <td>
+                        <abbr title="{{ zone.nom }}">
+                            {{ zone.nom[:10] }}
+                            {% if zone.nom|length > 10 %}
+                                ...
+                            {% endif %}
+                        </abbr>
+                    </td>
                     <td>
                         {% if zone.utilisateurweb %}
-                            {{ zone.utilisateurweb.nom }} {{ zone.utilisateurweb.prenom }}
+                            {{ zone.utilisateurweb.nom }} {{ zone.utilisateurweb.prenom[:1] }}.
                         {% else %}
                             -
                         {% endif %}

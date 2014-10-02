@@ -39,7 +39,14 @@
                                 <span class="glyphicon glyphicon-th-large" title="Cloner"></span>
                             </a
                         </td>
-                        <td>{{ information.titre }}</td>
+                        <td>
+                            <abbr title="{{ information.titre }}">
+                                {{ information.titre[:10] }}
+                                {% if information.titre|length > 10 %}
+                                    ...
+                                {% endif %}
+                            </abbr>
+                        </td>
                         <td>{{ information.datecreation|date("d/m/Y") }}</td>
                         <td>{{ information.datevalidite is empty ? "-" :information.datevalidite|date("d/m/Y") }}</td>
                         <td>
@@ -47,7 +54,7 @@
                         </td>
                         <td>
                             {% if information.utilisateurweb %}
-                                {{ information.utilisateurweb.nom }} {{ information.utilisateurweb.prenom }}
+                                {{ information.utilisateurweb.nom }} {{ information.utilisateurweb.prenom[:1] }}.
                             {% else %}
                                 -
                             {% endif %}

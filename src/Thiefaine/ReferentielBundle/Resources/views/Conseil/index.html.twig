@@ -34,12 +34,19 @@
                                     <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                                 </a>
                         </td>
-                        <td>{{ conseil.titre }}</td>
+                        <td>
+                            <abbr title="{{ conseil.titre }}">
+                                {{ conseil.titre[:10] }}
+                                {% if conseil.titre|length > 10 %}
+                                    ...
+                                {% endif %}
+                            </abbr>
+                        </td>
                         <td>{{ conseil.datecreation|date("d/m/Y") }}</td>
                         <td>{{ conseil.datevalidite is empty ? "-" :conseil.datevalidite|date("d/m/Y") }}</td>
                         <td>
                             {% if conseil.utilisateurweb %}
-                                {{ conseil.utilisateurweb.nom }} {{ conseil.utilisateurweb.prenom }}
+                                {{ conseil.utilisateurweb.nom }} {{ conseil.utilisateurweb.prenom[:1] }}.
                             {% else %}
                                 -
                             {% endif %}
