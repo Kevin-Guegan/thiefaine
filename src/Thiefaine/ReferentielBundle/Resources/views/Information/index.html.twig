@@ -50,7 +50,12 @@
                         <td>{{ information.datecreation|date("d/m/Y") }}</td>
                         <td>{{ information.datevalidite is empty ? "-" :information.datevalidite|date("d/m/Y") }}</td>
                         <td>
-                            {{ information.zone.nom | default("-") }}
+                            <abbr title="{{ information.zone.nom }}">
+                                {{ information.zone.nom[:10] | default("-") }}
+                                {% if information.zone.nom|length > 10 %}
+                                    ...
+                                {% endif %}
+                            </abbr>
                         </td>
                         <td>
                             {% if information.utilisateurweb %}
