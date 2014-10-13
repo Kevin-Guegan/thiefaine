@@ -15,7 +15,7 @@
 
     <div class="content col-md-9">
         
-        <h3>Cloner l'information «{{information.titre}}»</h1>
+        <h3>Cloner le conseil «{{conseil.titre}}»</h1>
 
         {{ form_start(clone_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -44,10 +44,6 @@
                     {{ form_label(clone_form.urllien) }}
                     {{ form_widget(clone_form.urllien) }}
                 </p>
-                <p>
-                    {{ form_label(clone_form.zone) }}
-                    {{ form_widget(clone_form.zone) }}
-                </p>
                 <p class="dateElement">
                     {{ form_label(clone_form.datevalidite) }}
                     {{ form_widget(clone_form.datevalidite) }}
@@ -56,24 +52,10 @@
                     {{ form_label(clone_form.message) }}
                     {{ form_widget(clone_form.message) }}
                 </p>
-                <p class="list-form-control">
-                    <label>Notifications</label>
-                    <table class="table table-hover">
-                        <tr>
-                            <td>
-                                {{ form_label(clone_form.alerte) }}
-                            </td>
-                            <td style="text-align: right;">
-                                {{ form_widget(clone_form.alerte) }}
-                            </td>
-                        </tr>
-                    </table>
-                </p>
-
                 <p> 
-                    <button class="btn btn-primary" type="submit">Cloner l'information</button>
+                    <button class="btn btn-primary" type="submit">Cloner le conseil</button>
    
-                    <a class="btn btn-default" href={{ path('information') }}>Annuler</a>
+                    <a class="btn btn-default" href={{ path('conseil') }}>Annuler</a>
                 </p>
 
             </div>
