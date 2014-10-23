@@ -1,6 +1,5 @@
-/bin/
-/vendor/
+/app/config/**
+/app/log/**
+/vendor/**
 composer.lock
-/web/uploads/
-/app/cache/
-/app/logs/
+/web/uploads/**
