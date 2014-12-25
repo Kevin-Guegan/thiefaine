@@ -165,6 +165,11 @@ class InformationController extends Controller
             if($file != null){
                 $dir = __DIR__.'/../../../../web/uploads/documents';
 
+                //check if dir exist, if not, create it
+                if (!is_dir($dir)){
+                    mkdir($dir,0777,true);
+                }
+
                 $nameFile = $file->getClientOriginalName();
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
@@ -434,7 +439,19 @@ class InformationController extends Controller
         if($photo != null){
             $fs = new Filesystem();
             $dir = __DIR__.'/../../../../web';
-            $fs->remove($dir.$photo);
+
+            //chercher si la photo est utilisée ailleurs
+            $repo = $em->getRepository('ThiefaineReferentielBundle:Information');
+            $query = $repo->createQueryBuilder('info');
+            $query->select('COUNT(info)');
+            $query->where('info.urlphoto = :photoUrl');
+            $query->setParameter('photoUrl',$photo);
+            $count = $query->getQuery()->getSingleScalarResult();
+            
+            //si non, la supprimer
+            if ($count < 1){
+                $fs->remove($dir.$photo);
+            }
         }
 
         return $this->redirect($this->generateUrl('information'));
