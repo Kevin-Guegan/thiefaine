@@ -27,12 +27,15 @@
                 {% for conseil in conseils %}
                     <tr>
                         <td>
-                                <a href="{{ path('conseil_show', { 'id': conseil.id }) }}">
-                                    <span class="glyphicon glyphicon-eye-open" title="Visionner"></span>
-                                </a>
-                                <a href="{{ path('conseil_delete', {'id': conseil.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce conseil ?')">
-                                    <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-                                </a>
+                            <a href="{{ path('conseil_show', { 'id': conseil.id }) }}">
+                                <span class="glyphicon glyphicon-eye-open" title="Visionner"></span>
+                            </a>
+                            <a href="{{ path('conseil_delete', {'id': conseil.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce conseil ?')">
+                                <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+                            </a>
+                            <a href="{{ path('conseil_clone', {'id': conseil.id}) }}">
+                                <span class="glyphicon glyphicon-th-large" title="Cloner"></span>
+                            </a
                         </td>
                         <td>
                             <abbr title="{{ conseil.titre }}">

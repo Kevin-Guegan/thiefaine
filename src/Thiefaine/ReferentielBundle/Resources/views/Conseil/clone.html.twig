@@ -1,0 +1,106 @@
+{% extends 'ThiefaineUserBundle::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/message.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+    {% set flashMessages = app.session.flashbag.get('notice') %}
+
+    <div class="content col-md-9">
+        
+        <h3>Cloner le conseil «{{conseil.titre}}»</h1>
+
+        {{ form_start(clone_form,{'attr': {'class' : 'form-horizontal'}} ) }}
+
+            {{ form_errors(clone_form) }}
+
+            <div class="form-group">
+
+                <p>
+                    {{ form_label(clone_form.titre) }}
+                    {{ form_widget(clone_form.titre) }}
+                </p>
+                <p>
+                    {{ form_label(clone_form.categories) }}
+                    {{ form_widget(clone_form.categories) }}
+                </p>
+                <p>
+                    {{ form_label(clone_form.urlphoto) }}
+                    {{ form_widget(clone_form.urlphoto) }}
+                    <a class="btn btn-default showImage" style="width:100%;">Visualiser l'image</a>
+                </p>
+                <p>
+                    {{ form_label(clone_form.attachement) }}
+                    {{ form_widget(clone_form.attachement) }}
+                </p>
+                <p>
+                    {{ form_label(clone_form.urllien) }}
+                    {{ form_widget(clone_form.urllien) }}
+                </p>
+                <p class="dateElement">
+                    {{ form_label(clone_form.datevalidite) }}
+                    {{ form_widget(clone_form.datevalidite) }}
+                </p>
+                <p>
+                    {{ form_label(clone_form.message) }}
+                    {{ form_widget(clone_form.message) }}
+                </p>
+                <p> 
+                    <button class="btn btn-primary" type="submit">Cloner le conseil</button>
+   
+                    <a class="btn btn-default" href={{ path('conseil') }}>Annuler</a>
+                </p>
+
+            </div>
+
+        {{ form_end(clone_form) }}
+
+        {% if flashMessages|length > 0 %}
+        <p>
+        <div class="alert alert-danger" role="alert">
+            {% for flashMessage in flashMessages %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+        </div>
+        </p>
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}
+
+{% block modal %}
+    <div id="showImageModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Fermer</span>
+            </button>
+            <h4 class="modal-title">Visualisation de l'image</h4>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <a class="showFull btn btn-default" type="button">
+                Zoom
+                <span class="glyphicon glyphicon-resize-full"></span>
+            </a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

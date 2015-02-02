@@ -282,6 +282,95 @@ class ConseilController extends Controller
     }
 
     /**
+    * Afficher un formulaire pour cloner un conseil
+    *
+    */
+    public function cloneAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($id);
+
+        $twig = 'ThiefaineReferentielBundle:Conseil:clone.html.twig';
+
+        if (!$conseil) {
+            throw $this->createNotFoundException("Impossible de trouver le conseil.");
+        }
+        $cloneForm = $this->createCloneForm($conseil);
+
+        $paramTwig = array(
+            'conseil' => $conseil,
+            'clone_form' => $cloneForm->createView(),
+        );
+
+        return $this->render($twig, $paramTwig);
+    }
+
+    /**
+    * Clone du conseil
+    *
+    */
+    public function cloneupdateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $conseil = $em->getRepository('ThiefaineReferentielBundle:Conseil')->find($id);
+
+        $conseil = clone $conseil;
+        $em->detach($conseil);
+        $em->persist($conseil);
+
+        $cloneForm = $this->createCloneForm($conseil);
+        $cloneForm->handleRequest($request);
+
+        $twig = 'ThiefaineReferentielBundle:Conseil:clone.html.twig';
+        $paramTwig = array(
+            'conseil' => $conseil,
+            'clone_form' => $cloneForm->createView(),
+        );
+        $messageName = 'notice';
+
+        if (!$conseil) {
+            return $this->getRenderError($twig, $paramTwig, $messageName,
+                'Impossible de trouver le conseil.');
+        }
+
+        if ($cloneForm->isValid()) {
+
+            // On met à jour le message du conseil
+            $messageConseil = $conseil->getMessage();
+
+            // message non vide
+            $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
+            $replacement = '';
+            $message = preg_replace($pattern, $replacement, $messageConseil, -1);
+
+            if ($message == '') {
+                return $this->getRenderError($twig, $paramTwig, $messageName,
+                    'Veuillez saisir un message.');
+            }
+
+            // file
+            $file = $cloneForm['attachement']->getData();
+            if($file != null){
+                $dir = __DIR__.'/../../../../web/uploads/documents';
+
+                $nameFile = $file->getClientOriginalName();
+                $finalNameFile = rand(1, 99999).'-'.$nameFile;
+
+                $file->move($dir, $finalNameFile);
+                $conseil->setUrlphoto("/uploads/documents/".$finalNameFile);
+            }
+
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('conseil'));
+        }
+
+        return $this->render($twig, $paramTwig);
+    }
+
+    /**
      * Supprimer un conseil
      *
      */
@@ -323,6 +412,23 @@ class ConseilController extends Controller
             'method' => 'POST',
         ));
 
+        return $form;
+    }
+
+    /**
+    * Creates a form to create a Conseil entity.
+    *
+    * @param Conseil $conseil The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCloneForm($conseil)
+    {
+
+        $form = $this->createForm(new ConseilType(), $conseil, array(
+            'action' => $this->generateUrl('conseil_cloneupdate', array('id' => $conseil->getId())),
+            'method' => 'POST'
+        ));
         return $form;
     }
 
