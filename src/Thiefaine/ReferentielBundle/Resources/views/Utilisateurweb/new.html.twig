@@ -1,6 +1,6 @@
-{% block javascripts %}
-	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
-{% endblock %}
+{% javascripts 'bundles/thiefainereferentiel/js/ckeditor.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 
 {% block content %}
 	{% set flashMessages = app.session.flashbag.get('notice') %}

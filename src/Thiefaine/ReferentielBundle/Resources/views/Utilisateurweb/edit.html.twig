@@ -1,8 +1,10 @@
 {% extends 'ThiefaineUserBundle::layout.html.twig' %}
 
 {% block javascripts %}
-	{{ parent() }}
-	<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
+    {{ parent() }}
+    {% javascripts 'bundles/thiefainereferentiel/js/ckeditor.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block content %}

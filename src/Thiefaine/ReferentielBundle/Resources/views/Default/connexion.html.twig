@@ -70,5 +70,7 @@
         </div>
       </div>
     </div>
-    <img src="{{ asset('bundles/thiefainereferentiel/images/img_connection.jpg') }}" class="img-thumbnail" style="width:100%;">
+    {% image 'bundles/thiefainereferentiel/images/img_connection.jpg' %}
+        <img class="img-thumbnail" style="width:100%;" src="{{ asset_url }}">
+    {% endimage %}
 {% endblock %}

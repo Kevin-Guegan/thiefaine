@@ -2,9 +2,12 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/ckeditor.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datepicker.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js') }}"></script>
+    {% javascripts
+        'bundles/thiefainereferentiel/js/ckeditor.js'
+        'bundles/thiefainereferentiel/js/datepicker.js'
+        'bundles/thiefainereferentiel/lib/bootstrap_filestyle/src/bootstrap-filestyle.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block content %}

@@ -11,28 +11,32 @@
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-		{% block stylesheets %}
-			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/thiefainereferentiel/lib/bootstrap/css/bootstrap.min.css') }}">
-			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/thiefainereferentiel/lib/jquery-ui/css/redmond/jquery-ui-1.10.4.custom.min.css') }}">
-			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/thiefainereferentiel/css/style.css') }}">
-			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/thiefainereferentiel/css/datatable.css') }}">
-		{% endblock %}
+		{% stylesheets 
+			'bundles/thiefainereferentiel/lib/bootstrap/css/bootstrap.min.css'
+			'bundles/thiefainereferentiel/lib/jquery-ui/css/redmond/jquery-ui-1.10.4.custom.min.css'
+			'bundles/thiefainereferentiel/css/style.css'
+			'bundles/thiefainereferentiel/css/datatable.css' filter='cssrewrite' %}
+		    <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+		{% endstylesheets %}
 
-		{% block javascripts %}
-			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/jquery-2.1.0.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/bootstrap/js/bootstrap.min.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/ckeditor/ckeditor.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/lib/datepicker-fr.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/function.js') }}"></script>
-		{% endblock %}
+		{% javascripts 
+			'bundles/thiefainereferentiel/js/function.js'
+			'bundles/thiefainereferentiel/lib/datepicker-fr.js'
+			'bundles/thiefainereferentiel/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js'
+			'bundles/thiefainereferentiel/lib/ckeditor/ckeditor.js'
+			'bundles/thiefainereferentiel/lib/bootstrap/js/bootstrap.min.js'
+			'bundles/thiefainereferentiel/lib/jquery-2.1.0.js' %}
+		    <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	</head>
 	<body>
 		
 			<nav class="navbar navbar-default navbar-top" role="navigation" style="margin-bottom: inherit;">
 				<div class="container" style="padding-top:5px;">
 					<div class="nav navbar-nav navbar-left">
-					  <img src="{{ asset('bundles/thiefainereferentiel/images/logo_header.png') }}" style="width: 40px;">
+					{% image 'bundles/thiefainereferentiel/images/logo_header.png' %}
+				        <img style="width:40px;" src="{{ asset_url }}">
+				    {% endimage %}
 					  <b>Thiefaine</b>
 					</div>
 					<div class="nav navbar-nav navbar-right">
@@ -54,7 +58,9 @@
 			<nav style="margin-bottom: inherit; margin-top: 20px;" class="navbar navbar-default navbar-bottom" role="navigation">
 				<div class="container" style="padding-top:10px; font-size:10px;">
 					<div class="nav navbar-nav navbar-left">
-			          <img src="{{ asset('bundles/thiefainereferentiel/images/logo_header.png') }}" style="width: 10px;">
+					{% image 'bundles/thiefainereferentiel/images/logo_header.png' %}
+				        <img style="width:10px;" src="{{ asset_url }}">
+				    {% endimage %}
 	          		  Application Thiefaine - 2014
 			        </div>
 			        <div class="nav navbar-nav navbar-right" style="text-align: right;">

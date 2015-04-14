@@ -2,8 +2,11 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/datatable.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/thiefainereferentiel/js/table.js') }}"></script>
+    {% javascripts 
+        'bundles/thiefainereferentiel/js/datatable.js'
+        'bundles/thiefainereferentiel/js/table.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block content %}
