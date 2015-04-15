@@ -6,9 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategorieType extends AbstractType
+class KeywordType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -19,7 +19,7 @@ class CategorieType extends AbstractType
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                                                 'attr'   =>  array  (   'class' => 'form-control',
                                                                         'placeholder' => 'Titre',
-                                                                        'title' => "Renseigner le nom de la catégorie.",
+                                                                        'title' => "Renseigner le nom du mot-clé.",
                                                                         'maxlength' => '25',
                                                                         'data-toggle' => 'tooltip',
                                                                         'data-placement' => 'right'
@@ -35,7 +35,7 @@ class CategorieType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Categorie'
+            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Keyword'
         ));
     }
 
@@ -44,6 +44,6 @@ class CategorieType extends AbstractType
      */
     public function getName()
     {
-        return 'thiefaine_referentielbundle_categorie';
+        return 'thiefaine_referentielbundle_keyword';
     }
 }

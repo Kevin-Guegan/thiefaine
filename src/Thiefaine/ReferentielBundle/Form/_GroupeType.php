@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class GroupeType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -47,16 +47,7 @@ class GroupeType extends AbstractType
                 )
             ))
             ->add('gererinfos', 'checkbox', array(
-                'label' => 'Gestion des informations',
-                'label_attr' => array(
-                    'style' => 'font-weight: inherit;'
-                ),
-                'attr' => array(
-                    'class' => 'pull-right',
-                )
-            ))
-            ->add('gererconseils', 'checkbox', array(
-                'label' => 'Gestion des conseils',
+                'label' => 'Gestion des messages',
                 'label_attr' => array(
                     'style' => 'font-weight: inherit;'
                 ),
@@ -69,7 +60,7 @@ class GroupeType extends AbstractType
                     'class' => 'btn btn-primary'
                 )
             ))
-            ->add('gendarmerie');
+            ->add('ensemble');
     }
     
     /**

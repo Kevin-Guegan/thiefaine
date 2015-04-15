@@ -5,21 +5,23 @@ namespace Thiefaine\ReferentielBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
-class ConseilType extends AbstractType
+class MessageType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
             ->add('titre', 'text', array    (   'label'  => 'Titre',
                                                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                                                 'attr'   =>  array  (   'class' => 'form-control',
                                                                         'placeholder' => 'Titre',
-                                                                        'title' => "Renseigner le titre de l'information.",
+                                                                        'title' => "Renseigner le titre du message.",
                                                                         'data-toggle' => 'tooltip',
                                                                         'data-placement' => 'right'
                                                                     )
@@ -76,31 +78,61 @@ class ConseilType extends AbstractType
                 )
             ->add('message', 'textarea', array  (   'label'  => 'Message',
                                                 'label_attr'   =>  array (  'class' => 'control-label',
-                                                                            'for' => 'infoInformation' ),
+                                                                            'for' => 'infoMessage' ),
                                                 'attr'   =>  array (    'class' => 'form-control',
-                                                                        'name' => 'infoInformation',
-                                                                        'id' => 'infoInformation',
+                                                                        'name' => 'infoMessage',
+                                                                        'id' => 'infoMessage',
                                                                         'cols' => '50',
-                                                                        'placeholder' => "Saisisser les informations complémentaires liées à l'info."
+                                                                        'placeholder' => "Saisisser les informations complémentaires liées au message."
                                                                     )
                                             )
-            )
-            ->add('categories','entity', array(
-                'class'     => 'ThiefaineReferentielBundle:Categorie',
+                )
+            ->add('zone', 'entity', array    (  'class' => 'ThiefaineReferentielBundle:Zone',
+                                                'query_builder' => function(EntityRepository $er) {
+                                                  return $er->createQueryBuilder('z')
+                                                            ->where('z.actif = true');
+                                                },
+                                                'property' => 'nom',
+                                                'label'  => 'Zone *',
+                                                'label_attr'   =>  array ( 'class' => 'control-label' ),
+                                                'attr'   =>  array  (   'class' => 'form-control',
+                                                                        'placeholder' => 'Titre',
+                                                                        'title' => "Renseigner le titre de l'information.",
+                                                                        'data-toggle' => 'tooltip',
+                                                                        'data-placement' => 'right'
+                                                                    )
+                                            )
+                )
+            ->add('alerte', 'checkbox', array(
+                'label' => 'Envoyer une alerte',
+
+                'label_attr' => array(
+                    'style' => 'font-weight: inherit;'
+
+                ),
+                'attr' => array(
+                    'class' => 'pull-right',
+                ),
+                'required' => false,
+            ))
+            ->add('keywords','entity', array(
+                'class'     => 'ThiefaineReferentielBundle:Keyword',
                 'property'  => 'libelle',
-                'label'     => 'Categorie',
+                'label'     => 'Keyword',
                 'expanded'  => false,
                 'multiple'  => true,
                 'label_attr'   =>  array ( 'class' => 'control-label' ),
                 'attr'   =>  array  (   'class' => 'form-control',
                                         'placeholder' => 'Titre',
-                                        'title' => "Renseigner la catégorie.",
+                                        'title' => "Renseigner le mot-clé.",
                                         'data-toggle' => 'tooltip',
                                         'data-placement' => 'right'
                                     )
                 )
             )
+
         ;
+
     }
     
     /**
@@ -109,7 +141,7 @@ class ConseilType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Conseil'
+            'data_class' => 'Thiefaine\ReferentielBundle\Entity\Message'
         ));
     }
 
@@ -118,6 +150,6 @@ class ConseilType extends AbstractType
      */
     public function getName()
     {
-        return 'thiefaine_referentielbundle_conseil';
+        return 'thiefaine_referentielbundle_message';
     }
 }
