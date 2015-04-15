@@ -1,6 +1,6 @@
-Thiefaine\ReferentielBundle\Entity\Categorie:
+Thiefaine\ReferentielBundle\Entity\Keyword:
     type: entity
-    table: CATEGORIE
+    table: KEYWORD
     id:
         id:
             type: integer
@@ -16,11 +16,8 @@ Thiefaine\ReferentielBundle\Entity\Categorie:
             length: 25
             fixed: false
     manyToMany:
-        informations:
-            targetEntity: Information
-            mappedBy: categories
-        conseils:
-            targetEntity: Conseil
-            mappedBy: categories
+        messages:
+            targetEntity: Message
+            mappedBy: keywords
 
     lifecycleCallbacks: {  }

@@ -17,7 +17,7 @@
 
     <div class="content col-md-9">
         
-        <h3>Visionner l'information «{{information.titre}}»</h1>
+        <h3>Visionner le message «{{message.titre}}»</h1>
 
 		{{ form_start(show_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -30,8 +30,8 @@
 					{{ form_widget(show_form.titre, { 'attr': { 'disabled': true} }) }}
 				</p>
 				<p>
-					{{ form_label(show_form.categories) }}
-					{{ form_widget(show_form.categories) }}
+					{{ form_label(show_form.keywords) }}
+					{{ form_widget(show_form.keywords) }}
 				</p>
 				<p>
 					{{ form_label(show_form.urlphoto) }}
@@ -75,7 +75,7 @@
 				</p>
 
 				<p>	
-					<a class="btn btn-primary" href={{ path('information') }}>Retour à la liste des informations</a>
+					<a class="btn btn-primary" href={{ path('message') }}>Retour à la liste des messages</a>
 		  	  	</p>
 
 			</div>

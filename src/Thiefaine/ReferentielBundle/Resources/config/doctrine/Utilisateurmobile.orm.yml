@@ -20,8 +20,8 @@ Thiefaine\ReferentielBundle\Entity\Utilisateurmobile:
             type: datetime
             nullable: false
     manyToOne:
-        gendarmerie:
-            targetEntity: Gendarmerie
+        ensemble:
+            targetEntity: Ensemble
             inversedBy: utilisateurmobile
             joinColumns:
                 idgendarmerie:

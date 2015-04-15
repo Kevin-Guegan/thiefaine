@@ -1,0 +1,28 @@
+message:
+    pattern:  /
+    defaults: { _controller: "ThiefaineReferentielBundle:Message:index" }
+
+message_new:
+    pattern:  /new
+    defaults: { _controller: "ThiefaineReferentielBundle:Message:new" }
+
+message_create:
+    pattern:  /create
+    defaults: { _controller: "ThiefaineReferentielBundle:Message:create" }
+    requirements: { _method: post }
+
+message_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ThiefaineReferentielBundle:Message:show" }
+
+message_clone:
+    pattern:  /{id}/clone
+    defaults: { _controller: "ThiefaineReferentielBundle:Message:clone" }
+
+message_cloneupdate:
+    pattern:  /{id}/cloneupdate
+    defaults: { _controller: "ThiefaineReferentielBundle:Message:cloneupdate" }
+
+message_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ThiefaineReferentielBundle:Message:delete" }

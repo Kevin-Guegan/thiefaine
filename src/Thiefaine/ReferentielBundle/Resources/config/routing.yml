@@ -19,17 +19,13 @@ thiefaine_referentiel_user:
     resource: "routing/utilisateurweb.yml"
     prefix: /utilisateur
 
-thiefaine_conseil:
-    resource: "routing/conseil.yml"
-    prefix:   /conseil
+thiefaine_message:
+    resource: "routing/message.yml"
+    prefix:   /message
 
-thiefaine_information:
-    resource: "routing/information.yml"
-    prefix:   /information
-
-thiefaine_categorie:
-    resource: "routing/categorie.yml"
-    prefix:   /categorie
+thiefaine_keyword:
+    resource: "routing/keyword.yml"
+    prefix:   /keyword
 
 thiefaine_referentiel_myaccount:
     pattern:  /myaccount

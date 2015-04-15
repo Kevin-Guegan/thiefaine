@@ -17,7 +17,7 @@
 
     <div class="content col-md-9">
 
-        <h3>Création d'une information</h1>
+        <h3>Création d'un message</h1>
 
         {% if flashMessages|length > 0 %}
         	{% if show == false %}
@@ -57,8 +57,8 @@
 					{{ form_widget(form.titre) }}
 				</p>
 				<p>
-					{{ form_label(form.categories) }}
-					{{ form_widget(form.categories) }}
+					{{ form_label(form.keywords) }}
+					{{ form_widget(form.keywords) }}
 				</p>
 				<p>
 					{{ form_label(form.urlphoto) }}
@@ -99,8 +99,8 @@
 					</table>
 				</p>
 				<p>	
-		      		<button class="btn btn-primary" type="submit">Créer l'information</button>
-					<a class="btn btn-default" href={{ path('information') }}>Annuler</a>
+		      		<button class="btn btn-primary" type="submit">Créer le message</button>
+					<a class="btn btn-default" href={{ path('message') }}>Annuler</a>
 		  	  	</p>	
 
 			</div>

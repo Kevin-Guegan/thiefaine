@@ -1,0 +1,25 @@
+keyword:
+    pattern:  /
+    defaults: { _controller: "ThiefaineReferentielBundle:Keyword:index" }
+
+keyword_new:
+    pattern:  /new
+    defaults: { _controller: "ThiefaineReferentielBundle:Keyword:new" }
+
+keyword_create:
+    pattern:  /create
+    defaults: { _controller: "ThiefaineReferentielBundle:Keyword:create" }
+    requirements: { _method: post }
+
+keyword_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ThiefaineReferentielBundle:Keyword:edit" }
+
+keyword_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ThiefaineReferentielBundle:Keyword:update" }
+    requirements: { _method: post|put }
+
+keyword_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ThiefaineReferentielBundle:Keyword:delete" }

@@ -71,37 +71,25 @@
 						</tr>
 						<tr>
 					  		<td>
-					  			{{ form_label(form.gerercategories) }}
+					  			{{ form_label(form.gererkeywords) }}
 					  		</td>
 					  		<td style="text-align: right;">
-					  			{% if group_role_manage_categorie %}
-					  				{{ form_widget(form.gerercategories, { 'attr': {'checked': 'checked'} }) }}
+					  			{% if group_role_manage_keyword %}
+					  				{{ form_widget(form.gererkeywords, { 'attr': {'checked': 'checked'} }) }}
 					  			{% else %}
-		                            {{ form_widget(form.gerercategories) }}
+		                            {{ form_widget(form.gererkeywords) }}
 		                        {% endif %}
 					  		</td>
 						</tr>
 					  	<tr>
 					  		<td>
-					  			{{ form_label(form.gererinfos) }}
+					  			{{ form_label(form.gerermess) }}
 					  		</td>
 					  		<td style="text-align: right;">
-					  			{% if group_role_manage_information %}
-					  				{{ form_widget(form.gererinfos, { 'attr': {'checked': 'checked'} }) }}
+					  			{% if group_role_manage_message %}
+					  				{{ form_widget(form.gerermess, { 'attr': {'checked': 'checked'} }) }}
 					  			{% else %}
-		                            {{ form_widget(form.gererinfos) }}
-		                        {% endif %}
-					  		</td>
-						</tr>
-						<tr>
-					  		<td>
-					  			{{ form_label(form.gererconseils) }}
-					  		</td>
-					  		<td style="text-align: right;">
-					  			{% if group_role_manage_conseil %}
-					  				{{ form_widget(form.gererconseils, { 'attr': {'checked': 'checked'} }) }}
-					  			{% else %}
-		                            {{ form_widget(form.gererconseils) }}
+		                            {{ form_widget(form.gerermess) }}
 		                        {% endif %}
 					  		</td>
 						</tr>

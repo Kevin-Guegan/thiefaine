@@ -36,8 +36,8 @@ Thiefaine\ReferentielBundle\Entity\Zone:
         points:
             targetEntity: Point
             mappedBy: zone
-        informations:
-            targetEntity: Information
+        messages:
+            targetEntity: Message
             mappedBy: zone
     manyToOne:
         utilisateurweb:

@@ -32,12 +32,7 @@
 
 				case "Information " :
 					/*texte = '<p><label for="infoTitle" class="control-label">Titre</label><input type="text" class="form-control" id="infoTitle" value="Titre" required></p><p><label for="infoInformation" class="control-label">Informations</label><textarea name="infoInformation" id="infoInformation" class="form-control" cols="50" value="Saisissez les informations relatives à la nouvelle procédure." required></textarea></p>';*/
-					texte = "Formulaire de modification d'une information (égal au formulaire de création d'une information sauf que les champs seront pré-remplis).";
-					break;
-
-				case "Conseil " :
-					/*texte = '<p><label for="conseilTitle" class="control-label">Titre</label><input type="text" class="form-control" id="conseilTitle" value="Titre" required></p><p><label for="conseilInformation" class="control-label">Informations</label><textarea name="conseilInformation" id="conseilInformation" class="form-control" cols="50" value="Saisissez les informations relatives à la nouvelle procédure." required></textarea></p>';*/
-					texte = "Formulaire de modification d'un conseil (égal au formulaire de création d'un conseil sauf que les champs seront pré-remplis).";
+					texte = "Formulaire de modification d'un message (égal au formulaire de création d'un message sauf que les champs seront pré-remplis).";
 					break;
 
 				case "Groupe " :

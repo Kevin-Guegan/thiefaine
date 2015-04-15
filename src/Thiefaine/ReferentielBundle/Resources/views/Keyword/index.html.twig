@@ -12,7 +12,7 @@
 {% block content %}
         <div class="content col-md-9">
 
-            <h3>Gestion des categories</h3>
+            <h3>Gestion des mot-clés</h3>
 
             <table class="table table-hover">
                 <thead>
@@ -22,22 +22,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for categorie in categories %}
+                {% for keyword in keywords %}
                     <tr>
                         <td>
-                            <a href="{{ path('categorie_edit', { 'id': categorie.id }) }}">
+                            <a href="{{ path('keyword_edit', { 'id': keyword.id }) }}">
                                 <span class="glyphicon glyphicon-pencil" title="Modifier"></span>
                             </a>
 
                             {% set messageDelete %}
-                            return confirm('Attention cette action supprimera tous les informations et conseils rattachés à cette catégorie.\nEtes vous sûr de vouloir supprimer le conseil {{categorie.libelle}} ?');
+                            return confirm('Etes vous sûr de vouloir supprimer le mot-clé {{keyword.libelle}} ?');
                             {% endset %}
 
-                            <a href="{{ path('categorie_delete', {'id': categorie.id}) }}" onclick="{{ messageDelete }}">
+                            <a href="{{ path('keyword_delete', {'id': keyword.id}) }}" onclick="{{ messageDelete }}">
                                 <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                             </a>
                         </td>
-                        <td>{{ categorie.libelle }}</td>
+                        <td>{{ keyword.libelle }}</td>
                         </td>
                     </tr>
                 {% endfor %}

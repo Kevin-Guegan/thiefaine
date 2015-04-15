@@ -18,7 +18,7 @@
 
     <div class="content col-md-9">
         
-        <h3>Edition de la categorie «{{categorie.libelle}}»</h1>
+        <h3>Edition du mot-clé «{{keyword.libelle}}»</h1>
 
          {% if flashMessages|length > 0 %}
     	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
@@ -42,8 +42,8 @@
 				</p>
 
 				<p>	
-		      		<button class="btn btn-primary" type="submit">Modifier la catégorie</button>
-					<a class="btn btn-default" href={{ path('categorie') }}>Annuler</a>
+		      		<button class="btn btn-primary" type="submit">Modifier le mot-clé</button>
+					<a class="btn btn-default" href={{ path('keyword') }}>Annuler</a>
 		  	  	</p>
 
 			</div>

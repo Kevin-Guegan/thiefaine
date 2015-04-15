@@ -17,7 +17,7 @@
 
     <div class="content col-md-9">
 
-        <h3>Création d'une categorie</h3>
+        <h3>Création d'un mot-clé</h3>
 
         {% if flashMessages|length > 0 %}
     	<div class="alert alert-danger" role="alert" style="margin-top: 20px">
@@ -40,8 +40,8 @@
 					{{ form_widget(form.libelle) }}
 				</p>
 				<p>	
-		      		<button class="btn btn-primary" type="submit">Créer la catégorie</button>
-					<a class="btn btn-default" href={{ path('categorie') }}>Annuler</a>
+		      		<button class="btn btn-primary" type="submit">Créer le mot-clé</button>
+					<a class="btn btn-default" href={{ path('keyword') }}>Annuler</a>
 		  	  	</p>
 
 			</div>

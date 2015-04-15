@@ -4,7 +4,7 @@ namespace Thiefaine\ReferentielBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CategorieControllerTest extends WebTestCase
+class KeywordControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()

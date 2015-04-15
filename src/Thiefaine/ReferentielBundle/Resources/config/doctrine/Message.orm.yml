@@ -1,6 +1,6 @@
-Thiefaine\ReferentielBundle\Entity\Conseil:
+Thiefaine\ReferentielBundle\Entity\Message:
     type: entity
-    table: CONSEIL
+    table: MESSAGE
     id:
         id:
             type: integer
@@ -43,22 +43,31 @@ Thiefaine\ReferentielBundle\Entity\Conseil:
             nullable: true
             length: null
             fixed: false
+        alerte:
+            type: boolean
+            nullable: true
     manyToMany:
-        categories:
-            targetEntity: Categorie
-            inversedBy: conseils
+        keywords:
+            targetEntity: Keyword
+            inversedBy: messages
             joinTable:
-                name: CATEGORIE_CONSEIL
+                name: KEYWORD_MESSAGE
                 joinColumns:
-                    information:
+                    message:
                         referencedColumnName: id
                 inverseJoinColumns:
-                    categorie:
+                    keyword:
                         referencedColumnName: id
     manyToOne:
+        zone:
+            targetEntity: Zone
+            inversedBy: messages
+            joinColumns:
+                idzone:
+                    referencedColumnName: id
         utilisateurweb:
             targetEntity: Thiefaine\UserBundle\Entity\Utilisateurweb
-            inversedBy: conseils
+            inversedBy: messages
             joinColumn:
                 name: idutilisateurweb
                 referencedColumnName: id

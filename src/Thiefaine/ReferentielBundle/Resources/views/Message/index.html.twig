@@ -12,7 +12,7 @@
 {% block content %}
         <div class="content col-md-9">
 
-            <h3>Gestion des conseils</h3>
+            <h3>Gestion des messages</h3>
 
             <table class="table table-hover">
                 <thead>
@@ -21,51 +21,68 @@
                     <th>Titre <span class="glyphicon cheveron-down" title="Trier par titre"></span></th>
                     <th>Date création <span class="glyphicon cheveron-down" title="Trier par date de création"></span></th>
                     <th>Date de validité <span class="glyphicon cheveron-down" title="Trier par date de validité"></span></th>
+                    <th>Zone <span class="glyphicon cheveron-down" title="Trier par zone"></span></th>
                     <th>Créateur <span class="glyphicon cheveron-down" title="Trier par créateur"></span></th>
                     <th>Photo <span class="glyphicon cheveron-down" title="Trier par photo"></span></th>
                     <th>Lien <span class="glyphicon cheveron-down" title="Trier par lien"></span></th>
+                    <th>Alerte <span class="glyphicon cheveron-down" title="Trier par alerte"></span></th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for conseil in conseils %}
+                {% for message in messages %}
                     <tr>
                         <td>
-                            <a href="{{ path('conseil_show', { 'id': conseil.id }) }}">
+                            <a href="{{ path('message'_show', { 'id': message.id }) }}">
                                 <span class="glyphicon glyphicon-eye-open" title="Visionner"></span>
                             </a>
-                            <a href="{{ path('conseil_delete', {'id': conseil.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce conseil ?')">
+                            <a href="{{ path('message_delete', {'id': message.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')">
                                 <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
                             </a>
-                            <a href="{{ path('conseil_clone', {'id': conseil.id}) }}">
+                            <a href="{{ path('message_clone', {'id': message.id}) }}">
                                 <span class="glyphicon glyphicon-th-large" title="Cloner"></span>
                             </a
                         </td>
                         <td>
-                            <abbr title="{{ conseil.titre }}">
-                                {{ conseil.titre[:10] }}
-                                {% if conseil.titre|length > 10 %}
+                            <abbr title="{{ message.titre }}">
+                                {{ message.titre[:10] }}
+                                {% if message.titre|length > 10 %}
                                     ...
                                 {% endif %}
                             </abbr>
                         </td>
-                        <td>{{ conseil.datecreation|date("d/m/Y") }}</td>
-                        <td>{{ conseil.datevalidite is empty ? "-" :conseil.datevalidite|date("d/m/Y") }}</td>
+                        <td>{{ message.datecreation|date("d/m/Y") }}</td>
+                        <td>{{ message.datevalidite is empty ? "-" :message.datevalidite|date("d/m/Y") }}</td>
                         <td>
-                            {% if conseil.utilisateurweb %}
-                                {{ conseil.utilisateurweb.nom }} {{ conseil.utilisateurweb.prenom[:1] }}.
+                            <abbr title="{{ message.zone.nom }}">
+                                {{ message.zone.nom[:10] | default("-") }}
+                                {% if message.zone.nom|length > 10 %}
+                                    ...
+                                {% endif %}
+                            </abbr>
+                        </td>
+                        <td>
+                            {% if message.utilisateurweb %}
+                                {{ message.utilisateurweb.nom }} {{ message.utilisateurweb.prenom[:1] }}.
                             {% else %}
                                 -
                             {% endif %}
                         </td>
                         <td>
-                        {% if conseil.urlphoto %}
+                        {% if message.urlphoto %}
                             <span class="glyphicon glyphicon-ok"></span>
                         {% else %}
                             -
                         {% endif %}
                         </td>
                         <td>
-                        {% if conseil.urllien %}
+                        {% if message.urllien %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            -
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if message.alerte %}
                             <span class="glyphicon glyphicon-ok"></span>
                         {% else %}
                             -

@@ -1,6 +1,6 @@
-Thiefaine\ReferentielBundle\Entity\Gendarmerie:
+Thiefaine\ReferentielBundle\Entity\Ensemble:
     type: entity
-    table: GENDARMERIE
+    table: ENSEMBLE
     id:
         id:
             type: integer
@@ -18,6 +18,6 @@ Thiefaine\ReferentielBundle\Entity\Gendarmerie:
     oneToMany:
         groups:
             targetEntity: Thiefaine\UserBundle\Entity\Group
-            mappedBy: gendarmerie
+            mappedBy: ensemble
 
     lifecycleCallbacks: {  }

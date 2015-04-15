@@ -18,7 +18,7 @@
 
     <div class="content col-md-9">
         
-        <h3>Mise à jour de l'information «{{information.titre}}»</h1>
+        <h3>Mise à jour du message «{{message.titre}}»</h1>
 
         {{ form_start(edit_form,{'attr': {'class' : 'form-horizontal'}} ) }}
 
@@ -31,8 +31,8 @@
                     {{ form_widget(edit_form.titre) }}
                 </p>
                 <p>
-                    {{ form_label(form.categories) }}
-                    {{ form_widget(form.categories) }}
+                    {{ form_label(form.keywords) }}
+                    {{ form_widget(form.keywords) }}
                 </p>
                 <p>
                     {{ form_label(edit_form.urlphoto) }}
@@ -74,8 +74,8 @@
                 </p>
 
                 <p> 
-                    <button class="btn btn-primary" type="submit">Modifier l'information</button>
-                    <a class="btn btn-default" href={{ path('information') }}>Annuler</a>
+                    <button class="btn btn-primary" type="submit">Modifier le message</button>
+                    <a class="btn btn-default" href={{ path('message') }}>Annuler</a>
                 </p>
 
             </div>

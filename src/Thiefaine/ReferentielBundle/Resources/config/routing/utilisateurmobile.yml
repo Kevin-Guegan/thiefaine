@@ -11,7 +11,7 @@ utilisateurmobile_new:
     defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:new" }
 
 utilisateurmobile_create:
-    path:     /create/{idGend}/{idMobile}/{token}
+    path:     /create/{idEns}/{idMobile}/{token}
     defaults: { _controller: "ThiefaineReferentielBundle:Utilisateurmobile:create" }
     requirements: { _method: post }
 

@@ -2,12 +2,12 @@
 
 {% block content %}
 	<div class="content">
-		<h3>Création d'une information</h3>
+		<h3>Création d'un message</h3>
 		<form class="form-horizontal">
 			<div class="form-group">
 			  <p>
 			      <label for="infoTitle" class="control-label">Titre *</label>
-			      <input type="text" class="form-control" id="infoTitle" placeholder="Titre" data-toggle="tooltip" data-placement="right" title="Renseigner le titre de l'information." required>
+			      <input type="text" class="form-control" id="infoTitle" placeholder="Titre" data-toggle="tooltip" data-placement="right" title="Renseigner le titre du message." required>
 			  </p><p>
 			  	  <label for="infoImg" class="control-label">Photo</label>
 			      <div class="input-group list-form-control" data-toggle="tooltip" data-placement="right" title="Joindre une photo ou copier/coller un lien d'image (le bouton visualiser n'est disponible que pour les liens d'image internet).">
@@ -25,10 +25,10 @@
 			      <label for="infoDateValid" class="control-label">Date de validité</label>
 			      <input type="text" class="form-control elmDateValid" id="infoDateValid" placeholder="Date de validité" data-toggle="tooltip" data-placement="right" title="Renseigner / Sélectionner une date de validitée (infinie si non rempli)." required>
 			  </p><p>
-			      <label for="infoInformation" class="control-label">Message *</label>
-			      <textarea name="infoInformation" id="infoInformation" class="form-control" cols="50" placeholder="Saisisser les informations complémentaires liées à l'infoe." required></textarea>
+			      <label for="infoMessage" class="control-label">Message *</label>
+			      <textarea name="infoMessage" id="infoMessage" class="form-control" cols="50" placeholder="Saisisser les informations complémentaires liées au message." required></textarea>
 		      	  <script>
-	                CKEDITOR.replace( 'infoInformation' );
+	                CKEDITOR.replace( 'infoMessage' );
 	              </script>
 		      </p><p>
 		      	<a class="btn btn-primary" href="?url=info&action=manage">Valider</a>
