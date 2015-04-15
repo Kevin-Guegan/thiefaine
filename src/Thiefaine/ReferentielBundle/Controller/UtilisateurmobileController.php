@@ -38,14 +38,14 @@ class UtilisateurmobileController extends Controller
     /**
     * Post new mobile user.
     * 
-    * @param $idGend id of Gendarmerie.
+    * @param $idEns id of Ensemble.
     * @param $idMobile id of Mobile.
     * @param $token notification token.
     * 
-    * @Post("/utilisateurmobile/create/{idGend}/{idMobile}/{token}")
+    * @Post("/utilisateurmobile/create/{idEns}/{idMobile}/{token}")
     * @ApiDoc
     */
-    public function createAction(Request $request, $idGend, $idMobile, $token)
+    public function createAction(Request $request, $idEns, $idMobile, $token)
     {
         $view = View::create();
         $em = $this->getDoctrine()->getManager();
@@ -58,11 +58,11 @@ class UtilisateurmobileController extends Controller
         $mobileUser = $em->getRepository('ThiefaineReferentielBundle:Utilisateurmobile')->findByIdmobile($idMobile);
         if(!$mobileUser){
 
-            $gend = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->find($idGend);
+            $ens = $em->getRepository('ThiefaineReferentielBundle:Ensemble')->find($idEns);
             $date = new \DateTime('now');
 
             $utilisateurmobile = new Utilisateurmobile();
-            $utilisateurmobile->setGendarmerie($gend);
+            $utilisateurmobile->setEnsemble($ens);
             $utilisateurmobile->setToken($token);
             $utilisateurmobile->setDatecreation($date);
             $utilisateurmobile->setIdmobile($idMobile);            
@@ -76,8 +76,8 @@ class UtilisateurmobileController extends Controller
 
             $mobileUser = $mobileUser[0];
 
-            $gend = $em->getRepository('ThiefaineReferentielBundle:Gendarmerie')->find($idGend);
-            $mobileUser->setGendarmerie($gend);
+            $ens = $em->getRepository('ThiefaineReferentielBundle:Ensemble')->find($idEns);
+            $mobileUser->setEnsemble($ens);
             $mobileUser->setToken($token);
 
             $em->persist($mobileUser);

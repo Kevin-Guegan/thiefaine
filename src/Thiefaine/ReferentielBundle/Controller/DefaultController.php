@@ -32,19 +32,14 @@ class DefaultController extends Controller
         return $this->render('ThiefaineReferentielBundle:Pages:alert.html.twig');
     }
 
-    public function conseilAction()
-    {
-        return $this->render('ThiefaineReferentielBundle:Pages:conseil.html.twig');
-    }
-
     public function groupeAction()
     {
         return $this->render('ThiefaineReferentielBundle:Pages:groupe.html.twig');
     }
 
-    public function infoAction()
+    public function messAction()
     {
-        return $this->render('ThiefaineReferentielBundle:Pages:info.html.twig');
+        return $this->render('ThiefaineReferentielBundle:Pages:mess.html.twig');
     }
 
     public function zoneAction()
@@ -63,19 +58,14 @@ class DefaultController extends Controller
         return $this->render('ThiefaineReferentielBundle:Pages:alertCreate.html.twig');
     }
 
-    public function conseilCreateAction()
-    {
-        return $this->render('ThiefaineReferentielBundle:Pages:conseilCreate.html.twig');
-    }
-
     public function groupeCreateAction()
     {
         return $this->render('ThiefaineReferentielBundle:Pages:groupeCreate.html.twig');
     }
 
-    public function infoCreateAction()
+    public function messCreateAction()
     {
-        return $this->render('ThiefaineReferentielBundle:Pages:infoCreate.html.twig');
+        return $this->render('ThiefaineReferentielBundle:Pages:messCreate.html.twig');
     }
 
     public function zoneCreateAction()

@@ -10,57 +10,57 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 
 use Thiefaine\ReferentielBundle\Entity\Push;
-use Thiefaine\ReferentielBundle\Entity\Information;
+use Thiefaine\ReferentielBundle\Entity\Message;
 use Thiefaine\ReferentielBundle\Entity\Zone;
 use Thiefaine\ReferentielBundle\Entity\Utilisateurmobile;
-use Thiefaine\ReferentielBundle\Form\InformationType;
+use Thiefaine\ReferentielBundle\Form\MessageType;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
- * Information controller.
+ * Message controller.
  *
  */
-class InformationController extends Controller
+class MessageController extends Controller
 {
 
     /**
-     * Liste de toutes les informations
+     * Liste de tout les messages
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $informations = $em->getRepository('ThiefaineReferentielBundle:Information')->findBy([], ['datecreation' => 'DESC']);
+        $messages = $em->getRepository('ThiefaineReferentielBundle:Message')->findBy([], ['datecreation' => 'DESC']);
 
-        $twig = 'ThiefaineReferentielBundle:Information:index.html.twig';
+        $twig = 'ThiefaineReferentielBundle:Message:index.html.twig';
         $paramTwig = array(
-            'informations' => $informations,
+            'messages' => $messages,
         );
 
         return $this->render($twig, $paramTwig);
     }
 
     /**
-     * Afficher un formulaire pour visionner une information
+     * Afficher un formulaire pour visionner un message
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $message = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        if (!$information) {
-            throw $this->createNotFoundException("Impossible de trouver l'information.");
+        if (!$message) {
+            throw $this->createNotFoundException("Impossible de trouver le message.");
         }
 
-        $showForm = $this->createShowForm($information);
-        $twig = 'ThiefaineReferentielBundle:Information:show.html.twig';
+        $showForm = $this->createShowForm($message);
+        $twig = 'ThiefaineReferentielBundle:Message:show.html.twig';
         $paramTwig = array(
-            'information' => $information,
+            'message' => $message,
             'show_form' => $showForm->createView(),
         );
 
@@ -68,22 +68,22 @@ class InformationController extends Controller
     }
 
     /**
-     * Afficher un formulaire pour la création des informations
+     * Afficher un formulaire pour la création des messages
      *
      */
     public function newAction()
     {
-        $information = new Information();
-        $form   = $this->createCreateForm($information);
+        $message = new Message();
+        $form   = $this->createCreateForm($message);
 
         $em = $this->getDoctrine()->getManager();
 
         $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
-        $categories = $em->getRepository('ThiefaineReferentielBundle:Categorie')->findAll();
+        $categories = $em->getRepository('ThiefaineReferentielBundle:Keyword')->findAll();
 
-        $twig = 'ThiefaineReferentielBundle:Information:new.html.twig';
+        $twig = 'ThiefaineReferentielBundle:Message:new.html.twig';
         $paramTwig = array(
-                'information' => $information,
+                'message' => $message,
                 'show' => false,
                 'form'   => $form->createView(),
             );
@@ -103,21 +103,21 @@ class InformationController extends Controller
     }
 
     /**
-     * Création d'une nouvelle information
+     * Création d'un nouveau message
      *
      */
     public function createAction(Request $request)
     {
-        $information = new Information();
-        $form = $this->createCreateForm($information);
+        $message = new Message();
+        $form = $this->createCreateForm($message);
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
         $zones = $em->getRepository('ThiefaineReferentielBundle:Zone')->findAll();
 
-        $twig = 'ThiefaineReferentielBundle:Information:new.html.twig';
+        $twig = 'ThiefaineReferentielBundle:Message:new.html.twig';
         $paramTwig = array(
-                'information' => $information,
+                'message' => $message,
                 'show' => true,
                 'form'   => $form->createView(),
             );
@@ -133,13 +133,13 @@ class InformationController extends Controller
             }
 
             // Au moins une catégorie de sélectionné
-            $categories = $information->getCategories();
+            $keywords = $message->getKeywords();
 
-            // Contrôle de l'information
-            $messageInformation = $information->getMessage();
+            // Contrôle du message
+            $messageMessage = $message->getMessage();
             $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
             $replacement = '';
-            $message = preg_replace($pattern, $replacement, $messageInformation, -1);
+            $message = preg_replace($pattern, $replacement, $messageMessage, -1);
 
             if ($message == '') {
                 return $this->getRenderError($twig, $paramTwig, $messageName,
@@ -147,8 +147,8 @@ class InformationController extends Controller
             }
 
             // Contrôle de la zone
-            $zoneInformation = $information->getZone();
-            if (null === $zoneInformation) {
+            $zoneMessage = $message->getZone();
+            if (null === $zoneMessage) {
                 return $this->getRenderError($twig, $paramTwig, $messageName,
                     'Veuillez sélectionner une zone.');
             }
@@ -167,13 +167,13 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->setUrlphoto("/uploads/documents/".$finalNameFile);
+                $message->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
-            $information->setDateCreation(new \DateTime('now'));
-            $information->setUtilisateurweb($utilisateur);
-            $information->setMessage($messageInformation);
+            $message->setDateCreation(new \DateTime('now'));
+            $message->setUtilisateurweb($utilisateur);
+            $message->setMessage($messageMessage);
             
-            $em->persist($information);
+            $em->persist($message);
             $em->flush();
 
             //push message
@@ -182,9 +182,9 @@ class InformationController extends Controller
                 
                 $pushMessage = new Push();
                 $sendMessage = array(
-                    "type" => "GendarmerieInformation",
-                    "id" => $information->getId(),
-                    "alerte" => $information->getAlerte()
+                    "type" => "EnsembleMessage",
+                    "id" => $message->getId(),
+                    "alerte" => $message->getAlerte()
                 );
                 $sendMessage = json_encode($sendMessage);
 
@@ -196,32 +196,32 @@ class InformationController extends Controller
                 );
             }
 
-            return $this->redirect($this->generateUrl('information'));
+            return $this->redirect($this->generateUrl('message'));
         }
 
         return $this->render($twig, $paramTwig);
     }
 
     /**
-    * Afficher un formulaire pour éditer une information
+    * Afficher un formulaire pour éditer un message
     *
     */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $message = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        $twig = 'ThiefaineReferentielBundle:Information:edit.html.twig';
+        $twig = 'ThiefaineReferentielBundle:Message:edit.html.twig';
 
-        if (!$information) {
-            throw $this->createNotFoundException("Impossible de trouver l'information.");
+        if (!$message) {
+            throw $this->createNotFoundException("Impossible de trouver le message.");
         }
 
-        $editForm = $this->createEditForm($information);
+        $editForm = $this->createEditForm($message);
 
         $paramTwig = array(
-            'information' => $information,
+            'message' => $message,
             'edit_form' => $editForm->createView(),
         );
 
@@ -229,40 +229,40 @@ class InformationController extends Controller
     }
 
     /**
-    * Modifier une information
+    * Modifier un message
     *
     */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $message = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        $twig = 'ThiefaineReferentielBundle:Information:edit.html.twig';
+        $twig = 'ThiefaineReferentielBundle:Message:edit.html.twig';
         $paramTwig = array(
-            'entity' => $information,
+            'entity' => $message,
             'edit_form' => $editForm->createView(),
         );
         $messageName = 'notice';
 
-        if (!$information) {
+        if (!$message) {
             return $this->getRenderError($twig, $paramTwig, $messageName,
-                'Impossible de trouver l\'information.');
+                'Impossible de trouver le message.');
         }
 
         //$deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($information);
+        $editForm = $this->createEditForm($message);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
 
-            // On met à jour le message de l'information
-            $messageInformation = $information->getMessage();
+            // On met à jour le message du message
+            $messageMessage = $message->getMessage();
 
             // message non vide
             $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
             $replacement = '';
-            $message = preg_replace($pattern, $replacement, $messageInformation, -1);
+            $message = preg_replace($pattern, $replacement, $messageMessage, -1);
 
             if ($message == '') {
                 return $this->getRenderError($twig, $paramTwig, $messageName,
@@ -274,7 +274,7 @@ class InformationController extends Controller
             if($file != null){
                 
                 //suppression de la photo
-                $photo = $information->getUrlphoto();
+                $photo = $message->getUrlphoto();
                 if($photo != null){
                     $fs = new Filesystem();
                     $dir = __DIR__.'/../../../../web';
@@ -287,80 +287,80 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->setUrlphoto("/uploads/documents/".$finalNameFile);
+                $message->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('information'));
+            return $this->redirect($this->generateUrl('message'));
         }
 
         return $this->render($twig, $paramTwig);
     }
 
     /**
-    * Afficher un formulaire pour cloner une information
+    * Afficher un formulaire pour cloner un message
     *
     */
     public function cloneAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $message = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        $twig = 'ThiefaineReferentielBundle:Information:clone.html.twig';
+        $twig = 'ThiefaineReferentielBundle:Message:clone.html.twig';
 
-        if (!$information) {
-            throw $this->createNotFoundException("Impossible de trouver l'information.");
+        if (!$message) {
+            throw $this->createNotFoundException("Impossible de trouver le message.");
         }
-        $cloneForm = $this->createCloneForm($information);
+        $cloneForm = $this->createCloneForm($message);
 
         $paramTwig = array(
-            'information' => $information,
+            'message' => $message,
             'clone_form' => $cloneForm->createView(),
         );
 
         return $this->render($twig, $paramTwig);
     }
 
-        /**
-    * Modifier une information
+    /**
+    * Modifier un message
     *
     */
     public function cloneupdateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $message = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
-        $information = clone $information;
-        $em->detach($information);
-        $em->persist($information);
+        $message = clone $message;
+        $em->detach($message);
+        $em->persist($message);
 
-        $cloneForm = $this->createCloneForm($information);
+        $cloneForm = $this->createCloneForm($message);
         $cloneForm->handleRequest($request);
 
-        $twig = 'ThiefaineReferentielBundle:Information:clone.html.twig';
+        $twig = 'ThiefaineReferentielBundle:Message:clone.html.twig';
         $paramTwig = array(
-            'information' => $information,
+            'message' => $message,
             'clone_form' => $cloneForm->createView(),
         );
         $messageName = 'notice';
 
-        if (!$information) {
+        if (!$message) {
             return $this->getRenderError($twig, $paramTwig, $messageName,
-                'Impossible de trouver l\'information.');
+                'Impossible de trouver le message.');
         }
 
         if ($cloneForm->isValid()) {
 
-            // On met à jour le message de l'information
-            $messageInformation = $information->getMessage();
+            // On met à jour le message du message
+            $messageMessage = $message->getMessage();
 
             // message non vide
             $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
             $replacement = '';
-            $message = preg_replace($pattern, $replacement, $messageInformation, -1);
+            $message = preg_replace($pattern, $replacement, $messageMessage, -1);
 
             if ($message == '') {
                 return $this->getRenderError($twig, $paramTwig, $messageName,
@@ -376,7 +376,7 @@ class InformationController extends Controller
                 $finalNameFile = rand(1, 99999).'-'.$nameFile;
 
                 $file->move($dir, $finalNameFile);
-                $information->setUrlphoto("/uploads/documents/".$finalNameFile);
+                $message->setUrlphoto("/uploads/documents/".$finalNameFile);
             }
 
             $em->flush();
@@ -387,9 +387,9 @@ class InformationController extends Controller
                 
                 $pushMessage = new Push();
                 $sendMessage = array(
-                    "type" => "GendarmerieInformation",
-                    "id" => $information->getId(),
-                    "alerte" => $information->getAlerte()
+                    "type" => "EnsembleMessage",
+                    "id" => $message->getId(),
+                    "alerte" => $message->getAlerte()
                 );
                 $sendMessage = json_encode($sendMessage);
 
@@ -401,27 +401,27 @@ class InformationController extends Controller
                 );
             }
 
-            return $this->redirect($this->generateUrl('information'));
+            return $this->redirect($this->generateUrl('message'));
         }
 
         return $this->render($twig, $paramTwig);
     }
 
     /**
-     * Supprimer une information
+     * Supprimer un message
      *
      */
     public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Information')->find($id);
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->find($id);
 
         if (!$entity) {
             $this->container->get('session')->getFlashBag()->add(
                 'notice',
-                'Impossible de trouver l\'information'
+                'Impossible de trouver le message'
             );
-            return $this->redirect($this->generateUrl('information'));
+            return $this->redirect($this->generateUrl('message'));
         }
 
         $em->remove($entity);
@@ -434,7 +434,7 @@ class InformationController extends Controller
             $dir = __DIR__.'/../../../../web';
 
             //chercher si la photo est utilisée ailleurs
-            $repo = $em->getRepository('ThiefaineReferentielBundle:Information');
+            $repo = $em->getRepository('ThiefaineReferentielBundle:Message');
             $query = $repo->createQueryBuilder('info');
             $query->select('COUNT(info)');
             $query->where('info.urlphoto = :photoUrl');
@@ -447,45 +447,45 @@ class InformationController extends Controller
             }
         }
 
-        return $this->redirect($this->generateUrl('information'));
+        return $this->redirect($this->generateUrl('message'));
     }
 
     /**
-    * Creates a form to create a Information entity.
+    * Creates a form to create a Message entity.
     *
-    * @param Information $entity The entity
+    * @param Message $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Information $entity)
+    private function createCreateForm(Message $entity)
     {
-        $form = $this->createForm(new InformationType(), $entity, array(
-            'action' => $this->generateUrl('information_create'),
+        $form = $this->createForm(new MessageType(), $entity, array(
+            'action' => $this->generateUrl('message_create'),
             'method' => 'POST',
         ));
 
         return $form;
     }
 
-        /**
-    * Creates a form to create a Information entity.
+    /**
+    * Creates a form to create a Message entity.
     *
-    * @param Information $entity The entity
+    * @param Message $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCloneForm($information)
+    private function createCloneForm($message)
     {
 
-        $form = $this->createForm(new InformationType(), $information, array(
-            'action' => $this->generateUrl('information_cloneupdate', array('id' => $information->getId())),
+        $form = $this->createForm(new MessageType(), $message, array(
+            'action' => $this->generateUrl('message_cloneupdate', array('id' => $message->getId())),
             'method' => 'POST'
         ));
         return $form;
     }
 
     /**
-     * Creates a form to delete a Information entity by id.
+     * Creates a form to delete a Message entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -494,7 +494,7 @@ class InformationController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('information'))
+            ->setAction($this->generateUrl('message'))
             ->add('annuler', 'reset', array    ( 'label'  => 'Annuler',
                                                  'attr' =>  array ( 'class' => 'btn btn-default' )
                                                 )
@@ -504,67 +504,67 @@ class InformationController extends Controller
     }
 
     /**
-     * Creates a form to show a Information entity by id.
+     * Creates a form to show a Message entity by id.
      *
      * @param mixed $id The entity id
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createShowForm(Information $entity)
+    private function createShowForm(Message $entity)
     {
-        $form = $this->createForm(new InformationType(), $entity, array(
-            'action' => $this->generateUrl('information'),
+        $form = $this->createForm(new MessageType(), $entity, array(
+            'action' => $this->generateUrl('message'),
         ));
 
         return $form;
     }
 
     /**
-      * Get availalble one Information.
+      * Get availalble one Message.
       *
-      * @param $idInformation id of the information.
+      * @param $idMessage id of the message.
       *
       * @View()
-      * @Get("/information/{idInformation}")
+      * @Get("/message/{idMessage}")
       * @ApiDoc
     */
-    public function getInformationOneAction($idInformation) {
+    public function getMessageOneAction($idMessage) {
 
         $em = $this->getDoctrine()->getManager();
-        $information = $em->getRepository('ThiefaineReferentielBundle:Information')->find($idInformation);
+        $message = $em->getRepository('ThiefaineReferentielBundle:Message')->find($idMessage);
         
-        if($information->getUrlphoto() != null){
+        if($message->getUrlphoto() != null){
             
             $domaineName = $_SERVER['HTTP_HOST'];
-            $information->setUrlphoto(
-                $domaineName.$information->getUrlphoto()
+            $message->setUrlphoto(
+                $domaineName.$message->getUrlphoto()
             );
 
         }
 
-        return $information;
+        return $message;
 
     }
 
     /**
-      * Get availalble Information.
+      * Get availalble Message.
       *
       * @View()
-      * @Get("/information")
+      * @Get("/message")
       * @ApiDoc
     */
-    public function getInformationAction() {
+    public function getMessageAction() {
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ThiefaineReferentielBundle:Information')->findAll();
+        $entity = $em->getRepository('ThiefaineReferentielBundle:Message')->findAll();
 
-        $informations = array(); $i=0;
-        foreach ($entity as $information) {
-            $informations[$i] = $information->getId();
+        $messages = array(); $i=0;
+        foreach ($entity as $message) {
+            $messages[$i] = $message->getId();
             $i++;
         }
 
-        return $informations;
+        return $messages;
 
     }
 
