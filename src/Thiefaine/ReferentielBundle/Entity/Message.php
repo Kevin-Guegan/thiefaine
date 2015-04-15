@@ -8,10 +8,10 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\SerializedName;
 
 /**
- * Information
+ * Message
  * @ExclusionPolicy("all")
  */
-class Information
+class Message
 {
     /**
      * @var integer
@@ -87,14 +87,14 @@ class Information
      * @var \Doctrine\Common\Collections\Collection
      * @Expose
      */
-    private $categories;
+    private $keywords;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->keywords = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -111,7 +111,7 @@ class Information
      * Set titre
      *
      * @param string $titre
-     * @return Information
+     * @return Message
      */
     public function setTitre($titre)
     {
@@ -134,7 +134,7 @@ class Information
      * Set message
      *
      * @param string $message
-     * @return Information
+     * @return Message
      */
     public function setMessage($message)
     {
@@ -157,7 +157,7 @@ class Information
      * Set datecreation
      *
      * @param \DateTime $datecreation
-     * @return Information
+     * @return Message
      */
     public function setDatecreation($datecreation)
     {
@@ -180,7 +180,7 @@ class Information
      * Set datemiseajour
      *
      * @param \DateTime $datemiseajour
-     * @return Information
+     * @return Message
      */
     public function setDatemiseajour($datemiseajour)
     {
@@ -203,7 +203,7 @@ class Information
      * Set datevalidite
      *
      * @param \DateTime $datevalidite
-     * @return Information
+     * @return Message
      */
     public function setDatevalidite($datevalidite)
     {
@@ -226,7 +226,7 @@ class Information
      * Set compteurlecture
      *
      * @param integer $compteurlecture
-     * @return Information
+     * @return Message
      */
     public function setCompteurlecture($compteurlecture)
     {
@@ -249,7 +249,7 @@ class Information
      * Set urlphoto
      *
      * @param string $urlphoto
-     * @return Information
+     * @return Message
      */
     public function setUrlphoto($urlphoto)
     {
@@ -272,7 +272,7 @@ class Information
      * Set urllien
      *
      * @param string $urllien
-     * @return Information
+     * @return Message
      */
     public function setUrllien($urllien)
     {
@@ -295,7 +295,7 @@ class Information
      * Set alerte
      *
      * @param boolean $alerte
-     * @return Information
+     * @return Message
      */
     public function setAlerte($alerte)
     {
@@ -318,7 +318,7 @@ class Information
      * Set zone
      *
      * @param \Thiefaine\ReferentielBundle\Entity\Zone $zone
-     * @return Information
+     * @return Message
      */
     public function setZone(\Thiefaine\ReferentielBundle\Entity\Zone $zone = null)
     {
@@ -341,7 +341,7 @@ class Information
      * Set utilisateurweb
      *
      * @param \Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb
-     * @return Information
+     * @return Message
      */
     public function setUtilisateurweb(\Thiefaine\UserBundle\Entity\Utilisateurweb $utilisateurweb = null)
     {
@@ -361,35 +361,35 @@ class Information
     }
 
     /**
-     * Add categories
+     * Add keywords
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
-     * @return Information
+     * @param \Thiefaine\ReferentielBundle\Entity\Keyword $keywords
+     * @return Message
      */
-    public function addCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
+    public function addCategory(\Thiefaine\ReferentielBundle\Entity\Keyword $keywords)
     {
-        $this->categories[] = $categories;
+        $this->keywords[] = $keywords;
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove keywords
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Categorie $categories
+     * @param \Thiefaine\ReferentielBundle\Entity\Keyword $keywords
      */
-    public function removeCategory(\Thiefaine\ReferentielBundle\Entity\Categorie $categories)
+    public function removeCategory(\Thiefaine\ReferentielBundle\Entity\Keyword $keywords)
     {
-        $this->categories->removeElement($categories);
+        $this->keywords->removeElement($keywords);
     }
 
     /**
-     * Get categories
+     * Get keywords
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCategories()
+    public function getkeywords()
     {
-        return $this->categories;
+        return $this->keywords;
     }
 }

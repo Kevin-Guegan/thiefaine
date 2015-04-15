@@ -30,9 +30,9 @@ class Utilisateurmobile
     private $datecreation;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Gendarmerie
+     * @var \Thiefaine\ReferentielBundle\Entity\Ensemble
      */
-    private $gendarmerie;
+    private $ensemble;
 
 
     /**
@@ -115,25 +115,25 @@ class Utilisateurmobile
     }
 
     /**
-     * Set gendarmerie
+     * Set ensemble
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Gendarmerie $gendarmerie
+     * @param \Thiefaine\ReferentielBundle\Entity\Ensemble $ensemble
      * @return Utilisateurmobile
      */
-    public function setGendarmerie(\Thiefaine\ReferentielBundle\Entity\Gendarmerie $gendarmerie = null)
+    public function setensemble(\Thiefaine\ReferentielBundle\Entity\Ensemble $ensemble = null)
     {
-        $this->gendarmerie = $gendarmerie;
+        $this->ensemble = $ensemble;
 
         return $this;
     }
 
     /**
-     * Get gendarmerie
+     * Get ensemble
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Gendarmerie 
+     * @return \Thiefaine\ReferentielBundle\Entity\Ensemble 
      */
-    public function getGendarmerie()
+    public function getensemble()
     {
-        return $this->gendarmerie;
+        return $this->ensemble;
     }
 }

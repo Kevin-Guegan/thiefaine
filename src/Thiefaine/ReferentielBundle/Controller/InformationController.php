@@ -89,16 +89,13 @@ class InformationController extends Controller
             );
         $messageName = 'notice';
 
-        if (!$zones && !$categories) {
+        if (!$zones) {
             return $this->getRenderError($twig, $paramTwig, $messageName,
-                'Veuillez d\'abord créer une zone et une catégorie.');
+                'Veuillez d\'abord créer une zone.');
 
         } elseif (!$zones) {
             return $this->getRenderError($twig, $paramTwig, $messageName,
                 'Veuillez d\'abord créer une zone.');
-        } elseif (!$categories) {
-            return $this->getRenderError($twig, $paramTwig, $messageName,
-                'Veuillez d\'abord créer une catégorie.');
         } else {
             $paramTwig['show'] = true;
             return $this->render($twig, $paramTwig);
@@ -137,10 +134,6 @@ class InformationController extends Controller
 
             // Au moins une catégorie de sélectionné
             $categories = $information->getCategories();
-            if (count($categories)==0) {
-                return $this->getRenderError($twig, $paramTwig, $messageName,
-                    'Veuillez sélectionner au moins une catégorie.');
-            }
 
             // Contrôle de l'information
             $messageInformation = $information->getMessage();

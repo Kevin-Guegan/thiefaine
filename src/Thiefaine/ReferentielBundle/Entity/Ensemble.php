@@ -5,9 +5,9 @@ namespace Thiefaine\ReferentielBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Gendarmerie
+ * Ensemble (ancien gendarmerie)
  */
-class Gendarmerie
+class Ensemble
 {
     /**
      * @var integer

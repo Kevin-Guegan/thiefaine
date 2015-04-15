@@ -56,7 +56,7 @@ class Zone
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $informations;
+    private $messages;
 
     /**
      * @var \Thiefaine\UserBundle\Entity\Utilisateurweb
@@ -69,7 +69,7 @@ class Zone
     public function __construct()
     {
         $this->points = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->informations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -231,36 +231,36 @@ class Zone
     }
 
     /**
-     * Add informations
+     * Add messages
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
+     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
      * @return Zone
      */
-    public function addInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
+    public function addMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
     {
-        $this->informations[] = $informations;
+        $this->messages[] = $messages;
 
         return $this;
     }
 
     /**
-     * Remove informations
+     * Remove messages
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
+     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
      */
-    public function removeInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
+    public function removeMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
     {
-        $this->informations->removeElement($informations);
+        $this->messages->removeElement($messages);
     }
 
     /**
-     * Get informations
+     * Get messages
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getInformations()
+    public function getMessages()
     {
-        return $this->informations;
+        return $this->messages;
     }
 
     /**
