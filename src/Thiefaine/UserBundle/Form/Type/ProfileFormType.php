@@ -49,15 +49,15 @@ class ProfileFormType extends BaseType
                     'data-placement' => 'right'
                 )
             ))
-        ->add('infos', 'textarea', array(
-                'label' => 'Informations',
+        ->add('mess', 'textarea', array(
+                'label' => 'Messages',
                 'label_attr' => array(
                     'class' => 'control-label'
                 ),
                 'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => 'Informations',
-                    'title' => 'Information sur votre status.',
+                    'placeholder' => 'Messages',
+                    'title' => 'Message sur votre status.',
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'right'
                 )

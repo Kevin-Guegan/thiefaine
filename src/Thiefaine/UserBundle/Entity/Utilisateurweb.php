@@ -28,17 +28,13 @@ class Utilisateurweb extends BaseUser
     /**
      * @var string
      */
-    protected $infos;
+    protected $mess;
+
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    protected $conseils;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    protected $informations;
+    protected $messages;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -51,8 +47,7 @@ class Utilisateurweb extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->conseils = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->informations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
         $this->zones = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -113,92 +108,59 @@ class Utilisateurweb extends BaseUser
     }
 
     /**
-     * Set infos
+     * Set mess
      *
-     * @param string $infos
+     * @param string $mess
      * @return Utilisateurweb
      */
-    public function setInfos($infos)
+    public function setMess($mess)
     {
-        $this->infos = $infos;
+        $this->mess = $mess;
 
         return $this;
     }
 
     /**
-     * Get infos
+     * Get mess
      *
      * @return string 
      */
-    public function getInfos()
+    public function getMess()
     {
-        return $this->infos;
+        return $this->mess;
     }
 
     /**
-     * Add conseils
+     * Add Messages
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Conseil $conseils
+     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
      * @return Utilisateurweb
      */
-    public function addConseil(\Thiefaine\ReferentielBundle\Entity\Conseil $conseils)
+    public function addMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
     {
-        $this->conseils[] = $conseils;
+        $this->messages[] = $messages;
 
         return $this;
     }
 
     /**
-     * Remove conseils
+     * Remove Messages
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Conseil $conseils
+     * @param \Thiefaine\ReferentielBundle\Entity\Message $messages
      */
-    public function removeConseil(\Thiefaine\ReferentielBundle\Entity\Conseil $conseils)
+    public function removeMessage(\Thiefaine\ReferentielBundle\Entity\Message $messages)
     {
-        $this->conseils->removeElement($conseils);
+        $this->messages->removeElement($messages);
     }
 
     /**
-     * Get conseils
+     * Get Messages
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getConseils()
+    public function getMessage()
     {
-        return $this->conseils;
-    }
-
-    /**
-     * Add informations
-     *
-     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
-     * @return Utilisateurweb
-     */
-    public function addInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
-    {
-        $this->informations[] = $informations;
-
-        return $this;
-    }
-
-    /**
-     * Remove informations
-     *
-     * @param \Thiefaine\ReferentielBundle\Entity\Information $informations
-     */
-    public function removeInformation(\Thiefaine\ReferentielBundle\Entity\Information $informations)
-    {
-        $this->informations->removeElement($informations);
-    }
-
-    /**
-     * Get informations
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getInformations()
-    {
-        return $this->informations;
+        return $this->messages;
     }
 
     /**

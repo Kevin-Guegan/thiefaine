@@ -73,8 +73,7 @@ class GroupController extends BaseController
 	            $gererUtilisateurs = $form['gererutilisateurs']->getData();
                 $gererCategories = $form['gerercategories']->getData();
                 $gererZones = $form['gererzones']->getData();
-	            $gererInfos = $form['gererinfos']->getData();
-	            $gererConseils = $form['gererconseils']->getData();
+	            $gererMesss = $form['gerermess']->getData();
 
                 $roles = array();
 	            if ($gererGroupes) {
@@ -93,12 +92,8 @@ class GroupController extends BaseController
                     $roles[] = 'ROLE_MANAGE_CATEGORIE';
                 }
 
-	            if ($gererInfos) {
-	            	$roles[] = 'ROLE_MANAGE_INFORMATION';
-	            }
-
-	            if ($gererConseils) {
-	            	$roles[] = 'ROLE_MANAGE_CONSEIL';
+	            if ($gererMess) {
+	            	$roles[] = 'ROLE_MANAGE_MESSAGE';
 	            }
 
 	            $group->setRoles($roles);
@@ -161,8 +156,7 @@ class GroupController extends BaseController
                 $gererUtilisateurs = $form['gererutilisateurs']->getData();
                 $gererZones = $form['gererzones']->getData();
                 $gererCategories = $form['gerercategories']->getData();
-                $gererInfos = $form['gererinfos']->getData();
-                $gererConseils = $form['gererconseils']->getData();
+                $gererMess = $form['gerermess']->getData();
 
                 $roles = array();
                 if ($gererGroupes) {
@@ -181,13 +175,10 @@ class GroupController extends BaseController
                     $roles[] = 'ROLE_MANAGE_CATEGORIE';
                 }
 
-                if ($gererInfos) {
-                    $roles[] = 'ROLE_MANAGE_INFORMATION';
+                if ($gererMess) {
+                    $roles[] = 'ROLE_MANAGE_MESSAGE';
                 }
 
-                if ($gererConseils) {
-                    $roles[] = 'ROLE_MANAGE_CONSEIL';
-                }
 
                 $group->setRoles($roles);
 
@@ -212,8 +203,7 @@ class GroupController extends BaseController
                             'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
                             'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
                             'group_role_manage_categorie' => $group->hasRole('ROLE_MANAGE_CATEGORIE'),
-                            'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
-                            'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
+                            'group_role_manage_message' => $group->hasRole('ROLE_MANAGE_MESSAGE'),
                         ));
                     }
                 }
@@ -241,8 +231,7 @@ class GroupController extends BaseController
             'group_role_manage_user' => $group->hasRole('ROLE_MANAGE_USER'),
             'group_role_manage_zone' => $group->hasRole('ROLE_MANAGE_ZONE'),
             'group_role_manage_categorie' => $group->hasRole('ROLE_MANAGE_CATEGORIE'),
-            'group_role_manage_information' => $group->hasRole('ROLE_MANAGE_INFORMATION'),
-            'group_role_manage_conseil' => $group->hasRole('ROLE_MANAGE_CONSEIL'),
+            'group_role_manage_message' => $group->hasRole('ROLE_MANAGE_MESSAGE'),
         ));
     }
 
@@ -260,15 +249,12 @@ class GroupController extends BaseController
             if ($user->hasGroup($group->getName())) {
 
                 // on met à jour les conseils, infos et zones de l'utilsateur => on met à null l'id utilisateur
-                $conseils = $user->getConseils();
-                $informations = $user->getInformations();
+                $messages = $user->getMessages();
                 $zones = $user->getZones();
 
-                foreach ($conseils as $conseil) {
-                    $conseil->setUtilisateurweb(null);
-                }
-                foreach ($informations as $information) {
-                    $information->setUtilisateurweb(null);
+
+                foreach ($messages as $message) {
+                    $message->setUtilisateurweb(null);
                 }
                 foreach ($zones as $zone) {
                     $zone->setUtilisateurweb(null);

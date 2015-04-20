@@ -16,9 +16,9 @@ class Group extends BaseGroup
     protected $id;
 
     /**
-     * @var \Thiefaine\ReferentielBundle\Entity\Gendarmerie
+     * @var \Thiefaine\ReferentielBundle\Entity\AppGroup
      */
-    private $gendarmerie;
+    private $appgroup;
 
 
     /**
@@ -34,12 +34,12 @@ class Group extends BaseGroup
     /**
      * Set gendarmerie
      *
-     * @param \Thiefaine\ReferentielBundle\Entity\Gendarmerie $gendarmerie
+     * @param \Thiefaine\ReferentielBundle\Entity\AppGroup $appgroup
      * @return Group
      */
-    public function setGendarmerie(\Thiefaine\ReferentielBundle\Entity\Gendarmerie $gendarmerie = null)
+    public function setAppGroup(\Thiefaine\ReferentielBundle\Entity\AppGroup $appgroup = null)
     {
-        $this->gendarmerie = $gendarmerie;
+        $this->appgroup = $appgroup;
 
         return $this;
     }
@@ -47,10 +47,10 @@ class Group extends BaseGroup
     /**
      * Get gendarmerie
      *
-     * @return \Thiefaine\ReferentielBundle\Entity\Gendarmerie 
+     * @return \Thiefaine\ReferentielBundle\Entity\AppGroup 
      */
-    public function getGendarmerie()
+    public function getAppGroup()
     {
-        return $this->gendarmerie;
+        return $this->appgroup;
     }
 }

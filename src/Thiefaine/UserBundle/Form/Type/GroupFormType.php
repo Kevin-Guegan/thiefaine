@@ -98,19 +98,8 @@ class GroupFormType extends BaseType
             'mapped' => false,
             'required' => false,
         ))
-        ->add('gererinfos', 'checkbox', array(
-            'label' => 'Gestion des informations',
-            'label_attr' => array(
-                'style' => 'font-weight: inherit;'
-            ),
-            'attr' => array(
-                'class' => 'pull-right',
-            ),
-            'mapped' => false,
-            'required' => false,
-        ))
-        ->add('gererconseils', 'checkbox', array(
-            'label' => 'Gestion des conseils',
+        ->add('gerermess', 'checkbox', array(
+            'label' => 'Gestion des messages',
             'label_attr' => array(
                 'style' => 'font-weight: inherit;'
             ),

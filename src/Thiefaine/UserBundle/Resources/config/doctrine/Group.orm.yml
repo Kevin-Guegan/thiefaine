@@ -11,7 +11,7 @@ Thiefaine\UserBundle\Entity\Group:
                 strategy: IDENTITY
     manyToOne:
         gendarmerie:
-            targetEntity: Thiefaine\ReferentielBundle\Entity\Gendarmerie
+            targetEntity: Thiefaine\ReferentielBundle\Entity\AddGroup
             inversedBy: groups
             joinColumns:
                 idgendarmerie:

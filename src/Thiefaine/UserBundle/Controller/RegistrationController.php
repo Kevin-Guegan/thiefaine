@@ -98,12 +98,12 @@ class RegistrationController extends BaseController
 
             // Contrôle de l'information
             if ('' === $notice){
-                $messageUser = $user->getInfos();
+                $messageUser = $user->getMess();
                 $pattern = '/<p>(?:\s|&nbsp;)+<\/p>/';
                 $replacement = '';
                 $message = preg_replace($pattern, $replacement, $messageUser, -1);
                 if ('' === $message) {
-                    $notice = 'Veuillez saisir les informations sur l\'utilisateur.';
+                    $notice = 'Veuillez saisir les messages sur l\'utilisateur.';
                 }
             }
 

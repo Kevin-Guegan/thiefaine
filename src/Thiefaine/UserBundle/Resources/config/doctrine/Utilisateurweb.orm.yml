@@ -37,11 +37,8 @@ Thiefaine\UserBundle\Entity\Utilisateurweb:
                     groupe:
                         referencedColumnName: id
     oneToMany:
-        conseils:
-            targetEntity: Thiefaine\ReferentielBundle\Entity\Conseil
-            mappedBy: utilisateurweb
-        informations:
-            targetEntity: Thiefaine\ReferentielBundle\Entity\Information
+        messages:
+            targetEntity: Thiefaine\ReferentielBundle\Entity\Message
             mappedBy: utilisateurweb
         zones:
             targetEntity: Thiefaine\ReferentielBundle\Entity\Zone

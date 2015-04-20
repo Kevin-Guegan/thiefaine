@@ -94,15 +94,15 @@ class RegistrationFormType extends BaseType
                     'data-placement' => 'right'
                 )
             ))
-            ->add('infos', 'textarea', array(
-                'label' => 'Informations',
+            ->add('mess', 'textarea', array(
+                'label' => 'Messages',
                 'label_attr' => array(
                     'class' => 'control-label'
                 ),
                 'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => 'Informations',
-                    'title' => 'Renseigner les informations de l\'utilisateur.',
+                    'placeholder' => 'Messages',
+                    'title' => 'Renseigner les messages de l\'utilisateur.',
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'right'
                 )
